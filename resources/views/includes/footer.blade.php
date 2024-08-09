@@ -4,11 +4,11 @@
         <div class="second__level">
             <div class="footer-menu">
                 <ul class="footer__menu menu">
-                    <li class="footer-menu__item menu__item"> <a href=""
+                    <li class="footer-menu__item menu__item"> <a href="/tourist"
                             class="footer-menu__link menu__link">Туристам</a>
                     </li>
                     </li>
-                    <li class="footer-menu__item menu__item"> <a href="./agency.html"
+                    <li class="footer-menu__item menu__item"> <a href="/agency"
                             class="footer-menu__link menu__link">Агенствам</a>
                     </li>
                 </ul>
@@ -16,14 +16,14 @@
             <div class="footer__main-menu">
                 <ul class="footer-main-menu menu">
                     <li class="footer-main-menu__item menu__item">
-                        <a href="./news.html" class="footer-main-menu__link menu__link">Новости
+                        <a href="news" class="footer-main-menu__link menu__link">Новости
                         </a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="./blogs.html" class="footer-main-menu__link menu__link">Блог</a>
+                        <a href="blogs" class="footer-main-menu__link menu__link">Блог</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="./contacts.html" class="footer-main-menu__link menu__link">Контакты</a>
+                        <a href="contacts" class="footer-main-menu__link menu__link">Контакты</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
                         <a href="" class="footer-main-menu__link menu__link">Отели</a>
@@ -35,7 +35,7 @@
                         <a href="" class="footer-main-menu__link menu__link">Визы</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="./about_company.html" class="footer-main-menu__link menu__link">О компании</a>
+                        <a href="about-company" class="footer-main-menu__link menu__link">О компании</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
                         <a href="" class="footer-main-menu__link menu__link">Ранее бронирование</a>

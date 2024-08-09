@@ -51,9 +51,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if(\App::runningInConsole()) return; //чтобы не было проблем с миграциями
+        if (\App::runningInConsole()) return; //чтобы не было проблем с миграциями
 
-        $this->app->bind(\App\Contracts\Pages::class , fn() => new Pages(
+        $this->app->bind(\App\Contracts\Pages::class, fn() => new Pages(
             new \App\Models\Page\Page(),
             new \Request()
         ));
@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
         $setting = Setting::find(1);
 
         $seo = new \App\Services\SEO\SEO(
-            SEO::where('url' , Request::path())->first(),
+            SEO::where('url', Request::path())->first(),
             new SEOMeta(),
             new OpenGraph(),
             new TwitterCard(),
@@ -71,8 +71,7 @@ class AppServiceProvider extends ServiceProvider
         );
         $seo->buildSets();
 
-        View::composer('includes.head', fn($view) => $view->with(['seo' => $seo]));
-        View::composer('layouts.default', fn($view) => $view->with(['setting' => $setting]));
-
+        // View::composer('includes.head', fn($view) => $view->with(['seo' => $seo]));
+        View::composer('layouts.default', fn($view) => $view->with(['setting' => $setting, 'seo' => $seo]));
     }
 }

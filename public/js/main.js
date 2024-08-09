@@ -3959,7 +3959,7 @@ $(function () {
 
     });
   });
-  new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"]('.sliders', {
+  if ($(".sliders").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"]('.sliders', {
     pagination: false,
     type: 'loop',
     padding: '30rem',
@@ -4016,51 +4016,51 @@ $(function () {
       }
     },
     height: 779
-  }).mount(); // new Splide('.news__slider', {
-  //     gap: 35,
-  //     pagination: false,
-  //     perPage: 3,
-  //     width: 1348,
-  //     autoHeight: true,
-  //     breakpoints: {
-  //         375: {
-  //             perPage: 1,
-  //             pagination: true,
-  //             width: 375,
-  //         },
-  //         425: {
-  //             perPage: 1,
-  //             padination: true,
-  //         },
-  //         768: {
-  //             perPage: 2,
-  //             pagination: true,
-  //         },
-  //         925: {
-  //             perPage: 2,
-  //             pagination: true,
-  //         },
-  //         1024: {
-  //             perPage: 3,
-  //             pagination: true,
-  //         },
-  //         1350: {
-  //             perPage: 3,
-  //             pagination: true,
-  //         },
-  //         1550: {
-  //             perPage: 3,
-  //             width: 1150,
-  //             autoHeight: true,
-  //         },
-  //         1920: {
-  //             perPage: 3,
-  //             autoHeight: true,
-  //         }
-  //     }
-  // }).mount();
-
-  new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".popular-tours__slider", {
+  }).mount();
+  if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"]('.news__slider', {
+    gap: 35,
+    pagination: false,
+    perPage: 3,
+    width: 1348,
+    autoHeight: true,
+    breakpoints: {
+      375: {
+        perPage: 1,
+        pagination: true,
+        width: 375
+      },
+      425: {
+        perPage: 1,
+        padination: true
+      },
+      768: {
+        perPage: 2,
+        pagination: true
+      },
+      925: {
+        perPage: 2,
+        pagination: true
+      },
+      1024: {
+        perPage: 3,
+        pagination: true
+      },
+      1350: {
+        perPage: 3,
+        pagination: true
+      },
+      1550: {
+        perPage: 3,
+        width: 1150,
+        autoHeight: true
+      },
+      1920: {
+        perPage: 3,
+        autoHeight: true
+      }
+    }
+  }).mount();
+  if ($(".popular-tours__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".popular-tours__slider", {
     gap: 35,
     pagination: false,
     perPage: 3,
@@ -4099,120 +4099,119 @@ $(function () {
         width: 1150
       }
     }
-  }).mount(); // new Splide(".advertisement-slider", {
-  //     pagination: false,
-  //     perPage: 1,
-  //     breakpoints: {
-  //         375: {
-  //             perPage: 1,
-  //         },
-  //         425: {
-  //             perPage: 1,
-  //         },
-  //         768: {
-  //             perPage: 1,
-  //         },
-  //         1024: {
-  //             perPage: 1,
-  //         },
-  //     }
-  // }).mount();
-  // new Splide(".search-tour-buttons__slider", {
-  //     pagination: false,
-  //     arrows: false,
-  //     type: 'slide',
-  //     padding: {
-  //         left: 10,
-  //     },
-  //     gap: 0,
-  //     breakpoints: {
-  //         320: {
-  //             type: "slide",
-  //             perPage: 2,
-  //             arrows: false,
-  //             gap: 31,
-  //             autoWidth: true,
-  //             padding: {
-  //                 // left: 40,
-  //             }
-  //         },
-  //         375: {
-  //             type: "slide",
-  //             perPage: 2,
-  //             arrows: false,
-  //             gap: 31,
-  //             autoWidth: true,
-  //             padding: {
-  //                 // left: 40,
-  //             }
-  //         },
-  //         500: {
-  //             type: "slide",
-  //             perPage: 2,
-  //             arrows: false,
-  //             gap: 31,
-  //             autoWidth: true,
-  //             padding: {
-  //                 left: 40,
-  //             },
-  //         },
-  //         768: {
-  //             type: "slide",
-  //             perPage: 4,
-  //             arrows: false,
-  //             gap: 31,
-  //             autoWidth: true,
-  //             padding: {
-  //                 left: 40,
-  //             },
-  //         },
-  //         1024: {
-  //             type: "slide",
-  //             perPage: 4,
-  //             arrows: false,
-  //             gap: 31,
-  //             autoWidth: true,
-  //             padding: {
-  //                 left: 40,
-  //             },
-  //         },
-  //         1350: {
-  //             type: "slide",
-  //             perPage: 'auto',
-  //             arrows: false,
-  //             padding: {
-  //                 left: 10,
-  //             },
-  //             gap: 35,
-  //         },
-  //         1920: {
-  //             type: "slide",
-  //             perPage: 'auto',
-  //             arrows: false,
-  //             padding: {
-  //                 left: 10,
-  //             },
-  //             gap: 35,
-  //         },
-  //         2560: {
-  //             type: "slide",
-  //             perPage: 'auto',
-  //             arrows: false,
-  //             padding: {
-  //                 left: 10,
-  //             },
-  //             gap: 35,
-  //         }
-  //     }
-  // }).mount();
+  }).mount();
+  if ($(".advertisement-slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".advertisement-slider", {
+    pagination: false,
+    perPage: 1,
+    breakpoints: {
+      375: {
+        perPage: 1
+      },
+      425: {
+        perPage: 1
+      },
+      768: {
+        perPage: 1
+      },
+      1024: {
+        perPage: 1
+      }
+    }
+  }).mount();
+  if ($(".search-tour-buttons__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".search-tour-buttons__slider", {
+    pagination: false,
+    arrows: false,
+    type: 'slide',
+    padding: {
+      left: 10
+    },
+    gap: 0,
+    breakpoints: {
+      320: {
+        type: "slide",
+        perPage: 2,
+        arrows: false,
+        gap: 31,
+        autoWidth: true,
+        padding: {// left: 40,
+        }
+      },
+      375: {
+        type: "slide",
+        perPage: 2,
+        arrows: false,
+        gap: 31,
+        autoWidth: true,
+        padding: {// left: 40,
+        }
+      },
+      500: {
+        type: "slide",
+        perPage: 2,
+        arrows: false,
+        gap: 31,
+        autoWidth: true,
+        padding: {
+          left: 40
+        }
+      },
+      768: {
+        type: "slide",
+        perPage: 4,
+        arrows: false,
+        gap: 31,
+        autoWidth: true,
+        padding: {
+          left: 40
+        }
+      },
+      1024: {
+        type: "slide",
+        perPage: 4,
+        arrows: false,
+        gap: 31,
+        autoWidth: true,
+        padding: {
+          left: 40
+        }
+      },
+      1350: {
+        type: "slide",
+        perPage: 'auto',
+        arrows: false,
+        padding: {
+          left: 10
+        },
+        gap: 35
+      },
+      1920: {
+        type: "slide",
+        perPage: 'auto',
+        arrows: false,
+        padding: {
+          left: 10
+        },
+        gap: 35
+      },
+      2560: {
+        type: "slide",
+        perPage: 'auto',
+        arrows: false,
+        padding: {
+          left: 10
+        },
+        gap: 35
+      }
+    }
+  }).mount();
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css ***!
-  \*************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css ***!
+  \***************************************************************************************************************************************************************************************************************************/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16609,10 +16608,36 @@ return jQuery;
 
 /***/ }),
 
-/***/ "./resources/css/main.css":
+/***/ "./resources/css/news.css":
 /*!********************************!*\
-  !*** ./resources/css/main.css ***!
+  !*** ./resources/css/news.css ***!
   \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/tour.css":
+/*!********************************!*\
+  !*** ./resources/css/tour.css ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/tours.css":
+/*!*********************************!*\
+  !*** ./resources/css/tours.css ***!
+  \*********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16626,6 +16651,71 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************!*\
   !*** ./resources/css/fonts.css ***!
   \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/main.css":
+/*!********************************!*\
+  !*** ./resources/css/main.css ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/about.css":
+/*!*********************************!*\
+  !*** ./resources/css/about.css ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/agency.css":
+/*!**********************************!*\
+  !*** ./resources/css/agency.css ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/blog.css":
+/*!********************************!*\
+  !*** ./resources/css/blog.css ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/contacts.css":
+/*!************************************!*\
+  !*** ./resources/css/contacts.css ***!
+  \************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38517,7 +38607,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./splide.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css");
+/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_14_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_14_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../css-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[1]!../../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[2]!./splide.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[14].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css");
 
             
 
@@ -38526,11 +38616,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_14_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_14_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ __webpack_exports__["default"] = (_css_loader_dist_cjs_js_ruleSet_1_rules_14_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_14_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -38939,7 +39029,14 @@ module.exports = function (list, options) {
 /******/ 		var installedChunks = {
 /******/ 			"/js/main": 0,
 /******/ 			"css/main": 0,
-/******/ 			"css/fonts": 0
+/******/ 			"css/contacts": 0,
+/******/ 			"css/blog": 0,
+/******/ 			"css/agency": 0,
+/******/ 			"css/about": 0,
+/******/ 			"css/fonts": 0,
+/******/ 			"css/tours": 0,
+/******/ 			"css/tour": 0,
+/******/ 			"css/news": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -38996,9 +39093,16 @@ module.exports = function (list, options) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/fonts"], function() { return __webpack_require__("./resources/js/main.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/fonts"], function() { return __webpack_require__("./resources/css/main.css"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/fonts"], function() { return __webpack_require__("./resources/css/fonts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

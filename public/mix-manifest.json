@@ -1,6 +1,13 @@
 {
-    "/js/main.js": "/js/main.js?id=046937c110b5c6a1620888987460bf78",
+    "/js/main.js": "/js/main.js?id=d2461b5d59880b5a216b43a17da8b7df",
     "/js/jquery-3.7.1.js": "/js/jquery-3.7.1.js?id=2f176a5c9c09b5ce253135bc88fe27a6",
-    "/css/main.css": "/css/main.css?id=8f7ddc9dfdbbc9d988e9eabb34d95994",
-    "/css/fonts.css": "/css/fonts.css?id=2567d479bc2a6d270a9be95171943422"
+    "/css/main.css": "/css/main.css?id=c6dfb7f2f1a08a2828a1eb8dce35f557",
+    "/css/contacts.css": "/css/contacts.css?id=de116e64b4b3321d875864b995d0e995",
+    "/css/blog.css": "/css/blog.css?id=f1b90bc36cdfc93708c91604cb9ac63c",
+    "/css/agency.css": "/css/agency.css?id=ad4c54f7fdb6eca6c7760d911df990b9",
+    "/css/about.css": "/css/about.css?id=76b300db2b8423abc725d311fa094d6b",
+    "/css/fonts.css": "/css/fonts.css?id=2567d479bc2a6d270a9be95171943422",
+    "/css/tours.css": "/css/tours.css?id=d1b10ccd2d50233da88f6f56580ca755",
+    "/css/tour.css": "/css/tour.css?id=9c3d79f77453443b7bcf99fd5178f410",
+    "/css/news.css": "/css/news.css?id=bdb2a3f6a27e37e9c4f6d43b457d9bb6"
 }

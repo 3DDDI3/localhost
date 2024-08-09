@@ -233,8 +233,7 @@ $(function () {
         });
     });
 
-
-    new Splide('.sliders', {
+    if ($(".sliders").length > 0) new Splide('.sliders', {
         pagination: false,
         type: 'loop',
         padding: '30rem',
@@ -295,50 +294,51 @@ $(function () {
         height: 779
     }).mount();
 
-    // new Splide('.news__slider', {
-    //     gap: 35,
-    //     pagination: false,
-    //     perPage: 3,
-    //     width: 1348,
-    //     autoHeight: true,
-    //     breakpoints: {
-    //         375: {
-    //             perPage: 1,
-    //             pagination: true,
-    //             width: 375,
-    //         },
-    //         425: {
-    //             perPage: 1,
-    //             padination: true,
-    //         },
-    //         768: {
-    //             perPage: 2,
-    //             pagination: true,
-    //         },
-    //         925: {
-    //             perPage: 2,
-    //             pagination: true,
-    //         },
-    //         1024: {
-    //             perPage: 3,
-    //             pagination: true,
-    //         },
-    //         1350: {
-    //             perPage: 3,
-    //             pagination: true,
-    //         },
-    //         1550: {
-    //             perPage: 3,
-    //             width: 1150,
-    //             autoHeight: true,
-    //         },
-    //         1920: {
-    //             perPage: 3,
-    //             autoHeight: true,
-    //         }
-    //     }
-    // }).mount();
-    new Splide(".popular-tours__slider", {
+    if ($(".news__slider").length > 0) new Splide('.news__slider', {
+        gap: 35,
+        pagination: false,
+        perPage: 3,
+        width: 1348,
+        autoHeight: true,
+        breakpoints: {
+            375: {
+                perPage: 1,
+                pagination: true,
+                width: 375,
+            },
+            425: {
+                perPage: 1,
+                padination: true,
+            },
+            768: {
+                perPage: 2,
+                pagination: true,
+            },
+            925: {
+                perPage: 2,
+                pagination: true,
+            },
+            1024: {
+                perPage: 3,
+                pagination: true,
+            },
+            1350: {
+                perPage: 3,
+                pagination: true,
+            },
+            1550: {
+                perPage: 3,
+                width: 1150,
+                autoHeight: true,
+            },
+            1920: {
+                perPage: 3,
+                autoHeight: true,
+            }
+        }
+    }).mount();
+
+    if ($(".popular-tours__slider").length > 0) new Splide(".popular-tours__slider", {
         gap: 35,
         pagination: false,
         perPage: 3,
@@ -378,111 +378,114 @@ $(function () {
             },
         }
     }).mount();
-    // new Splide(".advertisement-slider", {
-    //     pagination: false,
-    //     perPage: 1,
-    //     breakpoints: {
-    //         375: {
-    //             perPage: 1,
-    //         },
-    //         425: {
-    //             perPage: 1,
-    //         },
-    //         768: {
-    //             perPage: 1,
-    //         },
-    //         1024: {
-    //             perPage: 1,
-    //         },
-    //     }
-    // }).mount();
-    // new Splide(".search-tour-buttons__slider", {
-    //     pagination: false,
-    //     arrows: false,
-    //     type: 'slide',
-    //     padding: {
-    //         left: 10,
-    //     },
-    //     gap: 0,
-    //     breakpoints: {
-    //         320: {
-    //             type: "slide",
-    //             perPage: 2,
-    //             arrows: false,
-    //             gap: 31,
-    //             autoWidth: true,
-    //             padding: {
-    //                 // left: 40,
-    //             }
-    //         },
-    //         375: {
-    //             type: "slide",
-    //             perPage: 2,
-    //             arrows: false,
-    //             gap: 31,
-    //             autoWidth: true,
-    //             padding: {
-    //                 // left: 40,
-    //             }
-    //         },
-    //         500: {
-    //             type: "slide",
-    //             perPage: 2,
-    //             arrows: false,
-    //             gap: 31,
-    //             autoWidth: true,
-    //             padding: {
-    //                 left: 40,
-    //             },
-    //         },
-    //         768: {
-    //             type: "slide",
-    //             perPage: 4,
-    //             arrows: false,
-    //             gap: 31,
-    //             autoWidth: true,
-    //             padding: {
-    //                 left: 40,
-    //             },
-    //         },
-    //         1024: {
-    //             type: "slide",
-    //             perPage: 4,
-    //             arrows: false,
-    //             gap: 31,
-    //             autoWidth: true,
-    //             padding: {
-    //                 left: 40,
-    //             },
-    //         },
-    //         1350: {
-    //             type: "slide",
-    //             perPage: 'auto',
-    //             arrows: false,
-    //             padding: {
-    //                 left: 10,
-    //             },
-    //             gap: 35,
-    //         },
-    //         1920: {
-    //             type: "slide",
-    //             perPage: 'auto',
-    //             arrows: false,
-    //             padding: {
-    //                 left: 10,
-    //             },
-    //             gap: 35,
-    //         },
-    //         2560: {
-    //             type: "slide",
-    //             perPage: 'auto',
-    //             arrows: false,
-    //             padding: {
-    //                 left: 10,
-    //             },
-    //             gap: 35,
-    //         }
-    //     }
-    // }).mount();
+
+    if ($(".advertisement-slider").length > 0) new Splide(".advertisement-slider", {
+        pagination: false,
+        perPage: 1,
+        breakpoints: {
+            375: {
+                perPage: 1,
+            },
+            425: {
+                perPage: 1,
+            },
+            768: {
+                perPage: 1,
+            },
+            1024: {
+                perPage: 1,
+            },
+        }
+    }).mount();
+
+    if ($(".search-tour-buttons__slider").length > 0) new Splide(".search-tour-buttons__slider", {
+        pagination: false,
+        arrows: false,
+        type: 'slide',
+        padding: {
+            left: 10,
+        },
+        gap: 0,
+        breakpoints: {
+            320: {
+                type: "slide",
+                perPage: 2,
+                arrows: false,
+                gap: 31,
+                autoWidth: true,
+                padding: {
+                    // left: 40,
+                }
+            },
+            375: {
+                type: "slide",
+                perPage: 2,
+                arrows: false,
+                gap: 31,
+                autoWidth: true,
+                padding: {
+                    // left: 40,
+                }
+            },
+            500: {
+                type: "slide",
+                perPage: 2,
+                arrows: false,
+                gap: 31,
+                autoWidth: true,
+                padding: {
+                    left: 40,
+                },
+            },
+            768: {
+                type: "slide",
+                perPage: 4,
+                arrows: false,
+                gap: 31,
+                autoWidth: true,
+                padding: {
+                    left: 40,
+                },
+            },
+            1024: {
+                type: "slide",
+                perPage: 4,
+                arrows: false,
+                gap: 31,
+                autoWidth: true,
+                padding: {
+                    left: 40,
+                },
+            },
+            1350: {
+                type: "slide",
+                perPage: 'auto',
+                arrows: false,
+                padding: {
+                    left: 10,
+                },
+                gap: 35,
+            },
+            1920: {
+                type: "slide",
+                perPage: 'auto',
+                arrows: false,
+                padding: {
+                    left: 10,
+                },
+                gap: 35,
+            },
+            2560: {
+                type: "slide",
+                perPage: 'auto',
+                arrows: false,
+                padding: {
+                    left: 10,
+                },
+                gap: 35,
+            }
+        }
+    }).mount();
+
 
 });

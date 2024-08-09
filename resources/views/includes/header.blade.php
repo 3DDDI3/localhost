@@ -3,26 +3,26 @@
         <a href="/"><img src="{{ asset('images/logo.svg') }}" alt="" class="header__logo"></a>
         <ul class="header-menu menu">
             <li class="header-menu__item menu__item">
-                <a href="./client.html" class="header-menu__link menu__link">Туристам</a>
+                <a href="/tourist" class="header-menu__link menu__link">Туристам</a>
             </li>
             <li class="header-menu__item menu__item">
-                <a href="./agency.html" class="header-menu__link menu__link">Агентствам</a>
+                <a href="/agency" class="header-menu__link menu__link">Агентствам</a>
             </li>
         </ul>
     </div>
     <div class="header__main-menu">
         <ul class="header-main-menu menu">
             <li class="header-main-menu__item menu__item">
-                <a href="./about_company.html" class="header-main-menu__link menu__link">О компании</a>
+                <a href="/about-company" class="header-main-menu__link menu__link">О компании</a>
             </li>
             <li class="header-main-menu__item menu__item">
-                <a href="./news.html" class="header-main-menu__link menu__link">Новости</a>
+                <a href="/news" class="header-main-menu__link menu__link">Новости</a>
             </li>
             <li class="header-main-menu__item menu__item">
-                <a href="./blogs.html" class="header-main-menu__link menu__link">Блог</a>
+                <a href="/blogs" class="header-main-menu__link menu__link">Блог</a>
             </li>
             <li class="header-main-menu__item menu__item">
-                <a href="./contacts.html" class="header-main-menu__link menu__link">Контакты</a>
+                <a href="/contacts" class="header-main-menu__link menu__link">Контакты</a>
             </li>
         </ul>
     </div>
@@ -88,11 +88,11 @@
     </label>
     <div class="menu-hamburger">
         <div class="menu-items">
-            <li><a class="menu-items__result" href="./about_company.html">О компании</a></li>
-            <li><a class="menu-items__connect" href="./news.html">Новости</a></li>
-            <li><a class="menu-items__cost" href="./blogs.html">Блог</a></li>
-            <li><a class="menu-items__qa" href="./contacts.html">Контакты</a></li>
-            <li><a class="menu-items__entrance" href="./agency.html">Агенствам</a></li>
+            <li><a class="menu-items__result" href="/about-comany">О компании</a></li>
+            <li><a class="menu-items__connect" href="/news">Новости</a></li>
+            <li><a class="menu-items__cost" href="/blogs">Блог</a></li>
+            <li><a class="menu-items__qa" href="/contacts">Контакты</a></li>
+            <li><a class="menu-items__entrance" href="/agency">Агенствам</a></li>
         </div>
         <div class="menu-info more-info">
             <a href="tel:+78129570185" class="menu-info__phone more-info__phone">+7 (812) 957-01-85</a>
