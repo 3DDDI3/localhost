@@ -224,25 +224,33 @@
 
     </main>
 
-    <script>
-        ymaps.ready(init); // Ждем, пока API загрузится
+    <script type="text/javascript">
+        let center = [48.8866527839977, 2.34310679732974];
 
         function init() {
-            var myMap = new ymaps.Map("map", {
-                center: [59.911864931802135, 30.31557936689942], // Координаты центра карты
-                zoom: 18, // Масштаб карты
-                controls: [] // Отключаем все элементы управления
+            let map = new ymaps.Map('map', {
+                center: center,
+                zoom: 17
             });
 
-            var myPlacemark = new ymaps.Placemark([59.911864931802135, 30.31557936689942], {
-                balloonContent: "<div class='ya_map'>Заезжайте в гости!</div>" // Подсказка метки
-            }, {
-                preset: "twirl#redDotIcon" // Тип метки
+            let placemark = new ymaps.Placemark(center, {}, {
+                iconLayout: 'default#image',
+                iconImageHref: '/images/logo.png',
+                iconImageSize: [40, 40],
+                iconImageOffset: [-19, -44]
             });
 
-            myMap.geoObjects.add(myPlacemark); // Добавляем метку на карту
-            myPlacemark.balloon.open(); // Открываем подсказку метки
+            map.controls.remove('geolocationControl'); // удаляем геолокацию
+            map.controls.remove('searchControl'); // удаляем поиск
+            map.controls.remove('trafficControl'); // удаляем контроль трафика
+            // map.controls.remove('typeSelector'); // удаляем тип
+            map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+            // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+            map.controls.remove('rulerControl'); // удаляем контрол правил
+            map.geoObjects.add(placemark);
         }
+
+        ymaps.ready(init);
     </script>
 
     <style>
