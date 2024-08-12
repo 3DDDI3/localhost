@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\Lending\ToursController;
+use App\Http\Controllers\Service\CountryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User\PermittedIPs;
@@ -73,9 +75,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                     Route::get('/', 'SpecsController@index')->name('index');
                     Route::match(['get', 'post'], '/edit/{id?}', 'SpecsController@edit')->name('edit');
                 });
+
+                Route::group(['prefix' => 'tours', 'as' => 'tours.'], function () {
+                    Route::get('/', 'ToursController@index')->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', 'ToursController@edit')->name('edit');
+                });
             });
             Route::group(['prefix' => 'requests', 'as' => 'requests.'], function () {
                 Route::get('/', 'RequestsController@index')->name('index');
+            });
+
+            Route::group(['prefix' => 'service', 'as' => 'service.', 'namespace' => 'Service'], function () {
+                Route::group(['prefix' => 'countries', 'as' => 'countries.'], function () {
+                    Route::get('/', [CountryController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [CountryController::class, 'edit'])->name('edit');
+                });
             });
         });
     });

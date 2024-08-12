@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_access_rights', function (Blueprint $table) {
+        Schema::create('tour_types', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
-            $table->string('type');
-            $table->string('user_class_id');
-            $table->timestamps();
+            $table->string('type', 1000);
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_access_rights_migration');
+        Schema::dropIfExists('tour_types');
     }
 };

@@ -10,6 +10,4 @@
 {{-- <link rel="stylesheet" href="{{ asset('/css/app.min.css') }}?v={{ sha1_file(public_path() . '/css/app.min.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('/css/main.css') }}?v={{ sha1_file(public_path() . '/css/main.css') }}">
 
-<script src="/js/main.js?v={{ sha1_file(public_path('/js/main.js')) }}"></script>
-
 <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">

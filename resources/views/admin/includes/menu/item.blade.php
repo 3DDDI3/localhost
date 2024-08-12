@@ -1,5 +1,6 @@
 @if (!empty($route) && !empty($name))
     @php
+
         $route_url = route($route, false, false);
         $route_url = trim($route_url, '/');
         $access = isset($all) && $all ? true : \App\Helpers\Admin\Helper::checkRights(route($route), 'read');

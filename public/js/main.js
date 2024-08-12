@@ -3928,7 +3928,7 @@ $(function () {
   $(".blog__card").on("click", function () {
     if ($(this).data('href') != null) location.href = $(this).data('href');
   });
-  $('.icon').click(function () {
+  $('.icon').on("click", function () {
     if (!$(".box").hasClass("box_active")) {
       $('.search').addClass('expanded');
       $(".box").addClass("box_active");
@@ -4204,7 +4204,36 @@ $(function () {
       }
     }
   }).mount();
+  ymaps.ready(init);
 });
+
+function init() {
+  var center = [59.911833615112705, 30.31557668469041];
+  var map = new ymaps.Map('map', {
+    center: center,
+    zoom: 19
+  });
+  var placemark = new ymaps.Placemark(center, {}, {
+    iconLayout: 'default#image',
+    iconImageHref: '/images/marker.svg',
+    iconImageSize: [200, 150],
+    iconImageOffset: [-140, -130]
+  }); // map.controls.add('mapTools');
+
+  map.controls.remove('geolocationControl'); // удаляем геолокацию
+
+  map.controls.remove('searchControl'); // удаляем поиск
+
+  map.controls.remove('trafficControl'); // удаляем контроль трафика
+  // map.controls.remove('typeSelector'); // удаляем тип
+
+  map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+  // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+
+  map.controls.remove('rulerControl'); // удаляем контрол правил
+
+  map.geoObjects.add(placemark);
+}
 
 /***/ }),
 

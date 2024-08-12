@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_event_logs', function (Blueprint $table) {
-            $table->id();
-            $table->string('action');
-            $table->string('path');
-            $table->string('user_id');
-            $table->string('item_id');
-            $table->string('item_model');
+        Schema::create('blogs', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->longText('text')->nullable();
+            $table->string('title', 1000);
+            $table->text('preview_text')->nullable();
+            $table->integer('rating')->nullable()->default(0);
+            $table->tinyInteger('hide')->nullable()->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_event_logs');
+        Schema::dropIfExists('blogs');
     }
 };

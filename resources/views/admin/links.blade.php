@@ -1,14 +1,27 @@
 <x-Admin.NavBar title="Лендинг" url="lending" all="{{ isset($all) && $all }}">
+
     @include('admin.includes.menu.item', ['route' => 'admin.lending.text.index', 'name' => 'текст'])
+
     @include('admin.includes.menu.item', ['route' => 'admin.lending.slider.index', 'name' => 'категории'])
+
     {{-- @include('admin.includes.menu.item', ['route' => 'admin.lending.slider2.index', 'name' => 'слайдер 2']) --}}
     @include('admin.includes.menu.item', [
         'route' => 'admin.lending.specs.index',
         'name' => 'характеристики',
     ])
 
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.lending.tours.index',
+        'name' => 'туры',
+    ])
 
 </x-Admin.NavBar>
+
+<x-Admin.NavBar title="Служебное" url="users" all="{{ isset($all) && $all }}">
+    @include('admin.includes.menu.item', ['route' => 'admin.service.countries.index', 'name' => 'Страны']);
+
+</x-Admin.NavBar>
+
 <x-Admin.NavBar title="Пользователи" url="users" all="{{ isset($all) && $all }}">
     @include('admin.includes.menu.item', ['route' => 'admin.users.users.index', 'name' => 'Пользователи'])
     @include('admin.includes.menu.item', [
