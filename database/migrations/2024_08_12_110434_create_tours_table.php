@@ -17,14 +17,16 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->longText('text')->nullable();
+            $table->text('description');
             $table->string('title', 1000);
+            $table->timestamp('created_at')->useCurrent();
             $table->text('preview_text')->nullable();
             $table->string('preview_price')->nullable();
             $table->string('preview_nights')->nullable();
             $table->string('preview_title', 1000)->nullable();
             $table->integer('rating')->nullable()->default(0);
             $table->tinyInteger('hide')->nullable()->default(0);
-            $table->timestamp('created_at')->useCurrent();
+            $table->text('bacground_image')->nullable();
             $table->timestamp('update_at')->useCurrentOnUpdate();
         });
     }

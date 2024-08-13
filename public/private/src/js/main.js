@@ -148,6 +148,7 @@ $(".file-uploader__section.ui-sortable").sortable({
 });
 
 $(".js-admin_nav_title").on("click", function () {
+    console.log(1);
     var pages = $(this).next();
     if (pages.hasClass("js-admin_nav_pages")) {
         if (pages.is(":visible")) {
@@ -352,7 +353,7 @@ $("body").on("change", ".items-edit", function () {
             value: value,
             type: type,
         },
-        success: function (html) {},
+        success: function (html) { },
     });
 });
 
@@ -371,7 +372,7 @@ $("body").on("change", ".items-edit2", function () {
             value: value,
             type: type,
         },
-        success: function (html) {},
+        success: function (html) { },
     });
 });
 
@@ -391,7 +392,7 @@ $("body").on("change", ".items-edit-checkbox", function () {
             value: value,
             field: field,
         },
-        success: function (html) {},
+        success: function (html) { },
     });
 });
 
@@ -421,7 +422,7 @@ $("body").on("click", ".items-edit-delete", function () {
                     id: id,
                     type: type,
                 },
-                success: function (html) {},
+                success: function (html) { },
                 error: function (html) {
                     console.log(html);
                 },
@@ -594,9 +595,9 @@ $(function () {
                                   <div class="details">
                                     <span class="name">${fileName}</span>
                                     <span class="size">${humanFileSize(
-                                        file.size,
-                                        false
-                                    )}</span>
+                        file.size,
+                        false
+                    )}</span>
                                   </div>
                                 </div>
                                 <i class="fas fa-check"></i>
@@ -625,8 +626,8 @@ $(".js-bonus-accrual__button").on("click", function () {
         parent.find(".js-bonus-accrual__grid").remove();
         parent.html(
             "<strong>За отзыв начислено <span>" +
-                count +
-                "</span> бонусов</strong>"
+            count +
+            "</span> бонусов</strong>"
         );
     }
     if (type == "custom_accrual") {

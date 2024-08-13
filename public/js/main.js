@@ -4204,6 +4204,126 @@ $(function () {
       }
     }
   }).mount();
+  if (true) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".tour-gallary__slider", {
+    gap: 35,
+    pagination: false,
+    perPage: 3,
+    autoHeight: true,
+    width: 1348,
+    breakpoints: {
+      320: {
+        perPage: 1
+      },
+      375: {
+        perPage: 1
+      },
+      425: {
+        perPage: 1
+      },
+      768: {
+        perPage: 1
+      },
+      1024: {
+        perPage: 2
+      },
+      1440: {
+        perPage: 3
+      },
+      2560: {
+        perPage: 3
+      }
+    }
+  }).mount();
+  if ($(".tour-day-programm__gallary-slider1")) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".tour-day-programm__gallary-slider1", {
+    gap: 35,
+    pagination: false,
+    perPage: 4,
+    arrows: false,
+    width: 1348,
+    breakpoints: {
+      375: {
+        perPage: 1,
+        arrows: true
+      },
+      425: {
+        perPage: 1,
+        arrows: true
+      },
+      768: {
+        perPage: 1,
+        arrows: true
+      },
+      1024: {
+        perPage: 1
+      }
+    }
+  }).mount();
+  if (true) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".tour-day-programm__gallary-slider2", {
+    gap: 35,
+    pagination: false,
+    perPage: 4,
+    arrows: false,
+    width: 1348,
+    breakpoints: {
+      375: {
+        perPage: 1,
+        arrows: true
+      },
+      425: {
+        perPage: 1
+      },
+      768: {
+        perPage: 1
+      },
+      1024: {
+        perPage: 1
+      }
+    }
+  }).mount();
+  if (true) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".tour-day-programm__gallary-slider3", {
+    gap: 35,
+    pagination: false,
+    perPage: 4,
+    arrows: false,
+    width: 1348,
+    breakpoints: {
+      375: {
+        perPage: 1,
+        arrows: true
+      },
+      425: {
+        perPage: 1
+      },
+      768: {
+        perPage: 1
+      },
+      1024: {
+        perPage: 1
+      }
+    }
+  }).mount();
+  if (true) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_1__["default"](".tour-day-programm__gallary-slider4", {
+    gap: 35,
+    pagination: false,
+    perPage: 4,
+    arrows: false,
+    width: 1348,
+    breakpoints: {
+      375: {
+        perPage: 1,
+        arrows: true
+      },
+      425: {
+        perPage: 1
+      },
+      768: {
+        perPage: 1
+      },
+      1024: {
+        perPage: 1
+      }
+    }
+  }).mount();
   ymaps.ready(init);
 });
 

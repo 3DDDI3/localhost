@@ -1,4 +1,4 @@
-<section class="sliders splide">
+<section class="sliders splide" style=" background-image: url('images/slider1.png');">
     <div class="splide__track">
         <ul class="splide__list">
             <li class="splide__slide">

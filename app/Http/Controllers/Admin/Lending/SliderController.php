@@ -44,6 +44,7 @@ class SliderController extends Controller
         $object = $id ? $this->MODEL::find($id) : new $this->MODEL();
 
         if ($request->isMethod('post')) {
+            
             $object->fill($request->except(['_token', 'image']));
             $object->save();
             FileUpload::uploadImage('image', $this->MODEL, 'image', $object->id, 377, 377, '/images/slider', false, $request);
@@ -55,5 +56,4 @@ class SliderController extends Controller
 
         return view('admin.modules.' . $this->PATH . '.edit', compact('object', 'path', 'title'));
     }
-
 }

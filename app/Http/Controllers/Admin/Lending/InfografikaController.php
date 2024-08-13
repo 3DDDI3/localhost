@@ -3,16 +3,10 @@
 namespace App\Http\Controllers\Admin\Lending;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lending\Infografika;
 use Illuminate\Http\Request;
-use App\Helpers\FileUpload;
-use App\Models\Gallery;
-use App\Models\Lending\Tour;
-use App\Models\Lending\TourCountry;
-use App\Models\Service\Country;
-use App\Models\User\AdminEventLogs;
-use stdClass;
 
-class ToursController extends Controller
+class InfografikaController extends Controller
 {
     public $PATH = 'lending.tours';
     public $TITLE = ['Характеристики', 'характеристики'];
@@ -22,7 +16,7 @@ class ToursController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = Tour::orderBy('rating', 'desc')->orderBy('id', 'desc');
+        $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc');
 
         if ($request->search) {
             $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');

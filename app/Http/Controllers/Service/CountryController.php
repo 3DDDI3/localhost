@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
-    public $PATH = 'service.countries';
+    public $PATH = 'lending.tours.countries';
     public $TITLE = ['Страны', 'страны'];
 
     public function index(Request $request)

@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost
--- Время создания: Июн 09 2023 г., 17:15
--- Версия сервера: 5.6.51-log
--- Версия PHP: 8.1.5
+-- Хост: 127.0.0.1:3306
+-- Время создания: Авг 13 2024 г., 18:01
+-- Версия сервера: 8.0.30
+-- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin_access_rights` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_class_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_class_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -67,7 +67,19 @@ INSERT INTO `admin_access_rights` (`id`, `path`, `type`, `user_class_id`, `creat
 (296, 'requests', 'delete', '1', '2023-05-12 09:14:50', '2023-05-12 09:14:50'),
 (297, 'settings', 'read', '1', '2023-05-12 09:14:50', '2023-05-12 09:14:50'),
 (298, 'settings', 'edit', '1', '2023-05-12 09:14:50', '2023-05-12 09:14:50'),
-(299, 'settings', 'delete', '1', '2023-05-12 09:14:50', '2023-05-12 09:14:50');
+(299, 'settings', 'delete', '1', '2023-05-12 09:14:50', '2023-05-12 09:14:50'),
+(300, 'lending.tours', 'edit', '1', NULL, NULL),
+(301, 'lending.tours', 'read', '1', NULL, NULL),
+(302, 'lending.tours', 'delete', '1', NULL, NULL),
+(303, 'lending.tours.countries', 'edit', '1', NULL, NULL),
+(304, 'lending.tours.countries', 'delete', '1', NULL, NULL),
+(305, 'lending.tours.countries', 'read', '1', NULL, NULL),
+(306, 'lending.tours', 'edit', '1', NULL, NULL),
+(307, 'lending.tours', 'delete', '1', NULL, NULL),
+(308, 'lending.tours', 'read', '1', NULL, NULL),
+(309, 'lending.tours.infografika', 'edit', '1', NULL, NULL),
+(310, 'lending.tours.infografika', 'delete', '1', NULL, NULL),
+(311, 'lending.tours.infografika', 'read', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -76,12 +88,12 @@ INSERT INTO `admin_access_rights` (`id`, `path`, `type`, `user_class_id`, `creat
 --
 
 CREATE TABLE `admin_event_logs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `action` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `item_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `item_model` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `action` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `item_id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `item_model` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -256,7 +268,94 @@ INSERT INTO `admin_event_logs` (`id`, `action`, `path`, `user_id`, `item_id`, `i
 (163, 'update', 'lending.specs', '4', '15', 'App\\Models\\Lending\\Specs', '2023-05-29 07:40:54', '2023-05-29 07:40:54'),
 (164, 'update', 'lending.text', '4', '11', 'App\\Models\\Lending\\Texts', '2023-05-29 07:48:44', '2023-05-29 07:48:44'),
 (165, 'update', 'lending.text', '4', '13', 'App\\Models\\Lending\\Texts', '2023-05-29 07:52:35', '2023-05-29 07:52:35'),
-(166, 'update', 'lending.text', '4', '14', 'App\\Models\\Lending\\Texts', '2023-05-29 07:52:58', '2023-05-29 07:52:58');
+(166, 'update', 'lending.text', '4', '14', 'App\\Models\\Lending\\Texts', '2023-05-29 07:52:58', '2023-05-29 07:52:58'),
+(167, 'create', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 11:16:41', '2024-08-12 11:16:41'),
+(168, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 11:16:49', '2024-08-12 11:16:49'),
+(169, 'create', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 11:59:01', '2024-08-12 11:59:01'),
+(170, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 11:59:15', '2024-08-12 11:59:15'),
+(171, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 12:00:04', '2024-08-12 12:00:04'),
+(172, 'create', 'service.countries', '4', '1', 'App\\Models\\Service\\Country', '2024-08-12 12:34:09', '2024-08-12 12:34:09'),
+(173, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 12:37:45', '2024-08-12 12:37:45'),
+(174, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 13:31:15', '2024-08-12 13:31:15'),
+(175, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 13:42:28', '2024-08-12 13:42:28'),
+(176, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 14:10:01', '2024-08-12 14:10:01'),
+(177, 'create', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-12 14:15:54', '2024-08-12 14:15:54'),
+(178, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 14:25:13', '2024-08-12 14:25:13'),
+(179, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 14:27:11', '2024-08-12 14:27:11'),
+(180, 'create', 'service.countries', '4', '2', 'App\\Models\\Service\\Country', '2024-08-12 14:30:22', '2024-08-12 14:30:22'),
+(181, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 14:37:45', '2024-08-12 14:37:45'),
+(182, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 14:37:50', '2024-08-12 14:37:50'),
+(183, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-12 14:43:37', '2024-08-12 14:43:37'),
+(184, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-13 07:45:56', '2024-08-13 07:45:56'),
+(185, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 08:13:04', '2024-08-13 08:13:04'),
+(186, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 08:18:44', '2024-08-13 08:18:44'),
+(187, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 08:59:09', '2024-08-13 08:59:09'),
+(188, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:00:30', '2024-08-13 09:00:30'),
+(189, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:08:34', '2024-08-13 09:08:34'),
+(190, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:16:29', '2024-08-13 09:16:29'),
+(191, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:18:40', '2024-08-13 09:18:40'),
+(192, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:52:23', '2024-08-13 09:52:23'),
+(193, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:57:00', '2024-08-13 09:57:00'),
+(194, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 09:57:29', '2024-08-13 09:57:29'),
+(195, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:09:55', '2024-08-13 10:09:55'),
+(196, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:23:35', '2024-08-13 10:23:35'),
+(197, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:29:08', '2024-08-13 10:29:08'),
+(198, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:31:19', '2024-08-13 10:31:19'),
+(199, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:31:24', '2024-08-13 10:31:24'),
+(200, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:46:58', '2024-08-13 10:46:58'),
+(201, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:47:05', '2024-08-13 10:47:05'),
+(202, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 10:47:12', '2024-08-13 10:47:12'),
+(203, 'update', 'lending.tours.countries', '4', '1', 'App\\Models\\Service\\Country', '2024-08-13 14:12:28', '2024-08-13 14:12:28'),
+(204, 'create', 'lending.tours.countries', '4', '3', 'App\\Models\\Service\\Country', '2024-08-13 14:13:16', '2024-08-13 14:13:16'),
+(205, 'create', 'lending.tours.countries', '4', '4', 'App\\Models\\Service\\Country', '2024-08-13 14:13:25', '2024-08-13 14:13:25'),
+(206, 'create', 'lending.tours.countries', '4', '5', 'App\\Models\\Service\\Country', '2024-08-13 14:13:41', '2024-08-13 14:13:41'),
+(207, 'create', 'lending.tours.countries', '4', '6', 'App\\Models\\Service\\Country', '2024-08-13 14:13:49', '2024-08-13 14:13:49'),
+(208, 'create', 'lending.tours.countries', '4', '7', 'App\\Models\\Service\\Country', '2024-08-13 14:13:57', '2024-08-13 14:13:57'),
+(209, 'create', 'lending.tours.countries', '4', '8', 'App\\Models\\Service\\Country', '2024-08-13 14:14:10', '2024-08-13 14:14:10'),
+(210, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 14:18:23', '2024-08-13 14:18:23'),
+(211, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-13 14:19:12', '2024-08-13 14:19:12');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `blogs`
+--
+
+CREATE TABLE `blogs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci,
+  `title` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preview_text` text COLLATE utf8mb4_unicode_ci,
+  `rating` int DEFAULT '0',
+  `hide` tinyint DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `countries`
+--
+
+INSERT INTO `countries` (`id`, `name`) VALUES
+(1, 'Индонезия'),
+(2, 'Китай'),
+(3, 'Шри Ланка'),
+(4, 'Вьетнам'),
+(5, 'Япония'),
+(6, 'Кения'),
+(7, 'ЮАР'),
+(8, 'Тайланд');
 
 -- --------------------------------------------------------
 
@@ -265,12 +364,12 @@ INSERT INTO `admin_event_logs` (`id`, `action`, `path`, `user_id`, `item_id`, `i
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -281,15 +380,23 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `gallery` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `original` varchar(255) NOT NULL COMMENT 'Основное изображение',
   `thumbnail` varchar(255) DEFAULT NULL,
   `alt` varchar(255) DEFAULT NULL,
   `file_name` varchar(255) DEFAULT NULL COMMENT 'Имя файла до присвоения уникального имени',
-  `rating` int(11) DEFAULT NULL,
-  `item_id` bigint(20) DEFAULT NULL,
+  `rating` int DEFAULT NULL,
+  `item_id` bigint DEFAULT NULL,
   `item_type` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `original`, `thumbnail`, `alt`, `file_name`, `rating`, `item_id`, `item_type`) VALUES
+(3, 'upload/tours/YiWP9b2w5iuOcwz1CsOOMFMD2LUp7H2qRJFr5Uko.jpg', NULL, NULL, 'upload/tours/YiWP9b2w5iuOcwz1CsOOMFMD2LUp7H2qRJFr5Uko.jpg', 50, 1, '1'),
+(4, 'upload/tours/odRoaL6wmNw5hDAYhuYXH8MYZn6NZgt473UkPuUm.jpg', NULL, NULL, 'upload/tours/odRoaL6wmNw5hDAYhuYXH8MYZn6NZgt473UkPuUm.jpg', 100, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -298,9 +405,9 @@ CREATE TABLE `gallery` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -308,15 +415,32 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(2, '2014_10_12_000000_create_users_table', 1),
-(3, '2014_10_12_100000_create_password_resets_table', 1),
-(4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(6, '2022_10_31_121739_schema_first', 1),
-(7, '2023_01_18_143652_create_client_tables', 1),
-(8, '2023_03_28_213734_create_admin_access_rights_migration', 1),
-(9, '2023_03_29_142142_default_admin_access', 1);
+(49, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(50, '2024_08_12_102141_create_tour_type_table', 1),
+(51, '2024_08_12_103832_create_countries', 1),
+(52, '2024_08_12_110434_create_tours_table', 1),
+(53, '2024_08_12_110456_create_news_table', 1),
+(54, '2024_08_12_110516_create_blogs_table', 1),
+(55, '2024_08_12_143948_create_tour_country_table', 1),
+(58, '2024_08_13_101205_create_tour_day_table', 2),
+(59, '2024_08_13_101823_create_tour_statistic_info', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `news`
+--
+
+CREATE TABLE `news` (
+  `id` bigint UNSIGNED NOT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci,
+  `title` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preview_text` text COLLATE utf8mb4_unicode_ci,
+  `rating` int DEFAULT '0',
+  `hide` tinyint DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -325,11 +449,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `page` (
-  `id` bigint(20) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rating` int DEFAULT NULL,
   `hide` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -340,8 +464,8 @@ CREATE TABLE `page` (
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -352,9 +476,9 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `tokenable_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text COLLATE utf8mb4_unicode_ci,
@@ -370,13 +494,13 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `requests` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `tel` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `message` text COLLATE utf8_unicode_ci,
+  `id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `tel` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `message` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -385,23 +509,23 @@ CREATE TABLE `requests` (
 --
 
 CREATE TABLE `seo` (
-  `id` bigint(20) NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `canonical` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `keywords` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `og_title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `og_description` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `og_url` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `twitter_title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `twitter_site` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `jsonld_title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `jsonld_description` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `jsonld_type` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `id` bigint NOT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `canonical` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `og_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `og_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `og_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `twitter_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `twitter_site` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jsonld_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jsonld_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jsonld_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -410,15 +534,15 @@ CREATE TABLE `seo` (
 --
 
 CREATE TABLE `setting` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notice` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `footer_text` text COLLATE utf8mb4_unicode_ci,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notice` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `footer_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -437,27 +561,27 @@ INSERT INTO `setting` (`id`, `title`, `notice`, `address`, `email`, `phone`, `ph
 --
 
 CREATE TABLE `slider` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8_unicode_ci,
-  `text2` text COLLATE utf8_unicode_ci,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `preview` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fact1` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fact2` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `fact3` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hide` int(11) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `text2` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `preview` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fact1` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fact2` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `fact3` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `hide` int DEFAULT NULL,
+  `rating` int DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Дамп данных таблицы `slider`
 --
 
 INSERT INTO `slider` (`id`, `title`, `text`, `text2`, `image`, `preview`, `fact1`, `fact2`, `fact3`, `hide`, `rating`, `updated_at`, `created_at`) VALUES
-(1, 'Бытовая техника', 'пылесосы, фены, телевизоры, стиральные машины, стайлеры', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '2023-05-29 07:38:54', '2023-05-16 12:12:27'),
+(1, 'Бытовая техника', 'пылесосы, фены, телевизоры, стиральные машины, стайлеры', NULL, 'images/slider/H5Pu4xAi4RuZnIX7nZxUmpdkjH2RtUSCRe5Ua0eU.svg', NULL, NULL, NULL, NULL, NULL, 2, '2024-08-13 08:31:13', '2023-05-16 12:12:27'),
 (2, 'Офисная техника', 'ноутбуки, принтеры, сканеры, планшеты, Клавиатуры, компьютерные мыши', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2023-05-29 07:39:22', '2023-05-16 12:12:27'),
 (3, 'Электроника', 'телефоны, принтеры, часы, гаджеты, игровые приставки', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2023-05-29 07:39:10', '2023-05-16 12:12:27');
 
@@ -468,15 +592,15 @@ INSERT INTO `slider` (`id`, `title`, `text`, `text2`, `image`, `preview`, `fact1
 --
 
 CREATE TABLE `slider2` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8_unicode_ci,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hide` int(11) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `hide` int DEFAULT NULL,
+  `rating` int DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Дамп данных таблицы `slider2`
@@ -493,15 +617,15 @@ INSERT INTO `slider2` (`id`, `title`, `text`, `image`, `hide`, `rating`, `update
 --
 
 CREATE TABLE `specs` (
-  `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8_unicode_ci,
-  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hide` int(11) DEFAULT '0',
-  `rating` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `hide` int DEFAULT '0',
+  `rating` int DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Дамп данных таблицы `specs`
@@ -522,14 +646,14 @@ INSERT INTO `specs` (`id`, `title`, `text`, `image`, `hide`, `rating`, `updated_
 --
 
 CREATE TABLE `texts` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` text COLLATE utf8_unicode_ci,
-  `title` text COLLATE utf8_unicode_ci,
-  `subtext` text COLLATE utf8_unicode_ci,
+  `id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `title` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `subtext` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Дамп данных таблицы `texts`
@@ -547,11 +671,104 @@ INSERT INTO `texts` (`id`, `name`, `text`, `title`, `subtext`, `updated_at`, `cr
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `tours`
+--
+
+CREATE TABLE `tours` (
+  `id` bigint UNSIGNED NOT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci,
+  `title` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` text COLLATE utf8mb4_unicode_ci,
+  `preview_text` text COLLATE utf8mb4_unicode_ci,
+  `preview_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `preview_nights` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tour_type_id` bigint UNSIGNED DEFAULT NULL,
+  `preview_title` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rating` int DEFAULT '0',
+  `hide` tinyint DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tours`
+--
+
+INSERT INTO `tours` (`id`, `text`, `title`, `path`, `preview_text`, `preview_price`, `preview_nights`, `tour_type_id`, `preview_title`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
+(1, '<p>asda</p>', 'test-title', NULL, 'test-preview', NULL, NULL, NULL, NULL, 0, 0, '2024-08-12 11:59:01', '2024-08-12 12:00:04'),
+(2, '<span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; font-size: 15px; letter-spacing: -0.45px;\">Все, что есть в Индии, создано благодаря любви. Любовь к науке и истине позволяет сегодня лицезреть нам обсерваторию Джантар Мантар в Джайпуре. Благодаря бхакти, любви к богу, люди возвели храмы Вриндавана, Храм Лотоса и Акшардхам в Дели. Любовь к женам один из правителей реализовал в великолепном дворце Хава Махал - где жили женщины гарема. Хрестоматиен пример любви, благодаря которой мы можем любоваться мавзолеем Тадж Махал. Да и в нашем случае виновата любовь к путешествиям – с нее обычно и начинается любовь к Индии.</span>', 'Экскурсионный тур: «Золотой треугольник»', 'images/tours/SBKpvwjVfehJ9mgLZNiUnVHwnrBQUn73xbHIgSDI.webp', 'PREVIEW_IMGE', NULL, NULL, NULL, NULL, 0, 0, '2024-08-12 14:15:54', '2024-08-13 14:19:12');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tour_country`
+--
+
+CREATE TABLE `tour_country` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tour_id` bigint UNSIGNED NOT NULL,
+  `country_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `tour_country`
+--
+
+INSERT INTO `tour_country` (`id`, `tour_id`, `country_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tour_days`
+--
+
+CREATE TABLE `tour_days` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tour_id` bigint UNSIGNED NOT NULL,
+  `day` int DEFAULT NULL,
+  `text` longtext COLLATE utf8mb4_unicode_ci,
+  `title` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tour_statistic_info`
+--
+
+CREATE TABLE `tour_statistic_info` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tour_id` bigint UNSIGNED NOT NULL,
+  `icon` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `text` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subtitle` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rating` int DEFAULT NULL,
+  `hide` tinyint(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tour_types`
+--
+
+CREATE TABLE `tour_types` (
+  `id` bigint UNSIGNED NOT NULL,
+  `type` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '0',
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -559,10 +776,10 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `is_admin` tinyint(4) DEFAULT '0',
-  `class_id` int(11) DEFAULT '3',
+  `is_admin` tinyint DEFAULT '0',
+  `class_id` int DEFAULT '3',
   `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `users`
@@ -581,8 +798,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 
 CREATE TABLE `users_class` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -613,6 +830,18 @@ ALTER TABLE `admin_event_logs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `blogs`
+--
+ALTER TABLE `blogs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -630,6 +859,12 @@ ALTER TABLE `gallery`
 -- Индексы таблицы `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `news`
+--
+ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -696,6 +931,41 @@ ALTER TABLE `texts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `tours`
+--
+ALTER TABLE `tours`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tours_tour_type_id_foreign` (`tour_type_id`);
+
+--
+-- Индексы таблицы `tour_country`
+--
+ALTER TABLE `tour_country`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tour_country_tour_id_foreign` (`tour_id`),
+  ADD KEY `tour_country_country_id_foreign` (`country_id`);
+
+--
+-- Индексы таблицы `tour_days`
+--
+ALTER TABLE `tour_days`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tour_days_tour_id_foreign` (`tour_id`);
+
+--
+-- Индексы таблицы `tour_statistic_info`
+--
+ALTER TABLE `tour_statistic_info`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tour_statistic_info_tour_id_foreign` (`tour_id`);
+
+--
+-- Индексы таблицы `tour_types`
+--
+ALTER TABLE `tour_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -717,61 +987,150 @@ ALTER TABLE `users_class`
 -- AUTO_INCREMENT для таблицы `admin_access_rights`
 --
 ALTER TABLE `admin_access_rights`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=312;
 
 --
 -- AUTO_INCREMENT для таблицы `admin_event_logs`
 --
 ALTER TABLE `admin_event_logs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+
+--
+-- AUTO_INCREMENT для таблицы `blogs`
+--
+ALTER TABLE `blogs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT для таблицы `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `seo`
 --
 ALTER TABLE `seo`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `slider2`
 --
 ALTER TABLE `slider2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `specs`
 --
 ALTER TABLE `specs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `texts`
 --
 ALTER TABLE `texts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT для таблицы `tours`
+--
+ALTER TABLE `tours`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `tour_country`
+--
+ALTER TABLE `tour_country`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `tour_days`
+--
+ALTER TABLE `tour_days`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tour_statistic_info`
+--
+ALTER TABLE `tour_statistic_info`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tour_types`
+--
+ALTER TABLE `tour_types`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `tours`
+--
+ALTER TABLE `tours`
+  ADD CONSTRAINT `tours_tour_type_id_foreign` FOREIGN KEY (`tour_type_id`) REFERENCES `tour_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tour_country`
+--
+ALTER TABLE `tour_country`
+  ADD CONSTRAINT `tour_country_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tour_country_tour_id_foreign` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tour_days`
+--
+ALTER TABLE `tour_days`
+  ADD CONSTRAINT `tour_days_tour_id_foreign` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tour_statistic_info`
+--
+ALTER TABLE `tour_statistic_info`
+  ADD CONSTRAINT `tour_statistic_info_tour_id_foreign` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

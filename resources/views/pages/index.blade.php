@@ -173,41 +173,41 @@
                     <h3 class="services-country-tour__title">Туры по стране</h3>
                     <div class="services-country-tour__info">
                         <div class="services-country__list">
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Индонезия</span>
                                 <span class="services-country__counter">48</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Шри Ланка</span>
                                 <span class="services-country__counter">20</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Вьетнам</span>
                                 <span class="services-country__counter">36</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Китай</span>
                                 <span class="services-country__counter">56</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Япония</span>
                                 <span class="services-country__counter">24</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Кения</span>
                                 <span class="services-country__counter">11</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">ЮАР</span>
                                 <span class="services-country__counter">22</span>
                             </a>
-                            <a href="./tour.html" class="services-country__item">
+                            <a href="tours/1" class="services-country__item">
                                 <span class="services-country__name">Тайланд</span>
                                 <span class="services-country__counter">18</span>
                             </a>
                         </div>
                     </div>
-                    <button data-href="./tours.html" class="services-country-tour__all-button">Просмотреть все страны
+                    <button data-href="tours" class="services-country-tour__all-button">Просмотреть все страны
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_85_95)">
@@ -232,25 +232,25 @@
                     <h3 class="services-vacation-type__title">Тур по типу отдыха</h3>
                     <div class="services-vacation-type__info">
                         <div class="services-vacation-type__list">
-                            <a href="./tour_county.html" class="services-vacation-type__item">
+                            <a href="tours/?type=1" class="services-vacation-type__item">
                                 <span class="services-vacation-type__name">Гарантированные блоки мест</span>
                                 <span class="services-vacation-type__counter">34</span>
                             </a>
-                            <a href="./tour_county.html" class="services-vacation-type__item">
+                            <a href="tours/?type=1" class="services-vacation-type__item">
                                 <span class="services-vacation-type__name">Групповые туры ITM club</span>
                                 <span class="services-vacation-type__counter">12</span>
                             </a>
-                            <a href="./tour_county.html" class="services-vacation-type__item">
+                            <a href="tours/?type=1" class="services-vacation-type__item">
                                 <span class="services-vacation-type__name">Серфинг</span>
                                 <span class="services-vacation-type__counter">36</span>
                             </a>
-                            <a href="./tour_county.html" class="services-vacation-type__item">
+                            <a href="tours/?type=1" class="services-vacation-type__item">
                                 <span class="services-vacation-type__name">Экспедиционные круизы</span>
                                 <span class="services-vacation-type__counter">45</span>
                             </a>
                         </div>
                     </div>
-                    <button data-href="./tour_county.html" class="services-country-tour__all-button">
+                    <button data-href="tours/?type=1" class="services-country-tour__all-button">
                         Просмотреть все типы
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">

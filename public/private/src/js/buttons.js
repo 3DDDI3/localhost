@@ -81,6 +81,7 @@ $(document).ready(function () {
                         field: field,
                     },
                     success: function (data) {
+                        console.log(data);
                         if (data == 'success') {
                             imgCard.remove();
 

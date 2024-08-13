@@ -29,6 +29,7 @@ class Tour extends Model
     protected $fillable = [
         'title',
         'text',
-        'preview_text'
+        'preview_text',
+        'path',
     ];
 }

@@ -717,7 +717,6 @@ input {
 
 main {
     .sliders {
-        background-image: url('/images/slider1.png');
         height: 779px;
 
         .slider__block {
