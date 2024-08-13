@@ -14,5 +14,6 @@
         <div class="tour-day-programm__text">
             {!! html_entity_decode($attributes->get('text')) !!}
         </div>
-        <x.sliders.gallery </div>
+        <x.sliders.gallery />
     </div>
+</div>
