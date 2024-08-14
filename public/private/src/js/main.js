@@ -653,3 +653,10 @@ $(".js-bonus-accrual__button").on("click", function () {
         },
     });
 });
+
+$("select[name='infografika_tour']").on("change", function () {
+    if ($(this).val() > 0) {
+        location.href = `?tour_id=${$(this).val()}`;
+    }
+});
+

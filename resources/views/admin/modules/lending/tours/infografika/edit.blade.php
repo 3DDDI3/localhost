@@ -12,27 +12,34 @@
                 'name' => 'title',
                 'value' => $object->title ?? '',
             ])
-            @include('admin.includes.input', [
-                'label' => 'Текст превью:',
-                'name' => 'preview_text',
-                'value' => $object->preview_text ?? '',
+
+            @include('admin.includes.select', [
+                'label' => 'Тур',
+                'name' => 'tour_id',
+                'select' => $tours->all(),
+                'select_head' => $selectedTour,
             ])
 
             @include('admin.includes.textbox', [
-                'label' => 'текст:',
+                'label' => 'Текст:',
                 'name' => 'text',
                 'value' => $object->text ?? '',
             ])
 
-            @include('admin.includes.select', [
-                'label' => 'Странна:',
-                'name' => 'select',
-                'select' => $countries,
+            @include('admin.includes.input', [
+                'label' => 'Дополнительный блок:',
+                'name' => 'subtitle',
+                'value' => $object->subtitle ?? '',
             ])
 
-            {!! \App\Helpers\GenerateForm::makeImage('Изображение', 'path', $object, '/storage/' . $object->path, false, empty($object->path)?null:"title" ) !!}
-
-            {!! \App\Helpers\GenerateForm::makeGallery('title', 'galary', $images, '/upload') !!}
+            {!! \App\Helpers\GenerateForm::makeImage(
+                'Иконка',
+                'icon',
+                $object,
+                '/storage/' . $object->icon,
+                false,
+                empty($object->icon) ? null : 'title',
+            ) !!}
 
             @include('admin.includes.submit')
         </form>

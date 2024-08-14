@@ -26,6 +26,16 @@ class Tour extends Model
         return $this->hasMany(TourCountry::class);
     }
 
+    public function infografika(): HasMany
+    {
+        return $this->hasMany(infografika::class);
+    }
+
+    public function programs(): HasMany
+    {
+        return $this->hasMany(Programs::class)->orderBy('day', 'desc');
+    }
+
     protected $fillable = [
         'title',
         'text',

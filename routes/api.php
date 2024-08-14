@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Lending\InfografikaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::group(['namespace' => 'App\Http\Controllers\API' , 'as' => 'api.'] , function(){
-        //
+Route::group(['namespace' => 'App\Http\Controllers\API', 'as' => 'api.'], function () {
+        Route::prefix('tours/infografika')->group(function () {
+                Route::get('/', [InfografikaController::class, 'show']);
+        });
 });

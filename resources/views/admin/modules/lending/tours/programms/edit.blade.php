@@ -7,32 +7,33 @@
 
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
+
+            @include('admin.includes.input', [
+                'label' => 'День:',
+                'name' => 'day',
+                'value' => $object->day ?? '',
+            ])
+
             @include('admin.includes.input', [
                 'label' => 'Заголовок:',
                 'name' => 'title',
                 'value' => $object->title ?? '',
             ])
-            @include('admin.includes.input', [
-                'label' => 'Текст превью:',
-                'name' => 'preview_text',
-                'value' => $object->preview_text ?? '',
+
+            @include('admin.includes.select', [
+                'label' => 'Тур',
+                'name' => 'tour_id',
+                'select' => $tours->all(),
+                'select_head' => $selectedTour,
             ])
 
             @include('admin.includes.textbox', [
-                'label' => 'текст:',
+                'label' => 'Текст:',
                 'name' => 'text',
                 'value' => $object->text ?? '',
             ])
 
-            @include('admin.includes.select', [
-                'label' => 'Страна:',
-                'name' => 'select',
-                'select' => $countries,
-            ])
-
-            {!! \App\Helpers\GenerateForm::makeImage('Изображение', 'path', $object, '/storage/' . $object->path, false, empty($object->path)?null:"title" ) !!}
-
-            {!! \App\Helpers\GenerateForm::makeGallery('title', 'galary', $images, '/upload') !!}
+            {!! \App\Helpers\GenerateForm::makeGallery('Галерея', 'galary', $images, '/upload/tours/programs') !!}
 
             @include('admin.includes.submit')
         </form>

@@ -65,13 +65,13 @@ class ToursController extends Controller
                 )
             );
 
-            if ($request->input("select") != null && (int)$request->input("select") > 0) {
-                $countryTour = $object->country()->first();
+            if ($request->input("select") > 0) {
+                $countryTour = TourCountry::where(['tour_id' => $object->id])->first();
 
                 if ($countryTour == null)
                     TourCountry::create(["tour_id" => $object->id, "country_id" => $request->input("select")]);
                 else
-                    $countryTour->tour_id = $request->input("select");
+                    $countryTour->country_id = $request->input("select");
 
                 $countryTour->save();
             }
@@ -89,6 +89,13 @@ class ToursController extends Controller
             return redirect()->route('admin.' . $this->PATH . '.edit', ['id' => $object->id])->with('message', 'Сохранено');
         }
 
-        return view('admin.modules.' . $this->PATH . '.edit', compact('object', 'path', 'title', 'countries', 'select_head', 'images'));
+        return view('admin.modules.' . $this->PATH . '.edit', compact(
+            'object',
+            'path',
+            'title',
+            'countries',
+            'select_head',
+            'images'
+        ));
     }
 }

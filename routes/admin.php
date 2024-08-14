@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\Lending\ToursController;
 use App\Http\Controllers\Service\CountryController;
 use App\Http\Controllers\Admin\Lending\InfografikaController;
+use App\Http\Controllers\Admin\Lending\ProgramsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User\PermittedIPs;
@@ -89,6 +89,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                     Route::group(['prefix' => 'infografika', 'as' => 'infografika.'], function () {
                         Route::get('/', [InfografikaController::class, 'index'])->name('index');
                         Route::match(['get', 'post'], '/edit/{id?}', [InfografikaController::class, 'edit'])->name('edit');
+                    });
+
+                    Route::group(['prefix' => 'programms', 'as' => 'programms.'], function () {
+                        Route::get('/', [ProgramsController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit/{id?}', [ProgramsController::class, 'edit'])->name('edit');
                     });
                 });
             });

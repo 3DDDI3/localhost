@@ -63,22 +63,14 @@
         </div>
 
         <div class="tour-statistics">
-            <x-blocks.tour-statistic img="{{ asset('images/tour/route.svg') }}" alt="" title="Маршрут тура:"
-                text="Дели — Самод — Джайпу — Фатехпур Сикри — Агра" subtitle="" />
-            <x-blocks.tour-statistic img="{{ asset('images/tour/moon.svg') }}" alt="" title="Продолжительность:"
-                text="от 3 до 7 ночей" subtitle="" />
-            <x-blocks.tour-statistic img="{{ asset('images/tour/ruble.svg') }}" alt="" title="Цена тура:"
-                text="от 51 105 руб./чел." subtitle="" />
+            @foreach ($tour->infografika()->get() as $infografika)
+                <x-blocks.tour-statistic :img="$infografika->icon" alt="" :title="$infografika->title" :text="$infografika->text"
+                    :subtitle="$infografika->subtitle" />
+            @endforeach
         </div>
 
         <p class="tour__description">
-            Все, что есть в Индии, создано благодаря любви. Любовь к науке и истине позволяет сегодня лицезреть нам
-            обсерваторию Джантар Мантар в Джайпуре. Благодаря бхакти, любви к богу, люди возвели храмы Вриндавана, Храм
-            Лотоса и Акшардхам в Дели. Любовь к женам
-            один из правителей реализовал в великолепном дворце Хава Махал - где жили женщины гарема. Хрестоматиен пример
-            любви, благодаря которой мы можем любоваться мавзолеем Тадж Махал. Да и в нашем случае виновата любовь к
-            путешествиям – с нее обычно
-            и начинается любовь к Индии.
+            {!! html_entity_decode($tour->text) !!}
         </p>
 
         <div class="tour-anchor">
@@ -270,12 +262,12 @@
                             </svg> После приветствия трансфер и размещение в отеле. Отдых.
                             </p>';
                 @endphp
-                <x-templates.tour-day title="1-й день" subtitle="Самод - Джайпур" :text="$text1" slider_number=1 />
-                <x-templates.tour-day title="2-й день" subtitle="Самод - Джайпур" :text="$text2" slider_number=2 />
-                <x-templates.tour-day title="3-й день" subtitle="Джайпур - Фатехпур Сикри" :text="$text3"
-                    slider_number=3 />
-                <x-templates.tour-day title="4-й день" subtitle="Фатехпур Сикри - Агра" :text="$text4"
-                    slider_number=4 />
+                @for ($i = 0; $i < $tour->programs()->count(); $i++)
+                    <x-templates.tour-day day="{{ $tour->programs()->get()[$i]->day }}"
+                        title="{{ $tour->programs()->get()[$i]->title }}" text="{{ $tour->programs()->get()[$i]->text }}"
+                        slider_number=$i />
+                @endfor
+
             </div>
         </div>
 

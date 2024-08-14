@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin\Lending;
 
 use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
-use App\Models\Lending\Infografika;
+use App\Models\Gallery;
+use App\Models\Lending\Programs;
 use App\Models\Lending\Tour;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
-use Symfony\Component\Console\Input\Input;
 
-class InfografikaController extends Controller
+class ProgramsController extends Controller
 {
-    public $PATH = 'lending.tours.infografika';
-    public $TITLE = ['Инфографики', 'инфографики'];
+    public $PATH = 'lending.tours.programms';
+    public $TITLE = ['Расписание программ', 'программы дня'];
 
     public function index(Request $request)
     {
@@ -21,16 +21,18 @@ class InfografikaController extends Controller
         $title = $this->TITLE;
 
         if ($request->input("tour_id") != null)
-            $objects = Infografika::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Programs::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
         else
-            $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Programs::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
 
         $selectedTour = null;
 
+        // dd($objects->first()->tour()->toSql());
+
         if ($objects->count() > 0)
-            $selectedTour = $objects->first()->tour()->title;
+            $selectedTour = $objects->first()->tour()->first()?->title;
         else {
-            $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()->title;
+            if ($request->input("tour_id") != null) $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()->title;
         }
 
         $tours = collect();
@@ -49,7 +51,7 @@ class InfografikaController extends Controller
         }
 
         if ($id = $request->delete) {
-            $item = Infografika::find($id);
+            $item = Programs::find($id);
             $item->delete();
             AdminEventLogs::log($item, $id);
             return redirect()->back()->with('message', 'Удалено');
@@ -63,7 +65,7 @@ class InfografikaController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $object = $id ? Infografika::find($id) : new Infografika();
+        $object = $id ? Programs::find($id) : new Programs();
 
         $tours = collect();
 
@@ -75,34 +77,46 @@ class InfografikaController extends Controller
                 ]
             );
         }
+
         $selectedTour = null;
+        $images = null;
 
         if (!empty($object->tour_id))
-            $selectedTour = $object->tour() == null ? null : $object->tour()->title;
+            $selectedTour = $object->tour() == null ? null : $object->tour()->first()->title;
+
+        if (!empty($object))
+            $images = Gallery::where(['item_id' => $object->id, 'item_type' => 'programs'])->orderBy('rating', 'desc')->get();
 
         if ($request->isMethod('post')) {
             $object->fill(
                 $request->only(
                     [
-                        'title',
+                        'day',
                         'text',
-                        'subtitle'
+                        'title',
                     ]
                 )
             );
 
-            if ($request->input('tour_id') > 0) $object->fill(['tour_id' => $request->input('tour_id')]);
+            if ((int)$request->input('tour_id') > 0) $object->fill(['tour_id' => (int)$request->input('tour_id')]);
 
             $object->save();
 
-            if ($request->file('icon') != null)
-                FileUpload::uploadImage('icon', Infografika::class, 'icon', $object->id, 377, 377, '/images/tours/statistic_icons/', request: $request);
+            if ($request->file('galary') != null && !empty($object))
+                FileUpload::uploadGallery('galary', $object->id, "programs", path: "/upload/tours/programs", request: $request);
 
             AdminEventLogs::log($object, $id);
 
             return redirect()->route('admin.' . $this->PATH . '.edit', ['id' => $object->id])->with('message', 'Сохранено');
         }
 
-        return view('admin.modules.' . $this->PATH . '.edit', compact('object', 'path', 'title', 'tours', 'selectedTour'));
+        return view('admin.modules.' . $this->PATH . '.edit', compact(
+            'object',
+            'path',
+            'title',
+            'tours',
+            'selectedTour',
+            'images'
+        ));
     }
 }

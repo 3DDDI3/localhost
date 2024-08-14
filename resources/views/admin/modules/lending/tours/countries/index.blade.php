@@ -3,13 +3,13 @@
     <h1>{{ $title[0] }}</h1>
 
     {{-- @include('admin.includes.search') --}}
+    
     @include('admin.includes.add')
 
     @if ($objects)
         {{-- @include('admin.includes.sortable.info') --}}
         {{-- <div class="sortable_list"> --}}
         @foreach ($objects as $object)
-        
             <div class="list_item">
                 <div class="list_item-info">
                     {{-- <h4>{{ $object->id }})</h4> --}}

@@ -42,6 +42,12 @@
             'data' => 'infografika',
         ])
 
+        @include('admin.includes.menu.item', [
+            'route' => 'admin.lending.tours.programms.index',
+            'name' => 'Расписание программ',
+            'data' => 'programms',
+        ])
+
     </x-Admin.NavBar>
 
 </x-Admin.NavBar>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lending\Infografika;
+use App\Models\Lending\Programs;
 use App\Models\Lending\Tour;
-use Illuminate\Http\Request;
 
 class ToursController extends Controller
 {
@@ -14,7 +15,9 @@ class ToursController extends Controller
 
     public function tour($id)
     {
-        $tour = Tour::find($id);
+        $tour = Tour::where(["hide" => 0, 'id' => $id])->first();
+
+        dd($tour->sortedProgramsByDesc());
 
         $breadCrumbs = collect([
             (object)[

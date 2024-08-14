@@ -6,24 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Infografika extends Model
+class Programs extends Model
 {
     use HasFactory;
 
-    protected $table = "tour_statistic_info";
+    protected $table = "tour_programs";
 
-    public $timestamps = false;
+    public $timestams = false;
 
     protected $fillable = [
-        'icon',
-        'title',
-        'text',
         'tour_id',
-        'subtitle',
+        'day',
+        'text',
+        'title'
     ];
 
-    public function tour()
+    public function tour(): BelongsTo
     {
-        return $this->belongsTo(Tour::class)->first();
+        return $this->belongsTo(Tour::class);
     }
 }

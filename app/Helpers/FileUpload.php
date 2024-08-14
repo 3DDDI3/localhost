@@ -425,7 +425,7 @@ class FileUpload
                 //
             }
         }
-
+        
         $object->$field = $file;
 
         $object->save();
