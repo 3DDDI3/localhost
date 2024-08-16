@@ -45,7 +45,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::prefix('tours')->group(function () {
         Route::get('/', [ToursController::class, 'index']);
-        Route::get('/{id}', [ToursController::class, 'tour']);
+        Route::get('/{url}', [ToursController::class, 'tour']);
     });
 
     Route::get('agency', [AgencyController::class, 'index']);

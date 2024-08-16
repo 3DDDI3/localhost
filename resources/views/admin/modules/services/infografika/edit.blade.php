@@ -7,13 +7,6 @@
 
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
-
-            @include('admin.includes.input', [
-                'label' => 'День:',
-                'name' => 'day',
-                'value' => $object->day ?? '',
-            ])
-
             @include('admin.includes.input', [
                 'label' => 'Заголовок:',
                 'name' => 'title',
@@ -27,13 +20,36 @@
                 'select_head' => $selectedTour,
             ])
 
+
+            @if ($pages->count() > 0)
+                @include('admin.includes.select', [
+                    'label' => 'Страница',
+                    'name' => 'page_id',
+                    'select' => $pages->all(),
+                    'select_head' => $selectedPage,
+                ])
+            @endif
+
             @include('admin.includes.textbox', [
                 'label' => 'Текст:',
                 'name' => 'text',
                 'value' => $object->text ?? '',
             ])
 
-            {!! \App\Helpers\GenerateForm::makeGallery('Галерея', 'galary', $images, '/upload/tours/programs') !!}
+            @include('admin.includes.input', [
+                'label' => 'Дополнительный блок:',
+                'name' => 'subtitle',
+                'value' => $object->subtitle ?? '',
+            ])
+
+            {!! \App\Helpers\GenerateForm::makeImage(
+                'Иконка',
+                'icon',
+                $object,
+                '/storage/' . $object->icon,
+                false,
+                empty($object->icon) ? null : 'title',
+            ) !!}
 
             @include('admin.includes.submit')
         </form>

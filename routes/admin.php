@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\Lending\BlogController;
 use App\Http\Controllers\Service\CountryController;
-use App\Http\Controllers\Admin\Lending\InfografikaController;
+use App\Http\Controllers\Admin\Lending\NewsController;
+use App\Http\Controllers\Admin\Lending\PageController;
 use App\Http\Controllers\Admin\Lending\ProgramsController;
+use App\Http\Controllers\Admin\Lending\ToursController;
+use App\Http\Controllers\Admin\Services\InfografikaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User\PermittedIPs;
@@ -76,22 +80,28 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                     Route::get('/', 'SpecsController@index')->name('index');
                     Route::match(['get', 'post'], '/edit/{id?}', 'SpecsController@edit')->name('edit');
                 });
-
+                Route::group(['prefix' => 'blogs', 'as' => 'blogs.'], function () {
+                    Route::get('/', [BlogController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [BlogController::class, 'edit'])->name('edit');
+                });
+                Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
+                    Route::get('/', [NewsController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [NewsController::class, 'edit'])->name('edit');
+                });
+                Route::group(['prefix' => 'pages', 'as' => 'pages.'], function () {
+                    Route::get('/', [PageController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [PageController::class, 'edit'])->name('edit');
+                });
                 Route::group(['prefix' => 'tours', 'as' => 'tours.'], function () {
-                    Route::get('/', 'ToursController@index')->name('index');
-                    Route::match(['get', 'post'], '/edit/{id?}', 'ToursController@edit')->name('edit');
+                    Route::get('/', [ToursController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [ToursController::class, 'edit'])->name('edit');
 
                     Route::group(['prefix' => 'countries', 'as' => 'countries.'], function () {
                         Route::get('/', [CountryController::class, 'index'])->name('index');
                         Route::match(['get', 'post'], '/edit/{id?}', [CountryController::class, 'edit'])->name('edit');
                     });
 
-                    Route::group(['prefix' => 'infografika', 'as' => 'infografika.'], function () {
-                        Route::get('/', [InfografikaController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit/{id?}', [InfografikaController::class, 'edit'])->name('edit');
-                    });
-
-                    Route::group(['prefix' => 'programms', 'as' => 'programms.'], function () {
+                    Route::group(['prefix' => 'programs', 'as' => 'programs.'], function () {
                         Route::get('/', [ProgramsController::class, 'index'])->name('index');
                         Route::match(['get', 'post'], '/edit/{id?}', [ProgramsController::class, 'edit'])->name('edit');
                     });
@@ -101,12 +111,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 Route::get('/', 'RequestsController@index')->name('index');
             });
 
-            // Route::group(['prefix' => 'service', 'as' => 'service.', 'namespace' => 'Service'], function () {
-            // Route::group(['prefix' => 'countries', 'as' => 'countries.'], function () {
-            //     Route::get('/', [CountryController::class, 'index'])->name('index');
-            //     Route::match(['get', 'post'], '/edit/{id?}', [CountryController::class, 'edit'])->name('edit');
-            // });
-            // });
+            Route::group(['prefix' => 'services', 'as' => 'services.', 'namespace' => 'Services'], function () {
+                Route::group(['prefix' => 'infografika', 'as' => 'infografika.'], function () {
+                    Route::get('/', [InfografikaController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [InfografikaController::class, 'edit'])->name('edit');
+                });
+            });
         });
     });
 

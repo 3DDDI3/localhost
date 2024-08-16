@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Service;
+namespace App\Http\Controllers\Admin\Lending;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
-use App\Models\Service\Country;
+use App\Models\Lending\Blog;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class BlogController extends Controller
 {
-    public $PATH = 'lending.tours.countries';
-    public $TITLE = ['Страны', 'страны'];
+    public $PATH = 'lending.blogs';
+    public $TITLE = ['Статьи блога', 'статьи'];
 
     public function index(Request $request)
     {
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = Country::all();
+        $objects = Blog::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = Blog::where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->get();
         }
 
         if ($id = $request->delete) {
-            $item = Country::find($id);
+            $item = Blog::find($id);
             $item->delete();
             AdminEventLogs::log($item, $id);
             return redirect()->back()->with('message', 'Удалено');
@@ -38,22 +39,34 @@ class CountryController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $object = $id ? Country::find($id) : new Country();
+        $object = $id ? Blog::find($id) : new Blog();
 
         if ($request->isMethod('post')) {
+
+            $object ?? $object = new Blog();
+
             $object->fill(
                 $request->only(
                     [
-                        '_token',
-                        'name',
+                        'title',
+                        'text',
+                        'preview_text'
                     ]
                 )
             );
 
+            if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
+
             $object->save();
 
-            // FileUpload::uploadImage('image', $this->MODEL, 'image', $object->id, 377, 377, '/images/specs', false, $request);
+            if ($request->file('image') != null)
+                FileUpload::uploadImage('image', Blog::class, 'image', $object->id, 377, 377, '/images/blogs/', request: $request);
+
+            if ($request->file('preview_image') != null)
+                FileUpload::uploadImage('preview_image', Blog::class, 'preview_image', $object->id, 377, 377, '/images/blogs/', request: $request);
+
             AdminEventLogs::log($object, $id);
+
             return redirect()->route('admin.' . $this->PATH . '.edit', ['id' => $object->id])->with('message', 'Сохранено');
         }
 

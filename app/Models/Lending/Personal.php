@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models\Service;
+namespace App\Models\Lending;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Personal extends Model
 {
     use HasFactory;
 
-    protected $table = "countries";
-
-    public $timestamps = false;
-
     protected $fillable = [
         'name',
+        'description',
+        'email',
     ];
 }

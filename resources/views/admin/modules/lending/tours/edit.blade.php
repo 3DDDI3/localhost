@@ -7,21 +7,17 @@
 
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
+
             @include('admin.includes.input', [
                 'label' => 'Заголовок:',
                 'name' => 'title',
                 'value' => $object->title ?? '',
             ])
-            @include('admin.includes.input', [
-                'label' => 'Текст превью:',
-                'name' => 'preview_text',
-                'value' => $object->preview_text ?? '',
-            ])
 
-            @include('admin.includes.textbox', [
-                'label' => 'текст:',
-                'name' => 'text',
-                'value' => $object->text ?? '',
+            @include('admin.includes.input', [
+                'label' => 'Подзаголовок:',
+                'name' => 'subtitle',
+                'value' => $object->subtitle ?? '',
             ])
 
             @include('admin.includes.select', [
@@ -30,9 +26,79 @@
                 'select' => $countries,
             ])
 
-            {!! \App\Helpers\GenerateForm::makeImage('Изображение', 'path', $object, '/storage/' . $object->path, false, empty($object->path)?null:"title" ) !!}
+            @include('admin.includes.textbox', [
+                'label' => 'Описание тура:',
+                'name' => 'description',
+                'value' => $object->description ?? '',
+            ])
 
-            {!! \App\Helpers\GenerateForm::makeGallery('title', 'galary', $images, '/upload') !!}
+            @include('admin.includes.input', [
+                'label' => 'Заголовок превью:',
+                'name' => 'preview_title',
+                'value' => $object->preview_title ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Подзаголовок превью:',
+                'name' => 'preview_header',
+                'value' => $object->preview_header ?? '',
+            ])
+
+            @include('admin.includes.textbox', [
+                'label' => 'Текст превью:',
+                'name' => 'preview_text',
+                'value' => $object->preview_text ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Цена тура на превью:',
+                'name' => 'preview_price',
+                'value' => $object->preview_price ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Кол-во ночей на превью:',
+                'name' => 'preview_nights',
+                'value' => $object->preview_nights ?? '',
+            ])
+
+            @include('admin.includes.textbox', [
+                'label' => 'Описание стоимости тура:',
+                'name' => 'tour_cost_info',
+                'value' => $object->tour_cost_info ?? '',
+            ])
+
+            @include('admin.includes.textbox', [
+                'label' => 'Описание дополнительной оплаты:',
+                'name' => 'tour_additional_cost',
+                'value' => $object->tour_additional_cost ?? '',
+            ])
+
+            @include('admin.includes.textbox', [
+                'label' => 'Подробная информация при бронировании тура',
+                'name' => 'agreement_info',
+                'value' => $object->agreement_info ?? '',
+            ])
+
+            @php
+                $background_image = empty($object->background_image) ? '' : $object->background_image;
+            @endphp
+
+            {!! \App\Helpers\GenerateForm::makeImage(
+                'Фоновое изображение',
+                'background_image',
+                $object,
+                '/storage/' . $background_image,
+                false,
+                empty($object->background_image) ? null : 'title',
+            ) !!}
+
+            {!! \App\Helpers\GenerateForm::makeGallery(
+                'Галерея',
+                'galary',
+                $object->gallery()->get()->all(),
+                '/images/tours/gallary',
+            ) !!}
 
             @include('admin.includes.submit')
         </form>

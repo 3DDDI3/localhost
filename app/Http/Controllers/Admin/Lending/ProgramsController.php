@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ProgramsController extends Controller
 {
-    public $PATH = 'lending.tours.programms';
+    public $PATH = 'lending.tours.programs';
     public $TITLE = ['Расписание программ', 'программы дня'];
 
     public function index(Request $request)
@@ -103,7 +103,7 @@ class ProgramsController extends Controller
             $object->save();
 
             if ($request->file('galary') != null && !empty($object))
-                FileUpload::uploadGallery('galary', $object->id, "programs", path: "/upload/tours/programs", request: $request);
+                FileUpload::uploadGallery('galary', $object->id, "programs", path: "/images/tours/programs", request: $request);
 
             AdminEventLogs::log($object, $id);
 

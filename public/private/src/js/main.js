@@ -1,3 +1,28 @@
+
+$("select[name='infografika_tour']").on("change", function () {
+    if ($(this).val() > 0) {
+        location.href = `?tour_id=${$(this).val()}`;
+    }
+});
+
+$("select[name='infografika_page']").on("change", function () {
+    if ($(this).val() > 0) {
+        location.href = `?page_id=${$(this).val()}`;
+    }
+});
+
+$("select[name='tour_id']").on("change", function () {
+    console.log($("select[name='page_id']").prop("selectedIndex"));
+    $("select[name='page_id']").prop('selectedIndex', 0);
+})
+
+$("select[name='page_id']").on("change", function () {
+    console.log($("select[name='page_id']").prop("selectedIndex"));
+    $("select[name='tour_id']").prop('selectedIndex', 0);
+})
+
+
+
 if ($(".admin_edit-form button[type=submit]").length) {
     $(".save").show();
     $("body").on("click", ".save", function () {
@@ -654,9 +679,5 @@ $(".js-bonus-accrual__button").on("click", function () {
     });
 });
 
-$("select[name='infografika_tour']").on("change", function () {
-    if ($(this).val() > 0) {
-        location.href = `?tour_id=${$(this).val()}`;
-    }
-});
+
 

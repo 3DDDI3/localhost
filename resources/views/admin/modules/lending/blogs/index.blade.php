@@ -2,16 +2,9 @@
 @section('content')
     <h1>{{ $title[0] }}</h1>
 
-    @include('admin.includes.select', [
-        'label' => 'Тур',
-        'name' => 'infografika_tour',
-        'select' => $tours->all(),
-        'select_head' => $selectedTour,
-    ])
-
-    {{-- @include('admin.includes.search') --}}
+    @include('admin.includes.search')
     @include('admin.includes.add')
-    
+
     @if ($objects)
         @include('admin.includes.sortable.info')
         <div class="sortable_list">
@@ -20,9 +13,9 @@
                     <div class="list_item-info">
                         {{-- <h4>{{ $object->id }}</h4> --}}
                         {{ $object->title }}
-                        @if ($object->image)
-                            @include('admin.includes.image', ['path' => '/storage/' . $object->image])
-                        @endif
+                    </div>
+                    <div class="list_item_info">
+                        {{ date('h:i d.m.Y', strtotime($object->created_at)) }}
                     </div>
                     <div class="list_item-actions">
                         @include('admin.includes.sortable.rating')

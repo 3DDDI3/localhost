@@ -26,7 +26,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
         });
     }
 

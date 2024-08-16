@@ -7,7 +7,8 @@
 @section('content')
     <main>
 
-        <div class="tour-headding__wrapper" style="background-image: url('{{ asset('storage/' . $tour->path) }}')">
+        <div class="tour-headding__wrapper"
+            style="background-image: url('{{ asset('storage/' . $tour->background_image) }}')">
             <div class="tour-headding">
                 <x-templates.bread-crumbs :data="$breadcrumbs" />
                 <h1 class="tour-headding__title">{{ $tour->title }}</h1>
@@ -69,9 +70,9 @@
             @endforeach
         </div>
 
-        <p class="tour__description">
-            {!! html_entity_decode($tour->text) !!}
-        </p>
+        <div class="tour__description">
+            {!! html_entity_decode($tour->description) !!}
+        </div>
 
         <div class="tour-anchor">
             <div class="tour-anchor__list">
@@ -145,7 +146,19 @@
             </button>
         </div>
 
-        <x-sliders.gallery />
+        <x-sliders.gallery slider_class="tour-gallary__slider">
+            @foreach ($tour->gallery()->get() as $item)
+                <x-templates.gallery-item>
+                    <div class="tour-gallary-block">
+                        <img src="/storage/{{ $item->file_name }}" class="tour-gallary-block__image" alt="">
+                        @if (!empty($item->alt))
+                            <span class="tour-gallary-block__title">{{ $item->alt }}</span>
+                        @endif
+                    </div>
+                </x-templates.gallery-item>
+            @endforeach
+        </x-sliders.gallery>
+
 
         <div class="tour-day-programm" id="description">
             <div class="tour-day-programm__headding page-headding">
@@ -153,123 +166,317 @@
                         class="tour-day-programm__subtitle page-headding__subtitle">по дням:</span></span>
             </div>
             <div class="tour-day-programm__list">
-                @php
-                    $text1 = '<p>
-                     <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2" />
-                     </svg> Прибытие в Дели на регулярном рейсе одной из международных авиакомпаний. Семьсот лет назад
-                     итальянский купец Марко Поло, после путешествия по Индостану, написал «Книгу чудес света». Сегодня
-                     прямой перелет в Индию занимает меньше времени, чем прочтение этого фолианта. А чудес за прошедшие
-                     столетия только добавилось.
-                  </p>
-                  <p>
-                     <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2" />
-                     </svg> Прохождение формальностей и получение багажа в аэропорту Нью-Дели (Терминал-3)
-                  </p>
-                  <p>
-                     <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2" />
-                     </svg> Встреча в аэропорту.
-                  </p>
-                  <p>
-                     <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2" />
-                     </svg> Вас ждет традиционное индийское приветствие «Свагат» с гирляндой из цветов.
-                  </p>
-                  <p>
-                     <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2" />
-                     </svg> После приветствия трансфер и размещение в отеле. Отдых.
-                  </p>';
-
-                    $text2 = '  <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                                </svg> Прибытие в Дели на регулярном рейсе одной из международных авиакомпаний. Семьсот лет назад итальянский купец Марко Поло, после путешествия по Индостану, написал «Книгу чудес света».
-                                Сегодня прямой перелет в Индию занимает меньше времени, чем прочтение этого фолианта. А чудес за прошедшие столетия только добавилось.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                                </svg> Прохождение формальностей и получение багажа в аэропорту Нью-Дели (Терминал-3)
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                                </svg> Встреча в аэропорту.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Вас ждет традиционное индийское приветствие «Свагат» с гирляндой из цветов.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> После приветствия трансфер и размещение в отеле. Отдых.
-                            </p>';
-                    $text3 = '<p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Прибытие в Дели на регулярном рейсе одной из международных авиакомпаний. Семьсот лет назад итальянский купец Марко Поло, после путешествия по Индостану, написал «Книгу чудес света». Сегодня
-                                прямой перелет в Индию занимает меньше времени, чем прочтение этого фолианта. А чудес за прошедшие столетия только добавилось.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Прохождение формальностей и получение багажа в аэропорту Нью-Дели (Терминал-3)
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Встреча в аэропорту.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Вас ждет традиционное индийское приветствие «Свагат» с гирляндой из цветов.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> После приветствия трансфер и размещение в отеле. Отдых.
-                            </p>';
-                    $text4 = ' <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Прибытие в Дели на регулярном рейсе одной из международных авиакомпаний. Семьсот лет назад итальянский купец Марко Поло, после путешествия по Индостану, написал «Книгу чудес света». Сегодня
-                                прямой перелет в Индию занимает меньше времени, чем прочтение этого фолианта. А чудес за прошедшие столетия только добавилось.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Прохождение формальностей и получение багажа в аэропорту Нью-Дели (Терминал-3)
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Встреча в аэропорту.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> Вас ждет традиционное индийское приветствие «Свагат» с гирляндой из цветов.
-                            </p>
-                            <p>
-                                <svg width="25" height="2" viewBox="0 0 25 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2"/>
-                            </svg> После приветствия трансфер и размещение в отеле. Отдых.
-                            </p>';
-                @endphp
-                @for ($i = 0; $i < $tour->programs()->count(); $i++)
-                    <x-templates.tour-day day="{{ $tour->programs()->get()[$i]->day }}"
-                        title="{{ $tour->programs()->get()[$i]->title }}" text="{{ $tour->programs()->get()[$i]->text }}"
-                        slider_number=$i />
+                @for ($i = 0; $i < $tour->programs()->orderBy('rating', 'desc')->get()->count(); $i++)
+                    @php
+                        $program = $tour->programs()->orderBy('rating', 'desc')->get()[$i];
+                        $slider_data = $tour->programs()->orderBy('rating', 'desc')->get()[$i]->gallery()->get()->all();
+                        $slider_class = 'tour-day-programm__gallary-slider' . $i + 1;
+                    @endphp
+                    <x-templates.tour-day day="{{ $program->day }}" title="{{ $program->get()[$i]->title }}"
+                        text="{{ $program->get()[$i]->text }}">
+                        <x-sliders.gallery :$slider_class>
+                            @foreach ($slider_data as $item)
+                                <x-templates.gallery-item>
+                                    <img src="/storage/{{ $item->file_name }}" class="tour-gallary-block__image"
+                                        alt="">
+                                </x-templates.gallery-item>
+                            @endforeach
+                        </x-sliders.gallery>
+                    </x-templates.tour-day>
                 @endfor
 
             </div>
         </div>
+
+        <div class="tour-cost" id="calc">
+            <h1 class="tour-cost__title">Стоимость тура</h1>
+            <form class="tour-cost__form">
+                <div class="tour-cost-form__first-row">
+                    <div class="tour-cost__date">
+                        <div class="tour-cost-dates__wrapper">
+                            <label for="tour_datapicker">
+                                <div class="tour-cost__dates">
+                                    <span class="tour-cost-dates__title">Дата заезда</span>
+                                    <span class="tour-cost-dates__subtitle">Москва</span>
+                                </div>
+                                <input id="tour_datapicker" class="tour-cost-dates__datapicker" type="text"
+                                    name="tour_datefilter" value="" />
+                                <svg class="tour-cost-date__icon" width="23" height="23" viewBox="0 0 23 23"
+                                    fill="inherit">
+                                    <g opacity="0.3">
+                                        <path
+                                            d="M5.75033 21.0833H17.2503C18.2667 21.0822 19.2411 20.678 19.9597 19.9594C20.6784 19.2407 21.0826 18.2663 21.0837 17.25V7.66663C21.0826 6.65029 20.6784 5.67589 19.9597 4.95723C19.2411 4.23857 18.2667 3.83436 17.2503 3.83329H16.292V2.87496C16.292 2.62079 16.191 2.37704 16.0113 2.19732C15.8316 2.01759 15.5878 1.91663 15.3337 1.91663C15.0795 1.91663 14.8357 2.01759 14.656 2.19732C14.4763 2.37704 14.3753 2.62079 14.3753 2.87496V3.83329H8.62533V2.87496C8.62533 2.62079 8.52436 2.37704 8.34464 2.19732C8.16491 2.01759 7.92116 1.91663 7.66699 1.91663C7.41283 1.91663 7.16907 2.01759 6.98935 2.19732C6.80963 2.37704 6.70866 2.62079 6.70866 2.87496V3.83329H5.75033C4.73401 3.83443 3.75965 4.23867 3.04101 4.95731C2.32237 5.67595 1.91813 6.65031 1.91699 7.66663V17.25C1.91813 18.2663 2.32237 19.2406 3.04101 19.9593C3.75965 20.6779 4.73401 21.0822 5.75033 21.0833ZM3.83366 10.5416H19.167V17.25C19.1664 17.7581 18.9643 18.2453 18.605 18.6046C18.2457 18.9639 17.7585 19.166 17.2503 19.1666H5.75033C5.24215 19.1661 4.75493 18.964 4.3956 18.6047C4.03626 18.2454 3.83417 17.7581 3.83366 17.25V10.5416Z"
+                                            fill="inherit" />
+                                    </g>
+                                </svg>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="search-tour__from combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Город вылета</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                Москва
+                            </span>
+                            <span class="combobox__item">
+                                Санкт-Петербург
+                            </span>
+                            <span class="combobox__item">
+                                Екатеринбург
+                            </span>
+                        </div>
+                    </div>
+                    <div class="search-tour__tourist combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Туристы</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                2 человека
+                            </span>
+                            <span class="combobox__item">
+                                3 человека
+                            </span>
+                            <span class="combobox__item">
+                                4 человека
+                            </span>
+                        </div>
+                    </div>
+                    <div class="search-tour__children combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Детей</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                1
+                            </span>
+                            <span class="combobox__item">
+                                2
+                            </span>
+                            <span class="combobox__item">
+                                3
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-cost-form__second-row">
+                    <div class="search-tour__nights combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Ночей</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                1
+                            </span>
+                            <span class="combobox__item">
+                                2
+                            </span>
+                            <span class="combobox__item">
+                                3
+                            </span>
+                        </div>
+                    </div>
+                    <div class="search-tour__hotel-category combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Категория отеля</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                4*
+                            </span>
+                            <span class="combobox__item">
+                                3*
+                            </span>
+                            <span class="combobox__item">
+                                5*
+                            </span>
+                        </div>
+                    </div>
+                    <div class="search-tour__hotel combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Гостиница</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                Гостиница №1
+                            </span>
+                            <span class="combobox__item">
+                                Гостиница №2
+                            </span>
+                            <span class="combobox__item">
+                                Гостиница №2
+                            </span>
+                        </div>
+                    </div>
+                    <div class="search-tour__feed combobox">
+                        <div class="combobox__header">
+                            <div class="combobox-header-block">
+                                <span class="combobox-header__title">Питание</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                            </div>
+                            <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_85_85)">
+                                    <path
+                                        d="M7.78671 12.1108C7.60462 12.1 7.43154 12.017 7.29731 11.8761L1.18945 5.43842C1.11393 5.35843 1.05293 5.26224 1.00997 5.15533C0.966998 5.04843 0.942897 4.93291 0.93903 4.81537C0.935163 4.69783 0.951603 4.58057 0.987426 4.47029C1.02325 4.36001 1.07775 4.25887 1.1478 4.17263C1.21786 4.0864 1.30211 4.01677 1.39574 3.96772C1.48937 3.91866 1.59054 3.89114 1.69348 3.88674C1.79642 3.88233 1.89911 3.90112 1.99569 3.94203C2.09227 3.98294 2.18085 4.04517 2.25637 4.12517L7.83077 9.99841L13.4052 4.12517C13.4807 4.04517 13.5693 3.98294 13.6658 3.94203C13.7624 3.90112 13.8651 3.88233 13.968 3.88674C14.071 3.89115 14.1722 3.91866 14.2658 3.96772C14.3594 4.01677 14.4437 4.0864 14.5137 4.17263C14.5838 4.25887 14.6383 4.36001 14.6741 4.47029C14.7099 4.58058 14.7264 4.69783 14.7225 4.81537C14.7186 4.93291 14.6945 5.04843 14.6516 5.15533C14.6086 5.26224 14.5476 5.35843 14.4721 5.43842L8.36422 11.8761C8.28672 11.9575 8.19564 12.0203 8.09642 12.0606C7.99719 12.1009 7.89185 12.118 7.78671 12.1108Z"
+                                        fill="#B2B2B2" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_85_85">
+                                        <rect width="16" height="16" fill="white"
+                                            transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                ВВ
+                            </span>
+                            <span class="combobox__item">
+                                ВВ
+                            </span>
+                            <span class="combobox__item">
+                                Екатеринбург
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form class="tour-cost__actions">
+                <div class="tour-cost-block">
+                    <div class="tour-cost__info">
+                        <span class="tour-cost__tite">Стоимость за всех:</span>
+                        <span class="tour-cost__value">120 250 руб.</span>
+                    </div>
+                    <button class="tour-cost__update">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.6024 12.6348C19.0438 12.5498 18.5477 12.9327 18.4676 13.4786C18.2664 14.8497 17.6336 16.1007 16.6375 17.0968C14.1023 19.632 9.9803 19.63 7.4461 17.0968C4.9124 14.5626 4.9124 10.4391 7.4461 7.9054C8.3992 6.9528 9.6024 6.3317 10.949 6.1056C11.5281 5.9957 12.1507 5.9767 12.7967 6.0499C13.6837 6.152 14.5093 6.4463 15.2627 6.8784L13.9608 7.1007C13.4169 7.194 13.0506 7.7106 13.1444 8.255C13.2274 8.7423 13.6503 9.0865 14.1288 9.0865C14.1845 9.0865 14.2411 9.0821 14.2987 9.0723L17.7889 8.4756C18.0496 8.4307 18.283 8.2842 18.4364 8.0674C18.5897 7.8511 18.6503 7.5825 18.6053 7.3208L18.0076 3.8311C17.9158 3.2872 17.406 2.9229 16.8533 3.0142C16.3094 3.1075 15.9431 3.6246 16.0369 4.169L16.1942 5.0875C15.2263 4.5445 14.1586 4.1932 13.0242 4.0626C12.1746 3.9659 11.3504 3.9928 10.596 4.1373C8.8592 4.4283 7.2811 5.2423 6.032 6.4913C2.7185 9.8048 2.7185 15.1964 6.032 18.5108C7.6887 20.168 9.8655 20.9962 12.0418 20.9962C14.2186 20.9962 16.3943 20.1681 18.0516 18.5108C19.3534 17.209 20.1815 15.5694 20.4461 13.7696C20.5263 13.2227 20.1483 12.7148 19.6024 12.6348Z"
+                                fill="#9758FF" />
+                        </svg>
+                        Обновить стоимость
+                    </button>
+                </div>
+                <button class="tour-cost__button">Забронировать</button>
+            </form>
+        </div>
+
+        <div class="tour__user-info">
+            {!! html_entity_decode($tour->agreement_info) !!}
+        </div>
+
+        <div class="tour__info" id="cost">
+            <x-blocks.tour-info-cost :text="$tour->tour_cost_info" />
+            <x-blocks.tour-info-payment :text="$tour->tour_additional_cost" />
+        </div>
+
+        <x-blocks.offer />
 
     </main>
 @endsection

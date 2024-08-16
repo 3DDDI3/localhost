@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models\Lending;
+namespace App\Models\Services;
 
+use App\Models\Lending\Page;
+use App\Models\Lending\Tour;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +12,7 @@ class Infografika extends Model
 {
     use HasFactory;
 
-    protected $table = "tour_statistic_info";
+    protected $table = "infografika";
 
     public $timestamps = false;
 
@@ -19,11 +21,17 @@ class Infografika extends Model
         'title',
         'text',
         'tour_id',
+        'about_id',
         'subtitle',
     ];
 
-    public function tour()
+    public function tour(): BelongsTo
     {
-        return $this->belongsTo(Tour::class)->first();
+        return $this->belongsTo(Tour::class);
+    }
+
+    public function page(): BelongsTo
+    {
+        return $this->belongsTo(Page::class, ownerKey: "id", foreignKey: "about_id");
     }
 }

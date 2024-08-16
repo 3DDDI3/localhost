@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->text('url')->nullable();
             $table->longText('text')->nullable();
-            $table->string('title', 1000);
+            $table->text('image')->nullable();
+            $table->string('title', 1000)->nullable();
             $table->text('preview_text')->nullable();
+            $table->text('preview_image')->nullable();
             $table->integer('rating')->nullable()->default(0);
             $table->tinyInteger('hide')->nullable()->default(0);
-            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
         });
     }

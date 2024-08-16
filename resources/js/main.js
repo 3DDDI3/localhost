@@ -172,7 +172,7 @@ $(function () {
         if ($(block).css("display") == "none") {
             $(block).show('slow');
             $(this).css({
-                "padding-bottom": "60px",
+                "padding-bottom": "16px",
             });
             $(this).parent().find(".tour-day-programm__text-description svg").css({
                 'transform': 'rotate(180deg)'
@@ -180,7 +180,7 @@ $(function () {
         } else {
             $(block).hide('slow');
             $(this).css({
-                "padding-bottom": "45px",
+                "padding-bottom": "0px",
             });
             $(this).parent().find(".tour-day-programm__text-description svg").css({
                 'transform': 'rotate(0deg)'
@@ -487,7 +487,7 @@ $(function () {
         }
     }).mount();
 
-    if (".tour-gallary__slider") new Splide(".tour-gallary__slider", {
+    if ($(".tour-gallary__slider").length > 0) new Splide(".tour-gallary__slider", {
         gap: 35,
         pagination: false,
         perPage: 3,
@@ -518,8 +518,7 @@ $(function () {
         }
     }).mount();
 
-
-    if ($(".tour-day-programm__gallary-slider1")) new Splide(".tour-day-programm__gallary-slider1", {
+    if ($(".tour-day-programm__gallary-slider1").length > 0) new Splide(".tour-day-programm__gallary-slider1", {
         gap: 35,
         pagination: false,
         perPage: 4,
@@ -544,7 +543,7 @@ $(function () {
         }
     }).mount();
 
-    if (".tour-day-programm__gallary-slider2") new Splide(".tour-day-programm__gallary-slider2", {
+    if ($(".tour-day-programm__gallary-slider2").length > 0) new Splide(".tour-day-programm__gallary-slider2", {
         gap: 35,
         pagination: false,
         perPage: 4,
@@ -567,7 +566,7 @@ $(function () {
         }
     }).mount();
 
-    if (".tour-day-programm__gallary-slider3") new Splide(".tour-day-programm__gallary-slider3", {
+    if ($(".tour-day-programm__gallary-slider3").length > 0) new Splide(".tour-day-programm__gallary-slider3", {
         gap: 35,
         pagination: false,
         perPage: 4,
@@ -590,7 +589,7 @@ $(function () {
         }
     }).mount();
 
-    if (".tour-day-programm__gallary-slider4") new Splide(".tour-day-programm__gallary-slider4", {
+    if ($(".tour-day-programm__gallary-slider4").length > 0) new Splide(".tour-day-programm__gallary-slider4", {
         gap: 35,
         pagination: false,
         perPage: 4,
@@ -613,8 +612,7 @@ $(function () {
         }
     }).mount();
 
-
-    ymaps.ready(init);
+    // ymaps.ready(init);
 });
 
 

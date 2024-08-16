@@ -19,6 +19,24 @@
         'data' => 'specs',
     ])
 
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.lending.pages.index',
+        'name' => 'страницы',
+        'data' => 'pages',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.lending.blogs.index',
+        'name' => 'блог',
+        'data' => 'blogs',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.lending.news.index',
+        'name' => 'новости',
+        'data' => 'news',
+    ])
+
 
     <x-Admin.NavBar title="Туры" url="lending"
         style="border-bottom: unset !important; margin: 10px 0 0 0!important; padding-bottom:0 !important"
@@ -37,24 +55,23 @@
         ])
 
         @include('admin.includes.menu.item', [
-            'route' => 'admin.lending.tours.infografika.index',
-            'name' => 'Инфографика',
-            'data' => 'infografika',
-        ])
-
-        @include('admin.includes.menu.item', [
-            'route' => 'admin.lending.tours.programms.index',
+            'route' => 'admin.lending.tours.programs.index',
             'name' => 'Расписание программ',
-            'data' => 'programms',
+            'data' => 'programs',
         ])
 
     </x-Admin.NavBar>
 
 </x-Admin.NavBar>
 
-{{-- <x-Admin.NavBar title="Служебное" url="users" all="{{ isset($all) && $all }}">
-    @include('admin.includes.menu.item', ['route' => 'admin.service.countries.index', 'name' => 'Страны']);
-</x-Admin.NavBar> --}}
+<x-Admin.NavBar title="Служебное" url="services" all="{{ isset($all) && $all }}">
+    {{-- @include('admin.includes.menu.item', ['route' => 'admin.service.countries.index', 'name' => 'Страны']); --}}
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.services.infografika.index',
+        'name' => 'Инфографика',
+        'data' => 'infografika',
+    ])
+</x-Admin.NavBar>
 
 <x-Admin.NavBar title="Пользователи" url="users" all="{{ isset($all) && $all }}">
     @include('admin.includes.menu.item', [

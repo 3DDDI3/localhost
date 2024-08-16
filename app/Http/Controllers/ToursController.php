@@ -13,11 +13,9 @@ class ToursController extends Controller
         return view('pages.tours');
     }
 
-    public function tour($id)
+    public function tour($url)
     {
-        $tour = Tour::where(["hide" => 0, 'id' => $id])->first();
-
-        dd($tour->sortedProgramsByDesc());
+        $tour = Tour::where(["hide" => 0, 'url' => $url])->first();
 
         $breadCrumbs = collect([
             (object)[
@@ -25,17 +23,23 @@ class ToursController extends Controller
                 'url' => '/',
             ],
             (object)[
-                'name' => 'Блог',
-                'url' => '/blogs'
+                'name' => 'Страны',
+                'url' => '/tours'
             ],
             (object)[
-                'name' => 'Какие города стоит посетить в Индии',
+                'name' => 'Индия',
+                'url' => '/tours'
+            ],
+            (object)[
+                'name' => 'Экскурсионный тур: «Золотой треугольник»',
             ],
         ]);
 
-        return view('pages.tour', [
-            "breadcrumbs" => $breadCrumbs,
-            "tour" => $tour,
-        ]);
+        if (!empty($tour))
+            return view('pages.tour', [
+                "breadcrumbs" => $breadCrumbs,
+                "tour" => $tour,
+            ]);
+        else return view('errors.404');
     }
 }

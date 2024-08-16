@@ -16,18 +16,23 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->longText('text')->nullable();
-            $table->text('description');
-            $table->string('title', 1000);
-            $table->timestamp('created_at')->useCurrent();
-            $table->text('preview_text')->nullable();
-            $table->string('preview_price')->nullable();
-            $table->string('preview_nights')->nullable();
+            $table->text('url');
+            $table->longText('description')->nullable();
+            $table->string('title', 1000)->nullable();
+            $table->string('subtitle', 1000)->nullable();
             $table->string('preview_title', 1000)->nullable();
+            $table->string('preview_header', 1000)->nullable();
+            $table->text('preview_text')->nullable();
+            $table->string('preview_price', 256)->nullable();
+            $table->string('preview_nights', 256)->nullable();
+            $table->longText('agreement_info')->nullable();
+            $table->longText('tour_cost_info')->nullable();
+            $table->longText('tour_additional_cost')->nullable();
             $table->integer('rating')->nullable()->default(0);
             $table->tinyInteger('hide')->nullable()->default(0);
-            $table->text('bacground_image')->nullable();
-            $table->timestamp('update_at')->useCurrentOnUpdate();
+            $table->text('background_image')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
         });
     }
 

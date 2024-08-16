@@ -10,7 +10,6 @@ use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
 use App\Models\Service\Country;
 use App\Models\User\AdminEventLogs;
-use stdClass;
 
 class ToursController extends Controller
 {
@@ -47,42 +46,55 @@ class ToursController extends Controller
 
         $object = $id ? Tour::find($id) : new Tour();
 
+        if (empty($object)) $object = new Tour();
+
         $countries = Country::all();
 
-        $select_head = $object->country()->first()->country()->first()->name;
+        $select_head = !empty($object->id) && $object->country()->count() > 0 ? $object->country()->first()->country()->first()->name : null;
 
         $images = Gallery::where(['item_id' => 1, 'item_type' => 1])->get();
 
         if ($request->isMethod('post')) {
+            
             $object->fill(
                 $request->only(
                     [
                         '_token',
                         'title',
+                        'subtitle',
+                        'description',
+                        'preview_title',
+                        'preview_header',
                         'preview_text',
-                        'text'
+                        'preview_price',
+                        'preview_nights',
+                        'tour_cost_info',
+                        'tour_additional_cost',
+                        'agreement_info',
                     ]
                 )
             );
+
+            if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
+
+            if ($request->file('background_image') != null)
+                FileUpload::uploadImage('background_image', Tour::class, 'background_image', $object->id, 377, 377, '/images/tours', request: $request);
+
+            if ($request->file('galary') != null && !empty($object))
+                FileUpload::uploadGallery('galary', $object->id, "tour", path: "/images/tours/gallary", request: $request);
+
+            $object->save();
 
             if ($request->input("select") > 0) {
                 $countryTour = TourCountry::where(['tour_id' => $object->id])->first();
 
                 if ($countryTour == null)
-                    TourCountry::create(["tour_id" => $object->id, "country_id" => $request->input("select")]);
-                else
+                    TourCountry::create(["tour_id" => empty($object->id) ? 1 : $object->id, "country_id" => $request->input("select")]);
+                else {
                     $countryTour->country_id = $request->input("select");
-
-                $countryTour->save();
+                    $countryTour->save();
+                }
             }
-
-            if ($request->file('galary') != null)
-                FileUpload::uploadGallery('galary', 1, 1, path: "/upload/tours", request: $request);
-
-            if ($request->file('path') != null)
-                FileUpload::uploadImage('path', Tour::class, 'path', $object->id, 377, 377, '/images/tours', request: $request);
-
-            $object->save();
 
             AdminEventLogs::log($object, $id);
 

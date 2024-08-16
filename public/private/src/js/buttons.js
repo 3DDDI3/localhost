@@ -209,7 +209,7 @@ $(document).ready(function () {
     $('.gallery-rating').change(function () {
         let value = $(this).val(),
             id = $(this).data('id');
-
+        console.log(1);
         $.ajax({
             url: '/admin/ajax',
             type: 'POST',
@@ -252,6 +252,25 @@ $(document).ready(function () {
             data: {
                 action: 'changeFileAlt',
                 id: id,
+                value: value
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+    $('.gallery-alt').change(function () {
+        let value = $(this).val(),
+            id = $(this).data('id');
+
+        $.ajax({
+            url: '/admin/ajax',
+            type: 'POST',
+            data: {
+                action: 'changeAlt',
+                id: id,
+                className: "App\\Models\\Gallery",
                 value: value
             },
             success: function (data) {

@@ -7,6 +7,13 @@
 
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
+
+            @include('admin.includes.input', [
+                'label' => 'День:',
+                'name' => 'day',
+                'value' => $object->day ?? '',
+            ])
+
             @include('admin.includes.input', [
                 'label' => 'Заголовок:',
                 'name' => 'title',
@@ -26,20 +33,7 @@
                 'value' => $object->text ?? '',
             ])
 
-            @include('admin.includes.input', [
-                'label' => 'Дополнительный блок:',
-                'name' => 'subtitle',
-                'value' => $object->subtitle ?? '',
-            ])
-
-            {!! \App\Helpers\GenerateForm::makeImage(
-                'Иконка',
-                'icon',
-                $object,
-                '/storage/' . $object->icon,
-                false,
-                empty($object->icon) ? null : 'title',
-            ) !!}
+            {!! \App\Helpers\GenerateForm::makeGallery('Галерея', 'galary', $images, '/images/tours/programs') !!}
 
             @include('admin.includes.submit')
         </form>
