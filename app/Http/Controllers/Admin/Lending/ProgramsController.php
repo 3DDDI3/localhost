@@ -27,13 +27,7 @@ class ProgramsController extends Controller
 
         $selectedTour = null;
 
-        // dd($objects->first()->tour()->toSql());
-
-        if ($objects->count() > 0)
-            $selectedTour = $objects->first()->tour()->first()?->title;
-        else {
-            if ($request->input("tour_id") != null) $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()->title;
-        }
+        if ($request->input("tour_id") != null) $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()->title;
 
         $tours = collect();
 

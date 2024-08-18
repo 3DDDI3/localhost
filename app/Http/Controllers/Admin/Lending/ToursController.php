@@ -14,7 +14,7 @@ use App\Models\User\AdminEventLogs;
 class ToursController extends Controller
 {
     public $PATH = 'lending.tours';
-    public $TITLE = ['Характеристики', 'характеристики'];
+    public $TITLE = ['Туры', 'тура'];
 
     public function index(Request $request)
     {
@@ -48,14 +48,14 @@ class ToursController extends Controller
 
         if (empty($object)) $object = new Tour();
 
-        $countries = Country::all();
+        $countries = TourCountry::all();
 
         $select_head = !empty($object->id) && $object->country()->count() > 0 ? $object->country()->first()->country()->first()->name : null;
 
         $images = Gallery::where(['item_id' => 1, 'item_type' => 1])->get();
 
         if ($request->isMethod('post')) {
-            
+
             $object->fill(
                 $request->only(
                     [

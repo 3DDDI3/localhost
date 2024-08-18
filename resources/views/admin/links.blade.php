@@ -1,6 +1,6 @@
 <x-Admin.NavBar title="Лендинг" url="lending" all="{{ isset($all) && $all }}">
 
-    @include('admin.includes.menu.item', [
+    {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.lending.text.index',
         'name' => 'текст',
         'data' => 'text',
@@ -10,14 +10,14 @@
         'route' => 'admin.lending.slider.index',
         'name' => 'категории',
         'data' => 'slider',
-    ])
+    ]) --}}
 
     {{-- @include('admin.includes.menu.item', ['route' => 'admin.lending.slider2.index', 'name' => 'слайдер 2']) --}}
-    @include('admin.includes.menu.item', [
+    {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.lending.specs.index',
         'name' => 'характеристики',
         'data' => 'specs',
-    ])
+    ]) --}}
 
     @include('admin.includes.menu.item', [
         'route' => 'admin.lending.pages.index',

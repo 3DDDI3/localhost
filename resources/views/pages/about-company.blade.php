@@ -1,14 +1,15 @@
 @extends('layouts.default')
 
 @section('head')
-   <link rel="stylesheet" href="{{ asset('/css/about.css') }}?v={{ sha1_file(public_path() . '/css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/about.css') }}?v={{ sha1_file(public_path() . '/css/about.css') }}">
 @endsection
 
 @section('content')
     <main>
         <div class="page-header">
             <x-templates.bread-crumbs :data="$breadcrumbs" />
-            <h1 class="page-title">О компании</h1>
+
+            <h1 class="page-title">{{ $object->title }}</h1>
         </div>
 
         <div class="company-background">
@@ -19,21 +20,14 @@
         </div>
         <div class="company-decription">
             <div class="company-description-wrapper">
-                <p class="company-description__text">
-                    До 2020 года основным видом деятельности компании была организация туров в Италию. Сегодня, активное
-                    использование современных цифровых технологий и интеграционных решений позволяют нам создавать для
-                    туристов качественный продукт по конкурентным ценам
-                    по таким странам как ОАЭ, Мальдивы, Сейшелы, Египет, Турция, Шри-Ланка, Таиланд, страны ЮВА, Китай и
-                    другим направлениям.
-                </p>
+                <div class="company-description__text">
+                    {!! html_entity_decode($object->about_text_1) !!}
+                </div>
             </div>
             <div class="company-description-wrapper">
-                <p class="company-description__text"> Наша компания сотрудничает с регулярными перевозчиками, что
-                    гарантирует выполнение всех обязательств перед клиентами и партнерами точно и в срок.</p>
-                <p class="company-description__text">
-                    За 20 лет работы на туристическом рынке мы зарекомендовали себя как надежная компания с безупречной
-                    финансовой репутацией.
-                </p>
+                <div class="company-description__text">
+                    {!! html_entity_decode($object->about_text_2) !!}
+                </div>
             </div>
         </div>
         <div class="company-statistics">

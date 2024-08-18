@@ -13,22 +13,26 @@
                 'value' => $object->title ?? '',
             ])
 
+            {{-- @dd($pages->all()[0]->id) --}}
+
+            {{-- @dd($selectedPages->all(), $pages->all()) --}}
+
+            {!! \App\Helpers\GenerateForm::makeSelect(
+                'Прикрепленная страница',
+                'attached_pages',
+                $pages->all(),
+                $selectedPage,
+                nullTitle: 'Не выбрано',
+            ) !!}
+
+            {{-- @dd($tours->all(), $selectedTour) --}}
+
             @include('admin.includes.select', [
                 'label' => 'Тур',
                 'name' => 'tour_id',
                 'select' => $tours->all(),
                 'select_head' => $selectedTour,
             ])
-
-
-            @if ($pages->count() > 0)
-                @include('admin.includes.select', [
-                    'label' => 'Страница',
-                    'name' => 'page_id',
-                    'select' => $pages->all(),
-                    'select_head' => $selectedPage,
-                ])
-            @endif
 
             @include('admin.includes.textbox', [
                 'label' => 'Текст:',

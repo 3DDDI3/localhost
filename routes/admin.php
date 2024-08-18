@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Lending\BlogController;
-use App\Http\Controllers\Service\CountryController;
+use App\Http\Controllers\Admin\Lending\CountryController;
 use App\Http\Controllers\Admin\Lending\NewsController;
 use App\Http\Controllers\Admin\Lending\PageController;
 use App\Http\Controllers\Admin\Lending\ProgramsController;

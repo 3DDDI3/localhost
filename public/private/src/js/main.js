@@ -1,42 +1,18 @@
-
-$("select[name='infografika_tour']").on("change", function () {
-    if ($(this).val() > 0) {
-        location.href = `?tour_id=${$(this).val()}`;
-    }
-});
-
-$("select[name='infografika_page']").on("change", function () {
-    if ($(this).val() > 0) {
-        location.href = `?page_id=${$(this).val()}`;
-    }
-});
-
-$("select[name='tour_id']").on("change", function () {
-    console.log($("select[name='page_id']").prop("selectedIndex"));
-    $("select[name='page_id']").prop('selectedIndex', 0);
-})
-
-$("select[name='page_id']").on("change", function () {
-    console.log($("select[name='page_id']").prop("selectedIndex"));
-    $("select[name='tour_id']").prop('selectedIndex', 0);
-})
-
-
-
-if ($(".admin_edit-form button[type=submit]").length) {
-    $(".save").show();
-    $("body").on("click", ".save", function () {
-        $(".admin_edit-form button[type=submit]").click();
-    });
-}
-
-$("body").on("keyup", ".client-card-input input, .input-number", function () {
-    if (this.value.match(/[^0-9]/g)) {
-        this.value = this.value.replace(/[^0-9]/g, "");
-    }
-});
-
 $(document).ready(function () {
+
+    if ($(".admin_edit-form button[type=submit]").length) {
+        $(".save").show();
+        $("body").on("click", ".save", function () {
+            $(".admin_edit-form button[type=submit]").click();
+        });
+    }
+
+    $("body").on("keyup", ".client-card-input input, .input-number", function () {
+        if (this.value.match(/[^0-9]/g)) {
+            this.value = this.value.replace(/[^0-9]/g, "");
+        }
+    });
+
     // Маска номера телефона
     $("input[name='phone']")
         .not(".select-phone")
@@ -149,6 +125,30 @@ $(document).ready(function () {
             });
         },
     });
+
+    $("select[name='infografika_tour']").on("change", function () {
+        if ($(this).val() > 0) {
+            location.href = `?tour_id=${$(this).val()}`;
+        }
+    });
+
+    $("select[name='tour_id']").on("change", function () {
+        $("select[name='attached_pages'] option").prop("selected", 0);
+    })
+
+    // $(".chosen-container").on("click", function () {
+    //     if ($(this).find(".chosen-single span").text() == "Не выбрано") {
+    //     //    $($("select[name='tour_id'] option")[0]).text("asdasdasdasd");
+    //         $($(this).find(".chosen-results li")[0]).text("Не выбрано");
+    //     }
+    // });
+
+    $("select[name='attached_pages']").on("change", function () {
+        console.log($(this));
+        $($("select[name='tour_id'] option")[0]).prop("selectedIndex", 0);
+        $("select[name='tour_id']").parent(".input_block").find(".chosen-single span").text("Не выбрано");
+    });
+
 });
 
 $(".file-uploader__section.ui-sortable").sortable({
@@ -678,6 +678,3 @@ $(".js-bonus-accrual__button").on("click", function () {
         },
     });
 });
-
-
-

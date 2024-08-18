@@ -5,6 +5,7 @@ use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\ToursController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     // Route::get('/', 'IndexController@index');
     Route::match(['get', 'post'], '/', 'IndexController@index');
 
-    Route::get('/about-company', [AboutCompanyController::class, 'index']);
+    Route::prefix('pages')->group(function () {
+        Route::get('/{url}', [PageController::class, 'index']);
+    });
 
     Route::prefix('news')->group(function () {
         Route::get('/', [NewsController::class, 'index']);
@@ -35,7 +38,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     });
 
     Route::prefix('contacts')->group(function () {
-        Route::get('/', [ContactsController::class, 'index']);
+        Route::get('/{url}', [ContactsController::class, 'index']);
     });
 
     Route::prefix('blogs')->group(function () {

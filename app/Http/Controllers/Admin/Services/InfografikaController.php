@@ -55,7 +55,7 @@ class InfografikaController extends Controller
         $pages = collect(
             [
                 (object)[
-                    'id' => Page::where('id', 1)->first()->id,
+                    'id' => (int)Page::where('id', 1)->first()->id,
                     'name' => Page::where('id', 1)->first()->title
                 ]
             ]
@@ -101,19 +101,10 @@ class InfografikaController extends Controller
 
         $tours = collect();
 
-        foreach (Tour::orderBy('title')->get() as $tour) {
-            $tours->push(
-                (object)[
-                    'id' => $tour->id,
-                    'name' => $tour->title
-                ]
-            );
-        }
-
         $pages = collect(
             [
                 (object)[
-                    'id' => Page::where('id', 1)->first()->id,
+                    'id' => (int)Page::where('id', 1)->first()->id,
                     'name' => Page::where('id', 1)->first()->title
                 ]
             ]
@@ -131,11 +122,12 @@ class InfografikaController extends Controller
             );
         }
 
+        foreach ($object->page()->get() as $page) {
+            $selectedPage = $page->id;
+        }
+
         if (!empty($object->tour_id))
             $selectedTour = $object->tour()->count() == 0 ? null : $object->tour()->first()->title;
-
-        if (!empty($object->about_id))
-            $selectedPage = $object->page()->count() == 0 ? null : $object->page()->first()->title;
 
         if ($request->isMethod('post')) {
             $object->fill(
@@ -150,7 +142,21 @@ class InfografikaController extends Controller
                 )
             );
 
-            if ($request->input('page_id') > 0) $object->fill(['about_id' => $request->input('page_id')]);
+            if ($request->input('attached_pages') == 0 && $request->input('tour_id') == 0)
+                $object->fill(['tour_id' => null, 'about_id' => null]);
+            else {
+                if (!empty($request->input('attached_pages')))
+                    $object->fill(['about_id' => $request->input('attached_pages'), 'tour_id' => null]);
+                else {
+                    $object->fill(['tour_id' => $request->input('tour_id'), 'about_id' => null]);
+                }
+            }
+
+            if ($request->input('page_id') > 0 && empty($request->input('attached_pages'))) $object->fill(['about_id' => $request->input('page_id')]);
+            else {
+                $object->fill(['about_page' => $request->input('attached_pages')]);
+                $object->fill(['tourd_id' => null]);
+            }
             if ($request->input('tour_id') > 0) $object->fill(['tour_id' => $request->input('tour_id')]);
 
             $object->save();
