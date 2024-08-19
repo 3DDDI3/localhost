@@ -1,6 +1,6 @@
-@import url('./fonts.css');
+@import url("./fonts.css");
 @import "~daterangepicker/daterangepicker.css";
-@import '@splidejs/splide/css/core';
+@import "@splidejs/splide/css/core";
 
 body,
 html {
@@ -24,7 +24,7 @@ p {
     height: 42px;
     align-content: center;
     margin-top: 30px;
-    margin: 32px 61px 0 86px;
+    margin: 32px 61px 0 70px;
     width: 42px;
 }
 
@@ -37,7 +37,7 @@ p {
     width: calc(300px - 41px);
     max-width: 0;
     padding: 0 15px 0 20px;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
     position: absolute;
     left: 26px;
     height: inherit;
@@ -45,7 +45,7 @@ p {
 
 .search.expanded {
     max-width: 300px;
-    background-color: #F3F3F3;
+    background-color: #f3f3f3;
     height: inherit;
     border-radius: 0 22px 22px 0;
 }
@@ -56,7 +56,7 @@ p {
     z-index: 1;
     left: 0;
     padding: 11px;
-    background-color: #F3F3F3;
+    background-color: #f3f3f3;
     cursor: pointer;
 }
 
@@ -94,12 +94,12 @@ button {
         overflow: hidden;
 
         .bread-crumbs__link {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             font-size: 17px;
             font-weight: 600;
             line-height: 20.57px;
             letter-spacing: -0.02em;
-            color: #CBCBCB;
+            color: #cbcbcb;
         }
 
         .bread-crumbs__link:hover {
@@ -111,7 +111,7 @@ button {
         }
 
         .bread-crumbs__link_inactive:hover {
-            color: #CBCBCB;
+            color: #cbcbcb;
         }
     }
 }
@@ -161,7 +161,7 @@ input {
     display: block;
     height: 4px;
     width: 100%;
-    background: #4509A8;
+    background: #4509a8;
 }
 
 .header .hamburger-lines .line1 {
@@ -202,7 +202,7 @@ input {
 }
 
 .menu-items {
-    background-color: #BCC3CF;
+    background-color: #bcc3cf;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -212,7 +212,7 @@ input {
 
     a {
         text-decoration: unset;
-        color: #2D4255;
+        color: #2d4255;
         letter-spacing: -0.04em;
         font-weight: 400;
         font-size: 18px;
@@ -275,7 +275,7 @@ input {
                 font-size: 18px;
                 color: black;
                 overflow-y: hidden;
-                transition: line-height .3s;
+                transition: line-height 0.3s;
             }
 
             .combobox-header__subtitle_invisible {
@@ -284,7 +284,7 @@ input {
         }
 
         .combobox-header__icon {
-            transition: transform .2s ease-in;
+            transition: transform 0.2s ease-in;
         }
     }
 
@@ -301,7 +301,7 @@ input {
         top: 110%;
         width: 100%;
         left: 0;
-        background-color: #F3F3F3;
+        background-color: #f3f3f3;
 
         .combobox__item {
             display: flex;
@@ -331,12 +331,12 @@ input {
     display: flex;
     justify-content: space-between;
     padding-bottom: 15px;
-    border-bottom: 1px solid #9A939A;
+    border-bottom: 1px solid #9a939a;
     align-items: center;
 
     .page-headding__title {
         color: #342635;
-        font-family: 'HelveticaNeueCyr', sans-serif;
+        font-family: "HelveticaNeueCyr", sans-serif;
         font-size: 60px;
         font-weight: 700;
         line-height: 59.7px;
@@ -344,7 +344,7 @@ input {
     }
 
     .page-headding__subtitle {
-        font-family: 'HelveticaNeueCyr', sans-serif;
+        font-family: "HelveticaNeueCyr", sans-serif;
         font-size: 60px;
         font-weight: 200;
         line-height: 58.44px;
@@ -368,7 +368,7 @@ input {
         cursor: pointer;
 
         .pagination__link {
-            font-family: 'HelveticaNeueCyr', sans-serif;
+            font-family: "HelveticaNeueCyr", sans-serif;
             font-size: 20px;
             font-weight: 700;
             line-height: 24px;
@@ -382,27 +382,45 @@ input {
         }
     }
 
-    .pagination__item:hover>.pagination__link {
-        fill: #FFFFFF;
+    .pagination__item:hover > .pagination__link {
+        fill: #ffffff;
     }
 
     .pagination__item_active {
-        background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+        background: linear-gradient(
+            121.37deg,
+            #582f9a 32.87%,
+            #33145a 65.46%,
+            #33145a 81.58%
+        );
         border: 1px solid;
-        border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
+        border-image-source: linear-gradient(
+            274.38deg,
+            #8d58e5 3.55%,
+            #722dc7 81.16%
+        );
 
         .tours-pagination__link {
-            color: #FFFFFF;
+            color: #ffffff;
         }
     }
 
     .pagination__item:hover {
-        background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+        background: linear-gradient(
+            121.37deg,
+            #582f9a 32.87%,
+            #33145a 65.46%,
+            #33145a 81.58%
+        );
         border: 1px solid;
-        border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
+        border-image-source: linear-gradient(
+            274.38deg,
+            #8d58e5 3.55%,
+            #722dc7 81.16%
+        );
 
         .pagination__link {
-            color: #FFFFFF;
+            color: #ffffff;
         }
     }
 }
@@ -414,7 +432,7 @@ input {
     display: flex;
     height: 100px;
     z-index: 100;
-    box-shadow: 0px 20px 50px 0px #0000000D;
+    box-shadow: 0px 20px 50px 0px #0000000d;
 
     .header-actions-logo {
         display: flex;
@@ -434,7 +452,7 @@ input {
             .header-menu__item {
                 .header-menu__link {
                     color: #342635;
-                    font-family: 'Helvetica Neue', sans-serif;
+                    font-family: "Helvetica Neue", sans-serif;
                     font-weight: 700;
                     letter-spacing: -0.01em;
                     line-height: 16.92px;
@@ -457,7 +475,7 @@ input {
 
             .header-main-menu__item {
                 .header-main-menu__link {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-weight: 400;
                     letter-spacing: -0.01em;
                     color: #342635;
@@ -535,12 +553,17 @@ input {
             cursor: pointer;
             height: 50px;
             width: 230px;
-            background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+            background: linear-gradient(
+                121.37deg,
+                #582f9a 32.87%,
+                #33145a 65.46%,
+                #33145a 81.58%
+            );
             font-family: "Inter", sans-serif;
             letter-spacing: -0.02em;
             font-size: 20px;
             line-height: 24px;
-            color: #FFFFFF;
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -548,24 +571,25 @@ input {
         }
 
         .search-tour-button:hover {
-            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+                0 17px 50px 0 rgba(0, 0, 0, 0.19);
         }
 
         .profile-button {
             cursor: pointer;
             width: 50px;
             height: 50px;
-            background-color: #F3F3F3;
+            background-color: #f3f3f3;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .profile-button:hover {
-            background-color: #F3F3E5;
+            background-color: #f3f3e5;
 
             path {
-                fill: #4509A8;
+                fill: #4509a8;
             }
         }
     }
@@ -581,17 +605,17 @@ input {
     opacity: unset;
 
     svg {
-        fill: #FFFFFF;
+        fill: #ffffff;
     }
 }
 
 .sliders .splide__arrow:disabled {
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .news__slider .splide__arrow:enabled {
-    border-color: #7737A9;
-    opacity: .5;
+    border-color: #7737a9;
+    opacity: 0.5;
 }
 
 .splide__arrow--prev {
@@ -604,46 +628,67 @@ input {
     opacity: unset;
 
     svg {
-        fill: #FFFFFF;
+        fill: #ffffff;
     }
 }
 
 .splide__slide.is-prev {
     .slider__text {
-        opacity: .3;
+        opacity: 0.3;
     }
 
-    .slider__title {}
+    .slider__title {
+    }
 }
 
 .splide__slide.is-next {
     .slider__text {
-        opacity: .3;
+        opacity: 0.3;
     }
 }
 
 .sliders .splide__arrow:hover:not(:disabled) {
     opacity: unset !important;
-    background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+    background: linear-gradient(
+        121.37deg,
+        #582f9a 32.87%,
+        #33145a 65.46%,
+        #33145a 81.58%
+    );
     border: 1px solid;
-    border-image-source: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+    border-image-source: linear-gradient(
+        121.37deg,
+        #582f9a 32.87%,
+        #33145a 65.46%,
+        #33145a 81.58%
+    );
 }
 
 .news__slider .splide__arrow:hover:not(:disabled) {
     opacity: unset !important;
-    background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+    background: linear-gradient(
+        121.37deg,
+        #582f9a 32.87%,
+        #33145a 65.46%,
+        #33145a 81.58%
+    );
     border: 1px solid;
-    border-image-source: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+    border-image-source: linear-gradient(
+        121.37deg,
+        #582f9a 32.87%,
+        #33145a 65.46%,
+        #33145a 81.58%
+    );
 
     svg {
-        fill: #FFFFFF;
+        fill: #ffffff;
     }
 }
 
 .splide__slide is-nextsliders .splide__slide .is-prev {
     .slider__block {
         .slider__text {
-            opacity: .3;
+            opacity: 0.3;
         }
     }
 }
@@ -658,22 +703,22 @@ input {
 
 .news__slider .splide__arrow--prev {
     left: -80px;
-    border: 1px solid #4F3652;
+    border: 1px solid #4f3652;
     top: 55% !important;
-    opacity: .5;
+    opacity: 0.5;
 
     svg {
-        fill: #4F3652;
+        fill: #4f3652;
     }
 }
 
 .news__slider .splide__arrow--next {
     right: -80px;
-    border: 1px solid #4F3652;
+    border: 1px solid #4f3652;
     top: 55% !important;
 
     svg {
-        fill: #4F3652;
+        fill: #4f3652;
     }
 }
 
@@ -696,22 +741,22 @@ input {
 .advertisement-slider .splide__arrow--prev {
     top: 340px !important;
     left: 750px;
-    opacity: .5;
-    border: 1px solid #4F3652;
+    opacity: 0.5;
+    border: 1px solid #4f3652;
 
     svg {
-        fill: #4F3652;
+        fill: #4f3652;
     }
 }
 
 .advertisement-slider .splide__arrow--next {
     right: 488px;
     top: 340px !important;
-    border: 1px solid #7737A9;
-    opacity: .5;
+    border: 1px solid #7737a9;
+    opacity: 0.5;
 
     svg {
-        fill: #7737A9;
+        fill: #7737a9;
     }
 }
 
@@ -736,7 +781,7 @@ main {
 
                 .slider__title {
                     position: absolute;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 20px;
                     font-weight: 300;
                     line-height: 18.04px;
@@ -748,8 +793,8 @@ main {
                 }
 
                 .slider__text {
-                    color: #FFFFFF;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    color: #ffffff;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 150px;
                     font-weight: 400;
                     line-height: 136.24px;
@@ -760,12 +805,12 @@ main {
     }
 
     .search-tours {
-        background-image: url('/images/main-form-bg.png');
+        background-image: url("/images/main-form-bg.png");
         background-repeat: no-repeat;
         background-position: 50%;
         width: 100%;
         height: 380px;
-        background-color: #0E1237;
+        background-color: #0e1237;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -776,44 +821,44 @@ main {
             display: flex;
             flex-direction: column;
             row-gap: 22px;
-            background-color: #FFFFFF1A;
+            background-color: #ffffff1a;
 
             .search-tour__buttons {
                 display: flex;
 
                 .search-tour__button {
                     cursor: pointer;
-                    color: #D9D9D9;
+                    color: #d9d9d9;
                     font-size: 24px;
                     font-weight: 700;
                     line-height: 21px;
                     letter-spacing: -0.02em;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                 }
 
                 .search-tour__button:hover {
-                    color: #FFFFFF;
+                    color: #ffffff;
                     opacity: 1;
                 }
 
                 .search-tour__button_active {
-                    color: #FFFFFF;
+                    color: #ffffff;
                     font-size: 24px;
                     font-weight: 700;
                     line-height: 21px;
                     letter-spacing: -0.02em;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                 }
 
                 .search-tour__button_inactive {
-                    opacity: .6;
+                    opacity: 0.6;
                 }
             }
 
             .search-tour__form {
                 display: flex;
                 box-shadow: 0px 4px 20px 0px #00000040;
-                background-color: #FFFFFF;
+                background-color: #ffffff;
                 height: 60px;
                 padding: 30px;
 
@@ -824,7 +869,7 @@ main {
                         width: 510px;
                         overflow-y: hidden;
                         display: flex;
-                        background-color: #F3F3F3;
+                        background-color: #f3f3f3;
                         height: 100%;
                         box-sizing: border-box;
 
@@ -841,13 +886,22 @@ main {
                     }
 
                     button[type="submit"] {
-                        background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+                        background: linear-gradient(
+                            121.37deg,
+                            #582f9a 32.87%,
+                            #33145a 65.46%,
+                            #33145a 81.58%
+                        );
                         border: 1px solid;
-                        border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
+                        border-image-source: linear-gradient(
+                            274.38deg,
+                            #8d58e5 3.55%,
+                            #722dc7 81.16%
+                        );
                         width: 224px;
                         height: 60px;
-                        color: #FFFFFF;
-                        font-family: 'Inter', sans-serif;
+                        color: #ffffff;
+                        font-family: "Inter", sans-serif;
                         font-size: 18px;
                         font-weight: 600;
                         line-height: 21.78px;
@@ -856,7 +910,8 @@ main {
                     }
 
                     button[type="submit"]:hover {
-                        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+                        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+                            0 17px 50px 0 rgba(0, 0, 0, 0.19);
                     }
                 }
             }
@@ -869,7 +924,7 @@ main {
                     display: flex;
                     position: relative;
                     height: 100%;
-                    background-color: #F3F3F3;
+                    background-color: #f3f3f3;
 
                     label {
                         cursor: pointer;
@@ -927,7 +982,7 @@ main {
                             line-height: 21.78px;
                             letter-spacing: -0.02em;
                             color: black;
-                            transition: line-height .2s linear;
+                            transition: line-height 0.2s linear;
                         }
 
                         .search-tour-nights__subtitle_invisible {
@@ -937,14 +992,15 @@ main {
                     }
                 }
 
-                .search-tour-date__icon {}
+                .search-tour-date__icon {
+                }
             }
 
             .search-tour__people-count {
                 box-sizing: border-box;
                 width: 182px;
                 height: 100%;
-                background-color: #F3F3F3;
+                background-color: #f3f3f3;
                 padding: 0 20px;
                 margin-left: 2px;
                 margin-right: 26px;
@@ -996,7 +1052,7 @@ main {
                 top: 81px;
 
                 .services-country-tour__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 28px;
                     font-weight: 700;
                     line-height: 25.43px;
@@ -1017,7 +1073,7 @@ main {
                             text-decoration: none;
 
                             .services-country__name {
-                                font-family: 'Inter', sans-serif;
+                                font-family: "Inter", sans-serif;
                                 font-size: 17px;
                                 font-weight: 400;
                                 line-height: 20.57px;
@@ -1026,17 +1082,17 @@ main {
                             }
 
                             .services-country__name:hover {
-                                color: #7737A9;
+                                color: #7737a9;
                             }
 
                             .services-country__counter {
                                 color: #533059;
-                                font-family: 'Inter', sans-serif;
+                                font-family: "Inter", sans-serif;
                                 font-size: 17px;
                                 font-weight: 400;
                                 line-height: 20.57px;
                                 letter-spacing: -0.01em;
-                                opacity: .3;
+                                opacity: 0.3;
                             }
                         }
                     }
@@ -1045,15 +1101,15 @@ main {
                 .services-country-tour__all-button {
                     display: flex;
                     align-items: center;
-                    color: #4509A8;
+                    color: #4509a8;
                     column-gap: 4px;
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 17px;
                     font-weight: 600;
                     line-height: 20.57px;
                     cursor: pointer;
                     padding: unset;
-                    fill: #4509A8;
+                    fill: #4509a8;
                 }
 
                 .services-country-tour__all-button:hover {
@@ -1097,7 +1153,7 @@ main {
                 .services-vacation-type__title {
                     width: 262px;
                     color: #342635;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 28px;
                     font-weight: 700;
                     line-height: 25.43px;
@@ -1118,7 +1174,7 @@ main {
                             text-decoration: none;
 
                             .services-vacation-type__name {
-                                font-family: 'Inter', sans-serif;
+                                font-family: "Inter", sans-serif;
                                 font-size: 17px;
                                 font-weight: 400;
                                 line-height: 20.57px;
@@ -1127,17 +1183,17 @@ main {
                             }
 
                             .services-vacation-type__name:hover {
-                                color: #7737A9;
+                                color: #7737a9;
                             }
 
                             .services-vacation-type__counter {
-                                font-family: 'Inter', sans-serif;
+                                font-family: "Inter", sans-serif;
                                 font-size: 18px;
                                 font-weight: 400;
                                 line-height: 21.78px;
                                 letter-spacing: -0.02em;
                                 color: #533059;
-                                opacity: .3;
+                                opacity: 0.3;
                             }
                         }
                     }
@@ -1147,15 +1203,15 @@ main {
                     display: flex;
                     align-items: center;
                     column-gap: 2px;
-                    color: #4509A8;
-                    font-family: 'Inter', sans-serif;
+                    color: #4509a8;
+                    font-family: "Inter", sans-serif;
                     font-size: 17px;
                     font-weight: 600;
                     line-height: 20.57px;
                     letter-spacing: -0.02em;
                     padding: unset;
                     cursor: pointer;
-                    fill: #4509A8;
+                    fill: #4509a8;
                 }
 
                 .services-country-tour__all-button:hover {
@@ -1197,7 +1253,7 @@ main {
 
                 .services-others__title {
                     color: #342635;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 28px;
                     font-weight: 700;
                     line-height: 25.43px;
@@ -1216,7 +1272,7 @@ main {
                             .services-others__name {
                                 text-decoration: none;
                                 color: #342635;
-                                font-family: 'Inter', sans-serif;
+                                font-family: "Inter", sans-serif;
                                 font-size: 18px;
                                 font-weight: 400;
                                 line-height: 21.78px;
@@ -1224,7 +1280,7 @@ main {
                             }
 
                             .services-others__name:hover {
-                                color: #7737A9;
+                                color: #7737a9;
                             }
                         }
                     }
@@ -1235,7 +1291,7 @@ main {
 
     .popular-tours {
         height: 869px;
-        background-color: #0E1237;
+        background-color: #0e1237;
         display: flex;
         justify-content: center;
         position: relative;
@@ -1250,21 +1306,21 @@ main {
                 align-items: end;
 
                 .popular-tours-headding__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 60px;
                     font-weight: 700;
                     line-height: 59.7px;
                     letter-spacing: -0.01em;
-                    color: #FFFFFF;
+                    color: #ffffff;
                 }
 
                 .popular-tours-headding__subtitle {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 60px;
                     font-weight: 100;
                     line-height: 58.86px;
                     letter-spacing: 0.02em;
-                    color: #FFFFFF;
+                    color: #ffffff;
                 }
 
                 .popular-tours__all-tours {
@@ -1272,7 +1328,7 @@ main {
                     cursor: pointer;
                     column-gap: 5px;
                     color: white;
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 17px;
                     font-weight: 600;
                     line-height: 20.57px;
@@ -1282,15 +1338,15 @@ main {
 
                     svg {
                         align-self: flex-end;
-                        fill: #FFFFFF;
+                        fill: #ffffff;
                     }
                 }
 
                 .popular-tours__all-tours:hover {
-                    color: #8452D6;
+                    color: #8452d6;
 
                     svg {
-                        fill: #8452D6;
+                        fill: #8452d6;
                     }
                 }
             }
@@ -1329,22 +1385,22 @@ main {
                             top: 0;
                             height: 100%;
                             filter: brightness(1.2);
-                            transition: transform .3s linear;
+                            transition: transform 0.3s linear;
                         }
 
                         .popular-tours-tour-card__type {
                             position: relative;
                             margin: 14px 0 0 14px;
                             z-index: 1;
-                            background-color: #8452D6;
+                            background-color: #8452d6;
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             width: 55px;
                             height: 30px;
                             text-transform: uppercase;
-                            color: #FFFFFF;
-                            font-family: 'Inter', sans-serif;
+                            color: #ffffff;
+                            font-family: "Inter", sans-serif;
                             font-size: 15px;
                             font-weight: 600;
                             line-height: 18.15px;
@@ -1354,8 +1410,8 @@ main {
                         .popular-tours-tour-card__name {
                             padding: 0 25px 0 18px;
                             position: relative;
-                            color: #FFFFFF;
-                            font-family: 'Inter', sans-serif;
+                            color: #ffffff;
+                            font-family: "Inter", sans-serif;
                             font-size: 16px;
                             font-weight: 400;
                             line-height: 20.8px;
@@ -1370,12 +1426,16 @@ main {
                             left: 0;
                             right: 0;
                             height: 220px;
-                            background: linear-gradient(2.75deg, rgba(0, 0, 0, 0.8) 22.42%, rgba(255, 255, 255, 0) 89.95%);
+                            background: linear-gradient(
+                                2.75deg,
+                                rgba(0, 0, 0, 0.8) 22.42%,
+                                rgba(255, 255, 255, 0) 89.95%
+                            );
                         }
                     }
 
                     .popular-tours-tour-card__descriprtion {
-                        background-color: #FFFFFF;
+                        background-color: #ffffff;
                         display: flex;
                         flex-direction: column;
                         flex-grow: 1;
@@ -1383,7 +1443,7 @@ main {
                         justify-content: space-between;
 
                         .popular-tours-tour-card-descriprtion__title {
-                            font-family: 'HelveticaNeueCyr', sans-serif;
+                            font-family: "HelveticaNeueCyr", sans-serif;
                             padding: 0 25px 0 18px;
                             font-size: 24px;
                             font-weight: 550;
@@ -1393,14 +1453,14 @@ main {
                         }
 
                         .popular-tours-tour-card-descriprtion__text {
-                            font-family: 'Inter', sans-serif;
+                            font-family: "Inter", sans-serif;
                             padding: 13px 25px 26px 18px;
                             font-size: 16px;
                             font-weight: 400;
                             line-height: 20.8px;
                             letter-spacing: -0.03em;
                             color: #342635;
-                            opacity: .6;
+                            opacity: 0.6;
                         }
 
                         .popular-tours-tour-card__info {
@@ -1408,7 +1468,7 @@ main {
                             height: 78px;
                             justify-content: center;
                             align-items: center;
-                            border-top: 1px solid #D8D8D8;
+                            border-top: 1px solid #d8d8d8;
 
                             .popular-tours-tour-card__cost {
                                 width: 171px;
@@ -1417,25 +1477,25 @@ main {
                                 justify-content: center;
                                 flex-direction: column;
                                 padding-left: 30px;
-                                border-right: 1px solid #D8D8D8;
+                                border-right: 1px solid #d8d8d8;
 
                                 .popular-tours-tour-card-cost__title {
-                                    font-family: 'Inter', sans-serif;
+                                    font-family: "Inter", sans-serif;
                                     font-size: 18px;
                                     font-weight: 700;
                                     line-height: 21.78px;
                                     letter-spacing: -0.02em;
                                     color: #342635;
-                                    opacity: .8;
+                                    opacity: 0.8;
                                 }
 
                                 .popular-tours-tour-card-cost__subtitle {
-                                    font-family: 'Inter', sans-serif;
+                                    font-family: "Inter", sans-serif;
                                     font-size: 18px;
                                     font-weight: 400;
                                     line-height: 21.78px;
                                     letter-spacing: -0.02em;
-                                    opacity: .8;
+                                    opacity: 0.8;
                                     color: #342635;
                                 }
                             }
@@ -1443,8 +1503,8 @@ main {
                             .popular-tours-tour-card__button {
                                 flex-grow: 1;
                                 color: #342635;
-                                opacity: .8;
-                                font-family: 'Inter', sans-serif;
+                                opacity: 0.8;
+                                font-family: "Inter", sans-serif;
                                 font-size: 16px;
                                 font-weight: 700;
                                 line-height: 19.36px;
@@ -1455,8 +1515,13 @@ main {
 
                             .popular-tours-tour-card__button:hover {
                                 opacity: unset;
-                                background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
-                                color: #FFFFFF;
+                                background: linear-gradient(
+                                    121.37deg,
+                                    #582f9a 32.87%,
+                                    #33145a 65.46%,
+                                    #33145a 81.58%
+                                );
+                                color: #ffffff;
                             }
                         }
                     }
@@ -1485,8 +1550,8 @@ main {
         .popular-tours__mobile-button {
             width: 195px;
             height: 45px;
-            border: 1px solid #FFFFFF;
-            font-family: 'Inter', sans-serif;
+            border: 1px solid #ffffff;
+            font-family: "Inter", sans-serif;
             font-size: 15px;
             font-weight: 700;
             line-height: 18.15px;
@@ -1494,7 +1559,7 @@ main {
             display: none;
             align-items: center;
             justify-content: center;
-            color: #FFFFFF;
+            color: #ffffff;
         }
     }
 
@@ -1514,9 +1579,9 @@ main {
         .advertisement-slider-adv {
             height: 18px;
             width: 69px;
-            background-color: #FFFFFF;
-            color: #4F3652;
-            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #4f3652;
+            font-family: "Inter", sans-serif;
             font-size: 12px;
             font-weight: 400;
             line-height: 14.4px;
@@ -1536,7 +1601,7 @@ main {
             backdrop-filter: blur(15px);
             position: absolute;
             top: 55px;
-            right: 24px
+            right: 24px;
         }
 
         .advertisement__slider {
@@ -1545,13 +1610,13 @@ main {
             top: 80px;
             width: 453px;
             height: 264px;
-            background-color: #FFFFFF;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             padding: 60px 41px 0 50px;
 
             .advertisement__title {
-                font-family: 'HelveticaNeueCyr', sans-serif;
+                font-family: "HelveticaNeueCyr", sans-serif;
                 font-size: 60px;
                 font-weight: 700;
                 line-height: 54px;
@@ -1559,7 +1624,7 @@ main {
             }
 
             .advertisement__subtitle {
-                font-family: 'HelveticaNeueCyr', sans-serif;
+                font-family: "HelveticaNeueCyr", sans-serif;
                 font-size: 60px;
                 font-weight: 200;
                 line-height: 54px;
@@ -1568,13 +1633,13 @@ main {
             }
 
             .advertisement__text {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 22px;
                 font-weight: 300;
                 line-height: 26.4px;
                 letter-spacing: -0.02em;
-                color: #4F3652;
-                opacity: .8;
+                color: #4f3652;
+                opacity: 0.8;
                 padding-top: 20px;
             }
         }
@@ -1594,14 +1659,14 @@ main {
             display: flex;
             justify-content: space-between;
             padding-bottom: 15px;
-            border-bottom: 1px solid #9A939A;
+            border-bottom: 1px solid #9a939a;
             align-items: center;
 
             .news__all-news {
                 cursor: pointer;
                 display: flex;
-                color: #4509A8;
-                font-family: 'Inter', sans-serif;
+                color: #4509a8;
+                font-family: "Inter", sans-serif;
                 font-size: 17px;
                 font-weight: 600;
                 line-height: 20.57px;
@@ -1615,7 +1680,7 @@ main {
                     column-gap: 4px;
 
                     svg {
-                        fill: #4509A8;
+                        fill: #4509a8;
                     }
                 }
 
@@ -1644,14 +1709,14 @@ main {
                     width: 100%;
                     object-fit: cover;
                     margin-bottom: 30px;
-                    transition: transform .3s linear;
+                    transition: transform 0.3s linear;
                 }
 
                 .news__date {
                     margin-bottom: 6px;
                     color: #342635;
-                    opacity: .6;
-                    font-family: 'Inter', sans-serif;
+                    opacity: 0.6;
+                    font-family: "Inter", sans-serif;
                     font-size: 16px;
                     font-weight: 400;
                     line-height: 20.8px;
@@ -1659,19 +1724,19 @@ main {
                 }
 
                 .news__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 24px;
                     font-weight: 500;
                     line-height: 28.8px;
                     letter-spacing: -0.01em;
                     color: #342635;
-                    transition: color .3s linear;
+                    transition: color 0.3s linear;
                 }
             }
 
             .news__card:hover {
                 .news__text {
-                    color: #582F9A;
+                    color: #582f9a;
                 }
 
                 img {
@@ -1684,7 +1749,7 @@ main {
     .offer {
         width: 1348px;
         height: 535px;
-        background-image: url('/images/offer.png');
+        background-image: url("/images/offer.png");
         margin: 90px auto 100px auto;
         position: relative;
 
@@ -1692,8 +1757,12 @@ main {
             width: 889px;
             position: absolute;
             height: 100%;
-            opacity: .7;
-            background: linear-gradient(90deg, #21162E 0%, rgba(33, 22, 46, 0) 100%);
+            opacity: 0.7;
+            background: linear-gradient(
+                90deg,
+                #21162e 0%,
+                rgba(33, 22, 46, 0) 100%
+            );
         }
 
         .offer__wrapper {
@@ -1704,27 +1773,27 @@ main {
             padding: 110px 0 0 100px;
 
             .offer__title {
-                font-family: 'HelveticaNeueCyr', sans-serif;
+                font-family: "HelveticaNeueCyr", sans-serif;
                 font-size: 60px;
                 font-weight: 700;
                 line-height: 51px;
                 letter-spacing: -0.02em;
-                color: #FFFFFF;
+                color: #ffffff;
                 margin-bottom: 10px;
             }
 
             .offer__subtitle {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 18px;
                 font-weight: 400;
                 line-height: 21.78px;
                 letter-spacing: -0.02em;
-                color: #FFFFFF;
+                color: #ffffff;
                 margin-bottom: 24px;
             }
 
             .offer__phones {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 22px;
                 font-weight: 700;
                 line-height: 33px;
@@ -1736,20 +1805,29 @@ main {
 
                 a {
                     text-decoration: none;
-                    color: #FFFFFF;
+                    color: #ffffff;
                 }
             }
 
             .offer__button {
                 cursor: pointer;
-                background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+                background: linear-gradient(
+                    121.37deg,
+                    #582f9a 32.87%,
+                    #33145a 65.46%,
+                    #33145a 81.58%
+                );
                 border: 1px solid;
-                border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
+                border-image-source: linear-gradient(
+                    274.38deg,
+                    #8d58e5 3.55%,
+                    #722dc7 81.16%
+                );
                 border-image-slice: 1;
                 width: 231px;
                 height: 55px;
-                color: #FFFFFF;
-                font-family: 'Inter', sans-serif;
+                color: #ffffff;
+                font-family: "Inter", sans-serif;
                 font-size: 18px;
                 font-weight: 600;
                 line-height: 21.78px;
@@ -1758,24 +1836,25 @@ main {
             }
 
             .offer__button:hover {
-                box-shadow: 0 12px 16px 0 rgba(0, 43, 67, 235.24), 0 17px 50px 0 rgba(0, 136, 93, 24.19)
+                box-shadow: 0 12px 16px 0 rgba(0, 43, 67, 235.24),
+                    0 17px 50px 0 rgba(0, 136, 93, 24.19);
             }
 
             .offer__agreement {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 13px;
                 font-weight: 400;
                 line-height: 15.34px;
                 letter-spacing: -0.03em;
-                color: #FFFFFF;
-                opacity: .8;
+                color: #ffffff;
+                opacity: 0.8;
             }
         }
     }
 }
 
 .footer {
-    background-color: #F3F3F3;
+    background-color: #f3f3f3;
 
     .footer__wrapper {
         width: 1348px;
@@ -1799,7 +1878,7 @@ main {
 
                 .footer__menu {
                     .footer-menu__link {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 16px;
                         font-weight: 700;
                         line-height: 44.8px;
@@ -1827,7 +1906,7 @@ main {
 
                     .footer-main-menu__item {
                         .footer-main-menu__link {
-                            font-family: 'Inter', sans-serif;
+                            font-family: "Inter", sans-serif;
                             font-size: 16px;
                             font-weight: 400;
                             line-height: 44.8px;
@@ -1837,8 +1916,8 @@ main {
                         }
 
                         .footer-main-menu__link:hover {
-                            color: #8452D6;
-                            border-bottom-color: #8452D6;
+                            color: #8452d6;
+                            border-bottom-color: #8452d6;
                         }
                     }
                 }
@@ -1852,7 +1931,7 @@ main {
                 a:nth-child(1),
                 a:nth-child(2) {
                     text-align: end;
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 22px;
                     font-weight: 600;
                     line-height: 33px;
@@ -1866,7 +1945,7 @@ main {
                 }
 
                 a:nth-child(1):hover {
-                    color: #4509A8;
+                    color: #4509a8;
                 }
 
                 a:nth-child(2) {
@@ -1874,14 +1953,14 @@ main {
                 }
 
                 a:nth-child(2):hover {
-                    color: #4509A8;
+                    color: #4509a8;
                 }
 
                 a:nth-child(3) {
                     margin-bottom: 20px;
                     text-align: end;
-                    color: #4509A8;
-                    font-family: 'Inter', sans-serif;
+                    color: #4509a8;
+                    font-family: "Inter", sans-serif;
                     font-size: 20px;
                     font-weight: 600;
                     line-height: 30px;
@@ -1896,7 +1975,7 @@ main {
                 p {
                     color: #342635;
                     text-align: end;
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 16px;
                     font-weight: 400;
                     line-height: 22.24px;
@@ -1916,13 +1995,13 @@ main {
                 flex-direction: column;
 
                 .footer-pages__link {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 16px;
                     font-weight: 400;
                     line-height: 22px;
                     letter-spacing: -0.02em;
                     color: #342635;
-                    opacity: .5;
+                    opacity: 0.5;
                 }
 
                 .footer-pages__link:hover {
@@ -1944,7 +2023,7 @@ main {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background-color: #FFFFFF;
+                    background-color: #ffffff;
                 }
 
                 .footer-messanger__telegram:hover {
@@ -1984,7 +2063,7 @@ main {
             .footer__currencies {
                 display: flex;
                 column-gap: 30px;
-                background-color: #FFFFFF;
+                background-color: #ffffff;
                 width: 298px;
                 height: 50px;
                 justify-content: center;
@@ -1996,7 +2075,8 @@ main {
                     column-gap: 5px;
                     align-items: center;
 
-                    .currency__image {}
+                    .currency__image {
+                    }
 
                     .currency-icon_mobile {
                         display: none;
@@ -2010,8 +2090,8 @@ main {
 
                     .currency__title {
                         color: #342635;
-                        opacity: .5;
-                        font-family: 'Inter', sans-serif;
+                        opacity: 0.5;
+                        font-family: "Inter", sans-serif;
                         font-size: 8px;
                         font-weight: 400;
                         line-height: 9.68px;
@@ -2019,7 +2099,7 @@ main {
 
                     .currency__subtitle {
                         color: #342635;
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 15px;
                         font-weight: 400;
                         line-height: 18.15px;
@@ -2035,21 +2115,26 @@ main {
                 width: 360px;
 
                 input[type="text"] {
-                    background-color: #FFFFFF;
+                    background-color: #ffffff;
                     height: 100%;
                     display: flex;
                     align-items: center;
                     padding-left: 20px;
-                    color: #9A939A;
+                    color: #9a939a;
                 }
 
                 button[type="submit"] {
                     cursor: pointer;
-                    background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+                    background: linear-gradient(
+                        121.37deg,
+                        #582f9a 32.87%,
+                        #33145a 65.46%,
+                        #33145a 81.58%
+                    );
                     width: 163px;
                     height: 100%;
-                    color: #FFFFFF;
-                    font-family: 'Inter', sans-serif;
+                    color: #ffffff;
+                    font-family: "Inter", sans-serif;
                     font-size: 17px;
                     font-weight: 600;
                     line-height: 20.57px;
@@ -2057,7 +2142,8 @@ main {
                 }
 
                 button[type="submit"]:hover {
-                    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+                    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+                        0 17px 50px 0 rgba(0, 0, 0, 0.19);
                 }
             }
         }
@@ -2065,15 +2151,15 @@ main {
         .fourth__level {
             margin-top: 77px;
             padding-top: 26px;
-            border-top: 1px solid #E0DFE0;
+            border-top: 1px solid #e0dfe0;
             display: flex;
             justify-content: space-between;
             padding-bottom: 32px;
 
             .footer__copyright {
                 color: #342635;
-                opacity: .5;
-                font-family: 'Inter', sans-serif;
+                opacity: 0.5;
+                font-family: "Inter", sans-serif;
                 font-size: 16px;
                 font-weight: 400;
                 line-height: 19.36px;
@@ -2083,8 +2169,8 @@ main {
             .footer__creator {
                 text-decoration: none;
                 color: #342635;
-                opacity: .5;
-                font-family: 'Inter', sans-serif;
+                opacity: 0.5;
+                font-family: "Inter", sans-serif;
                 font-size: 16px;
                 font-weight: 400;
                 line-height: 22px;
@@ -2101,7 +2187,6 @@ main {
 }
 
 @media (min-width: 320px) and (max-width: 374px) {
-
     body,
     html {
         width: 100%;
@@ -2148,7 +2233,7 @@ main {
     }
 
     .news__slider .splide__pagination__page.is-active {
-        background-color: #582F9A;
+        background-color: #582f9a;
     }
 
     .pagination {
@@ -2199,7 +2284,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
 
@@ -2207,7 +2292,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
         }
@@ -2225,7 +2310,7 @@ main {
     main {
         .sliders {
             height: 462px;
-            background-image: url('/images/bg_mobile.png');
+            background-image: url("/images/bg_mobile.png");
 
             .splide__arrow--prev {
                 left: 1em;
@@ -2279,7 +2364,7 @@ main {
                     align-items: center;
 
                     .search-tour__button {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 16px;
                         font-weight: 700;
                         line-height: 14.53px;
@@ -2443,7 +2528,7 @@ main {
 
                     .services-country-tour__info {
                         .services-country__list {
-                            .services-country__item:nth-child(n+5) {
+                            .services-country__item:nth-child(n + 5) {
                                 display: none;
                             }
                         }
@@ -2478,7 +2563,7 @@ main {
                     padding: 25px 30px 8px 30px;
 
                     .services-vacation-type__title {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 24px;
                         font-weight: 700;
                         line-height: 21.8px;
@@ -2491,7 +2576,7 @@ main {
                         .services-vacation-type__list {
                             .services-vacation-type__item {
                                 .services-vacation-type__name {
-                                    font-family: 'Inter', sans-serif;
+                                    font-family: "Inter", sans-serif;
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -2499,7 +2584,7 @@ main {
                                 }
 
                                 .services-vacation-type__counter {
-                                    font-family: 'Inter';
+                                    font-family: "Inter";
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -2535,12 +2620,14 @@ main {
                     left: 0;
                     top: 145px;
 
-                    .services-others__title {}
+                    .services-others__title {
+                    }
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {}
+                                .services-others__name {
+                                }
                             }
                         }
                     }
@@ -2568,7 +2655,7 @@ main {
                         flex-wrap: wrap;
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 700;
                         line-height: 40px;
@@ -2577,7 +2664,7 @@ main {
                     }
 
                     .popular-tours-headding__subtitle {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 100;
                         line-height: 40px;
@@ -2629,7 +2716,7 @@ main {
                 height: 188px;
 
                 .advertisement__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 36px;
@@ -2645,7 +2732,7 @@ main {
                 }
 
                 .advertisement__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 300;
                     line-height: 18px;
@@ -2669,7 +2756,7 @@ main {
                 .news-headding__title {
                     display: flex;
                     column-gap: 15px;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 38.96px;
@@ -2679,7 +2766,7 @@ main {
                     .news-headding__subtitle {
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 200;
                         line-height: 38.96px;
@@ -2705,7 +2792,7 @@ main {
                     }
 
                     .news__text {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 15px;
                         font-weight: 500;
                         line-height: 18.75px;
@@ -2718,7 +2805,7 @@ main {
 
         .offer {
             width: auto;
-            background-image: url('/images/back2.png');
+            background-image: url("/images/back2.png");
             height: 474px;
             margin-top: 120px;
             margin-bottom: 0;
@@ -2732,7 +2819,7 @@ main {
                 padding: 80px 5px 81px 20px;
 
                 .offer__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 34px;
@@ -2741,7 +2828,7 @@ main {
                 }
 
                 .offer__subtitle {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 400;
                     line-height: 18.15px;
@@ -2749,7 +2836,7 @@ main {
                 }
 
                 .offer__phones {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 27px;
@@ -2760,7 +2847,7 @@ main {
                 }
 
                 .offer__button {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 600;
                     line-height: 18.15px;
@@ -2769,7 +2856,7 @@ main {
                 }
 
                 .offer__agreement {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 10px;
                     font-weight: 400;
                     line-height: 11.8px;
@@ -2793,7 +2880,6 @@ main {
         }
 
         .second__level {
-
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -2838,7 +2924,8 @@ main {
             }
         }
 
-        .footer-menu {}
+        .footer-menu {
+        }
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -2978,7 +3065,6 @@ main {
 }
 
 @media (min-width: 375px) and (max-width: 424px) {
-
     body,
     html {
         width: 100%;
@@ -3025,7 +3111,7 @@ main {
     }
 
     .news__slider .splide__pagination__page.is-active {
-        background-color: #582F9A;
+        background-color: #582f9a;
     }
 
     .pagination {
@@ -3076,7 +3162,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
 
@@ -3084,7 +3170,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
         }
@@ -3102,7 +3188,7 @@ main {
     main {
         .sliders {
             height: 462px;
-            background-image: url('/images/bg_mobile.png');
+            background-image: url("/images/bg_mobile.png");
             background-size: 100%;
             background-repeat: no-repeat;
 
@@ -3158,7 +3244,7 @@ main {
                     align-items: center;
 
                     .search-tour__button {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 16px;
                         font-weight: 700;
                         line-height: 14.53px;
@@ -3345,7 +3431,7 @@ main {
                     padding: 25px 30px 8px 30px;
 
                     .services-vacation-type__title {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 24px;
                         font-weight: 700;
                         line-height: 21.8px;
@@ -3356,7 +3442,7 @@ main {
                         .services-vacation-type__list {
                             .services-vacation-type__item {
                                 .services-vacation-type__name {
-                                    font-family: 'Inter', sans-serif;
+                                    font-family: "Inter", sans-serif;
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -3364,7 +3450,7 @@ main {
                                 }
 
                                 .services-vacation-type__counter {
-                                    font-family: 'Inter';
+                                    font-family: "Inter";
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -3400,12 +3486,14 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {}
+                    .services-others__title {
+                    }
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {}
+                                .services-others__name {
+                                }
                             }
                         }
                     }
@@ -3432,7 +3520,7 @@ main {
                         flex-wrap: wrap;
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 700;
                         line-height: 40px;
@@ -3441,7 +3529,7 @@ main {
                     }
 
                     .popular-tours-headding__subtitle {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 100;
                         line-height: 40px;
@@ -3488,7 +3576,7 @@ main {
                 height: 188px;
 
                 .advertisement__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 36px;
@@ -3504,7 +3592,7 @@ main {
                 }
 
                 .advertisement__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 300;
                     line-height: 18px;
@@ -3528,7 +3616,7 @@ main {
                 .news-headding__title {
                     display: flex;
                     column-gap: 15px;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 38.96px;
@@ -3538,7 +3626,7 @@ main {
                     .news-headding__subtitle {
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 200;
                         line-height: 38.96px;
@@ -3564,7 +3652,7 @@ main {
                     }
 
                     .news__text {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 15px;
                         font-weight: 500;
                         line-height: 18.75px;
@@ -3577,7 +3665,7 @@ main {
 
         .offer {
             width: auto;
-            background-image: url('/images/back2.png');
+            background-image: url("/images/back2.png");
             background-size: 100%;
             background-repeat: no-repeat;
             height: 474px;
@@ -3593,7 +3681,7 @@ main {
                 padding: 80px 5px 81px 20px;
 
                 .offer__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 34px;
@@ -3602,7 +3690,7 @@ main {
                 }
 
                 .offer__subtitle {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 400;
                     line-height: 18.15px;
@@ -3610,7 +3698,7 @@ main {
                 }
 
                 .offer__phones {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 27px;
@@ -3621,7 +3709,7 @@ main {
                 }
 
                 .offer__button {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 600;
                     line-height: 18.15px;
@@ -3630,7 +3718,7 @@ main {
                 }
 
                 .offer__agreement {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 10px;
                     font-weight: 400;
                     line-height: 11.8px;
@@ -3654,7 +3742,6 @@ main {
         }
 
         .second__level {
-
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -3699,7 +3786,8 @@ main {
             }
         }
 
-        .footer-menu {}
+        .footer-menu {
+        }
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -3867,11 +3955,11 @@ main {
         margin-top: unset !important;
     }
 
-    .box_active+.header__messengers {
+    .box_active + .header__messengers {
         display: none !important;
     }
 
-    .box_active~label.hamburger {
+    .box_active ~ label.hamburger {
         display: none !important;
     }
 }
@@ -3895,8 +3983,6 @@ main {
             width: 100%;
             padding: 0 45px 0 20px;
         }
-
-
     }
 
     .header {
@@ -3907,8 +3993,8 @@ main {
         margin-top: unset !important;
     }
 
-    .box_active+.header__messengers,
-    .box_active+.hamburger {
+    .box_active + .header__messengers,
+    .box_active + .hamburger {
         display: none !important;
     }
 }
@@ -3944,7 +4030,6 @@ main {
 }
 
 @media (min-width: 425px) and (max-width: 767px) {
-
     body,
     html {
         width: 100%;
@@ -3991,7 +4076,7 @@ main {
     }
 
     .news__slider .splide__pagination__page.is-active {
-        background-color: #582F9A;
+        background-color: #582f9a;
     }
 
     .pagination {
@@ -4042,7 +4127,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
 
@@ -4050,7 +4135,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
         }
@@ -4068,7 +4153,7 @@ main {
     main {
         .sliders {
             height: 462px;
-            background-image: url('/images/bg_mobile.png');
+            background-image: url("/images/bg_mobile.png");
             background-size: 100%;
             background-repeat: no-repeat;
 
@@ -4124,7 +4209,7 @@ main {
                     align-items: center;
 
                     .search-tour__button {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 16px;
                         font-weight: 700;
                         line-height: 14.53px;
@@ -4313,7 +4398,7 @@ main {
                     padding: 25px 30px 8px 30px;
 
                     .services-vacation-type__title {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 24px;
                         font-weight: 700;
                         line-height: 21.8px;
@@ -4324,7 +4409,7 @@ main {
                         .services-vacation-type__list {
                             .services-vacation-type__item {
                                 .services-vacation-type__name {
-                                    font-family: 'Inter', sans-serif;
+                                    font-family: "Inter", sans-serif;
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -4332,7 +4417,7 @@ main {
                                 }
 
                                 .services-vacation-type__counter {
-                                    font-family: 'Inter';
+                                    font-family: "Inter";
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -4368,12 +4453,14 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {}
+                    .services-others__title {
+                    }
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {}
+                                .services-others__name {
+                                }
                             }
                         }
                     }
@@ -4403,7 +4490,7 @@ main {
                         flex-wrap: wrap;
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 700;
                         line-height: 40px;
@@ -4412,7 +4499,7 @@ main {
                     }
 
                     .popular-tours-headding__subtitle {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 100;
                         line-height: 40px;
@@ -4459,7 +4546,7 @@ main {
                 height: 188px;
 
                 .advertisement__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 36px;
@@ -4475,7 +4562,7 @@ main {
                 }
 
                 .advertisement__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 300;
                     line-height: 18px;
@@ -4499,7 +4586,7 @@ main {
                 .news-headding__title {
                     display: flex;
                     column-gap: 15px;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 38.96px;
@@ -4509,7 +4596,7 @@ main {
                     .news-headding__subtitle {
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 200;
                         line-height: 38.96px;
@@ -4536,7 +4623,7 @@ main {
 
                     .news__text {
                         width: inherit !important;
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 15px;
                         font-weight: 500;
                         line-height: 18.75px;
@@ -4549,7 +4636,7 @@ main {
 
         .offer {
             width: auto;
-            background-image: url('/images/back2.png');
+            background-image: url("/images/back2.png");
             background-size: 100%;
             background-repeat: no-repeat;
             height: 474px;
@@ -4565,7 +4652,7 @@ main {
                 padding: 80px 5px 81px 20px;
 
                 .offer__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 34px;
@@ -4574,7 +4661,7 @@ main {
                 }
 
                 .offer__subtitle {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 400;
                     line-height: 18.15px;
@@ -4582,7 +4669,7 @@ main {
                 }
 
                 .offer__phones {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 27px;
@@ -4593,7 +4680,7 @@ main {
                 }
 
                 .offer__button {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 600;
                     line-height: 18.15px;
@@ -4602,7 +4689,7 @@ main {
                 }
 
                 .offer__agreement {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 10px;
                     font-weight: 400;
                     line-height: 11.8px;
@@ -4626,7 +4713,6 @@ main {
         }
 
         .second__level {
-
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -4671,7 +4757,8 @@ main {
             }
         }
 
-        .footer-menu {}
+        .footer-menu {
+        }
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -4832,7 +4919,8 @@ main {
                 }
             }
 
-            .footer-pages-messengers {}
+            .footer-pages-messengers {
+            }
 
             .third__level {
                 margin-bottom: 40px;
@@ -4917,7 +5005,6 @@ main {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-
     body,
     html {
         width: 100%;
@@ -4964,7 +5051,7 @@ main {
     }
 
     .news__slider .splide__pagination__page.is-active {
-        background-color: #582F9A;
+        background-color: #582f9a;
     }
 
     .pagination {
@@ -5040,7 +5127,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
 
@@ -5048,7 +5135,7 @@ main {
                 margin: unset;
 
                 path {
-                    fill: #582F9A;
+                    fill: #582f9a;
                 }
             }
         }
@@ -5066,7 +5153,7 @@ main {
     main {
         .sliders {
             height: 462px;
-            background-image: url('/images/bg_mobile.png');
+            background-image: url("/images/bg_mobile.png");
             background-size: 100%;
             background-repeat: no-repeat;
 
@@ -5122,7 +5209,7 @@ main {
                     align-items: center;
 
                     .search-tour__button {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 16px;
                         font-weight: 700;
                         line-height: 14.53px;
@@ -5311,7 +5398,7 @@ main {
                     padding: 25px 30px 8px 30px;
 
                     .services-vacation-type__title {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 24px;
                         font-weight: 700;
                         line-height: 21.8px;
@@ -5322,7 +5409,7 @@ main {
                         .services-vacation-type__list {
                             .services-vacation-type__item {
                                 .services-vacation-type__name {
-                                    font-family: 'Inter', sans-serif;
+                                    font-family: "Inter", sans-serif;
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -5330,7 +5417,7 @@ main {
                                 }
 
                                 .services-vacation-type__counter {
-                                    font-family: 'Inter';
+                                    font-family: "Inter";
                                     font-size: 15px;
                                     font-weight: 400;
                                     line-height: 18.15px;
@@ -5367,12 +5454,14 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {}
+                    .services-others__title {
+                    }
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {}
+                                .services-others__name {
+                                }
                             }
                         }
                     }
@@ -5399,7 +5488,7 @@ main {
                         flex-wrap: wrap;
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 700;
                         line-height: 40px;
@@ -5408,7 +5497,7 @@ main {
                     }
 
                     .popular-tours-headding__subtitle {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 100;
                         line-height: 40px;
@@ -5455,7 +5544,7 @@ main {
                 height: 188px;
 
                 .advertisement__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 36px;
@@ -5471,7 +5560,7 @@ main {
                 }
 
                 .advertisement__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 300;
                     line-height: 18px;
@@ -5495,7 +5584,7 @@ main {
                 .news-headding__title {
                     display: flex;
                     column-gap: 15px;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 38.96px;
@@ -5505,7 +5594,7 @@ main {
                     .news-headding__subtitle {
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 200;
                         line-height: 38.96px;
@@ -5531,7 +5620,7 @@ main {
                     }
 
                     .news__text {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 15px;
                         font-weight: 500;
                         line-height: 18.75px;
@@ -5544,7 +5633,7 @@ main {
 
         .offer {
             width: auto;
-            background-image: url('/images/back2.png');
+            background-image: url("/images/back2.png");
             background-size: 100%;
             background-repeat: no-repeat;
             height: 474px;
@@ -5560,7 +5649,7 @@ main {
                 padding: 80px 5px 81px 20px;
 
                 .offer__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 34px;
@@ -5569,7 +5658,7 @@ main {
                 }
 
                 .offer__subtitle {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 400;
                     line-height: 18.15px;
@@ -5577,7 +5666,7 @@ main {
                 }
 
                 .offer__phones {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 27px;
@@ -5588,7 +5677,7 @@ main {
                 }
 
                 .offer__button {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 600;
                     line-height: 18.15px;
@@ -5597,7 +5686,7 @@ main {
                 }
 
                 .offer__agreement {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 10px;
                     font-weight: 400;
                     line-height: 11.8px;
@@ -5621,7 +5710,6 @@ main {
         }
 
         .second__level {
-
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -5666,7 +5754,8 @@ main {
             }
         }
 
-        .footer-menu {}
+        .footer-menu {
+        }
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -5837,7 +5926,7 @@ main {
             margin-right: 50px !important;
         }
 
-        .box_active~.search-profile {
+        .box_active ~ .search-profile {
             display: none !important;
         }
 
@@ -5853,7 +5942,7 @@ main {
 
     main {
         .sliders {
-            background-image: url('/images/slider1.png');
+            background-image: url("/images/slider1.png");
             /* background-size: 200%; */
             background-repeat: no-repeat;
 
@@ -5907,7 +5996,7 @@ main {
                     align-items: center;
 
                     .search-tour__button {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 16px;
                         font-weight: 700;
                         line-height: 14.53px;
@@ -6090,7 +6179,8 @@ main {
 
                     .services-vacation-type__info {
                         .services-vacation-type__list {
-                            .services-vacation-type__item {}
+                            .services-vacation-type__item {
+                            }
                         }
                     }
                 }
@@ -6121,12 +6211,14 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {}
+                    .services-others__title {
+                    }
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {}
+                                .services-others__name {
+                                }
                             }
                         }
                     }
@@ -6165,7 +6257,7 @@ main {
                         flex-wrap: wrap;
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 700;
                         line-height: 40px;
@@ -6174,7 +6266,7 @@ main {
                     }
 
                     .popular-tours-headding__subtitle {
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 100;
                         line-height: 40px;
@@ -6233,7 +6325,7 @@ main {
                 height: 188px;
 
                 .advertisement__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 36px;
@@ -6249,7 +6341,7 @@ main {
                 }
 
                 .advertisement__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 300;
                     line-height: 18px;
@@ -6273,7 +6365,7 @@ main {
                 .news-headding__title {
                     display: flex;
                     column-gap: 15px;
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 38.96px;
@@ -6283,7 +6375,7 @@ main {
                     .news-headding__subtitle {
                         display: flex;
                         column-gap: 15px;
-                        font-family: 'HelveticaNeueCyr', sans-serif;
+                        font-family: "HelveticaNeueCyr", sans-serif;
                         font-size: 40px;
                         font-weight: 200;
                         line-height: 38.96px;
@@ -6305,7 +6397,7 @@ main {
                 }
 
                 .splide__pagination__page.is-active {
-                    background-color: #582F9A;
+                    background-color: #582f9a;
                 }
 
                 .splide__arrow--next {
@@ -6329,7 +6421,7 @@ main {
                     }
 
                     .news__text {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 15px;
                         font-weight: 500;
                         line-height: 18.75px;
@@ -6342,7 +6434,7 @@ main {
 
         .offer {
             width: auto;
-            background-image: url('/images/back2.png');
+            background-image: url("/images/back2.png");
             background-size: 100%;
             background-repeat: no-repeat;
             height: 474px;
@@ -6358,7 +6450,7 @@ main {
                 padding: 80px 5px 81px 20px;
 
                 .offer__title {
-                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-family: "HelveticaNeueCyr", sans-serif;
                     font-size: 40px;
                     font-weight: 700;
                     line-height: 34px;
@@ -6367,7 +6459,7 @@ main {
                 }
 
                 .offer__subtitle {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 400;
                     line-height: 18.15px;
@@ -6375,7 +6467,7 @@ main {
                 }
 
                 .offer__phones {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 18px;
                     font-weight: 700;
                     line-height: 27px;
@@ -6386,7 +6478,7 @@ main {
                 }
 
                 .offer__button {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 15px;
                     font-weight: 600;
                     line-height: 18.15px;
@@ -6395,7 +6487,7 @@ main {
                 }
 
                 .offer__agreement {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 10px;
                     font-weight: 400;
                     line-height: 11.8px;
@@ -6606,11 +6698,16 @@ main {
 @media (min-width: 1921px) {
     .header {
         margin: auto;
-        width: 1930px;
+        width: 1920px;
+        justify-content: space-between;
     }
 
     main {
         margin: auto;
         width: 1920px;
+    }
+
+    .box {
+        flex-grow: 1;
     }
 }

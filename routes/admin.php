@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Services\AdvController;
 use App\Http\Controllers\Admin\Services\DocumentController;
 use App\Http\Controllers\Admin\Services\InfografikaController;
 use App\Http\Controllers\Admin\Services\PersonalController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User\PermittedIPs;
@@ -23,7 +24,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         $controller($request->action);
     })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', [LoginController::class, 'login']);
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::group(['namespace' => 'Admin'], function () {

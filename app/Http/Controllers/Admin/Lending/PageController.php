@@ -8,6 +8,7 @@ use App\Models\Files;
 use App\Models\Lending\AttachedPage;
 use App\Models\Lending\File;
 use App\Models\Lending\Page;
+use App\Models\Services\File as Document;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
 
@@ -59,15 +60,20 @@ class PageController extends Controller
 
         $docs = collect();
 
-        foreach ($object->attachedFiles()->get() as $doc) {
+        foreach (Document::orderBy('rating', 'desc')->get() as $doc) {
             $docs->push((object)[
                 "id" => $doc->first()->id,
                 "name" => $doc->first()->description
             ]);
         }
 
-        $attached_pages = collect();
+        $selectedDocs = collect();
 
+        foreach ($object->attachedFiles()->get() as $file) {
+            $selectedDocs->push($file->id);
+        }
+
+        $attached_pages = collect();
 
         if ($object->id != null && $object->attachedPages() != null) {
             foreach ($object->attachedPages()->orderBy('rating', 'desc')->get() as $page) {
@@ -105,7 +111,7 @@ class PageController extends Controller
             // dd($request->file('attached_files'));
 
             if ($request->file('attached_files') != null) {
-                FileUpload::uploadFile('attached_files', File::class, 'url', $object->id, '/storage/files/');
+                FileUpload::uploadFile('attached_files', Document::class, 'url', $object->id, '/storage/files/');
             }
 
             // if ($request->file('image') != null)
@@ -125,7 +131,8 @@ class PageController extends Controller
             'title',
             'pages',
             'attached_pages',
-            'docs'
+            'docs',
+            'selectedDocs'
         ));
     }
 }

@@ -45,6 +45,14 @@
                 $attached_pages->all(),
             ) !!}
 
+
+            {!! \App\Helpers\GenerateForm::makeMultipleSelect(
+                'Прикрепленные документы',
+                'attached_files',
+                $docs,
+                $selectedDocs->all(),
+            ) !!}
+
             @include('admin.includes.textbox', [
                 'label' => 'Текст:',
                 'name' => 'text',

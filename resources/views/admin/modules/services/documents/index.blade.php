@@ -13,7 +13,7 @@
                 <div class="list_item">
                     <div class="list_item-info">
                         {{-- <h4>{{ $object->id }}</h4> --}}
-                        {{ $object->name }}
+                        {{ $object->description }}
                     </div>
                     <div class="list_item-info">
                         {{-- <h4>{{ $object->id }}</h4> --}}

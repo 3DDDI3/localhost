@@ -2,12 +2,13 @@
 
 namespace App\Models\Lending;
 
+use App\Models\Services\File;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AttachedFiles extends Model
 {
-    use HasFactory; 
+    use HasFactory;
 
     protected $table = "attached_files";
 

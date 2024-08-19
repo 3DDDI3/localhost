@@ -45,13 +45,14 @@ class DocumentController extends Controller
 
         $object = $id ? File::find($id) : new File();
 
+        // if ($object->id == null) new File();
+
         $doc = collect([
             (object)[
                 'id' => $object->id,
-                'name' => $object->description
+                'name' => $object->url
             ]
         ]);
-
 
         if ($request->isMethod('post')) {
             $object->fill($request->only(['description',]));
