@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->text('url')->nullable();
             $table->longText('text')->nullable();
-            $table->string('title', 1000);
+            $table->string('title', 1000)->nullable();
             $table->text('image')->nullable();
             $table->text('preview_image')->nullable();
             $table->text('preview_text')->nullable();

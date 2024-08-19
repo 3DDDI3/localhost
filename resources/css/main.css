@@ -2180,16 +2180,11 @@ main {
             display: none;
         }
 
-        .box {
-            display: none !important;
-        }
-
         .header__messengers {
             display: flex;
             margin-top: unset;
             align-items: center;
             column-gap: 21px;
-            flex-grow: 1;
             justify-content: flex-end;
 
             .header__phone {
@@ -2565,7 +2560,7 @@ main {
                 width: 100%;
 
                 .popular-tours__headding {
-                    margin-top: 50px;
+                    margin-top: -50px;
                     border-bottom: unset;
                     padding-bottom: 20px;
 
@@ -3062,16 +3057,11 @@ main {
             display: none;
         }
 
-        .box {
-            display: none !important;
-        }
-
         .header__messengers {
             display: flex;
             margin-top: unset;
             align-items: center;
             column-gap: 21px;
-            flex-grow: 1;
             justify-content: flex-end;
 
             .header__phone {
@@ -3434,7 +3424,7 @@ main {
                 width: 100%;
 
                 .popular-tours__headding {
-                    margin-top: 50px;
+                    margin-top: -50px;
                     border-bottom: unset;
                     padding-bottom: 20px;
 
@@ -3844,6 +3834,115 @@ main {
     }
 }
 
+@media (min-width: 320px) and (max-width: 424px) {
+    .header-messengers__phone {
+        display: none !important;
+    }
+
+    .box {
+        height: 42px;
+        justify-content: flex-end;
+        margin: unset !important;
+        flex-grow: 1;
+
+        svg {
+            position: relative;
+            left: unset !important;
+        }
+
+        .search {
+            right: 0;
+            border-radius: 22px;
+            left: unset !important;
+            width: 100%;
+            padding: 0 45px 0 20px;
+        }
+    }
+
+    .header {
+        align-items: center;
+    }
+
+    .box_active {
+        margin-top: unset !important;
+    }
+
+    .box_active+.header__messengers {
+        display: none !important;
+    }
+
+    .box_active~label.hamburger {
+        display: none !important;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 499px) {
+    .box {
+        height: 42px;
+        justify-content: flex-end;
+        margin: unset !important;
+        flex-grow: 1;
+
+        svg {
+            position: relative;
+            left: unset !important;
+        }
+
+        .search {
+            right: 0;
+            border-radius: 22px;
+            left: unset !important;
+            width: 100%;
+            padding: 0 45px 0 20px;
+        }
+
+
+    }
+
+    .header {
+        align-items: center;
+    }
+
+    .box_active {
+        margin-top: unset !important;
+    }
+
+    .box_active+.header__messengers,
+    .box_active+.hamburger {
+        display: none !important;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 767px) {
+    .header {
+        align-items: center;
+    }
+
+    .box {
+        height: 42px;
+        justify-content: flex-end;
+        margin: unset !important;
+        flex-grow: 1;
+
+        svg {
+            position: relative;
+            left: unset !important;
+        }
+
+        .search {
+            right: 0;
+            border-radius: 22px;
+            left: unset !important;
+            width: 100%;
+            padding: 0 45px 0 20px;
+        }
+    }
+
+    .box_active {
+        margin-top: unset !important;
+    }
+}
+
 @media (min-width: 425px) and (max-width: 767px) {
 
     body,
@@ -3924,16 +4023,11 @@ main {
             display: none;
         }
 
-        .box {
-            display: none !important;
-        }
-
         .header__messengers {
             display: flex;
             margin-top: unset;
             align-items: center;
             column-gap: 21px;
-            flex-grow: 1;
             justify-content: flex-end;
 
             .header__phone {
@@ -4301,7 +4395,7 @@ main {
                 align-items: center;
 
                 .popular-tours__headding {
-                    margin-top: 50px;
+                    margin-top: -50px;
                     border-bottom: unset;
                     padding-bottom: 20px;
 
@@ -5297,7 +5391,7 @@ main {
                 width: 100%;
 
                 .popular-tours__headding {
-                    margin-top: 50px;
+                    margin-top: -50px;
                     border-bottom: unset;
                     padding-bottom: 20px;
 
@@ -6063,7 +6157,7 @@ main {
                 width: 100%;
 
                 .popular-tours__headding {
-                    margin-top: 50px;
+                    margin-top: -50px;
                     border-bottom: unset;
                     padding-bottom: 20px;
 

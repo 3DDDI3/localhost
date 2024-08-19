@@ -1,19 +1,26 @@
+@php
+    $phones = explode(',', $setting->phones);
+@endphp
+
 <header class="header">
     <div class="header-actions-logo">
         <a href="/"><img src="{{ asset('images/logo.svg') }}" alt="" class="header__logo"></a>
         <ul class="header-menu menu">
             <li class="header-menu__item menu__item">
-                <a href="/tourist" class="header-menu__link menu__link">Туристам</a>
+                <a href="/pages/{{ $pages->find(2)->url }}"
+                    class="header-menu__link menu__link">{{ $pages->find(2)->title }}</a>
             </li>
             <li class="header-menu__item menu__item">
-                <a href="/agency" class="header-menu__link menu__link">Агентствам</a>
+                <a href="/pages/{{ $pages->find(5)->url }}"
+                    class="header-menu__link menu__link">{{ $pages->find(5)->title }}</a>
             </li>
         </ul>
     </div>
     <div class="header__main-menu">
         <ul class="header-main-menu menu">
             <li class="header-main-menu__item menu__item">
-                <a href="/about-company" class="header-main-menu__link menu__link">О компании</a>
+                <a href="/pages/{{ $pages->find(1)->url }}"
+                    class="header-main-menu__link menu__link">{{ $pages->find(1)->title }}</a>
             </li>
             <li class="header-main-menu__item menu__item">
                 <a href="/news" class="header-main-menu__link menu__link">Новости</a>
@@ -22,7 +29,8 @@
                 <a href="/blogs" class="header-main-menu__link menu__link">Блог</a>
             </li>
             <li class="header-main-menu__item menu__item">
-                <a href="/contacts" class="header-main-menu__link menu__link">Контакты</a>
+                <a href="/pages/{{ $pages->find(4)->url }}"
+                    class="header-main-menu__link menu__link">{{ $pages->find(4)->title }}</a>
             </li>
         </ul>
     </div>
@@ -63,7 +71,7 @@
                 </defs>
             </svg>
         </a>
-        <a href="tel:+7 (812) 702-77-85" class="header__phone">+7 (812) 702-77-85</a>
+        <a href="tel:{{ $phones[0] }}" class="header__phone">{{ $phones[0] }}</a>
     </div>
     <div class="search-profile">
         <button class="search-tour-button" data-href="#search-tour">Поиск тура</button>
@@ -88,17 +96,20 @@
     </label>
     <div class="menu-hamburger">
         <div class="menu-items">
-            <li><a class="menu-items__result" href="/about-comany">О компании</a></li>
+            <li><a class="menu-items__result"
+                    href="/pages/{{ $pages->find(1)->url }}">{{ $pages->find(1)->title }}</a></li>
             <li><a class="menu-items__connect" href="/news">Новости</a></li>
             <li><a class="menu-items__cost" href="/blogs">Блог</a></li>
-            <li><a class="menu-items__qa" href="/contacts">Контакты</a></li>
-            <li><a class="menu-items__entrance" href="/agency">Агенствам</a></li>
+            <li><a class="menu-items__qa" href="/pages/{{ $pages->find(4)->url }}">{{ $pages->find(1)->title }}</a>
+            </li>
+            <li><a class="menu-items__entrance"
+                    href="/pages/{{ $pages->find(5)->url }}">{{ $pages->find(5)->url }}</a></li>
         </div>
         <div class="menu-info more-info">
-            <a href="tel:+78129570185" class="menu-info__phone more-info__phone">+7 (812) 957-01-85</a>
-            <a href="tel:+78127027785" class="menu-info__phone more-info__phone">+7 (812) 702-77-85</a>
-            <a href="mailto:info@mercury-europe.ru"
-                class="menu-info__email more-info__email">info@mercury-europe.ru</a>
+            <a href="tel:{{ $phones[0] }}" class="menu-info__phone more-info__phone">{{ $phones[0] }}</a>
+            <a href="tel:{{ $phones[1] }}" class="menu-info__phone more-info__phone">{{ $phones[1] }}</a>
+            <a href="mailto:{{ $setting->email }}"
+                class="menu-info__email more-info__email">{{ $setting->email }}</a>
         </div>
     </div>
 </header>

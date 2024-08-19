@@ -6,7 +6,10 @@ use App\Http\Controllers\Admin\Lending\NewsController;
 use App\Http\Controllers\Admin\Lending\PageController;
 use App\Http\Controllers\Admin\Lending\ProgramsController;
 use App\Http\Controllers\Admin\Lending\ToursController;
+use App\Http\Controllers\Admin\Services\AdvController;
+use App\Http\Controllers\Admin\Services\DocumentController;
 use App\Http\Controllers\Admin\Services\InfografikaController;
+use App\Http\Controllers\Admin\Services\PersonalController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User\PermittedIPs;
@@ -115,6 +118,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 Route::group(['prefix' => 'infografika', 'as' => 'infografika.'], function () {
                     Route::get('/', [InfografikaController::class, 'index'])->name('index');
                     Route::match(['get', 'post'], '/edit/{id?}', [InfografikaController::class, 'edit'])->name('edit');
+                });
+                Route::group(['prefix' => 'personal', 'as' => 'personal.'], function () {
+                    Route::get('/', [PersonalController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [PersonalController::class, 'edit'])->name('edit');
+                });
+                Route::group(['prefix' => 'documents', 'as' => 'documents.'], function () {
+                    Route::get('/', [DocumentController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [DocumentController::class, 'edit'])->name('edit');
+                });
+                Route::group(['prefix' => 'advs', 'as' => 'advs.'], function () {
+                    Route::get('/', [AdvController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [AdvController::class, 'edit'])->name('edit');
                 });
             });
         });

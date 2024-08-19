@@ -8,6 +8,7 @@ use App\Models\Catalog\Categories\CatalogCategories;
 use App\Models\Catalog\Qualities\CatalogQualitiesTypes;
 use App\Models\Catalog\Series\CatalogSeries;
 use App\Models\Constructor\ConstructorProducts;
+use App\Models\Lending\Page;
 use App\Models\Page\PageSection;
 use App\Models\SEO;
 use App\Models\Setting;
@@ -62,6 +63,8 @@ class AppServiceProvider extends ServiceProvider
 
         $setting = Setting::find(1);
 
+
+
         $seo = new \App\Services\SEO\SEO(
             SEO::where('url', Request::path())->first(),
             new SEOMeta(),
@@ -69,9 +72,16 @@ class AppServiceProvider extends ServiceProvider
             new TwitterCard(),
             new JsonLd()
         );
+
         $seo->buildSets();
 
+        $pages = Page::all();
+
         // View::composer('includes.head', fn($view) => $view->with(['seo' => $seo]));
-        View::composer('layouts.default', fn($view) => $view->with(['setting' => $setting, 'seo' => $seo]));
+        View::composer('layouts.default', fn($view) => $view->with([
+            'setting' => $setting,
+            'seo' => $seo,
+            'pages' => $pages,
+        ]));
     }
 }

@@ -71,6 +71,25 @@
         'name' => 'Инфографика',
         'data' => 'infografika',
     ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.services.personal.index',
+        'name' => 'Персонал',
+        'data' => 'personal',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.services.documents.index',
+        'name' => 'Документы',
+        'data' => 'documents',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.services.advs.index',
+        'name' => 'Реклама',
+        'data' => 'advs',
+    ])
+
 </x-Admin.NavBar>
 
 <x-Admin.NavBar title="Пользователи" url="users" all="{{ isset($all) && $all }}">

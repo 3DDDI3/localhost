@@ -14,6 +14,8 @@
                 'value' => $object->title ?? '',
             ])
 
+            {{-- @dd($docs) --}}
+
             @switch($object->id)
                 @case(1)
                     @include('admin.includes.textbox', [
@@ -30,6 +32,7 @@
                 @break
 
                 @case(2)
+                    {{-- {!! \App\Helpers\GenerateForm::makeFile('Прикрепленные документы', 'attached_files', $docs, '/storage/files') !!} --}}
                 @break
 
                 @default

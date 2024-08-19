@@ -8,19 +8,39 @@
             @csrf
 
             @include('admin.includes.input', [
-                'label' => 'Телефон:',
-                'name' => 'phone2',
-                'value' => $object->phone2 ?? '',
+                'label' => 'Телефоны: (разделитель запятая)',
+                'name' => 'phones',
+                'value' => $object->phones ?? '',
             ])
+
+            @include('admin.includes.input', [
+                'label' => 'Адрес:',
+                'name' => 'address',
+                'value' => $object->address ?? '',
+            ])
+
             @include('admin.includes.input', [
                 'label' => 'Email:',
                 'name' => 'email',
                 'value' => $object->email ?? '',
             ])
+
             @include('admin.includes.input', [
-                'label' => 'Адрес:',
-                'name' => 'address',
-                'value' => $object->address ?? '',
+                'label' => 'Whatsapp:',
+                'name' => 'whatsapp',
+                'value' => $object->whatsapp ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Telegram:',
+                'name' => 'telegram',
+                'value' => $object->telegram ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Vk:',
+                'name' => 'vk',
+                'value' => $object->vk ?? '',
             ])
 
 

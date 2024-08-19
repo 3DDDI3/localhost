@@ -9,11 +9,11 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults' => [
-            'title' => "Сотис",
+            'title' => "Меркурий",
             // set false to total remove
             'titleBefore' => false,
             // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description' => 'Сотис',
+            'description' => 'Меркурий',
             // set false to total remove
             'separator' => ' - ',
             'keywords' => [],
@@ -41,9 +41,9 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title' => 'Сотис',
+            'title' => 'Меркурий',
             // set false to total remove
-            'description' => 'Сотис',
+            'description' => 'Меркурий',
             // set false to total remove
             'url' => false,
             // Set null for using Url::current(), set false to total remove
@@ -66,9 +66,9 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title' => 'Сотис',
+            'title' => 'Меркурий',
             // set false to total remove
-            'description' => 'Сотис',
+            'description' => 'Меркурий',
             // set false to total remove
             'url' => false,
             // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove

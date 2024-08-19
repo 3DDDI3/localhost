@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lending\Page;
+use App\Models\Lending\Personal;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -17,15 +18,33 @@ class PageController extends Controller
             ],
         ]);
 
+        $personal = Personal::query()->orderBy('rating', 'desc')->get();
+
         $object = Page::query()->where(['url' => $url])->first();
 
         switch ($url) {
             case 'o-kompanii':
                 $breadCrumbs->push((object)[
-                    'name' => 'О компании',
-                    'url' => $object->title,
+                    'name' => $object->title,
+                    'url' => $object->url,
                 ]);
-                return view('pages.about-company', ['object' => $object, 'breadcrumbs' => $breadCrumbs]);
+
+                return view('pages.about-company', [
+                    'object' => $object,
+                    'breadcrumbs' => $breadCrumbs,
+                    'personal' => $personal,
+                ]);
+                break;
+            case 'turistam':
+                $breadCrumbs->push((object)[
+                    'name' => $object->title,
+                    'url' => $object->url,
+                ]);
+
+                return view('pages.tourist', [
+                    'object' => $object,
+                    'breadcrumbs' => $breadCrumbs,
+                ]);
                 break;
 
             default:

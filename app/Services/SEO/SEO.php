@@ -17,13 +17,12 @@ class SEO implements \App\Contracts\SEO
     public $json_ld;
 
     function __construct(
-       \App\Models\SEO $object = null,
+        \App\Models\SEO $object = null,
         SEOMeta $meta,
         OpenGraph $opengraph,
         TwitterCard $twitter_card,
         JsonLd $json_ld
-    )
-    {
+    ) {
         $this->object = $object;
         $this->meta = $meta;
         $this->opengraph = $opengraph;
@@ -53,50 +52,49 @@ class SEO implements \App\Contracts\SEO
 
     public function setMeta(): void
     {
-
-        if ($title=$this->object->title)
+        if ($title = $this->object->title)
             $this->meta::setTitle($title);
 
-        if ($description=$this->object->description)
+        if ($description = $this->object->description)
             $this->meta::setDescription($description);
 
-        if ($keywords=$this->object->keywords)
+        if ($keywords = $this->object->keywords)
             $this->meta::setKeywords($keywords);
 
-        if ($canonical=$this->object->canonical)
+        if ($canonical = $this->object->canonical)
             $this->meta::setCanonical($canonical);
     }
 
     public function setOpenGraph(): void
     {
-        if ($title=$this->object->og_title)
+        if ($title = $this->object->og_title)
             $this->opengraph::setTitle($title);
 
-        if ($description=$this->object->og_description)
+        if ($description = $this->object->og_description)
             $this->opengraph::setDescription($description);
 
-        if ($url=$this->object->og_url)
+        if ($url = $this->object->og_url)
             $this->opengraph::setUrl($url);
     }
 
     public function setTwitterCard(): void
     {
-        if ($title=$this->object->twitter_title)
+        if ($title = $this->object->twitter_title)
             $this->twitter_card::setTitle($title);
 
-        if ($site=$this->object->twitter_site)
+        if ($site = $this->object->twitter_site)
             $this->twitter_card::setSite($site);
     }
 
     public function setJsonLd(): void
     {
-        if ($title=$this->object->jsonld_title)
+        if ($title = $this->object->jsonld_title)
             $this->json_ld::setTitle($title);
 
-        if ($site=$this->object->jsonld_site)
+        if ($site = $this->object->jsonld_site)
             $this->json_ld::setDescription($site);
 
-        if ($type=$this->object->jsonld_type)
+        if ($type = $this->object->jsonld_type)
             $this->json_ld::setType($type);
     }
 
@@ -119,6 +117,4 @@ class SEO implements \App\Contracts\SEO
     {
         return $this->json_ld::generate();
     }
-
-
 }

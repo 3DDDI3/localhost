@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Models\Lending;
+namespace App\Models\Services;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Personal extends Model
+class File extends Model
 {
     use HasFactory;
 
-    protected $table = "personal";
+    protected $table = 'files';
 
     protected $fillable = [
-        'name',
         'description',
-        'email',
+        'url',
     ];
 }

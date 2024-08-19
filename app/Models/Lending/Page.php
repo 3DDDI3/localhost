@@ -31,4 +31,9 @@ class Page extends Model
     {
         return $this->belongsTo(Infografika::class, ownerKey: "about_id", foreignKey: "id")->first();
     }
+
+    public function attachedFiles(): HasMany
+    {
+        return $this->hasMany(AttachedFiles::class, 'page_id', 'id');
+    }
 }

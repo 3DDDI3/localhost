@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Lending;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
+use App\Models\Files;
 use App\Models\Lending\AttachedPage;
+use App\Models\Lending\File;
 use App\Models\Lending\Page;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
@@ -45,7 +48,7 @@ class PageController extends Controller
 
         $pages = collect();
 
-        foreach (Page::where('id', '!=', $object->id)->orderBy('rating', 'desc')->get() as $page) {
+        foreach (Page::where('id', '!=', $object->id)->orderBy('rating', 'desc')->orderBy('id', 'desc')->get() as $page) {
             $pages->push(
                 (object)[
                     'id' => $page->id,
@@ -54,16 +57,25 @@ class PageController extends Controller
             );
         }
 
+        $docs = collect();
+
+        foreach ($object->attachedFiles()->get() as $doc) {
+            $docs->push((object)[
+                "id" => $doc->first()->id,
+                "name" => $doc->first()->description
+            ]);
+        }
+
         $attached_pages = collect();
 
-        if ($object->attachedPages()->first()) {
+
+        if ($object->id != null && $object->attachedPages() != null) {
             foreach ($object->attachedPages()->orderBy('rating', 'desc')->get() as $page) {
                 $attached_pages->push($page->attachedPage()->first()->id);
             }
         }
 
         if ($request->isMethod('post')) {
-
             $object ?? $object = new Page();
 
             $object->fill(
@@ -90,6 +102,12 @@ class PageController extends Controller
 
             $object->save();
 
+            // dd($request->file('attached_files'));
+
+            if ($request->file('attached_files') != null) {
+                FileUpload::uploadFile('attached_files', File::class, 'url', $object->id, '/storage/files/');
+            }
+
             // if ($request->file('image') != null)
             //     FileUpload::uploadImage('image', News::class, 'image', $object->id, 377, 377, '/images/news/', request: $request);
 
@@ -106,7 +124,8 @@ class PageController extends Controller
             'path',
             'title',
             'pages',
-            'attached_pages'
+            'attached_pages',
+            'docs'
         ));
     }
 }

@@ -401,7 +401,6 @@ $(function () {
     if ($(".search-tour-buttons__slider").length > 0) new Splide(".search-tour-buttons__slider", {
         pagination: false,
         arrows: false,
-        type: 'slide',
         padding: {
             left: 10,
         },
@@ -468,21 +467,48 @@ $(function () {
             },
             1920: {
                 type: "slide",
-                perPage: 'auto',
+                perPage: 4,
                 arrows: false,
-                padding: {
-                    left: 10,
-                },
-                gap: 35,
+                gap: 31,
+                autoWidth: true,
             },
             2560: {
                 type: "slide",
-                perPage: 'auto',
+                perPage: 4,
                 arrows: false,
-                padding: {
-                    left: 10,
-                },
-                gap: 35,
+                gap: 31,
+                autoWidth: true,
+            }
+        }
+    }).mount();
+
+    if ($(".personal__slider").length > 0) new Splide(".personal__slider", {
+        gap: 35,
+        pagination: false,
+        perPage: 3,
+        autoHeight: true,
+        width: 1348,
+        breakpoints: {
+            320: {
+                perPage: 1,
+            },
+            375: {
+                perPage: 1,
+            },
+            425: {
+                perPage: 1,
+            },
+            768: {
+                perPage: 1,
+            },
+            1024: {
+                perPage: 2,
+            },
+            1440: {
+                perPage: 3,
+            },
+            2560: {
+                perPage: 3,
             }
         }
     }).mount();

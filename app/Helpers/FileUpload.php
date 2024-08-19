@@ -414,9 +414,7 @@ class FileUpload
 
     private static function addToDb($id, $class, $field, $path, $file)
     {
-
-
-        $object = $class::find($id);
+        $id != null ? $object = $class::find($id) : $object = new $class();
 
         if (!empty($object->$field)) {
             try {
@@ -425,7 +423,7 @@ class FileUpload
                 //
             }
         }
-        
+
         $object->$field = $file;
 
         $object->save();

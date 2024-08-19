@@ -19,11 +19,11 @@
                             <li class="splide__slide">
                                 <button class="search-tour__button search-tour__button_inactive">Отели</button>
                             </li>
-                            <li class="splide__slide">
+                            {{-- <li class="splide__slide">
                                 <button class="search-tour__button search-tour__button_inactive">FIT
                                     запрос
                                 </button>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </section>
@@ -269,7 +269,7 @@
                     </button>
                 </div>
             </div>
-            <div class="services__others">
+            {{-- <div class="services__others">
                 <img src="{{ asset('images/other-services.png') }}" alt="">
                 <div class="services-others__blurred-block"></div>
                 <div class="services-others">
@@ -288,7 +288,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <x-blocks.popular-tours />

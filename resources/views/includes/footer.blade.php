@@ -1,3 +1,6 @@
+@php
+    $phones = explode(',', $setting->phones);
+@endphp
 <footer class="footer">
     <div class="footer__wrapper">
         <img src="{{ asset('images/logo.svg') }}" alt="" class="footer__logo">
@@ -25,7 +28,7 @@
                     <li class="footer-main-menu__item menu__item">
                         <a href="contacts" class="footer-main-menu__link menu__link">Контакты</a>
                     </li>
-                    <li class="footer-main-menu__item menu__item">
+                    {{-- <li class="footer-main-menu__item menu__item">
                         <a href="" class="footer-main-menu__link menu__link">Отели</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
@@ -33,7 +36,7 @@
                     </li>
                     <li class="footer-main-menu__item menu__item">
                         <a href="" class="footer-main-menu__link menu__link">Визы</a>
-                    </li>
+                    </li> --}}
                     <li class="footer-main-menu__item menu__item">
                         <a href="about-company" class="footer-main-menu__link menu__link">О компании</a>
                     </li>
@@ -46,11 +49,11 @@
                 </ul>
             </div>
             <div class="footer__corporation-info">
-                <a href="tel:+7 (812) 957-01-85">+7 (812) 957-01-85</a>
-                <a href="tel:+7 (812) 702-77-85">+7 (812) 702-77-85</a>
-                <a href="mailto:info@mercury-europe.ru">info@mercury-europe.ru</a>
+                <a href="tel:{{ $phones[0] }}">{{ $phones[0] }}</a>
+                <a href="tel:{{ $phones[1] }}">{{ $phones[1] }}</a>
+                <a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
                 <p class="footer-corporation__info">
-                    Санкт-Петербург, 7-я Красноармейская ул, дом 7 пом 7Н, домофон 3
+                    {{ $setting->address }}
                 </p>
             </div>
         </div>
@@ -68,7 +71,7 @@
                 </li>
             </ul>
             <div class="footer__messangers">
-                <a href="" class="footer-messanger__icon footer-messanger__telegram">
+                <a href="{{ $setting->telegram }}" class="footer-messanger__icon footer-messanger__telegram">
                     <svg width="21" height="19" viewBox="0 0 21 19" fill="inherit"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -76,7 +79,7 @@
                             fill="inherit" />
                     </svg>
                 </a>
-                <a href="" class="footer-messanger__icon footer-messanger__whatsapp">
+                <a href="{{ $setting->whatsapp }}" class="footer-messanger__icon footer-messanger__whatsapp">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="inherit"
                         xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_85_166)">
@@ -109,12 +112,12 @@
                         alt="MasterCard"></a>
                 <a class="footer-payment-icon" href=""><img src="{{ asset('/images/visa.svg') }}"
                         alt="Visa"></a>
-                <a class="footer-payment-icon_mobile" href=""><img src="{{ asset('images/visa_mobile.svg') }}"
-                        alt="Visa"></a>
+                <a class="footer-payment-icon_mobile" href=""><img
+                        src="{{ asset('images/visa_mobile.svg') }}" alt="Visa"></a>
                 <a class="footer-payment-icon" href=""><img src="{{ asset('images/mir.svg') }}"
                         alt="МИР"></a>
-                <a class="footer-payment-icon_mobile" href=""><img
-                        src="{{ asset('images/mir_mobile.svg') }}" alt="МИР"></a>
+                <a class="footer-payment-icon_mobile" href=""><img src="{{ asset('images/mir_mobile.svg') }}"
+                        alt="МИР"></a>
             </div>
             <div class="footer__currencies">
                 <div class="currency">
@@ -155,7 +158,7 @@
         </div>
         <div class="fourth__level">
             <span class="footer__copyright">
-                © ООО «Туристическая фирма «Меркурий», 2006-2024
+                © ООО «Туристическая фирма «Меркурий», 2006-{{ date('Y') }}
             </span>
             <a href="https://visualteam.ru" class="footer__creator">Разработка: VisualTeam</a>
         </div>

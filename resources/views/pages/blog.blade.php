@@ -46,7 +46,3 @@
 
     </main>
 @endsection
-
-
-</main>
-@endsection

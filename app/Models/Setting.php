@@ -9,17 +9,14 @@ class Setting extends Model
 {
   use HasFactory;
 
-  protected $table = 'setting';
+  protected $table = 'settings';
 
   public $fillable = [
-    'phone2',
-    'email',
     'address',
-    'registration_bonuses',
-    'bonuses_send_email_number',
-    'logo',
-    'background'
+    'phones',
+    'email',
+    'whatsapp',
+    'vk',
+    'telegram',
   ];
-
-
 }
