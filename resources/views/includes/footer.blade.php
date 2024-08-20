@@ -7,12 +7,12 @@
         <div class="second__level">
             <div class="footer-menu">
                 <ul class="footer__menu menu">
-                    <li class="footer-menu__item menu__item"> <a href="/tourist"
-                            class="footer-menu__link menu__link">Туристам</a>
+                    <li class="footer-menu__item menu__item"> <a href="/pages/{{ $pages->find(2)->url }}"
+                            class="footer-menu__link menu__link">{{ $pages->find(2)->title }}</a>
                     </li>
                     </li>
-                    <li class="footer-menu__item menu__item"> <a href="/agency"
-                            class="footer-menu__link menu__link">Агенствам</a>
+                    <li class="footer-menu__item menu__item"> <a href="/pages/{{ $pages->find(5)->url }}"
+                            class="footer-menu__link menu__link">{{ $pages->find(5)->title }}</a>
                     </li>
                 </ul>
             </div>
@@ -26,7 +26,8 @@
                         <a href="blogs" class="footer-main-menu__link menu__link">Блог</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="contacts" class="footer-main-menu__link menu__link">Контакты</a>
+                        <a href="{{ $pages->find(4)->url }}"
+                            class="footer-main-menu__link menu__link">{{ $pages->find(4)->title }}</a>
                     </li>
                     {{-- <li class="footer-main-menu__item menu__item">
                         <a href="" class="footer-main-menu__link menu__link">Отели</a>
@@ -38,13 +39,14 @@
                         <a href="" class="footer-main-menu__link menu__link">Визы</a>
                     </li> --}}
                     <li class="footer-main-menu__item menu__item">
-                        <a href="about-company" class="footer-main-menu__link menu__link">О компании</a>
+                        <a href="/pages/{{ $pages->find(1)->url }}"
+                            class="footer-main-menu__link menu__link">{{ $pages->find(1)->title }}</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
                         <a href="" class="footer-main-menu__link menu__link">Ранее бронирование</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="" class="footer-main-menu__link menu__link">Спецредложение</a>
+                        <a href="" class="footer-main-menu__link menu__link">Спецпредложение</a>
                     </li>
                 </ul>
             </div>

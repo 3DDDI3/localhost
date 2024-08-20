@@ -1,43 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Services;
+namespace App\Http\Controllers\Admin\Lending;
 
-use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
+use App\Models\Lending\TourType;
+use App\Models\Lending\TourTypes;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
 
-class AdvController extends Controller
+class TypeController extends Controller
 {
-    public $PATH = 'services.advs';
-    public $TITLE = ['Реклама', 'рекламы'];
+    public $PATH = 'lending.tours.types';
+    public $TITLE = ['Типы', 'типа'];
 
     public function index(Request $request)
     {
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $selectedPage = null;
-        $selectedTour = null;
-
-        $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+        $objects = TourTypes::all();
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = TourTypes::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();
         }
 
         if ($id = $request->delete) {
-            $item = Infografika::find($id);
+            $item = TourTypes::find($id);
             $item->delete();
             AdminEventLogs::log($item, $id);
             return redirect()->back()->with('message', 'Удалено');
         }
 
-        return view('admin.modules.' . $path . '.index', compact(
-            'objects',
-            'path',
-            'title',
-        ));
+        return view('admin.modules.' . $path . '.index', compact('objects', 'path', 'title'));
     }
 
     public function edit(Request $request, $id = null)
@@ -45,25 +39,21 @@ class AdvController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $object = $id ? Infografika::find($id) : new Infografika();
+        $object = $id ? TourTypes::find($id) : new TourTypes();
+
+        if (empty($object)) $object = new TourType();
 
         if ($request->isMethod('post')) {
+
             $object->fill(
                 $request->only(
                     [
-                        'title',
-                        'text',
-                        'subtitle',
-                        'about_id',
-                        'tour_id'
+                        'type',
                     ]
                 )
             );
 
             $object->save();
-
-            if ($request->file('icon') != null)
-                FileUpload::uploadImage('icon', Infografika::class, 'icon', $object->id, 377, 377, '/images/tours/statistic_icons/', request: $request);
 
             AdminEventLogs::log($object, $id);
 
@@ -74,7 +64,6 @@ class AdvController extends Controller
             'object',
             'path',
             'title',
-            'tours',
         ));
     }
 }

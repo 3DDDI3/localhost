@@ -22,9 +22,14 @@ class Page extends Model
         'definition',
     ];
 
-    public function attachedPages()
+    public function attachedPage()
     {
         return $this->hasMany(AttachedPage::class)->first();
+    }
+
+    public function attachedPages()
+    {
+        return $this->hasMany(AttachedPage::class);
     }
 
     public function infografika()

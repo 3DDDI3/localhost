@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\FileUpload;
 use App\Models\Gallery;
+use App\Models\Lending\Country;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
-use App\Models\Service\Country;
+use App\Models\Lending\TourType;
+use App\Models\Lending\TourTypes;
 use App\Models\User\AdminEventLogs;
 
 class ToursController extends Controller
@@ -48,7 +50,24 @@ class ToursController extends Controller
 
         if (empty($object)) $object = new Tour();
 
-        $countries = TourCountry::all();
+        $countries = Country::all();
+
+        $tourTypes = collect();
+
+        foreach (TourTypes::orderBy('type')->get() as $tourType) {
+            $tourTypes->push((object)[
+                "id" => $tourType->id,
+                "name" => $tourType->type,
+            ]);
+        }
+
+        $selectedTourTypes = collect();
+
+        if ($object->tourType()->count() > 0)
+            foreach ($object->tourType()->get() as $tourType) {
+                if ($tourType->tourType()->count() == 0) continue;
+                $selectedTourTypes->push($tourType->tourType()->first()->id);
+            }
 
         $select_head = !empty($object->id) && $object->country()->count() > 0 ? $object->country()->first()->country()->first()->name : null;
 
@@ -96,6 +115,14 @@ class ToursController extends Controller
                 }
             }
 
+
+            if (count($request->input('tour_types')) > 0) {
+                TourType::where(['tour_id' => $object->id])->delete();
+                foreach ($request->input('tour_types')  as $typeId) {
+                    TourType::create(['tour_type_id' => (int)$typeId, "tour_id" => $object->id]);
+                }
+            }
+
             AdminEventLogs::log($object, $id);
 
             return redirect()->route('admin.' . $this->PATH . '.edit', ['id' => $object->id])->with('message', 'Сохранено');
@@ -107,7 +134,9 @@ class ToursController extends Controller
             'title',
             'countries',
             'select_head',
-            'images'
+            'images',
+            'tourTypes',
+            'selectedTourTypes',
         ));
     }
 }

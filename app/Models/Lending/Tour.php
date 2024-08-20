@@ -4,6 +4,7 @@ namespace App\Models\Lending;
 
 use App\Models\Gallery;
 use App\Models\Service\Country;
+use App\Models\Services\Infografika;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,7 +31,7 @@ class Tour extends Model
 
     public function infografika(): HasMany
     {
-        return $this->hasMany(infografika::class);
+        return $this->hasMany(Infografika::class);
     }
 
     public function programs(): HasMany
@@ -41,6 +42,11 @@ class Tour extends Model
     public function gallery(): HasMany
     {
         return $this->hasMany(Gallery::class, "item_id", "id")->where(['item_type' => 'tour']);
+    }
+
+    public function tourType(): HasMany
+    {
+        return $this->hasMany(TourType::class);
     }
 
     protected $fillable = [

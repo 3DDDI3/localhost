@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Lending\NewsController;
 use App\Http\Controllers\Admin\Lending\PageController;
 use App\Http\Controllers\Admin\Lending\ProgramsController;
 use App\Http\Controllers\Admin\Lending\ToursController;
+use App\Http\Controllers\Admin\Lending\TypeController;
 use App\Http\Controllers\Admin\Services\AdvController;
 use App\Http\Controllers\Admin\Services\DocumentController;
 use App\Http\Controllers\Admin\Services\InfografikaController;
@@ -99,6 +100,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 Route::group(['prefix' => 'tours', 'as' => 'tours.'], function () {
                     Route::get('/', [ToursController::class, 'index'])->name('index');
                     Route::match(['get', 'post'], '/edit/{id?}', [ToursController::class, 'edit'])->name('edit');
+
+                    Route::group(['prefix' => 'types', 'as' => 'types.'], function () {
+                        Route::get('/', [TypeController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit/{id?}', [TypeController::class, 'edit'])->name('edit');
+                    });
 
                     Route::group(['prefix' => 'countries', 'as' => 'countries.'], function () {
                         Route::get('/', [CountryController::class, 'index'])->name('index');

@@ -26,6 +26,13 @@
                 'select' => $countries,
             ])
 
+            {!! \App\Helpers\GenerateForm::makeMultipleSelect(
+                'Типы тура',
+                'tour_types',
+                $tourTypes->all(),
+                $selectedTourTypes->all(),
+            ) !!}
+
             @include('admin.includes.textbox', [
                 'label' => 'Описание тура:',
                 'name' => 'description',

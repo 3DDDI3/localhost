@@ -18,32 +18,13 @@
             </div>
             <div class="agency-useful-links">
                 <h1 class="agency-useful-links__header">Полезное: </h1>
-                <ul class="agency-useful-links__menu menu">
-                    <li class="agency-useful-links__item menu__item">
-                        <a href="./documents.html" class="agency-useful-links__link menu__link">Страхование</a>
-                    </li>
-                    <li class="agency-useful-links__item menu__item">
-                        <a href="./tours.html" class="agency-useful-links__link menu__link">Рекламные туры</a>
-                    </li>
-                    <li class="agency-useful-links__item menu__item">
-                        <a href="./documents.html" class="agency-useful-links__link menu__link">Сотрудничество</a>
-                    </li>
-                    <li class="agency-useful-links__item menu__item">
-                        <a href="./documents.html" class="agency-useful-links__link menu__link">Документы</a>
-                    </li>
-                    <li class="agency-useful-links__item menu__item">
-                        <a href="./documents.html" class="agency-useful-links__link menu__link">Способы оплаты</a>
-                    </li>
-                    <li class="agency-useful-links__item menu__item">
-                        <a href="./documents.html" class="agency-useful-links__link menu__link">Партнерская программа</a>
-                    </li>
-                </ul>
+                <x-blocks.attached-page :pages="$object->attachedPages()->orderBy('rating', 'desc')->get()" />
             </div>
         </div>
         <div class="agency-documents">
             <h3 class="agency-documents__header">Документы:</h3>
             <div class="agency-documents__list">
-                <x-templates.document title="Агентский догово">
+                <x-templates.document title="Агентский договор">
                     <x-icons.pdf />
                 </x-templates.document>
                 <x-templates.document

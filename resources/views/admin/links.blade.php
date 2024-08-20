@@ -49,6 +49,12 @@
         ])
 
         @include('admin.includes.menu.item', [
+            'route' => 'admin.lending.tours.types.index',
+            'name' => 'Типы',
+            'data' => 'types',
+        ])
+
+        @include('admin.includes.menu.item', [
             'route' => 'admin.lending.tours.countries.index',
             'name' => 'Страны',
             'data' => 'countries',
@@ -84,11 +90,11 @@
         'data' => 'documents',
     ])
 
-    @include('admin.includes.menu.item', [
+    {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.services.advs.index',
         'name' => 'Реклама',
         'data' => 'advs',
-    ])
+    ]) --}}
 
 </x-Admin.NavBar>
 

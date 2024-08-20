@@ -47,6 +47,32 @@ class PageController extends Controller
                 ]);
                 break;
 
+            case 'agentstvam':
+                $breadCrumbs->push((object)[
+                    'name' => $object->title,
+                    'url' => $object->url,
+                ]);
+
+                return view('pages.agency', [
+                    'object' => $object,
+                    'breadcrumbs' => $breadCrumbs,
+                ]);
+                break;
+
+            case 'kontakty':
+                $breadCrumbs->push((object)[
+                    'name' => $object->title,
+                    'url' => $object->url,
+                ]);
+
+                return view('pages.contacts', [
+                    'object' => $object,
+                    'breadcrumbs' => $breadCrumbs,
+                ]);
+                break;
+
+
+
             default:
                 // return view('error.404');
                 break;

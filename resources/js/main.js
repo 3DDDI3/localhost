@@ -638,7 +638,7 @@ $(function () {
         }
     }).mount();
 
-    // ymaps.ready(init);
+    if ($("#map").length > 0) ymaps.ready(init);
 });
 
 

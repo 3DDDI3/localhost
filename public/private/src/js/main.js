@@ -125,30 +125,6 @@ $(document).ready(function () {
             });
         },
     });
-
-    $("select[name='infografika_tour']").on("change", function () {
-        if ($(this).val() > 0) {
-            location.href = `?tour_id=${$(this).val()}`;
-        }
-    });
-
-    $("select[name='tour_id']").on("change", function () {
-        $("select[name='attached_pages'] option").prop("selected", 0);
-    })
-
-    // $(".chosen-container").on("click", function () {
-    //     if ($(this).find(".chosen-single span").text() == "Не выбрано") {
-    //     //    $($("select[name='tour_id'] option")[0]).text("asdasdasdasd");
-    //         $($(this).find(".chosen-results li")[0]).text("Не выбрано");
-    //     }
-    // });
-
-    $("select[name='attached_pages']").on("change", function () {
-        console.log($(this));
-        $($("select[name='tour_id'] option")[0]).prop("selectedIndex", 0);
-        $("select[name='tour_id']").parent(".input_block").find(".chosen-single span").text("Не выбрано");
-    });
-
 });
 
 $(".file-uploader__section.ui-sortable").sortable({
@@ -678,3 +654,29 @@ $(".js-bonus-accrual__button").on("click", function () {
         },
     });
 });
+
+$("select[name='infografika_tour']").on("change", function () {
+    if ($(this).val() > 0) {
+        location.href = `?tour_id=${$(this).val()}`;
+    }
+});
+
+$("select[name='infografika_page']").on("change", function () {
+    $("select[name='attached_pages'] option").prop("selected", 0);
+})
+
+$("select[name='attached_pages']").on("change", function () {
+    if ($(this).val() != 0) $("a.chosen-single span").text("Не выбрано");
+});
+
+$(".chosen-container").on("click", function () {
+    Array.from($(".chosen-results li")).forEach((e) => {
+        $(e).removeClass("result-selected");
+    });
+    $($(".chosen-results li")[0]).addClass("result-selected");
+});
+
+$(".chosen-results").on("click", function (e) {
+    if ($(e.target).text() != 'Не выбрано')
+        $("select[name='attached_pages']").prop("selectedIndex", 0);
+})

@@ -4348,7 +4348,8 @@ $(function () {
         perPage: 1
       }
     }
-  }).mount(); // ymaps.ready(init);
+  }).mount();
+  if ($("#map").length > 0) ymaps.ready(init);
 });
 
 function init() {
