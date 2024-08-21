@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->longText('description')->nullable();
-            $table->text('url')->nullable();
+            $table->longText('name')->nullable();
+            $table->text('path')->nullable();
             $table->integer('rating')->nullable()->default(0);
             $table->unsignedTinyInteger('hide')->nullable()->default(0);
             $table->timestamp('created_at')->useCurrent();

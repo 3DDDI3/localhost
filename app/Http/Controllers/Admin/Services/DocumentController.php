@@ -45,22 +45,14 @@ class DocumentController extends Controller
 
         $object = $id ? File::find($id) : new File();
 
-        // if ($object->id == null) new File();
-
-        $doc = collect([
-            (object)[
-                'id' => $object->id,
-                'name' => $object->url
-            ]
-        ]);
-
         if ($request->isMethod('post')) {
-            $object->fill($request->only(['description',]));
-
+            if ($object == null) $object = new File();
+            $object->fill($request->only(['name']));
+            
             $object->save();
 
             if ($request->file('file') != null)
-                FileUpload::uploadFile('file', $object, 'url', $object->id, '/storage/files');
+                FileUpload::uploadFile('file', $object, 'path', $object->id, '/storage/files');
 
             AdminEventLogs::log($object, $id);
 
@@ -71,7 +63,6 @@ class DocumentController extends Controller
             'object',
             'path',
             'title',
-            'doc',
         ));
     }
 }

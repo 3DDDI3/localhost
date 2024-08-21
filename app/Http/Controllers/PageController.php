@@ -20,7 +20,7 @@ class PageController extends Controller
 
         $personal = Personal::query()->orderBy('rating', 'desc')->get();
 
-        $object = Page::query()->where(['url' => $url])->first();
+        $object = Page::query()->where(['url' => $url])->first();  
 
         switch ($url) {
             case 'o-kompanii':

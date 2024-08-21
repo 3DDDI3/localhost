@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Catalog\CatalogTags;
 use App\Models\Location\Storage\CatalogStorage;
+use PhpOffice\PhpSpreadsheet\Shared\OLE\PPS\Root;
 
 class AdminAjax extends Controller
 {
@@ -71,7 +72,7 @@ class AdminAjax extends Controller
         $object = $className::find($id);
 
         $object->alt = $value;
-        
+
         $object->save();
 
 
@@ -172,8 +173,8 @@ class AdminAjax extends Controller
     {
         $object = $className::find($id);
 
-        if ($object && !empty($object->$field)) {
-            unlink(ROOT . $path . '/' . $object->$field);
+        if ($object) {
+            unlink(public_path() . '/' . $path . '/' . $object->path);
             $object->$field = null;
             $object->save();
             echo 'success';

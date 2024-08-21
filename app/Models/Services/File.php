@@ -12,7 +12,7 @@ class File extends Model
     protected $table = 'files';
 
     protected $fillable = [
-        'description',
-        'url',
+        'name',
+        'path',
     ];
 }

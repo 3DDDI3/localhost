@@ -10,11 +10,18 @@
 
             @include('admin.includes.textbox', [
                 'label' => 'Описание:',
-                'name' => 'description',
-                'value' => $object->description ?? '',
+                'name' => 'name',
+                'value' => $object->name ?? '',
             ])
 
-            {!! \App\Helpers\GenerateForm::makeFile('Документ', 'file', $doc->all()[0], '/storage/files') !!}
+            {!! \App\Helpers\GenerateForm::makeFile(
+                'Документ',
+                'file',
+                $object,
+                '/storage/files',
+                accept: '.doc,.docx,.pdf',
+                field: 'path'
+            ) !!}
 
             {{-- @dd($pages->all()[0]->id) --}}
 

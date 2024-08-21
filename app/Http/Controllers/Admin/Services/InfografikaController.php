@@ -32,8 +32,7 @@ class InfografikaController extends Controller
         if ($request->input("page_id") != null) {
             $objects = Infografika::where(['about_id' => $request->input("page_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
             $selectedPage = Page::where('id', 1)->first()->title;
-        } else
-            $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+        }
 
         if (!empty($objects->tour_id))
             $selectedTour = $objects->first()->tour()->title;

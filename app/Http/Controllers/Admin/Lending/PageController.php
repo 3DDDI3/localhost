@@ -62,8 +62,8 @@ class PageController extends Controller
 
         foreach (Document::orderBy('rating', 'desc')->get() as $doc) {
             $docs->push((object)[
-                "id" => $doc->first()->id,
-                "name" => $doc->first()->description
+                "id" => $doc->id,
+                "name" => $doc->description
             ]);
         }
 

@@ -662,8 +662,10 @@ $("select[name='infografika_tour']").on("change", function () {
 });
 
 $("select[name='infografika_page']").on("change", function () {
-    $("select[name='attached_pages'] option").prop("selected", 0);
-})
+    if ($(this).val() > 0) {
+        location.href = `?page_id=${$(this).val()}`;
+    }
+});
 
 $("select[name='attached_pages']").on("change", function () {
     if ($(this).val() != 0) $("a.chosen-single span").text("Не выбрано");
@@ -680,3 +682,4 @@ $(".chosen-results").on("click", function (e) {
     if ($(e.target).text() != 'Не выбрано')
         $("select[name='attached_pages']").prop("selectedIndex", 0);
 })
+
