@@ -1,44 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Services;
+namespace App\Http\Controllers\Admin\Lending;
 
-use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
-use App\Models\Lending\Adv;
+use App\Models\Lending\Status;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
 
-class AdvController extends Controller
+class StatusController extends Controller
 {
-    public $PATH = 'services.advs';
-    public $TITLE = ['Реклама', 'рекламы'];
+    public $PATH = 'lending.tours.status';
+    public $TITLE = ['Статусы', 'статуса'];
 
     public function index(Request $request)
     {
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $selectedPage = null;
-        $selectedTour = null;
-
-        $objects = Adv::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+        $objects = Status::query()->orderBy('rating', 'desc')->get();
 
         if ($request->search) {
-            $objects = $objects->where('title', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = Status::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();
         }
 
         if ($id = $request->delete) {
-            $item = Adv::find($id);
+            $item = Status::find($id);
             $item->delete();
             AdminEventLogs::log($item, $id);
             return redirect()->back()->with('message', 'Удалено');
         }
 
-        return view('admin.modules.' . $path . '.index', compact(
-            'objects',
-            'path',
-            'title',
-        ));
+        return view('admin.modules.' . $path . '.index', compact('objects', 'path', 'title'));
     }
 
     public function edit(Request $request, $id = null)
@@ -46,21 +38,20 @@ class AdvController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $object = $id ? Adv::find($id) : new Adv();
+        $object = $id ? Status::find($id) : new Status();
+
+        if (empty($object)) $object = new Status();
 
         if ($request->isMethod('post')) {
             $object->fill(
-                $request->only(([
-                    'title',
-                    'subtitle',
-                    'text',
-                ]))
+                $request->only(
+                    [
+                        'name',
+                    ]
+                )
             );
 
             $object->save();
-
-            if ($request->file('img') != null)
-                FileUpload::uploadImage('img', Adv::class, 'img', $object->id, 1348, null, '/images/advs', request: $request);
 
             AdminEventLogs::log($object, $id);
 

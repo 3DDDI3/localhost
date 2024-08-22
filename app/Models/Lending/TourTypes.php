@@ -14,4 +14,9 @@ class TourTypes extends Model
     protected $fillable = [
         'type',
     ];
+
+    public function toursCount(): int
+    {
+        return $this->hasMany(TourType::class, 'tour_id', 'id')->count();
+    }
 }

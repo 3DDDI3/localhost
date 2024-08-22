@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('advs', function (Blueprint $table) {
             $table->id();
             $table->string('title', 1000)->nullable();
-            $table->string('subtile', 1000)->nullable();
+            $table->string('subtitle', 1000)->nullable();
             $table->longText('text')->nullable();
+            $table->text('img')->nullable();
+            $table->tinyInteger('hide')->nullable()->default(0);
+            $table->integer('rating')->nullable()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
         });

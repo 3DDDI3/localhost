@@ -25,4 +25,5 @@
         </div>
         <x-sliders.popular-tours />
     </div>
+    <button data-href="./tours.html" class="popular-tours__mobile-button">Все туры</button>
 </div>

@@ -18,7 +18,7 @@ class TypeController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = TourTypes::all();
+        $objects = TourTypes::query()->orderBy('rating', 'desc')->get();
 
         if ($request->search) {
             $objects = TourTypes::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();

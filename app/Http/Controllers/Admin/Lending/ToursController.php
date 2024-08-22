@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Helpers\FileUpload;
 use App\Models\Gallery;
 use App\Models\Lending\Country;
+use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
+use App\Models\Lending\TourStatus;
 use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
 use App\Models\User\AdminEventLogs;
@@ -69,9 +71,16 @@ class ToursController extends Controller
                 $selectedTourTypes->push($tourType->tourType()->first()->id);
             }
 
-        $select_head = !empty($object->id) && $object->country()->count() > 0 ? $object->country()->first()->country()->first()->name : null;
+        $countryHead = !empty($object->id) && $object->country()->count() > 0 ? $object->country()->first()->country()->first()->name : null;
 
         $images = Gallery::where(['item_id' => 1, 'item_type' => 1])->get();
+
+        $status = Status::query()->orderBy('rating', 'desc')->get();
+
+        $statusHead = null;
+
+        if (!empty($object->tourStatus()->first()))
+            $statusHead = $object->tourStatus()->status()->name;
 
         if ($request->isMethod('post')) {
 
@@ -115,13 +124,20 @@ class ToursController extends Controller
                 }
             }
 
+            if ($request->input('status') > 0) {
+                TourStatus::query()->where(['tour_id' => $object->id])->delete();
+                $status = TourStatus::create([
+                    'status_id' => $request->input('status'),
+                    'tour_id' => $object->id,
+                ]);
+            }
 
-            if (count($request->input('tour_types')) > 0) {
+            if (!empty($request->input('tour_types'))) {
                 TourType::where(['tour_id' => $object->id])->delete();
                 foreach ($request->input('tour_types')  as $typeId) {
                     TourType::create(['tour_type_id' => (int)$typeId, "tour_id" => $object->id]);
                 }
-            }
+            } else TourType::where(['tour_id' => $object->id])->delete();
 
             AdminEventLogs::log($object, $id);
 
@@ -133,10 +149,12 @@ class ToursController extends Controller
             'path',
             'title',
             'countries',
-            'select_head',
             'images',
             'tourTypes',
             'selectedTourTypes',
+            'status',
+            'statusHead',
+            'countryHead',
         ));
     }
 }

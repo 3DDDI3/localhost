@@ -21,9 +21,17 @@
             ])
 
             @include('admin.includes.select', [
+                'label' => 'Статус:',
+                'name' => 'status',
+                'select' => $status,
+                'select_head' => $statusHead,
+            ])
+
+            @include('admin.includes.select', [
                 'label' => 'Страна:',
                 'name' => 'select',
                 'select' => $countries,
+                'select_head' => $countryHead,
             ])
 
             {!! \App\Helpers\GenerateForm::makeMultipleSelect(

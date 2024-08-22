@@ -22,26 +22,20 @@
             </div>
         </div>
         <div class="agency-documents">
-            <h3 class="agency-documents__header">Документы:</h3>
-            <div class="agency-documents__list">
-                @foreach ($object->attachedFiles()->get() as $file)
-                    <x-templates.document :title="$file->file()->first()->description">
-                        @if (preg_match('/(.docx)|(.doc)|(.pdf)"/', $file->file()->first()->url))
-                            <x-icons.pdf />
-                        @else
-                            <x-icons.word />
-                        @endif
-                    </x-templates.document>
-                @endforeach
-
-                {{-- <x-templates.document title="Агентский договор">
-                    <x-icons.pdf />
-                </x-templates.document>
-                <x-templates.document
-                    title="Решение о финансовом обеспечении туроператора (Турпомощь) с
-          01.04.24 по 01.04.25">
-                    <x-icons.word /></x-templates.document> --}}
-            </div>
+            @if ($object->attachedPages()->count() > 0)
+                <h3 class="agency-documents__header">Документы:</h3>
+                <div class="agency-documents__list">
+                    @foreach ($object->attachedFiles()->get() as $file)
+                        <x-templates.document :title="$file->file()->first()?->name">
+                            @if (preg_match('/(.docx)|(.doc)|(.pdf)"/', $file->file()->first()?->url))
+                                <x-icons.pdf />
+                            @else
+                                <x-icons.word />
+                            @endif
+                        </x-templates.document>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <x-blocks.offer />

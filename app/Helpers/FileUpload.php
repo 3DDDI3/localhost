@@ -135,7 +135,7 @@ class FileUpload
         }
     }
 
-    public static function uploadImage($inputName, $class, $field, $id, $width, $height, $path = '/storage', $webp = false, Request $request = null)
+    public static function uploadImage($inputName, $class, $field, $id, $width = null, $height = null, $path = '/storage', $webp = false, Request $request = null)
     {
 
         $filePath = $_FILES[$inputName]['tmp_name'];

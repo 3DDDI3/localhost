@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 20 2024 г., 14:09
+-- Время создания: Авг 22 2024 г., 12:19
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -548,7 +548,44 @@ INSERT INTO `admin_event_logs` (`id`, `action`, `path`, `user_id`, `item_id`, `i
 (401, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-20 11:02:06', '2024-08-20 11:02:06'),
 (402, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-20 11:02:57', '2024-08-20 11:02:57'),
 (403, 'create', 'lending.news', '4', '1', 'App\\Models\\Lending\\News', '2024-08-20 11:08:48', '2024-08-20 11:08:48'),
-(404, 'update', 'lending.news', '4', '1', 'App\\Models\\Lending\\News', '2024-08-20 11:08:59', '2024-08-20 11:08:59');
+(404, 'update', 'lending.news', '4', '1', 'App\\Models\\Lending\\News', '2024-08-20 11:08:59', '2024-08-20 11:08:59'),
+(405, 'create', 'lending.news', '4', '2', 'App\\Models\\Lending\\News', '2024-08-20 11:44:49', '2024-08-20 11:44:49'),
+(406, 'update', 'lending.news', '4', '2', 'App\\Models\\Lending\\News', '2024-08-20 11:45:20', '2024-08-20 11:45:20'),
+(407, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-20 11:59:36', '2024-08-20 11:59:36'),
+(408, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-20 11:59:41', '2024-08-20 11:59:41');
+INSERT INTO `admin_event_logs` (`id`, `action`, `path`, `user_id`, `item_id`, `item_model`, `created_at`, `updated_at`) VALUES
+(409, 'update', 'services.infografika', '4', '10', 'App\\Models\\Services\\Infografika', '2024-08-20 13:14:53', '2024-08-20 13:14:53'),
+(410, 'update', 'services.infografika', '4', '10', 'App\\Models\\Services\\Infografika', '2024-08-20 13:14:59', '2024-08-20 13:14:59'),
+(411, 'update', 'services.documents', '4', '4', 'App\\Models\\Services\\File', '2024-08-20 14:18:36', '2024-08-20 14:18:36'),
+(412, 'update', 'services.documents', '4', '3', 'App\\Models\\Services\\File', '2024-08-20 14:18:46', '2024-08-20 14:18:46'),
+(413, 'update', 'services.documents', '4', '3', 'App\\Models\\Services\\File', '2024-08-20 14:19:16', '2024-08-20 14:19:16'),
+(414, 'update', 'services.documents', '4', '3', 'App\\Models\\Services\\File', '2024-08-20 14:20:35', '2024-08-20 14:20:35'),
+(415, 'update', 'services.documents', '4', '3', 'App\\Models\\Services\\File', '2024-08-20 14:20:46', '2024-08-20 14:20:46'),
+(416, 'update', 'services.documents', '4', '3', 'App\\Models\\Services\\File', '2024-08-20 14:21:43', '2024-08-20 14:21:43'),
+(417, 'create', 'services.documents', '4', '5', 'App\\Models\\Services\\File', '2024-08-21 12:30:40', '2024-08-21 12:30:40'),
+(418, 'update', 'services.documents', '4', '4', 'App\\Models\\Services\\File', '2024-08-21 12:47:40', '2024-08-21 12:47:40'),
+(419, 'update', 'services.documents', '4', '4', 'App\\Models\\Services\\File', '2024-08-21 12:48:10', '2024-08-21 12:48:10'),
+(420, 'create', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-21 14:07:02', '2024-08-21 14:07:02'),
+(421, 'update', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-21 14:08:10', '2024-08-21 14:08:10'),
+(422, 'update', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-21 14:23:55', '2024-08-21 14:23:55'),
+(423, 'update', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-21 14:23:59', '2024-08-21 14:23:59'),
+(424, 'update', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-21 14:26:12', '2024-08-21 14:26:12'),
+(425, 'update', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-21 14:40:47', '2024-08-21 14:40:47'),
+(426, 'create', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 07:59:01', '2024-08-22 07:59:01'),
+(427, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 07:59:04', '2024-08-22 07:59:04'),
+(428, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 07:59:07', '2024-08-22 07:59:07'),
+(429, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:08:51', '2024-08-22 08:08:51'),
+(430, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:08:56', '2024-08-22 08:08:56'),
+(431, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:09:52', '2024-08-22 08:09:52'),
+(432, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:10:12', '2024-08-22 08:10:12'),
+(433, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:19:14', '2024-08-22 08:19:14'),
+(434, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:20:38', '2024-08-22 08:20:38'),
+(435, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:21:10', '2024-08-22 08:21:10'),
+(436, 'update', 'services.infografika', '4', '10', 'App\\Models\\Services\\Infografika', '2024-08-22 08:21:55', '2024-08-22 08:21:55'),
+(437, 'update', 'services.infografika', '4', '10', 'App\\Models\\Services\\Infografika', '2024-08-22 08:22:10', '2024-08-22 08:22:10'),
+(438, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:23:49', '2024-08-22 08:23:49'),
+(439, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:57:33', '2024-08-22 08:57:33'),
+(440, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:57:46', '2024-08-22 08:57:46');
 
 -- --------------------------------------------------------
 
@@ -559,11 +596,21 @@ INSERT INTO `admin_event_logs` (`id`, `action`, `path`, `user_id`, `item_id`, `i
 CREATE TABLE `advs` (
   `id` bigint UNSIGNED NOT NULL,
   `title` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `subtile` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `subtitle` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `text` longtext COLLATE utf8mb4_general_ci,
+  `img` text COLLATE utf8mb4_general_ci,
+  `hide` tinyint DEFAULT '0',
+  `rating` int DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `advs`
+--
+
+INSERT INTO `advs` (`id`, `title`, `subtitle`, `text`, `img`, `hide`, `rating`, `created_at`, `updated_at`) VALUES
+(1, 'Hard Rock', 'HotelMaldives', '<p>Это больше, чем просто роскошный курорт<br></p>', NULL, 0, 0, '2024-08-22 07:59:01', '2024-08-22 09:12:36');
 
 -- --------------------------------------------------------
 
@@ -615,7 +662,7 @@ INSERT INTO `attached_pages` (`id`, `page_id`, `attached_page_id`, `rating`, `hi
 (24, 1, 2, 0, 0, '2024-08-19 08:11:14', '2024-08-19 08:11:14'),
 (47, 2, 10, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
 (48, 2, 9, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
-(49, 2, 8, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
+(49, 2, 8, 10, 0, '2024-08-19 12:23:47', '2024-08-20 13:43:47'),
 (50, 2, 7, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
 (51, 2, 6, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
 (52, 2, 3, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
@@ -696,8 +743,8 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `files` (
   `id` bigint UNSIGNED NOT NULL,
-  `description` longtext COLLATE utf8mb4_general_ci,
-  `url` text COLLATE utf8mb4_general_ci,
+  `name` longtext COLLATE utf8mb4_general_ci,
+  `path` text COLLATE utf8mb4_general_ci,
   `rating` int DEFAULT '0',
   `hide` tinyint UNSIGNED DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -708,9 +755,8 @@ CREATE TABLE `files` (
 -- Дамп данных таблицы `files`
 --
 
-INSERT INTO `files` (`id`, `description`, `url`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
-(3, 'asdasd', 'nobi (3).sql', 0, 0, '2024-08-19 11:06:57', '2024-08-20 08:49:57'),
-(4, '123123', 'nobi (2).sql', 0, 0, '2024-08-19 11:08:54', '2024-08-19 15:13:11');
+INSERT INTO `files` (`id`, `name`, `path`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
+(1, '<p>Агентский договор</p>', NULL, 0, 0, '2024-08-21 14:22:20', '2024-08-21 14:41:21');
 
 -- --------------------------------------------------------
 
@@ -770,12 +816,12 @@ CREATE TABLE `infografika` (
 --
 
 INSERT INTO `infografika` (`id`, `tour_id`, `about_id`, `icon`, `title`, `text`, `subtitle`, `rating`, `hide`) VALUES
-(5, 1, 1, 'images/tours/statistic_icons//4KM0Fuvb1hRxLsouG7SQdVMcKsbHpvQCf0G0JsOo.svg', 'Работаем с 2004 года', NULL, NULL, NULL, 0),
+(5, NULL, 1, 'images/tours/statistic_icons//4KM0Fuvb1hRxLsouG7SQdVMcKsbHpvQCf0G0JsOo.svg', 'Работаем с 2004 года', NULL, NULL, NULL, 0),
 (6, NULL, 1, 'images/tours/statistic_icons//IBqamQWLfUDIu2gb8ojoTQGtZKTfQjSJy2masY5k.svg', 'Создаем пакетные туры и индивидуальные программы', NULL, NULL, NULL, 0),
 (7, NULL, 1, 'images/tours/statistic_icons//0VZxE6tQTa29qjgf0Dmq1OirhpCYqSrBE0KyMgIP.svg', 'Работаем с проверенными и надежными партнерами по всему миру', NULL, NULL, NULL, 0),
 (8, NULL, 1, 'images/tours/statistic_icons//QJyrIMRvLwJA2f8XwqhnvLEnWAsxSenTAk4y1oxr.svg', 'Наша команда – это квалифицированные менеджеры с опытом работы от 10 лет', NULL, NULL, NULL, 0),
 (9, NULL, 1, 'images/tours/statistic_icons//UQ8I5MvIZ8xljbKmvGorbW6zHSbcDaeA5gIY7qO3.svg', 'Наш опыт и знание туристического рынка позволяют формировать для туристов интересные программы и выгодные цены', NULL, NULL, NULL, 0),
-(10, NULL, 1, 'images/tours/statistic_icons//eYgYh7wQNNWLTotyGluY2HtVMWwsWch05ZBm4hO8.svg', 'Наши туристы страхуются в стабильных страховых компаниях: «ЕВРОИНС» и «АльфаСтрахование»11', NULL, NULL, NULL, 0);
+(10, NULL, 1, 'images/tours/statistic_icons//jf4v4yz6XaNyFmpgZiOwj8lGEOe7XDgdqTOIZHXF.svg', 'Наши туристы страхуются в стабильных страховых компаниях: «ЕВРОИНС» и «АльфаСтрахование»', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -806,15 +852,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (177, '2024_08_12_110730_create_about_table', 2),
 (178, '2024_08_13_101823_create_tour_statistic_info', 2),
 (179, '2024_08_16_110335_create_personal_table', 2),
-(183, '2024_08_16_121346_create_files_table', 4),
 (187, '2024_08_16_115416_create_pages_table', 5),
 (188, '2024_08_16_120704_create_attached_pages_table', 6),
 (190, '2024_08_13_101823_create_infografika_table', 7),
 (194, '2024_08_19_101108_create_attached_files_table', 8),
 (195, '2024_08_19_120145_create_settings_table', 8),
-(196, '2024_08_20_115414_create_advs_table', 9),
 (197, '2024_08_20_125537_create_tour_types_table', 10),
-(203, '2024_08_20_130037_create_tour_type_table', 11);
+(203, '2024_08_20_130037_create_tour_type_table', 11),
+(205, '2024_08_16_121346_create_files_table', 12),
+(208, '2024_08_20_115414_create_advs_table', 13);
 
 -- --------------------------------------------------------
 
@@ -835,6 +881,13 @@ CREATE TABLE `news` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `news`
+--
+
+INSERT INTO `news` (`id`, `url`, `text`, `image`, `title`, `preview_text`, `preview_image`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
+(2, 'test', '<p>test</p>', 'images/news//gmMx0jR6eb2kHFspwv0kAsBeCFpDaSmiPYfcidEb.png', 'test', '<p>test</p>', 'images/news//qeiYHiXrwdw0tJS4umbdNkncCSCFmGwkzt9nlKGn.jpg', 0, 0, '2024-08-20 11:44:49', '2024-08-20 11:45:20');
 
 -- --------------------------------------------------------
 
@@ -946,12 +999,12 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `requests` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1038,19 +1091,19 @@ INSERT INTO `settings` (`id`, `address`, `phones`, `email`, `whatsapp`, `telegra
 
 CREATE TABLE `slider` (
   `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `text2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `preview` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fact1` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fact2` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fact3` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `text2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `preview` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fact1` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fact2` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fact3` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `hide` int DEFAULT NULL,
   `rating` int DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `slider`
@@ -1069,14 +1122,14 @@ INSERT INTO `slider` (`id`, `title`, `text`, `text2`, `image`, `preview`, `fact1
 
 CREATE TABLE `slider2` (
   `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `hide` int DEFAULT NULL,
   `rating` int DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `slider2`
@@ -1094,14 +1147,14 @@ INSERT INTO `slider2` (`id`, `title`, `text`, `image`, `hide`, `rating`, `update
 
 CREATE TABLE `specs` (
   `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `hide` int DEFAULT '0',
   `rating` int DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `specs`
@@ -1123,13 +1176,13 @@ INSERT INTO `specs` (`id`, `title`, `text`, `image`, `hide`, `rating`, `updated_
 
 CREATE TABLE `texts` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `subtext` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `subtext` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `texts`
@@ -1192,6 +1245,13 @@ CREATE TABLE `tour_country` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Дамп данных таблицы `tour_country`
+--
+
+INSERT INTO `tour_country` (`id`, `tour_id`, `country_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2024-08-20 11:59:36', '2024-08-20 11:59:41');
+
 -- --------------------------------------------------------
 
 --
@@ -1253,7 +1313,7 @@ CREATE TABLE `tour_type` (
 --
 
 INSERT INTO `tour_type` (`id`, `tour_type_id`, `tour_id`, `created_at`, `updated_at`) VALUES
-(11, 2, 1, '2024-08-20 11:02:57', '2024-08-20 11:02:57');
+(13, 2, 1, '2024-08-20 11:59:41', '2024-08-20 11:59:41');
 
 -- --------------------------------------------------------
 
@@ -1577,13 +1637,13 @@ ALTER TABLE `admin_access_rights`
 -- AUTO_INCREMENT для таблицы `admin_event_logs`
 --
 ALTER TABLE `admin_event_logs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=405;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
 
 --
 -- AUTO_INCREMENT для таблицы `advs`
 --
 ALTER TABLE `advs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `attached_files`
@@ -1619,7 +1679,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `gallery`
@@ -1637,13 +1697,13 @@ ALTER TABLE `infografika`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `pages`
@@ -1715,7 +1775,7 @@ ALTER TABLE `tours`
 -- AUTO_INCREMENT для таблицы `tour_country`
 --
 ALTER TABLE `tour_country`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `tour_days`
@@ -1733,7 +1793,7 @@ ALTER TABLE `tour_programs`
 -- AUTO_INCREMENT для таблицы `tour_type`
 --
 ALTER TABLE `tour_type`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `tour_types`

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tour_types', function (Blueprint $table) {
+        Schema::create('status', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 1000);
-            $table->tinyInteger('rating')->nullable()->default(0);
+            $table->string('name', '255')->nullable();
+            $table->integer('rating')->nullable()->default(0);
             $table->tinyInteger('hide')->nullable()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tour_types');
+        Schema::dropIfExists('status');
     }
 };

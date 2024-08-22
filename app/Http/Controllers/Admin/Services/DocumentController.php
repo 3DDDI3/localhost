@@ -48,7 +48,7 @@ class DocumentController extends Controller
         if ($request->isMethod('post')) {
             if ($object == null) $object = new File();
             $object->fill($request->only(['name']));
-            
+            dd($object);
             $object->save();
 
             if ($request->file('file') != null)

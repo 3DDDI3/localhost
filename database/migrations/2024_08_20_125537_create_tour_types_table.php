@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('tour_types', function (Blueprint $table) {
             $table->id();
             $table->string('type', 1000)->nullable();
+            $table->tinyInteger('rating')->nullable()->default(0);
+            $table->tinyInteger('hide')->nullable()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
         });

@@ -5,15 +5,13 @@ namespace App\Models\Lending;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Adv extends Model
+class Status extends Model
 {
     use HasFactory;
 
-    protected $table = "advs";
+    protected $table = "status";
 
     protected $fillable = [
-        'title',
-        'text',
-        'subtitle',
+        'name',
     ];
 }

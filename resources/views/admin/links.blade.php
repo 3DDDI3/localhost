@@ -10,20 +10,20 @@
         'route' => 'admin.lending.slider.index',
         'name' => 'категории',
         'data' => 'slider',
-    ]) --}}
+    ])
 
-    {{-- @include('admin.includes.menu.item', ['route' => 'admin.lending.slider2.index', 'name' => 'слайдер 2']) --}}
-    {{-- @include('admin.includes.menu.item', [
+    @include('admin.includes.menu.item', ['route' => 'admin.lending.slider2.index', 'name' => 'слайдер 2'])
+    @include('admin.includes.menu.item', [
         'route' => 'admin.lending.specs.index',
         'name' => 'характеристики',
         'data' => 'specs',
     ]) --}}
 
-    @include('admin.includes.menu.item', [
+    {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.lending.pages.index',
         'name' => 'страницы',
         'data' => 'pages',
-    ])
+    ]) --}}
 
     @include('admin.includes.menu.item', [
         'route' => 'admin.lending.blogs.index',
@@ -52,6 +52,12 @@
             'route' => 'admin.lending.tours.types.index',
             'name' => 'Типы',
             'data' => 'types',
+        ])
+
+        @include('admin.includes.menu.item', [
+            'route' => 'admin.lending.tours.status.index',
+            'name' => 'Статусы',
+            'data' => 'status',
         ])
 
         @include('admin.includes.menu.item', [
@@ -90,11 +96,11 @@
         'data' => 'documents',
     ])
 
-    {{-- @include('admin.includes.menu.item', [
+    @include('admin.includes.menu.item', [
         'route' => 'admin.services.advs.index',
         'name' => 'Реклама',
         'data' => 'advs',
-    ]) --}}
+    ])
 
 </x-Admin.NavBar>
 

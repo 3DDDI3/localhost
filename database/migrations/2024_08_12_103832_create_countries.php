@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 1000);
+            $table->string('name', 1000)->nullable();
+            $table->tinyInteger('hide')->nullable()->default(0);
+            $table->tinyInteger('rating')->nullable()->default(0);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
         });
     }
 

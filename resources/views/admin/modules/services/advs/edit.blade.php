@@ -8,22 +8,31 @@
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
             @include('admin.includes.input', [
-                'label' => 'ФИО:',
-                'name' => 'name',
-                'value' => $object->name ?? '',
+                'label' => 'Заголовок:',
+                'name' => 'title',
+                'value' => $object->title ?? '',
             ])
 
             @include('admin.includes.input', [
-                'label' => 'Email:',
-                'name' => 'email',
-                'value' => $object->email ?? '',
+                'label' => 'Подзаголовок:',
+                'name' => 'subtitle',
+                'value' => $object->subtitle ?? '',
             ])
 
             @include('admin.includes.textbox', [
-                'label' => 'Описание:',
-                'name' => 'description',
-                'value' => $object->description ?? '',
+                'label' => 'Текст:',
+                'name' => 'text',
+                'value' => $object->text ?? '',
             ])
+
+            {!! \App\Helpers\GenerateForm::makeImage(
+                'Рекламное изображение<br>(рекомендуемый размер 1348x484)',
+                'img',
+                $object,
+                '/storage/' . $object->img,
+                false,
+                empty($object->img) ? null : 'title',
+            ) !!}
 
             {{-- @dd($pages->all()[0]->id) --}}
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutCompanyController;
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TouristController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     // Route::get('/', 'IndexController@index');
-    Route::match(['get', 'post'], '/', 'IndexController@index');
+    Route::match(['get', 'post'], '/', [IndexController::class, 'index']);
 
     Route::prefix('pages')->group(function () {
         Route::get('/{url}', [PageController::class, 'index']);
@@ -50,9 +51,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/', [ToursController::class, 'index']);
         Route::get('/{url}', [ToursController::class, 'tour']);
     });
-
-    Route::get('agency', [AgencyController::class, 'index']);
-    Route::get('tourist', [TouristController::class, 'index']);
 
     include('admin.php');
 });

@@ -22,10 +22,12 @@
                         @include('admin.includes.actions.show')
                         @include('admin.includes.actions.edit')
                         @include('admin.includes.actions.delete')
-                        @include('admin.includes.sortable.rating')
                     </div>
                 </div>
-            @endforeach
+            @endforeach         
+
+            {{-- @include('admin.includes.paginate.total') --}}
         </div>
-    @endif
+    @endif  
+    {{ $objects->links() }}
 @endsection

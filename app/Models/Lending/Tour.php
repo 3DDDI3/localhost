@@ -3,8 +3,10 @@
 namespace App\Models\Lending;
 
 use App\Models\Gallery;
+use App\Models\Lending\Country as LendingCountry;
 use App\Models\Service\Country;
 use App\Models\Services\Infografika;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use PhpParser\ErrorHandler\Collecting;
 
 class Tour extends Model
 {
@@ -47,6 +50,16 @@ class Tour extends Model
     public function tourType(): HasMany
     {
         return $this->hasMany(TourType::class);
+    }
+
+    public function tourTypes(): Collection
+    {
+        return LendingCountry::query()->where(['hide' => 0])->orderBy('id')->get();
+    }
+
+    public function tourStatus()
+    {
+        return $this->hasMany(TourStatus::class, 'tour_id', 'id')->first();
     }
 
     protected $fillable = [

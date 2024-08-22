@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Lending\Page;
-use App\Models\Services\File;
+use App\Models\Lending\Status;
+use App\Models\Lending\Tour;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,20 +15,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attached_files', function (Blueprint $table) {
+        Schema::create('tour_status', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Page::class)
+            $table->foreignIdFor(Tour::class)
                 ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreignIdFor(File::class)
-                ->nullable()
-                ->constrained()
+            $table->unsignedBigInteger('status_id')->nullable();
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('status')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->integer('rating')->nullable()->default(0);
-            $table->unsignedTinyInteger('hide')->nullable()->default(0);
+            $table->tinyInteger('hide')->nullable()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
         });
@@ -41,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attached_files');
+        Schema::dropIfExists('tour_status');
     }
 };

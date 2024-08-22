@@ -17,7 +17,7 @@ class CountryController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = Country::orderBy('name')->get();
+        $objects = Country::query()->orderBy('rating', 'desc')->get();
 
         if ($request->search) {
             $objects = Country::where("name", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->get();
