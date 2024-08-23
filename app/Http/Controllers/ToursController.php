@@ -12,9 +12,21 @@ class ToursController extends Controller
 {
     public function index()
     {
+
+        $breadCrumbs = collect([
+            (object)[
+                'name' => 'Главная',
+                'url' => '/',
+            ],
+        ]);
+
         if (!empty(request()->input("type_id"))) {
             $tours = TourType::query()->where([
                 'tour_type_id' => request()->input("type_id")
+            ]);
+            $breadCrumbs->push((object)[
+                'name' => 'Главная',
+                'url' => '/',
             ]);
         }
 
@@ -26,23 +38,6 @@ class ToursController extends Controller
 
         dd($tours->get()[0]->tourType()->get());
 
-        $breadCrumbs = collect([
-            (object)[
-                'name' => 'Главная',
-                'url' => '/',
-            ],
-            (object)[
-                'name' => 'Страны',
-                'url' => '/tours'
-            ],
-            (object)[
-                'name' => 'Индия',
-                'url' => '/tours'
-            ],
-            (object)[
-                'name' => 'Экскурсионный тур: «Золотой треугольник»',
-            ],
-        ]);
 
         $tours = Tour::query()->orderBy('rating', 'desc')->paginate(1);
 
