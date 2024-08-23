@@ -20,7 +20,7 @@ class BlogController extends Controller
 
         $objects = Blog::orderBy('rating', 'desc')->orderBy('id', 'desc');
 
-        $objects = $objects->paginate(1);
+        $objects = $objects->paginate(10);
 
         if ($request->search) {
             $objects = Blog::where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->get();

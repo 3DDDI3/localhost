@@ -897,8 +897,6 @@ input {
         align-items: center;
         justify-content: center;
         border: 1px solid #b3aeb3;
-        width: 45px;
-        height: 45px;
         cursor: pointer;
 
         .pagination__link {
@@ -907,6 +905,7 @@ input {
             font-weight: 700;
             line-height: 24px;
             letter-spacing: -0.02em;
+            padding: 11.5px 17px;
             display: flex;
         }
 

@@ -3,7 +3,7 @@
         <div class="news__headding page-headding">
             <span class="news-headding__title page-headding__title">{{ $attributes->get('title') }}<span
                     class="news-headding__subtitle page-headding__subtitle">{{ $attributes->get('subtitle') }}</span></span>
-            <button class="news__all-news" data-href="./news.html">
+            <button class="news__all-news" data-href="news">
                 <span> Все новости
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -22,6 +22,6 @@
                 </span>
             </button>
         </div>
-        <x-sliders.news />
+        <x-sliders.news :news="$attributes->get('news')" />
     </div>
 </div>

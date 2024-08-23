@@ -77,6 +77,15 @@
                 'value' => $object->preview_nights ?? '',
             ])
 
+            {!! \App\Helpers\GenerateForm::makeImage(
+                'Фоновое изображение<br>размер 500x312',
+                'preview_image',
+                $object,
+                '/storage/' . $object->preview_image,
+                false,
+                empty($object->preview_image) ? null : 'title',
+            ) !!}
+
             @include('admin.includes.textbox', [
                 'label' => 'Описание стоимости тура:',
                 'name' => 'tour_cost_info',
@@ -100,7 +109,7 @@
             @endphp
 
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Фоновое изображение',
+                'Фоновое изображение<br>размер 1348x494',
                 'background_image',
                 $object,
                 '/storage/' . $background_image,

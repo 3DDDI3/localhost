@@ -5,8 +5,6 @@ namespace App\Models\Lending;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\Beta;
 
 class TourType extends Model
 {
@@ -19,9 +17,9 @@ class TourType extends Model
         'tour_id',
     ];
 
-    public function tour(): BelongsTo
+    public function tour()
     {
-        return $this->belongsTo(Tour::class);
+        return $this->belongsTo(Tour::class)?->first();
     }
 
     public function tourType(): BelongsTo

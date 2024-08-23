@@ -17,10 +17,10 @@ class CountryController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = Country::query()->orderBy('rating', 'desc')->get();
+        $objects = Country::query()->orderBy('rating', 'desc')->paginate(10);
 
         if ($request->search) {
-            $objects = Country::where("name", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->get();
+            $objects = Country::where("name", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->paginate(10);
         }
 
         if ($id = $request->delete) {

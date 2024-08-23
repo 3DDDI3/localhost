@@ -25,12 +25,12 @@ class InfografikaController extends Controller
         $selectedTour = null;
 
         if ($request->input("tour_id") != null)
-            $objects = Infografika::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Infografika::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
         else
-            $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate();
 
         if ($request->input("page_id") != null) {
-            $objects = Infografika::where(['about_id' => $request->input("page_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Infografika::where(['about_id' => $request->input("page_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate();
             $selectedPage = Page::where('id', 1)->first()->title;
         }
 

@@ -3,26 +3,27 @@
     <h1>{{ $title[0] }}</h1>
 
     @include('admin.includes.search')
-    
+
     @include('admin.includes.add')
 
     @if ($objects)
         @include('admin.includes.sortable.info')
         <div class="sortable_list">
-        @foreach ($objects as $object)
-            <div class="list_item">
-                <div class="list_item-info">
-                    {{-- <h4>{{ $object->id }})</h4> --}}
-                    {{ $object->type }}
+            @foreach ($objects as $object)
+                <div class="list_item">
+                    <div class="list_item-info">
+                        {{-- <h4>{{ $object->id }})</h4> --}}
+                        {{ $object->type }}
+                    </div>
+                    <div class="list_item-actions">
+                        @include('admin.includes.sortable.rating')
+                        @include('admin.includes.actions.show')
+                        @include('admin.includes.actions.edit')
+                        @include('admin.includes.actions.delete')
+                    </div>
                 </div>
-                <div class="list_item-actions">
-                    @include('admin.includes.sortable.rating')
-                    @include('admin.includes.actions.show')
-                    @include('admin.includes.actions.edit')
-                    @include('admin.includes.actions.delete')
-                </div>
-            </div>
-        @endforeach
-        {{-- </div> --}}
+            @endforeach
+        </div>
+        {{ $objects->onEachSide(1)->links() }}
     @endif
 @endsection

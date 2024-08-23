@@ -1,46 +1,19 @@
 <section class="popular-tours__slider splide">
     <div class="splide__track">
         <ul class="splide__list">
-            <li class="splide__slide">
-                <x-templates.tour type="хит" alt="" img="{{ asset('images/card1.png') }}"
-                    info="Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду"
-                    title="Отдых в Као-Лаке"
-                    text=" От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - п
-                        роживание в выбранном отеле, индивидуальны трансферы, мед. страховки."
-                    nights="7-12 ночей" price="от 120 587 ₽" url="tours/1" />
-            </li>
-            <li class="splide__slide">
-                <x-templates.tour type="хит" alt="" img="{{ asset('images/card1.png') }}"
-                    info="Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду"
-                    title="Отдых в Као-Лаке"
-                    text=" От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - п
-                            роживание в выбранном отеле, индивидуальны трансферы, мед. страховки."
-                    nights="7-12 ночей" price="от 120 587 ₽" url="tours/1" />
-            </li>
-            <li class="splide__slide">
-                <x-templates.tour type="хит" alt="" img="{{ asset('images/card1.png') }}"
-                    info="Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду"
-                    title="Отдых в Као-Лаке"
-                    text=" От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - п
-                            роживание в выбранном отеле, индивидуальны трансферы, мед. страховки."
-                    nights="7-12 ночей" price="от 120 587 ₽" url="tours/1" />
-            </li>
-            <li class="splide__slide">
-                <x-templates.tour type="хит" alt="" img="{{ asset('images/card1.png') }}"
-                    info="Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду"
-                    title="Отдых в Као-Лаке"
-                    text=" От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - п
-                            роживание в выбранном отеле, индивидуальны трансферы, мед. страховки."
-                    nights="7-12 ночей" price="от 120 587 ₽" url="tours/1" />
-            </li>
-            <li class="splide__slide">
-                <x-templates.tour type="хит" alt="" img="{{ asset('images/card1.png') }}"
-                    info="Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду"
-                    title="Отдых в Као-Лаке"
-                    text=" От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - п
-                            роживание в выбранном отеле, индивидуальны трансферы, мед. страховки."
-                    nights="7-12 ночей" price="от 120 587 ₽" url="tours/1" />
-            </li>
+            @foreach ($attributes->get('tourStatuses') as $tourStatus)
+                @php
+                    $tourStatus = $tourStatus->tour();
+                @endphp
+                <li class="splide__slide">
+                    <x-templates.tour type="хит" alt="" class="Популярные туры"
+                        img="/storage/{{ $tourStatus->preview_image }}" info="{{ $tourStatus->preview_title }}"
+                        title="{{ $tourStatus->preview_header }}" text="{{ $tourStatus->preview_text }}"
+                        nights="{{ $tourStatus->preview_nights }}" price="{{ $tourStatus->preview_price }}"
+                        url="tours/{{ $tourStatus->url }}" />
+                </li>
+            @endforeach
+
         </ul>
     </div>
 </section>

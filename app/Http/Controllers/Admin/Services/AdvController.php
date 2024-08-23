@@ -21,7 +21,7 @@ class AdvController extends Controller
         $selectedPage = null;
         $selectedTour = null;
 
-        $objects = Adv::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+        $objects = Adv::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
 
         if ($request->search) {
             $objects = $objects->where('title', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');

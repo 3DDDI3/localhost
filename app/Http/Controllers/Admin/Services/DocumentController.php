@@ -18,7 +18,7 @@ class DocumentController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = File::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+        $objects = File::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
 
         if ($request->search) {
             $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');

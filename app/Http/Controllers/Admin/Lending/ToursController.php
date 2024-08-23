@@ -28,7 +28,7 @@ class ToursController extends Controller
         $objects = Tour::orderBy('rating', 'desc')->orderBy('id', 'desc');
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = $objects->where('title', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
         }
 
         if ($id = $request->delete) {
@@ -38,7 +38,7 @@ class ToursController extends Controller
             return redirect()->back()->with('message', 'Удалено');
         }
 
-        $objects = $objects->get();
+        $objects = $objects->paginate(10);
 
         return view('admin.modules.' . $path . '.index', compact('objects', 'path', 'title'));
     }
@@ -79,7 +79,7 @@ class ToursController extends Controller
 
         $statusHead = null;
 
-        if (!empty($object->tourStatus()->first()))
+        if (!empty($object->tourStatus()))
             $statusHead = $object->tourStatus()->status()->name;
 
         if ($request->isMethod('post')) {
@@ -107,6 +107,9 @@ class ToursController extends Controller
 
             if ($request->file('background_image') != null)
                 FileUpload::uploadImage('background_image', Tour::class, 'background_image', $object->id, 377, 377, '/images/tours', request: $request);
+
+            if ($request->file('preview_image') != null)
+                FileUpload::uploadImage('preview_image', Tour::class, 'preview_image', $object->id, 377, 377, '/images/tours', request: $request);
 
             if ($request->file('galary') != null && !empty($object))
                 FileUpload::uploadGallery('galary', $object->id, "tour", path: "/images/tours/gallary", request: $request);

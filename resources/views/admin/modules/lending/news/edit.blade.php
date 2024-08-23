@@ -32,7 +32,7 @@
             @endphp
 
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Изображение',
+                'Изображение<br>размер 1015х432',
                 'image',
                 $object,
                 '/storage/' . $image,
@@ -41,7 +41,7 @@
             ) !!}
 
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Изоабражение на превью',
+                'Изоабражение на превью<br>размер 359х162',
                 'preview_image',
                 $object,
                 '/storage/' . $preview_image,

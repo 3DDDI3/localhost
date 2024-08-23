@@ -24,10 +24,8 @@
                         @include('admin.includes.actions.delete')
                     </div>
                 </div>
-            @endforeach         
-
-            {{-- @include('admin.includes.paginate.total') --}}
+            @endforeach
         </div>
-    @endif  
-    {{ $objects->links() }}
+        {{ $objects->onEachSide(1)->links() }}
+    @endif
 @endsection

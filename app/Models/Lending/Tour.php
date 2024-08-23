@@ -59,7 +59,8 @@ class Tour extends Model
 
     public function tourStatus()
     {
-        return $this->hasMany(TourStatus::class, 'tour_id', 'id')->first();
+        if ($this->hasMany(TourStatus::class, 'tour_id', 'id')->count() > 0) return $this->hasMany(TourStatus::class, 'tour_id', 'id')->first();
+        else new TourStatus();
     }
 
     protected $fillable = [

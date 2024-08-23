@@ -5,7 +5,7 @@
         <div class="popular-tours__headding">
             <span class="popular-tours-headding__title">Популярные
                 <span class="popular-tours-headding__subtitle">туры</span></span>
-            <button class="popular-tours__all-tours" data-href="./tours.html">
+            <button class="popular-tours__all-tours" data-href="tours">
                 Все туры
                 <svg width="17" height="17" viewBox="0 0 17 17" fill="inheri"
                     xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
                 </svg>
             </button>
         </div>
-        <x-sliders.popular-tours />
+        <x-sliders.popular-tours :tourStatuses="$attributes->get('tourStatuses')" />
     </div>
-    <button data-href="./tours.html" class="popular-tours__mobile-button">Все туры</button>
+    <button data-href="tours" class="popular-tours__mobile-button">Все туры</button>
 </div>

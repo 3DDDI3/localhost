@@ -217,6 +217,7 @@
                     </button>
                 </div>
             </div>
+
             {{-- <div class="services__others">
                 <img src="{{ asset('images/other-services.png') }}" alt="">
                 <div class="services-others__blurred-block"></div>
@@ -237,13 +238,14 @@
                     </div>
                 </div>
             </div> --}}
+
         </div>
 
-        <x-blocks.popular-tours />
+        <x-blocks.popular-tours :$tourStatuses />
 
         <x-sliders.advertisement :$advs />
 
-        <x-blocks.news title="Новости" subtitle="туризма" />
+        <x-blocks.news :$news title="Новости" subtitle="туризма" />
 
         <x-blocks.offer />
 

@@ -18,10 +18,10 @@ class NewsController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = News::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+        $objects = News::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
 
         if ($request->search) {
-            $objects = News::where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->get();
+            $objects = News::where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->paginate(10);
         }
 
         if ($id = $request->delete) {
@@ -60,10 +60,10 @@ class NewsController extends Controller
             $object->save();
 
             if ($request->file('image') != null)
-                FileUpload::uploadImage('image', News::class, 'image', $object->id, 377, 377, '/images/news/', request: $request);
+                FileUpload::uploadImage('image', News::class, 'image', $object->id, 1015, 432, '/images/news', request: $request);
 
             if ($request->file('preview_image') != null)
-                FileUpload::uploadImage('preview_image', News::class, 'preview_image', $object->id, 377, 377, '/images/news/', request: $request);
+                FileUpload::uploadImage('preview_image', News::class, 'preview_image', $object->id, 359, 162, '/images/news', request: $request);
 
             AdminEventLogs::log($object, $id);
 

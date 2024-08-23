@@ -2,7 +2,7 @@
 @section('content')
     <h1>{{ $title[0] }}</h1>
 
-    {{-- @include('admin.includes.search') --}}
+    @include('admin.includes.search')
     @include('admin.includes.add')
 
     @if ($objects)
@@ -27,5 +27,6 @@
                 </div>
             @endforeach
         </div>
+        {{ $objects->onEachSide(1)->links() }}
     @endif
 @endsection

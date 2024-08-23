@@ -14,16 +14,14 @@ class TourCountry extends Model
 
     protected $table = "tour_country";
 
-    public $timestamps = false;
-
     public $fillable = [
         'tour_id',
         'country_id'
     ];
 
-    public function tour(): BelongsTo
+    public function tour()
     {
-        return $this->belongsTo(Tour::class);
+        return $this->belongsTo(Tour::class)->first();
     }
     public function country(): BelongsTo
     {

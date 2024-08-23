@@ -45,5 +45,6 @@
                 </div>
             @endforeach
         </div>
+        {{ $objects->onEachSide(1)->links() }}
     @endif
 @endsection

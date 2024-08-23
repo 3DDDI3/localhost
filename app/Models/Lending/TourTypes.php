@@ -17,6 +17,6 @@ class TourTypes extends Model
 
     public function toursCount(): int
     {
-        return $this->hasMany(TourType::class, 'tour_id', 'id')->count();
+        return $this->hasMany(TourType::class, 'tour_type_id', 'id')->count();
     }
 }
