@@ -3,8 +3,9 @@
         <div class="news__headding page-headding">
             <span class="news-headding__title page-headding__title">{{ $attributes->get('title') }}<span
                     class="news-headding__subtitle page-headding__subtitle">{{ $attributes->get('subtitle') }}</span></span>
-            <button class="news__all-news" data-href="news">
-                <span> Все новости
+            <button class="news__all-news"
+                data-href="{{ $attributes->get('subtitle') == 'новости' ? '/news' : '/blogs' }}">
+                <span> {{ $attributes->get('subtitle') == 'новости' ? 'Все новости' : 'Все блоги' }}
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_85_100)">

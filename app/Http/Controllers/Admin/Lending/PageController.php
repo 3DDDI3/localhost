@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Lending;
 use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Files;
+use App\Models\Lending\AttachedFiles;
 use App\Models\Lending\AttachedPage;
 use App\Models\Lending\File;
 use App\Models\Lending\Page;
@@ -63,14 +64,14 @@ class PageController extends Controller
         foreach (Document::orderBy('rating', 'desc')->get() as $doc) {
             $docs->push((object)[
                 "id" => $doc->id,
-                "name" => $doc->description
+                "name" => $doc->name
             ]);
         }
 
         $selectedDocs = collect();
 
         foreach ($object->attachedFiles()->get() as $file) {
-            $selectedDocs->push($file->id);
+            $selectedDocs->push($file->file_id);
         }
 
         $attached_pages = collect();
@@ -99,7 +100,7 @@ class PageController extends Controller
             if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
 
             if (!empty($request->input('attached_pages'))) {
-                AttachedPage::where(['page_id' => $object->id])->delete();
+                AttachedFiles::where(['page_id' => $object->id])->delete();
                 foreach ($request->input('attached_pages') as $page) {
                     if (AttachedPage::where(['page_id' => $object->id, 'attached_page_id' => $page])->get()->count() == 0)
                         AttachedPage::create(['page_id' => $object->id, 'attached_page_id' => $page]);
@@ -108,9 +109,18 @@ class PageController extends Controller
 
             $object->save();
 
-            // dd($request->file('attached_files'));
+
+            if (!empty($request->input('attached_files'))) {
+                AttachedFiles::where(['page_id' => $object->id])->delete();
+
+                foreach ($request->input('attached_files') as $page) {
+                    if (AttachedFiles::where(['page_id' => $object->id, 'file_id' => $page])->get()->count() == 0)
+                        AttachedFiles::create(['page_id' => $object->id, 'file_id' => $page]);
+                }
+            }
 
             if ($request->file('attached_files') != null) {
+
                 FileUpload::uploadFile('attached_files', Document::class, 'url', $object->id, '/storage/files/');
             }
 

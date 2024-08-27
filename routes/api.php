@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\Lending\InfografikaController;
-use Illuminate\Http\Request;
+use App\Models\Mailler;
+use App\View\Components\Blocks\ComboboxItem;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\ComponentAttributeBag;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +23,23 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::group(['namespace' => 'App\Http\Controllers\API', 'as' => 'api.'], function () {
-        Route::prefix('tours/infografika')->group(function () {
-                Route::get('/', [InfografikaController::class, 'show']);
-        });
+Route::get('files/download/{path}', function ($path) {
+        return Storage::download("files/$path");
+});
+
+Route::get('/samotur/getCountries', function () {
+        $client = new Client(['verify' => false]);
+        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_STATES&TOWNFROMINC=' . request()->input('id'));
+        $combobox = new ComboboxItem();
+        $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
+        return $combobox->render()->with(
+                ['attributes' => new ComponentAttributeBag(
+                        ['objects' => count($content) > 0 ? $content : null]
+                )]
+        );
+});
+
+Route::post('mailler/create', function () {
+        Mailler::create(['email' => request()->input('email')]);
+        return response(status: 200);
 });

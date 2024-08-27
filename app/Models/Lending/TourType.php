@@ -19,7 +19,7 @@ class TourType extends Model
 
     public function tour()
     {
-        return $this->belongsTo(Tour::class)?->first();
+        return $this->belongsTo(Tour::class);
     }
 
     public function tourType(): BelongsTo

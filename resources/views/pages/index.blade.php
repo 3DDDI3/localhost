@@ -2,8 +2,6 @@
 @section('content')
     <main>
 
-        {{-- @dd($countries[2]->toursCount()) --}}
-
         <x-sliders.main-slider />
 
         <div class="search-tours">
@@ -55,15 +53,11 @@
                                     </svg>
                                 </div>
                                 <div class="combobox__list combobox__list_invisible">
-                                    <span class="combobox__item">
-                                        Москва
-                                    </span>
-                                    <span class="combobox__item">
-                                        Санкт-Петербург
-                                    </span>
-                                    <span class="combobox__item">
-                                        Екатеринбург
-                                    </span>
+                                    @foreach ($cities as $city)
+                                        <span data-id="{{ $city->id }}" class="combobox__item">
+                                            {{ $city->name }}
+                                        </span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="search-tour__to combobox">
@@ -89,15 +83,6 @@
                                     </svg>
                                 </div>
                                 <div class="combobox__list combobox__list_invisible">
-                                    <span class="combobox__item">
-                                        Москва
-                                    </span>
-                                    <span class="combobox__item">
-                                        Санкт-Петербург
-                                    </span>
-                                    <span class="combobox__item">
-                                        Екатеринбург
-                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -150,14 +135,17 @@
                                 </svg>
                             </div>
                             <div class="combobox__list combobox__list_invisible">
-                                <span class="combobox__item">
+                                <span data-id="1" class="combobox__item">
                                     1 человек
                                 </span>
-                                <span class="combobox__item">
+                                <span data-id="2" class="combobox__item">
                                     2 человека
                                 </span>
-                                <span class="combobox__item">
+                                <span data-id="3" class="combobox__item">
                                     3 человека
+                                </span>
+                                <span data-id="4" class="combobox__item">
+                                    4 человека
                                 </span>
                             </div>
                         </div>
@@ -174,7 +162,8 @@
                 <div class="services-country-tour">
                     <h3 class="services-country-tour__title">Туры по стране</h3>
                     <x-blocks.tour-country :$countries />
-                    <button data-href="tours" class="services-country-tour__all-button">Просмотреть все страны
+                    <button data-href="/tours?country_id=*" class="services-country-tour__all-button">Просмотреть все
+                        страны
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_85_95)">
@@ -198,7 +187,7 @@
                 <div class="services-vacation-type">
                     <h3 class="services-vacation-type__title">Тур по типу отдыха</h3>
                     <x-blocks.service-vacation-type :$types />
-                    <button data-href="tours/?type=1" class="services-country-tour__all-button">
+                    <button data-href="tours?type_id=*" class="services-country-tour__all-button">
                         Просмотреть все типы
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">

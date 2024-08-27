@@ -16,10 +16,14 @@
             <div class="agency-description">
                 {!! html_entity_decode($object->text) !!}
             </div>
-            <div class="agency-useful-links">
-                <h1 class="agency-useful-links__header">Полезное: </h1>
-                <x-blocks.attached-page :pages="$object->attachedPages()->orderBy('rating', 'desc')->get()" />
-            </div>
+
+            @if ($object->attachedPages()->count() > 0)
+                <div class="agency-useful-links">
+                    <h1 class="agency-useful-links__header">Полезное: </h1>
+                    <x-blocks.attached-page :pages="$object->attachedPages()->orderBy('rating', 'desc')->get()" />
+                </div>
+            @endif
+
         </div>
         <div class="agency-documents">
             @if ($object->attachedFiles()->count() > 0)

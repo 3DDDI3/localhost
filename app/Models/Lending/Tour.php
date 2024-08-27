@@ -76,6 +76,8 @@ class Tour extends Model
         'tour_cost_info',
         'tour_additional_cost',
         'agreement_info',
-        'background_image'
+        'background_image',
+        'isHiddenTouristInfo',
+        'isHiddenCountryInfo',
     ];
 }

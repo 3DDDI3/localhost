@@ -22,11 +22,11 @@
             </div>
         </div>
         <div class="agency-documents">
-            @if ($object->attachedPages()->count() > 0)
+            @if ($object->attachedFiles()->count() > 0)
                 <h3 class="agency-documents__header">Документы:</h3>
                 <div class="agency-documents__list">
                     @foreach ($object->attachedFiles()->get() as $file)
-                        <x-templates.document :title="$file->file()->first()?->name">
+                        <x-templates.document path="{{ $file->file()->first()->path }}" :title="$file->file()->first()?->name">
                             @if (preg_match('/(.docx)|(.doc)|(.pdf)"/', $file->file()->first()?->url))
                                 <x-icons.pdf />
                             @else

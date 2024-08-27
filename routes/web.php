@@ -35,16 +35,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::prefix('news')->group(function () {
         Route::get('/', [NewsController::class, 'index']);
-        Route::get('/{id}', [NewsController::class, 'new']);
-    });
-
-    Route::prefix('contacts')->group(function () {
-        Route::get('/{url}', [ContactsController::class, 'index']);
+        Route::get('/{url}', [NewsController::class, 'new']);
     });
 
     Route::prefix('blogs')->group(function () {
         Route::get('/', [BlogsController::class, 'index']);
-        Route::get('/{id}', [BlogsController::class, 'blog']);
+        Route::get('/{url}', [BlogsController::class, 'blog']);
     });
 
     Route::prefix('tours')->group(function () {

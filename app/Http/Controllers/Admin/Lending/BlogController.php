@@ -23,7 +23,7 @@ class BlogController extends Controller
         $objects = $objects->paginate(10);
 
         if ($request->search) {
-            $objects = Blog::where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->get();
+            $objects = Blog::where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")->paginate(10);
         }
 
         if ($id = $request->delete) {

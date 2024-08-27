@@ -2,7 +2,9 @@
     <div class="popular-tours__tour-card">
         <div class="popular-tours-tour-card__headding popular-tours-tour-card__headding_dafault">
             <span class="popular-tours-tour-card__type">{{ $attributes->get('type') }}</span>
-            <img src="{{ $attributes->get('img') }}" alt="{{ $attributes->get('alt') }}">
+            @if (!empty($attributes->get('img')))
+                <img src="{{ $attributes->get('img') }}" alt="{{ $attributes->get('alt') }}">
+            @endif
             <p class="popular-tours-tour-card__name">{!! $attributes->get('info') !!}</p>
             <div class="popular-tours-tour-card__wrapper"></div>
         </div>
@@ -25,7 +27,9 @@
     <div class="tour-card">
         <div class="tour-card__headding tour-card__headding_dafault tour-card__headding_defaut">
             <span class="tour-card__type tour-card__type">{{ $attributes->get('type') }}</span>
-            <img src="{{ $attributes->get('img') }}" class="card__image" alt="{{ $attributes->get('alt') }}">
+            @if (!empty($attributes->get('img')))
+                <img src="{{ $attributes->get('img') }}" alt="{{ $attributes->get('alt') }}">
+            @endif
             <p class="tour-card__name card__name">{!! $attributes->get('info') !!}</p>
             <div class="tour-card__wrapper card__wrapper"></div>
         </div>

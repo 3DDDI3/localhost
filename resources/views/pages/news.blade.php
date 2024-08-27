@@ -17,22 +17,15 @@
                         class="news-headding__subtitle page-headding__subtitle">туризма</span></span>
             </div>
             <div class="news-list">
-                <x-templates.news url="news/1" img="{{ asset('images/news1.png') }}" alt="" date="15.04.2024"
-                    title="Авиакомпания Utair повезет туристов в Анталью и Сочи" />
-                <x-templates.news url="news/1" img="{{ asset('images/news2.png') }}" alt="" date="11.04.2024"
-                    title="Белгородский центр туризма получил Гран-при" />
-                <x-templates.news url="news/1" img="{{ asset('images/news3.png') }}" alt="" date="11.04.2024"
-                    title="На границе с Китаем в сумке туриста нашли зубы кашалота" />
-                <x-templates.news url="news/1" img="{{ asset('images/news1.png') }}" alt="" date="15.04.2024"
-                    title="Авиакомпания Utair повезет туристов в Анталью и Сочи" />
-                <x-templates.news url="news/1" img="{{ asset('images/news2.png') }}" alt="" date="11.04.2024"
-                    title="Белгородский центр туризма получил Гран-при" />
-                <x-templates.news url="news/1" img="{{ asset('images/news3.png') }}" alt="" date="11.04.2024"
-                    title="На границе с Китаем в сумке туриста нашли зубы кашалота" />
+                @foreach ($news as $new)
+                    <x-templates.news url="{{ $new->url }}" img="{{ $new->preview_image }}" alt=""
+                        date="{{ $new->created_at }}" title="{{ $new->title }}" />
+                @endforeach
+
             </div>
         </div>
 
-        <x-templates.paginator />
+        {{ $news->onEachSide(1)->links('components.paginator.index') }}
 
         <x-blocks.offer />
 

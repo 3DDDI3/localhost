@@ -10,7 +10,7 @@
         <div class="sortable_list">
             @foreach ($objects as $object)
                 <div class="list_item">
-                    <div class="list_item-info">
+                    <div class="list_item-info" style="flex-grow: 1">
                         {{-- <h4>{{ $object->id }}</h4> --}}
                         {{ $object->title }}
                         {{-- @if ($object->image)

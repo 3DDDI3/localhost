@@ -1,24 +1,20 @@
 <?php
 
-namespace App\Models\Lending;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Mailler extends Model
 {
     use HasFactory;
 
-    protected $table = 'blogs';
+    protected $table = 'mailling';
 
     protected $fillable = [
-        'text',
-        'title',
-        'preview_text',
-        'preview_image',
-        'image',
+        'email',
     ];
 
     protected function createdAt(): Attribute

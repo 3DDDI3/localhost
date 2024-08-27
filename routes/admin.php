@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Lending\ProgramsController;
 use App\Http\Controllers\Admin\Lending\StatusController;
 use App\Http\Controllers\Admin\Lending\ToursController;
 use App\Http\Controllers\Admin\Lending\TypeController;
+use App\Http\Controllers\Admin\MaiilingController;
 use App\Http\Controllers\Admin\Services\AdvController;
 use App\Http\Controllers\Admin\Services\DocumentController;
 use App\Http\Controllers\Admin\Services\InfografikaController;
@@ -123,6 +124,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                     });
                 });
             });
+
+            Route::group(['prefix' => 'mailling', 'as' => 'mailling.'], function () {
+                Route::get('/', [MaiilingController::class, 'index'])->name('index');
+            });
+
             Route::group(['prefix' => 'requests', 'as' => 'requests.'], function () {
                 Route::get('/', 'RequestsController@index')->name('index');
             });

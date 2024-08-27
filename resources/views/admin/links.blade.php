@@ -1,4 +1,4 @@
-<x-Admin.NavBar title="Лендинг" url="lending" all="{{ isset($all) && $all }}">
+<x-Admin.NavBar title="Основное" url="lending" all="{{ isset($all) && $all }}">
 
     {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.lending.text.index',
@@ -19,11 +19,11 @@
         'data' => 'specs',
     ]) --}}
 
-    {{-- @include('admin.includes.menu.item', [
+    @include('admin.includes.menu.item', [
         'route' => 'admin.lending.pages.index',
         'name' => 'страницы',
         'data' => 'pages',
-    ]) --}}
+    ])
 
     @include('admin.includes.menu.item', [
         'route' => 'admin.lending.blogs.index',
@@ -121,6 +121,12 @@
     ]) --}}
 
 </x-Admin.NavBar>
+
+@include('admin.includes.menu.item', [
+    'route' => 'admin.mailling.index',
+    'name' => 'Рассылка',
+    'data' => 'mailling',
+])
 
 @include('admin.includes.menu.item', [
     'route' => 'admin.requests.index',

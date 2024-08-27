@@ -8,6 +8,19 @@
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
 
+            <div style="margin-top: 30px">
+                @include('admin.includes.checkbox', [
+                    'label' => 'Скрыть кнопку "Информация о стране"',
+                    'name' => 'isHiddenCountryInfo',
+                    'value' => $object->isHiddenCountryInfo,
+                ])
+                @include('admin.includes.checkbox', [
+                    'label' => 'Скрыть кнопку "Памятка туристу"',
+                    'name' => 'isHiddenTouristInfo',
+                    'value' => $object->isHiddenTouristInfo,
+                ])
+            </div>
+
             @include('admin.includes.input', [
                 'label' => 'Заголовок:',
                 'name' => 'title',
@@ -78,7 +91,7 @@
             ])
 
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Фоновое изображение<br>размер 500x312',
+                'Изображение превью<br>размер 500x312',
                 'preview_image',
                 $object,
                 '/storage/' . $object->preview_image,
@@ -98,11 +111,11 @@
                 'value' => $object->tour_additional_cost ?? '',
             ])
 
-            @include('admin.includes.textbox', [
+            {{-- @include('admin.includes.textbox', [
                 'label' => 'Подробная информация при бронировании тура',
                 'name' => 'agreement_info',
                 'value' => $object->agreement_info ?? '',
-            ])
+            ]) --}}
 
             @php
                 $background_image = empty($object->background_image) ? '' : $object->background_image;

@@ -1,6 +1,7 @@
 @php
     $phones = explode(',', $setting->phones);
 @endphp
+
 <footer class="footer">
     <div class="footer__wrapper">
         <img src="{{ asset('images/logo.svg') }}" alt="" class="footer__logo">
@@ -122,47 +123,48 @@
                         alt="МИР"></a>
             </div>
             <div class="footer__currencies">
-                <div class="currency">
-                    <img class="currency-icon" src="{{ asset('images/ch.svg') }}" alt=""
-                        class="currency__image">
-                    <img class="currency-icon_mobile" src="{{ asset('images/ch_mobile.svg') }}" alt=""
-                        class="currency__image">
-                    <div class="currency__description">
-                        <span class="currency__title">CNY/RUB</span>
-                        <span class="currency__subtitle">12.47</span>
-                    </div>
+                @foreach ($currencies as $currency)
+                    <div class="currency">
+                        @switch($currency->currency)
+                            @case('CNY/RUB')
+                                <img class="currency-icon" src="{{ asset('images/ch.svg') }}" alt=""
+                                    class="currency__image">
+                                <img class="currency-icon_mobile" src="{{ asset('images/ch_mobile.svg') }}" alt=""
+                                    class="currency__image">
+                            @break
+
+                            @case('USD/RUB')
+                                <img class="currency-icon" src="{{ asset('images/usa.svg') }}" alt=""
+                                    class="currency__image">
+                                <img class="currency-icon_mobile" src="{{ asset('images/usa_mobile.svg') }}" alt=""
+                                    class="currency__image">
+                            @break
+
+                            @case('EUR/RUB')
+                                <img class="currency-icon" src="{{ asset('images/eu.svg') }}" alt=""
+                                    class="currency__image">
+                                <img class="currency-icon_mobile" src="{{ asset('images/eu_mobile.svg') }}" alt=""
+                                    class="currency__image">
+
+                                @default
+                            @endswitch
+                            <div class="currency__description">
+                                <span class="currency__title">{{ $currency->currency }}</span>
+                                <span class="currency__subtitle">{{ $currency->rate }}</span>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="currency">
-                    <img class="currency-icon" src="{{ asset('images/usa.svg') }}" alt=""
-                        class="currency__image">
-                    <img class="currency-icon_mobile" src="{{ asset('images/usa_mobile.svg') }}" alt=""
-                        class="currency__image">
-                    <div class="currency__description">
-                        <span class="currency__title">USD/RUB</span>
-                        <span class="currency__subtitle">93.44</span>
-                    </div>
-                </div>
-                <div class="currency">
-                    <img class="currency-icon" src="{{ asset('images/eu.svg') }}" alt=""
-                        class="currency__image">
-                    <img class="currency-icon_mobile" src="{{ asset('images/eu_mobile.svg') }}" alt=""
-                        class="currency__image">
-                    <div class="currency__description">
-                        <span class="currency__title">USD/RUB</span>
-                        <span class="currency__subtitle">99.80</span>
-                    </div>
-                </div>
+                <form class="footer__notification">
+                    <input type="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" name="email" placeholder="E-mail">
+                    <button type="submit">Подписаться</button>
+                </form>
             </div>
-            <form class="footer__notification">
-                <input type="text" name="email" placeholder="E-mail">
-                <button type="submit">Подписаться</button>
-            </form>
+            <div class="fourth__level">
+                <span class="footer__copyright">
+                    © ООО «Туристическая фирма «Меркурий», 2006-{{ date('Y') }}
+                </span>
+                <a href="https://visualteam.ru" class="footer__creator">Разработка: VisualTeam</a>
+            </div>
         </div>
-        <div class="fourth__level">
-            <span class="footer__copyright">
-                © ООО «Туристическая фирма «Меркурий», 2006-{{ date('Y') }}
-            </span>
-            <a href="https://visualteam.ru" class="footer__creator">Разработка: VisualTeam</a>
-        </div>
-    </div>
-</footer>
+    </footer>

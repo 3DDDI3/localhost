@@ -21,7 +21,7 @@ class TourCountry extends Model
 
     public function tour()
     {
-        return $this->belongsTo(Tour::class)->first();
+        return $this->belongsTo(Tour::class);
     }
     public function country(): BelongsTo
     {

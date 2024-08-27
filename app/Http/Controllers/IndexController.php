@@ -11,6 +11,8 @@ use App\Models\Lending\TourStatus;
 use App\Models\Lending\TourTypes;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
@@ -47,6 +49,39 @@ class IndexController extends Controller
             ->orderBy('rating', 'desc')
             ->get();
 
+        $client = new Client(['verify' => false]);
+        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_TOWNS');
+
+        $cities = collect();
+        foreach (json_decode($res->getBody()->getContents())->SearchTour_TOWNS as $city) {
+            $cities->push(
+                (object)[
+                    'id' => $city->id,
+                    'name' => $city->name,
+                ]
+            );
+        }
+
+        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+        $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
+
+        $currencies = collect();
+
+        foreach ($currencyBody as $currencyBase) {
+            if ($currencyBase->name == "RUB") {
+                foreach ($currencyBody as $currency) {
+                    if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
+                        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                        $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
+                        $currencies->push((object)[
+                            'currency' => $currency->name . "/" . $currencyBase->name,
+                            'rate' => round($currencyContent->rate, 2),
+                        ]);
+                    }
+                }
+            }
+        }
+
         return view('pages.index', compact(
             'setting',
             'advs',
@@ -54,6 +89,8 @@ class IndexController extends Controller
             'types',
             'tourStatuses',
             'news',
+            'cities',
+            'currencies',
         ));
     }
 }

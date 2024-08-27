@@ -7,7 +7,7 @@ import "@splidejs/splide/css";
 import Splide from "@splidejs/splide";
 
 $(function () {
-    let combobox, search = undefined;
+    let combobox, search, from, nights, begDate, adults, endDate, to = undefined;
 
     $(".combobox").on("click", function () {
         if (!$(this).find(".combobox__item").hasClass("combobox__item_visible")) {
@@ -42,7 +42,7 @@ $(function () {
         }
     });
 
-    $(".combobox__item").on("click", function () {
+    $(".combobox").on("click", ".combobox__list .combobox__item", function () {
         $(this).parents(".combobox").find(".combobox-header__title").css({
             "font-size": "13px",
         });
@@ -50,8 +50,38 @@ $(function () {
             "border-bottom-color": "transparent",
             // "height": "48px",
         });
+        $(this).parents(".combobox").find(".combobox-header__subtitle").css("line-height", "18.15px")
         $(this).parents(".combobox").find(".combobox-header__subtitle").text($(this).text());
+        $(this).parents(".combobox").find(".combobox-header__subtitle").data("id", $(this).data("id"));
         $(this).parents(".combobox").find(".combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
+
+        if ($(this).parents(".combobox").hasClass("search-tour__from")) {
+
+            $(".search-tour__to.combobox").find(".combobox-header__title").css("font-size", "18px");
+            $(".search-tour__to.combobox").find(".combobox-header__subtitle").css("line-height", 0);
+
+            let id = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
+            from = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
+
+            $.ajax({
+                type: "GET",
+                url: "/api/samotur/getCountries",
+                data: {
+                    id: id
+                },
+                dataType: "html",
+                success: function (response) {
+                    $(".search-tour__to .combobox__list").replaceWith(response);
+                }
+            });
+        }
+
+        if ($(this).parents(".combobox").hasClass("search-tour__to"))
+            to = $(this).parents(".combobox").find(".combobox-header__subtitle").data("id");
+
+        if ($(this).parents(".combobox").hasClass("search-tour__people-count")) {
+            adults = $(this).parents(".combobox").find(".combobox-header__subtitle").data("id");
+        }
     });
 
     $(document).on("mouseup", function (e) {
@@ -61,7 +91,7 @@ $(function () {
             });
             $(combobox).find(".combobox__list").addClass("combobox__list_invisible");
             $(combobox).find(".combobox__item").removeClass("combobox__item_visible");
-            $(combobox).find(".combobox-header__icon").css({
+            $(combobox).parents(".combobox").find(".combobox-header__icon").css({
                 "transform": "rotate(0deg)",
             });
             $(combobox).addClass("combobox__list_invisible");
@@ -103,44 +133,14 @@ $(function () {
         },
     });
 
-    $('input[name="tour_datefilter"]').daterangepicker({
-        autoUpdateInput: false,
-        "singleDatePicker": true,
-        "autoApply": true,
-        "locale": {
-            "format": "MM/DD/YYYY",
-            "applyLabel": "Сохранить",
-            "cancelLabel": "Назад",
-            "daysOfWeek": [
-                "Вс",
-                "Пн",
-                "Вт",
-                "Ср",
-                "Чт",
-                "Пт",
-                "Сб"
-            ],
-            "monthNames": [
-                "Январь",
-                "Февраль",
-                "Март",
-                "Апрель",
-                "Май",
-                "Июнь",
-                "Июль",
-                "Август",
-                "Сентябрь",
-                "Октябрь",
-                "Ноябрь",
-                "Декабрь"
-            ],
-            "firstDay": 1
-        },
-    });
-
     $('input[name="datefilter"]').on('hide.daterangepicker', function (ev, picker) {
         $(this).parents("label").find(".search-tour-dates__subtitle").text(`${picker.startDate.format('DD.MM')} - ${picker.endDate.format('DD.MM')}`);
-        $(".search-tour-nights__subtitle").text(`${Math.round(Number(picker.endDate - picker.startDate) / (1000 * 60 * 60 * 24)) - 1}`);
+
+        begDate = picker.startDate.format('YYYYMMDD');
+        endDate = picker.endDate.format('YYYYMMDD');
+        nights = Math.round(Number(picker.endDate - picker.startDate) / (1000 * 60 * 60 * 24)) - 1;
+
+        $(".search-tour-nights__subtitle").text(`${nights}`);
         $(".search-tour-nights__subtitle").removeClass("search-tour-nights__subtitle_invisible");
         $(".search-tour-nights__title").css({
             "font-size": "13px",
@@ -371,6 +371,11 @@ $(function () {
             },
             1300: {
                 perPage: 3,
+                width: '100%',
+            },
+            1400: {
+                perPage: 3,
+                width: '100%',
             },
             1550: {
                 perPage: 3,
@@ -428,13 +433,10 @@ $(function () {
             },
             500: {
                 type: "slide",
-                perPage: 2,
+                perPage: 4,
                 arrows: false,
                 gap: 31,
                 autoWidth: true,
-                padding: {
-                    left: 40,
-                },
             },
             768: {
                 type: "slide",
@@ -442,9 +444,6 @@ $(function () {
                 arrows: false,
                 gap: 31,
                 autoWidth: true,
-                padding: {
-                    left: 40,
-                },
             },
             1024: {
                 type: "slide",
@@ -452,18 +451,13 @@ $(function () {
                 arrows: false,
                 gap: 31,
                 autoWidth: true,
-                padding: {
-                    left: 40,
-                },
             },
             1350: {
                 type: "slide",
-                perPage: 'auto',
+                perPage: 4,
                 arrows: false,
-                padding: {
-                    left: 10,
-                },
-                gap: 35,
+                gap: 31,
+                autoWidth: true,
             },
             1920: {
                 type: "slide",
@@ -639,6 +633,36 @@ $(function () {
     }).mount();
 
     if ($("#map").length > 0) ymaps.ready(init);
+
+    $(".agency-document__download").on("click", function () {
+        window.location.href = `/api/files/download/${$(this).data("path")}`
+    });
+
+    $(".profile-button").on("click", function () {
+        window.location.href = "https://samo.mercury-europe.ru/search_tour?samo_action=logon";
+    });
+
+    $(".search-tour__form").on("submit", function (e) {
+        e.preventDefault();
+        window.open(`https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${begDate == undefined ? "" : begDate}&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${nights == undefined ? "" : nights}&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${nights == undefined ? "" : nights}&ADULT=${adults == undefined ? "" : adults}`);
+    });
+
+    $(".footer__notification").on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/api/mailler/create",
+            data: {
+                email: $(".footer__notification input[type='email']").val(),
+            },
+            dataType: "json",
+        });
+    });
+
+    $("input[type='search']").on("keydown", function (e) {
+        console.log(1);
+    });
+
 });
 
 

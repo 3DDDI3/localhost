@@ -84,6 +84,9 @@ class ToursController extends Controller
 
         if ($request->isMethod('post')) {
 
+            $object->isHiddenCountryInfo = 0;
+            $object->isHiddenTouristInfo = 0;
+
             $object->fill(
                 $request->only(
                     [
@@ -99,11 +102,13 @@ class ToursController extends Controller
                         'tour_cost_info',
                         'tour_additional_cost',
                         'agreement_info',
+                        'isHiddenCountryInfo',
+                        'isHiddenTouristInfo',
                     ]
                 )
             );
 
-            if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
+            $object->url = str_slug($object->title);
 
             if ($request->file('background_image') != null)
                 FileUpload::uploadImage('background_image', Tour::class, 'background_image', $object->id, 377, 377, '/images/tours', request: $request);

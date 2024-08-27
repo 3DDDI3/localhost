@@ -1,7 +1,7 @@
 <div class="agency-document">
     <div class="agency-document-info">
         {{ $slot }}
-        <p class="agency-document-info__title">{{ $attributes->get('title') }}</p>
+        <div class="agency-document-info__title">{!! html_entity_decode($attributes->get('title')) !!}</div>
     </div>
-    <button class="agency-document__download">Скачать</button>
+    <button data-path="{{ $attributes->get('path') }}" class="agency-document__download">Скачать</button>
 </div>
