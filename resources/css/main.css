@@ -1822,6 +1822,19 @@ main {
             }
         }
     }
+
+    .error-message {
+        margin: auto;
+        color: #342635;
+        font-family: "Inter", sans-serif;
+        font-size: 70px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        padding: 200px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .footer {

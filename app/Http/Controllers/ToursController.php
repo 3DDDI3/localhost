@@ -12,6 +12,27 @@ class ToursController extends Controller
 {
     public function index()
     {
+        $client = new Client(['verify' => false]);
+        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+        $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
+
+        $currencies = collect();
+
+        foreach ($currencyBody as $currencyBase) {
+            if ($currencyBase->name == "RUB") {
+                foreach ($currencyBody as $currency) {
+                    if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
+                        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                        $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
+                        $currencies->push((object)[
+                            'currency' => $currency->name . "/" . $currencyBase->name,
+                            'rate' => round($currencyContent->rate, 2),
+                        ]);
+                    }
+                }
+            }
+        }
+
         $breadCrumbs = collect([
             (object)[
                 'name' => 'Главная',
@@ -33,6 +54,8 @@ class ToursController extends Controller
                 $tourType = TourType::query()->where([
                     'tour_type_id' => request()->input("type_id")
                 ])->first();
+
+                if (!$tourType) abort(404, 'Не удалось найти туры');
 
                 $breadCrumbs->push((object)[
                     'name' => "Туры по типу отдыха",
@@ -62,6 +85,8 @@ class ToursController extends Controller
 
                 $country = Country::query()->where(['id' => request()->input('country_id')])->first();
 
+                if (!$country) abort(404, 'Не удалось найти туры',);
+
                 $breadCrumbs->push((object)[
                     'name' => "Страны",
                     'url' => '/tours?country_id=*',
@@ -87,6 +112,15 @@ class ToursController extends Controller
             $tours = Tour::query()->where(['hide' => 0])->orderBy('rating', 'desc')->paginate(12);
         }
 
+        return view('pages.tours', [
+            "tours" => $tours,
+            'breadcrumbs' => $breadCrumbs,
+            'currencies' => $currencies,
+        ]);
+    }
+
+    public function tour($url)
+    {
         $client = new Client(['verify' => false]);
         $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
         $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
@@ -108,16 +142,9 @@ class ToursController extends Controller
             }
         }
 
-        return view('pages.tours', [
-            "tours" => $tours,
-            'breadcrumbs' => $breadCrumbs,
-            'currencies' => $currencies,
-        ]);
-    }
-
-    public function tour($url)
-    {
         $tour = Tour::where(["hide" => 0, 'url' => $url])->first();
+
+        if (!$tour) abort(404, 'Не удалось найти тур');
 
         if ($tour->tourType()->count() > 0) {
             $breadCrumbs = collect([
@@ -176,33 +203,12 @@ class ToursController extends Controller
             ]);
         }
 
-        $client = new Client(['verify' => false]);
-        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
-        $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
-
-        $currencies = collect();
-
-        foreach ($currencyBody as $currencyBase) {
-            if ($currencyBase->name == "RUB") {
-                foreach ($currencyBody as $currency) {
-                    if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
-                        $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
-                        $currencies->push((object)[
-                            'currency' => $currency->name . "/" . $currencyBase->name,
-                            'rate' => round($currencyContent->rate, 2),
-                        ]);
-                    }
-                }
-            }
-        }
-
         if (!empty($tour))
             return view('pages.tour', [
                 "breadcrumbs" => $breadCrumbs,
                 "tour" => $tour,
                 'currencies' => $currencies,
             ]);
-        else return view('errors.404');
+        else abort(404, 'Не удалось найти тур');
     }
 }

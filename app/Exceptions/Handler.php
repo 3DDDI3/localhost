@@ -5,9 +5,13 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Exception;
+use GuzzleHttp\Client;
+use Collection;
 
 class Handler extends ExceptionHandler
 {
+    private $currencies;
+
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -51,10 +55,33 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        $client = new Client(['verify' => false]);
+        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+        $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
+
+        $this->currencies = collect();
+
+        foreach ($currencyBody as $currencyBase) {
+            if ($currencyBase->name == "RUB") {
+                foreach ($currencyBody as $currency) {
+                    if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
+                        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                        $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
+                        $this->currencies->push((object)[
+                            'currency' => $currency->name . "/" . $currencyBase->name,
+                            'rate' => round($currencyContent->rate, 2),
+                        ]);
+                    }
+                }
+            }
+        }
+
         if ($this->isHttpException($e)) {
-            switch($e->getStatusCode()){
-                case 404: return response()->view('errors.404', [], 404);
-                case 500: return response()->view('errors.500', [], 500);
+            switch ($e->getStatusCode()) {
+                case 404:
+                    return response()->view('errors.404', ['exception' => $e, 'currencies' => $this->currencies], 404);
+                case 500:
+                    return response()->view('errors.500', ['exception' => $e, 'currencies' => $this->currencies], 500);
             }
         }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 22 2024 г., 12:19
+-- Время создания: Авг 28 2024 г., 13:39
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -121,7 +121,13 @@ INSERT INTO `admin_access_rights` (`id`, `path`, `type`, `user_class_id`, `creat
 (337, 'services.advs', 'read', '1', NULL, NULL),
 (338, 'lending.tours.types', 'read', '1', NULL, NULL),
 (339, 'lending.tours.types', 'edit', '1', NULL, NULL),
-(340, 'lending.tours.types', 'delete', '1', NULL, NULL);
+(340, 'lending.tours.types', 'delete', '1', NULL, NULL),
+(341, 'lending.tours.status', 'edit', '1', NULL, NULL),
+(342, 'lending.tours.status', 'delete', '1', NULL, NULL),
+(343, 'lending.tours.status', 'read', '1', NULL, NULL),
+(346, 'mailling', 'edit', '1', NULL, NULL),
+(348, 'mailling', 'read', '1', NULL, NULL),
+(349, 'mailling', 'delete', '1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -585,7 +591,142 @@ INSERT INTO `admin_event_logs` (`id`, `action`, `path`, `user_id`, `item_id`, `i
 (437, 'update', 'services.infografika', '4', '10', 'App\\Models\\Services\\Infografika', '2024-08-22 08:22:10', '2024-08-22 08:22:10'),
 (438, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:23:49', '2024-08-22 08:23:49'),
 (439, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:57:33', '2024-08-22 08:57:33'),
-(440, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:57:46', '2024-08-22 08:57:46');
+(440, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 08:57:46', '2024-08-22 08:57:46'),
+(441, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 09:45:53', '2024-08-22 09:45:53'),
+(442, 'update', 'services.advs', '4', '1', 'App\\Models\\Lending\\Adv', '2024-08-22 09:52:47', '2024-08-22 09:52:47'),
+(443, 'create', 'services.advs', '4', '2', 'App\\Models\\Lending\\Adv', '2024-08-22 09:54:13', '2024-08-22 09:54:13'),
+(444, 'create', 'lending.tours.countries', '4', '3', 'App\\Models\\Lending\\Country', '2024-08-22 10:14:58', '2024-08-22 10:14:58'),
+(445, 'create', 'lending.tours.countries', '4', '4', 'App\\Models\\Lending\\Country', '2024-08-22 10:15:14', '2024-08-22 10:15:14'),
+(446, 'create', 'lending.tours.countries', '4', '5', 'App\\Models\\Lending\\Country', '2024-08-22 10:15:25', '2024-08-22 10:15:25'),
+(447, 'create', 'lending.tours.countries', '4', '6', 'App\\Models\\Lending\\Country', '2024-08-22 10:15:35', '2024-08-22 10:15:35'),
+(448, 'create', 'lending.tours.countries', '4', '7', 'App\\Models\\Lending\\Country', '2024-08-22 10:15:44', '2024-08-22 10:15:44'),
+(449, 'create', 'lending.tours.countries', '4', '8', 'App\\Models\\Lending\\Country', '2024-08-22 10:17:15', '2024-08-22 10:17:15'),
+(450, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-22 10:21:52', '2024-08-22 10:21:52'),
+(451, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-22 10:22:14', '2024-08-22 10:22:14'),
+(452, 'create', 'lending.tours.countries', '4', '1', 'App\\Models\\Lending\\Country', '2024-08-22 10:59:11', '2024-08-22 10:59:11'),
+(453, 'create', 'lending.tours.countries', '4', '2', 'App\\Models\\Lending\\Country', '2024-08-22 10:59:22', '2024-08-22 10:59:22'),
+(454, 'create', 'lending.tours.countries', '4', '3', 'App\\Models\\Lending\\Country', '2024-08-22 10:59:30', '2024-08-22 10:59:30'),
+(455, 'create', 'lending.tours.countries', '4', '4', 'App\\Models\\Lending\\Country', '2024-08-22 11:30:38', '2024-08-22 11:30:38'),
+(456, 'update', 'lending.tours.countries', '4', '4', 'App\\Models\\Lending\\Country', '2024-08-22 11:30:43', '2024-08-22 11:30:43'),
+(457, 'create', 'lending.tours.countries', '4', '5', 'App\\Models\\Lending\\Country', '2024-08-22 11:30:52', '2024-08-22 11:30:52'),
+(458, 'create', 'lending.tours.countries', '4', '6', 'App\\Models\\Lending\\Country', '2024-08-22 11:31:00', '2024-08-22 11:31:00'),
+(459, 'create', 'lending.tours.countries', '4', '7', 'App\\Models\\Lending\\Country', '2024-08-22 11:31:11', '2024-08-22 11:31:11'),
+(460, 'create', 'lending.tours.countries', '4', '8', 'App\\Models\\Lending\\Country', '2024-08-22 11:31:27', '2024-08-22 11:31:27'),
+(461, 'create', 'lending.tours.types', '4', '1', 'App\\Models\\Lending\\TourTypes', '2024-08-22 11:40:35', '2024-08-22 11:40:35'),
+(462, 'create', 'lending.tours.types', '4', '2', 'App\\Models\\Lending\\TourTypes', '2024-08-22 11:41:25', '2024-08-22 11:41:25'),
+(463, 'create', 'lending.tours.types', '4', '3', 'App\\Models\\Lending\\TourTypes', '2024-08-22 11:41:46', '2024-08-22 11:41:46'),
+(464, 'create', 'lending.tours.types', '4', '4', 'App\\Models\\Lending\\TourTypes', '2024-08-22 11:42:01', '2024-08-22 11:42:01'),
+(465, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-22 11:50:49', '2024-08-22 11:50:49'),
+(466, 'create', 'lending.tours.status', '4', '1', 'App\\Models\\Lending\\Status', '2024-08-22 12:17:12', '2024-08-22 12:17:12'),
+(467, 'update', 'lending.tours.status', '4', '1', 'App\\Models\\Lending\\Status', '2024-08-22 12:17:19', '2024-08-22 12:17:19'),
+(468, 'update', 'lending.tours.status', '4', '1', 'App\\Models\\Lending\\Status', '2024-08-22 12:18:16', '2024-08-22 12:18:16'),
+(469, 'create', 'lending.tours.status', '4', '1', 'App\\Models\\Lending\\Status', '2024-08-22 12:56:24', '2024-08-22 12:56:24'),
+(470, 'create', 'lending.tours.types', '4', '1', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:02:53', '2024-08-22 13:02:53'),
+(471, 'create', 'lending.tours.types', '4', '2', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:02', '2024-08-22 13:03:02'),
+(472, 'create', 'lending.tours.types', '4', '4', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:23', '2024-08-22 13:03:23'),
+(473, 'create', 'lending.tours.types', '4', '5', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:23', '2024-08-22 13:03:23'),
+(474, 'create', 'lending.tours.types', '4', '3', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:23', '2024-08-22 13:03:23'),
+(475, 'create', 'lending.tours.types', '4', '6', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:26', '2024-08-22 13:03:26'),
+(476, 'update', 'lending.tours.types', '4', '4', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:42', '2024-08-22 13:03:42'),
+(477, 'update', 'lending.tours.types', '4', '5', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:46', '2024-08-22 13:03:46'),
+(478, 'update', 'lending.tours.types', '4', '6', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:03:49', '2024-08-22 13:03:49'),
+(479, 'create', 'lending.tours.types', '4', '7', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:05:12', '2024-08-22 13:05:12'),
+(480, 'create', 'lending.tours.types', '4', '8', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:06:32', '2024-08-22 13:06:32'),
+(481, 'update', 'lending.tours.types', '4', '8', 'App\\Models\\Lending\\TourTypes', '2024-08-22 13:06:42', '2024-08-22 13:06:42'),
+(482, 'create', 'lending.tours.countries', '4', '9', 'App\\Models\\Lending\\Country', '2024-08-22 13:06:54', '2024-08-22 13:06:54'),
+(483, 'update', 'lending.tours.countries', '4', '9', 'App\\Models\\Lending\\Country', '2024-08-22 13:07:07', '2024-08-22 13:07:07'),
+(484, 'create', 'lending.tours.countries', '4', '10', 'App\\Models\\Lending\\Country', '2024-08-22 13:07:34', '2024-08-22 13:07:34'),
+(485, 'update', 'lending.tours.countries', '4', '10', 'App\\Models\\Lending\\Country', '2024-08-22 13:07:40', '2024-08-22 13:07:40'),
+(486, 'create', 'lending.tours.countries', '4', '11', 'App\\Models\\Lending\\Country', '2024-08-22 13:08:07', '2024-08-22 13:08:07'),
+(487, 'update', 'lending.tours.countries', '4', '11', 'App\\Models\\Lending\\Country', '2024-08-22 13:08:20', '2024-08-22 13:08:20'),
+(488, 'create', 'lending.tours.status', '4', '2', 'App\\Models\\Lending\\Status', '2024-08-22 13:08:33', '2024-08-22 13:08:33'),
+(489, 'update', 'lending.tours.status', '4', '2', 'App\\Models\\Lending\\Status', '2024-08-22 13:08:57', '2024-08-22 13:08:57'),
+(490, 'create', 'lending.tours.status', '4', '3', 'App\\Models\\Lending\\Status', '2024-08-22 13:10:36', '2024-08-22 13:10:36'),
+(491, 'update', 'lending.tours.status', '4', '3', 'App\\Models\\Lending\\Status', '2024-08-22 13:11:11', '2024-08-22 13:11:11'),
+(492, 'create', 'lending.tours.status', '4', '4', 'App\\Models\\Lending\\Status', '2024-08-22 13:19:21', '2024-08-22 13:19:21'),
+(493, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-22 13:19:36', '2024-08-22 13:19:36'),
+(494, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-22 13:21:46', '2024-08-22 13:21:46'),
+(495, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-22 13:21:51', '2024-08-22 13:21:51'),
+(496, 'create', 'lending.blogs', '4', '5', 'App\\Models\\Lending\\Blog', '2024-08-22 13:23:36', '2024-08-22 13:23:36'),
+(497, 'create', 'lending.blogs', '4', '6', 'App\\Models\\Lending\\Blog', '2024-08-22 13:23:43', '2024-08-22 13:23:43'),
+(498, 'create', 'lending.blogs', '4', '7', 'App\\Models\\Lending\\Blog', '2024-08-22 13:23:50', '2024-08-22 13:23:50'),
+(499, 'create', 'lending.blogs', '4', '8', 'App\\Models\\Lending\\Blog', '2024-08-22 13:23:57', '2024-08-22 13:23:57'),
+(500, 'create', 'lending.blogs', '4', '9', 'App\\Models\\Lending\\Blog', '2024-08-22 13:24:04', '2024-08-22 13:24:04'),
+(501, 'create', 'lending.blogs', '4', '10', 'App\\Models\\Lending\\Blog', '2024-08-22 13:24:11', '2024-08-22 13:24:11'),
+(502, 'create', 'lending.blogs', '4', '11', 'App\\Models\\Lending\\Blog', '2024-08-22 13:24:17', '2024-08-22 13:24:17'),
+(503, 'create', 'lending.blogs', '4', '12', 'App\\Models\\Lending\\Blog', '2024-08-22 13:24:25', '2024-08-22 13:24:25'),
+(504, 'create', 'lending.blogs', '4', '13', 'App\\Models\\Lending\\Blog', '2024-08-22 14:20:40', '2024-08-22 14:20:40'),
+(505, 'create', 'lending.blogs', '4', '14', 'App\\Models\\Lending\\Blog', '2024-08-22 14:20:49', '2024-08-22 14:20:49'),
+(506, 'create', 'lending.blogs', '4', '15', 'App\\Models\\Lending\\Blog', '2024-08-22 14:20:56', '2024-08-22 14:20:56'),
+(507, 'create', 'lending.blogs', '4', '16', 'App\\Models\\Lending\\Blog', '2024-08-22 14:21:06', '2024-08-22 14:21:06'),
+(508, 'create', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-23 08:56:01', '2024-08-23 08:56:01'),
+(509, 'create', 'lending.tours', '4', '3', 'App\\Models\\Lending\\Tour', '2024-08-23 08:56:08', '2024-08-23 08:56:08'),
+(510, 'create', 'lending.tours', '4', '4', 'App\\Models\\Lending\\Tour', '2024-08-23 08:56:16', '2024-08-23 08:56:16'),
+(511, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-23 09:06:16', '2024-08-23 09:06:16'),
+(512, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-23 09:13:30', '2024-08-23 09:13:30'),
+(513, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-23 09:17:04', '2024-08-23 09:17:04'),
+(514, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-23 09:17:26', '2024-08-23 09:17:26'),
+(515, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-23 09:17:37', '2024-08-23 09:17:37'),
+(516, 'update', 'lending.tours', '4', '3', 'App\\Models\\Lending\\Tour', '2024-08-23 09:22:46', '2024-08-23 09:22:46'),
+(517, 'update', 'lending.tours', '4', '4', 'App\\Models\\Lending\\Tour', '2024-08-23 09:23:51', '2024-08-23 09:23:51'),
+(518, 'update', 'lending.news', '4', '2', 'App\\Models\\Lending\\News', '2024-08-23 10:06:34', '2024-08-23 10:06:34'),
+(519, 'update', 'lending.news', '4', '2', 'App\\Models\\Lending\\News', '2024-08-23 10:10:24', '2024-08-23 10:10:24'),
+(520, 'update', 'lending.news', '4', '2', 'App\\Models\\Lending\\News', '2024-08-23 10:11:05', '2024-08-23 10:11:05'),
+(521, 'create', 'lending.news', '4', '3', 'App\\Models\\Lending\\News', '2024-08-23 10:17:19', '2024-08-23 10:17:19'),
+(522, 'create', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-23 10:17:48', '2024-08-23 10:17:48'),
+(523, 'create', 'lending.tours', '4', '5', 'App\\Models\\Lending\\Tour', '2024-08-23 13:14:51', '2024-08-23 13:14:51'),
+(524, 'create', 'lending.tours', '4', '6', 'App\\Models\\Lending\\Tour', '2024-08-23 13:14:57', '2024-08-23 13:14:57'),
+(525, 'create', 'lending.tours', '4', '7', 'App\\Models\\Lending\\Tour', '2024-08-23 13:15:03', '2024-08-23 13:15:03'),
+(526, 'create', 'lending.tours', '4', '8', 'App\\Models\\Lending\\Tour', '2024-08-23 13:15:09', '2024-08-23 13:15:09'),
+(527, 'create', 'lending.tours', '4', '9', 'App\\Models\\Lending\\Tour', '2024-08-23 13:15:16', '2024-08-23 13:15:16'),
+(528, 'create', 'lending.tours', '4', '10', 'App\\Models\\Lending\\Tour', '2024-08-23 13:15:23', '2024-08-23 13:15:23'),
+(529, 'create', 'lending.tours', '4', '11', 'App\\Models\\Lending\\Tour', '2024-08-23 13:15:32', '2024-08-23 13:15:32'),
+(530, 'create', 'lending.tours', '4', '12', 'App\\Models\\Lending\\Tour', '2024-08-23 13:15:40', '2024-08-23 13:15:40'),
+(531, 'create', 'lending.tours', '4', '13', 'App\\Models\\Lending\\Tour', '2024-08-23 13:16:02', '2024-08-23 13:16:02'),
+(532, 'create', 'lending.tours', '4', '14', 'App\\Models\\Lending\\Tour', '2024-08-23 13:16:13', '2024-08-23 13:16:13'),
+(533, 'create', 'lending.tours', '4', '15', 'App\\Models\\Lending\\Tour', '2024-08-23 13:16:25', '2024-08-23 13:16:25'),
+(534, 'update', 'lending.tours', '4', '15', 'App\\Models\\Lending\\Tour', '2024-08-23 14:38:57', '2024-08-23 14:38:57'),
+(535, 'update', 'lending.tours', '4', '14', 'App\\Models\\Lending\\Tour', '2024-08-23 14:40:33', '2024-08-23 14:40:33'),
+(536, 'update', 'lending.tours', '4', '14', 'App\\Models\\Lending\\Tour', '2024-08-26 08:30:24', '2024-08-26 08:30:24'),
+(537, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-26 08:30:41', '2024-08-26 08:30:41'),
+(538, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 08:31:34', '2024-08-26 08:31:34'),
+(539, 'update', 'lending.tours', '4', '1', 'App\\Models\\Lending\\Tour', '2024-08-26 08:33:16', '2024-08-26 08:33:16'),
+(540, 'update', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-26 08:57:48', '2024-08-26 08:57:48'),
+(541, 'update', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-26 09:01:19', '2024-08-26 09:01:19'),
+(542, 'update', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-26 09:02:34', '2024-08-26 09:02:34'),
+(543, 'update', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-26 09:02:42', '2024-08-26 09:02:42'),
+(544, 'update', 'lending.blogs', '4', '1', 'App\\Models\\Lending\\Blog', '2024-08-26 09:44:25', '2024-08-26 09:44:25'),
+(545, 'update', 'services.documents', '4', '1', 'App\\Models\\Services\\File', '2024-08-26 09:57:45', '2024-08-26 09:57:45'),
+(546, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:14:20', '2024-08-26 10:14:20'),
+(547, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:14:59', '2024-08-26 10:14:59'),
+(548, 'update', 'settings', '4', '1', 'App\\Models\\Setting', '2024-08-26 10:20:42', '2024-08-26 10:20:42'),
+(549, 'update', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-26 10:22:18', '2024-08-26 10:22:18'),
+(550, 'update', 'lending.news', '4', '4', 'App\\Models\\Lending\\News', '2024-08-26 10:22:51', '2024-08-26 10:22:51'),
+(551, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:34:49', '2024-08-26 10:34:49'),
+(552, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:35:19', '2024-08-26 10:35:19'),
+(553, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:39:03', '2024-08-26 10:39:03'),
+(554, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:39:09', '2024-08-26 10:39:09'),
+(555, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:42:10', '2024-08-26 10:42:10'),
+(556, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:42:32', '2024-08-26 10:42:32'),
+(557, 'update', 'lending.pages', '4', '2', 'App\\Models\\Lending\\Page', '2024-08-26 10:42:36', '2024-08-26 10:42:36'),
+(558, 'update', 'lending.pages', '4', '5', 'App\\Models\\Lending\\Page', '2024-08-26 11:44:44', '2024-08-26 11:44:44'),
+(559, 'update', 'lending.pages', '4', '5', 'App\\Models\\Lending\\Page', '2024-08-26 11:44:49', '2024-08-26 11:44:49'),
+(560, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 12:27:06', '2024-08-26 12:27:06'),
+(561, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:10:51', '2024-08-26 13:10:51'),
+(562, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:11:23', '2024-08-26 13:11:23'),
+(563, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:12:24', '2024-08-26 13:12:24'),
+(564, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:14:05', '2024-08-26 13:14:05'),
+(565, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:15:17', '2024-08-26 13:15:17'),
+(566, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:16:12', '2024-08-26 13:16:12'),
+(567, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:16:46', '2024-08-26 13:16:46'),
+(568, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:17:34', '2024-08-26 13:17:34'),
+(569, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:17:54', '2024-08-26 13:17:54'),
+(570, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:18:33', '2024-08-26 13:18:33'),
+(571, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:19:24', '2024-08-26 13:19:24'),
+(572, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:19:28', '2024-08-26 13:19:28'),
+(573, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:21:59', '2024-08-26 13:21:59'),
+(574, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:22:06', '2024-08-26 13:22:06'),
+(575, 'update', 'lending.tours', '4', '2', 'App\\Models\\Lending\\Tour', '2024-08-26 13:22:09', '2024-08-26 13:22:09');
 
 -- --------------------------------------------------------
 
@@ -610,7 +751,8 @@ CREATE TABLE `advs` (
 --
 
 INSERT INTO `advs` (`id`, `title`, `subtitle`, `text`, `img`, `hide`, `rating`, `created_at`, `updated_at`) VALUES
-(1, 'Hard Rock', 'HotelMaldives', '<p>Это больше, чем просто роскошный курорт<br></p>', NULL, 0, 0, '2024-08-22 07:59:01', '2024-08-22 09:12:36');
+(1, 'Hard Rock', 'HotelMaldives', '<p><span style=\"color: rgb(79, 54, 82); font-family: Inter, sans-serif; font-size: 22px; letter-spacing: -0.44px;\">Это больше, чем просто роскошный курорт</span><br></p>', 'images/advs/0nn4J7a1kJsPX8tFwRyT4q2XNuBqkDPLDM9fhOqN.png', 0, 0, '2024-08-22 07:59:01', '2024-08-22 09:52:47'),
+(2, 'news adv', 'new adv subtitle', '<p>some new adv text</p>', 'images/advs/WRL6L6iQxLpHesA1Zqo111wg0ujoE7QrSB8z0bge.jpg', 0, 0, '2024-08-22 09:54:13', '2024-08-22 09:54:13');
 
 -- --------------------------------------------------------
 
@@ -633,8 +775,7 @@ CREATE TABLE `attached_files` (
 --
 
 INSERT INTO `attached_files` (`id`, `page_id`, `file_id`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
-(2, 2, 3, 0, 0, '2024-08-19 11:09:18', '2024-08-19 11:09:18'),
-(3, 2, 4, 0, 0, '2024-08-19 11:09:28', '2024-08-19 11:09:28');
+(6, 2, 1, 0, 0, '2024-08-26 10:42:36', '2024-08-26 10:42:36');
 
 -- --------------------------------------------------------
 
@@ -660,18 +801,18 @@ INSERT INTO `attached_pages` (`id`, `page_id`, `attached_page_id`, `rating`, `hi
 (6, 3, 2, 0, 0, '2024-08-16 11:48:09', '2024-08-16 11:48:09'),
 (23, 1, 3, 0, 0, '2024-08-19 08:11:14', '2024-08-19 08:11:14'),
 (24, 1, 2, 0, 0, '2024-08-19 08:11:14', '2024-08-19 08:11:14'),
-(47, 2, 10, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
-(48, 2, 9, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
-(49, 2, 8, 10, 0, '2024-08-19 12:23:47', '2024-08-20 13:43:47'),
-(50, 2, 7, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
-(51, 2, 6, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
-(52, 2, 3, 0, 0, '2024-08-19 12:23:47', '2024-08-19 12:23:47'),
 (53, 5, 10, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17'),
 (54, 5, 9, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17'),
 (55, 5, 8, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17'),
 (56, 5, 7, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17'),
 (57, 5, 6, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17'),
-(58, 5, 3, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17');
+(58, 5, 3, 0, 0, '2024-08-19 12:24:17', '2024-08-19 12:24:17'),
+(143, 2, 10, 0, 0, '2024-08-26 10:42:10', '2024-08-26 10:42:10'),
+(144, 2, 9, 0, 0, '2024-08-26 10:42:10', '2024-08-26 10:42:10'),
+(145, 2, 8, 0, 0, '2024-08-26 10:42:10', '2024-08-26 10:42:10'),
+(146, 2, 7, 0, 0, '2024-08-26 10:42:10', '2024-08-26 10:42:10'),
+(147, 2, 6, 0, 0, '2024-08-26 10:42:10', '2024-08-26 10:42:10'),
+(148, 2, 3, 0, 0, '2024-08-26 10:42:10', '2024-08-26 10:42:10');
 
 -- --------------------------------------------------------
 
@@ -698,7 +839,19 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `url`, `text`, `title`, `image`, `preview_image`, `preview_text`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
-(1, 'test', '<h3 class=\"blog-detailed-block__title\" style=\"margin-top: 50px; margin-bottom: 20px; font-family: Inter, sans-serif; font-size: 32px; font-weight: 500; line-height: 38.73px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Примите участие в акции туристический кешбэк</h3><p class=\"blog-detailed-block__text\" style=\"margin: unset; font-family: Inter, sans-serif; font-size: 17px; line-height: 20.57px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Спешите отправиться в путешествие по нашей стране с очень хорошей скидкой!</p><h3 class=\"blog-detailed-block__title\" style=\"margin-top: 50px; margin-bottom: 20px; font-family: Inter, sans-serif; font-size: 32px; font-weight: 500; line-height: 38.73px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Скидка за туры 20%</h3><p class=\"blog-detailed-block__text\" style=\"margin: unset; font-family: Inter, sans-serif; font-size: 17px; line-height: 20.57px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">предоставляется при единовременной оплате онлайн с помощью карты МИР, зарегистрированной в программе. Оплатить туристические услуги необходимо&nbsp;до 30.04.2022&nbsp;включительно, а ваша поездка должна состояться&nbsp;до 30.06.2022.&nbsp;Максимальная сумма к возврату - 20 000 рублей. Кешбэк возможен не только за пакетные туры, но и за отдельные услуги, такие как проживание в отеле, санатории или путешествие-круиз. Важно, чтобы длительность вашей поездки была&nbsp;дольше 2-х ночей&nbsp;включительно.Кроме того, есть возможность получить возврат за детский лагерь! В этом случае кешбэк составит 50% стоимости путевки, но также не более 20 000 рублей. Приобрести детскую путевку нужно до 31.08.2022.</p><h3 class=\"blog-detailed-block__title\" style=\"margin-top: 50px; margin-bottom: 20px; font-family: Inter, sans-serif; font-size: 32px; font-weight: 500; line-height: 38.73px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Выбирайте любой регион России</h3><p class=\"blog-detailed-block__text\" style=\"margin: unset; font-family: Inter, sans-serif; font-size: 17px; line-height: 20.57px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">- Байкал, Казань, Карелия, Кавказ, Калининград, Владивосток, Камчатка, Сочи, Алтай, Крым и многие-многие другие! А мы поможем в организации вашего лучшего путешествия.</p><p><a href=\"http://localhost/blogs/1\" class=\"blog-detailed-block__search-tours\" style=\"font-family: Inter, sans-serif; font-size: 17px; font-weight: 400; line-height: 20.57px; letter-spacing: -0.02em; color: rgb(0, 0, 0); margin-top: 50px; display: block;\">Поиск туров с кешбэк 20%</a></p>', 'Какие города стоит посетить в Индии', 'images/blogs//xAxjQKMLgmueUZYnNzq2DFB2FgBJb2d6CmT25y5z.png', 'images/blogs//rjZtqT7YVFRJt6ZccfBN30UBxsi56tfH4ZbhJQ91.png', '<p><span style=\"color: rgb(88, 47, 154); font-family: Inter, sans-serif; font-size: 17px; letter-spacing: -0.34px;\">Индия – самобытная страна с древней историей, необычными и действенными духовными практиками, развитой древней народной медициной. Читайте, какие города стоит посмотреть во время путешествия в Индию.</span><br></p>', 0, 0, '2024-08-16 11:39:08', '2024-08-19 14:23:40');
+(1, 'test', '<h3 class=\"blog-detailed-block__title\">Примите участие в акции туристический кешбэк</h3>\r\n            <p class=\"blog-detailed-block__text\">Спешите отправиться в путешествие по нашей стране с очень хорошей\r\n                скидкой!\r\n            </p>\r\n            <h3 class=\"blog-detailed-block__title\">Скидка за туры 20%</h3>\r\n            <p class=\"blog-detailed-block__text\">предоставляется при единовременной оплате онлайн с помощью карты МИР,\r\n                зарегистрированной в программе. Оплатить туристические услуги необходимо&nbsp;до 30.04.2022&nbsp;включительно, а\r\n                ваша\r\n                поездка должна состояться&nbsp;до 30.06.2022.&nbsp;Максимальная сумма к\r\n                возврату - 20 000 рублей. Кешбэк возможен не только за пакетные туры, но и за отдельные услуги, такие\r\n                как\r\n                проживание в отеле, санатории или путешествие-круиз. Важно, чтобы длительность вашей поездки была&nbsp;дольше\r\n                2-х\r\n                ночей&nbsp;включительно.Кроме\r\n                того, есть возможность получить возврат за детский лагерь! В этом случае кешбэк составит 50% стоимости\r\n                путевки, но также не более 20 000 рублей. Приобрести детскую путевку нужно до 31.08.2022.</p>\r\n            <h3 class=\"blog-detailed-block__title\">Выбирайте любой регион России</h3>\r\n            <p class=\"blog-detailed-block__text\">- Байкал, Казань, Карелия, Кавказ, Калининград, Владивосток, Камчатка,\r\n                Сочи, Алтай, Крым и многие-многие другие! А мы поможем в организации вашего лучшего путешествия.</p>\r\n            <a href=\"\" class=\"blog-detailed-block__search-tours\">Поиск туров с кешбэк 20%</a>', 'Какие города стоит посетить в Индии', 'images/blogs//xAxjQKMLgmueUZYnNzq2DFB2FgBJb2d6CmT25y5z.png', 'images/blogs//rjZtqT7YVFRJt6ZccfBN30UBxsi56tfH4ZbhJQ91.png', '<p><span style=\"color: rgb(88, 47, 154); font-family: Inter, sans-serif; font-size: 17px; letter-spacing: -0.34px;\">Индия – самобытная страна с древней историей, необычными и действенными духовными практиками, развитой древней народной медициной. Читайте, какие города стоит посмотреть во время путешествия в Индию.</span><br></p>', 0, 0, '2024-08-16 11:39:08', '2024-08-26 09:44:25'),
+(5, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:23:36', '2024-08-22 13:23:36'),
+(6, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:23:43', '2024-08-22 13:23:43'),
+(7, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:23:50', '2024-08-22 13:23:50'),
+(8, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:23:57', '2024-08-22 13:23:57'),
+(9, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:24:04', '2024-08-22 13:24:04'),
+(10, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:24:11', '2024-08-22 13:24:11'),
+(11, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:24:17', '2024-08-22 13:24:17'),
+(12, 'kakie-goroda-stoit-posetit-v-indii', NULL, 'Какие города стоит посетить в Индии', NULL, NULL, NULL, 0, 0, '2024-08-22 13:24:25', '2024-08-22 13:24:25'),
+(13, '122', NULL, '122', NULL, NULL, NULL, 0, 0, '2024-08-22 14:20:40', '2024-08-22 14:20:40'),
+(14, '11', NULL, '11', NULL, NULL, NULL, 0, 0, '2024-08-22 14:20:49', '2024-08-22 14:20:49'),
+(15, '11', NULL, '11', NULL, NULL, NULL, 0, 0, '2024-08-22 14:20:56', '2024-08-22 14:20:56'),
+(16, '11', NULL, '11', NULL, NULL, NULL, 0, 0, '2024-08-22 14:21:06', '2024-08-22 14:21:06');
 
 -- --------------------------------------------------------
 
@@ -708,16 +861,26 @@ INSERT INTO `blogs` (`id`, `url`, `text`, `title`, `image`, `preview_image`, `pr
 
 CREATE TABLE `countries` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL
+  `name` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `hide` tinyint DEFAULT '0',
+  `rating` tinyint DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `countries`
 --
 
-INSERT INTO `countries` (`id`, `name`) VALUES
-(1, 'Китай'),
-(2, 'Индонезия');
+INSERT INTO `countries` (`id`, `name`, `hide`, `rating`, `created_at`, `updated_at`) VALUES
+(1, 'Индонезия', 0, 2, '2024-08-22 10:59:11', '2024-08-22 11:02:19'),
+(2, 'Шри Ланка', 0, 0, '2024-08-22 10:59:22', '2024-08-22 10:59:22'),
+(3, 'Вьетнам', 0, 1, '2024-08-22 10:59:30', '2024-08-22 11:02:19'),
+(4, 'Китай', 0, 0, '2024-08-22 11:30:38', '2024-08-22 11:30:43'),
+(5, 'Япония', 0, 0, '2024-08-22 11:30:52', '2024-08-22 11:30:52'),
+(6, 'Кения', 0, 0, '2024-08-22 11:31:00', '2024-08-22 11:31:00'),
+(7, 'ЮАР', 0, 0, '2024-08-22 11:31:11', '2024-08-22 11:31:11'),
+(8, 'Тайланд', 0, 0, '2024-08-22 11:31:27', '2024-08-22 11:31:27');
 
 -- --------------------------------------------------------
 
@@ -756,7 +919,7 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`id`, `name`, `path`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
-(1, '<p>Агентский договор</p>', NULL, 0, 0, '2024-08-21 14:22:20', '2024-08-21 14:41:21');
+(1, '<p>Агентский договор</p>', 'Пресс-релиз для сайта.docx', 0, 0, '2024-08-21 14:22:20', '2024-08-26 09:57:45');
 
 -- --------------------------------------------------------
 
@@ -826,6 +989,26 @@ INSERT INTO `infografika` (`id`, `tour_id`, `about_id`, `icon`, `title`, `text`,
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `mailling`
+--
+
+CREATE TABLE `mailling` (
+  `id` bigint UNSIGNED NOT NULL,
+  `email` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `mailling`
+--
+
+INSERT INTO `mailling` (`id`, `email`, `created_at`, `updated_at`) VALUES
+(2, 'asd@asd.ru', '2024-08-27 14:29:27', '2024-08-27 14:29:27');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `migrations`
 --
 
@@ -841,10 +1024,7 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (159, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(160, '2024_08_12_102141_create_tour_type_table', 1),
-(161, '2024_08_12_103832_create_countries', 1),
 (162, '2024_08_12_110434_create_tours_table', 1),
-(165, '2024_08_12_143948_create_tour_country_table', 1),
 (166, '2024_08_13_101205_create_tour_day_table', 1),
 (168, '2024_08_14_152618_create_tour_programms_table', 1),
 (175, '2024_08_12_110456_create_news_table', 2),
@@ -857,10 +1037,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (190, '2024_08_13_101823_create_infografika_table', 7),
 (194, '2024_08_19_101108_create_attached_files_table', 8),
 (195, '2024_08_19_120145_create_settings_table', 8),
-(197, '2024_08_20_125537_create_tour_types_table', 10),
-(203, '2024_08_20_130037_create_tour_type_table', 11),
 (205, '2024_08_16_121346_create_files_table', 12),
-(208, '2024_08_20_115414_create_advs_table', 13);
+(208, '2024_08_20_115414_create_advs_table', 13),
+(209, '2024_08_12_103832_create_countries', 14),
+(210, '2024_08_12_102141_create_tour_type_table', 15),
+(234, '2024_08_20_125537_create_tour_types_table', 16),
+(235, '2024_08_20_130037_create_tour_type_table', 16),
+(236, '2024_08_22_145931_create_status_table', 16),
+(237, '2024_08_22_150108_create_tour_status_table', 16),
+(238, '2024_08_12_143948_create_tour_country_table', 17),
+(239, '2024_08_27_170917_create_mailling_table', 18);
 
 -- --------------------------------------------------------
 
@@ -887,7 +1073,9 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `url`, `text`, `image`, `title`, `preview_text`, `preview_image`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
-(2, 'test', '<p>test</p>', 'images/news//gmMx0jR6eb2kHFspwv0kAsBeCFpDaSmiPYfcidEb.png', 'test', '<p>test</p>', 'images/news//qeiYHiXrwdw0tJS4umbdNkncCSCFmGwkzt9nlKGn.jpg', 0, 0, '2024-08-20 11:44:49', '2024-08-20 11:45:20');
+(2, 'test', '<p>test</p>', 'images/news//bLBEhNxIIEOnkZI0Z4qjcqxQhVtDPohQ13E7b2i2.png', 'Авиакомпания Utair повезет туристов в Анталью и Сочи', '<p>test</p>', 'images/news//xGpxjP84jqHemkJDG8I0oay3WXcb1LOEUyWU8Vbj.png', 0, 0, '2024-08-20 11:44:49', '2024-08-23 10:11:05'),
+(3, 'belgorodskii-centr-turizma-polucil-gran-pri', NULL, NULL, 'Белгородский центр туризма получил Гран-при', NULL, 'images/news//ichSZ4GOPBBORZIHDEgNWyOyxnWPekHovjURe7Lm.png', 2, 0, '2024-08-23 10:17:19', '2024-08-26 09:28:50'),
+(4, 'na-granice-s-kitaem-v-sumke-turista-nasli-zuby-kasalota', '<h3 class=\"blog-detailed-block__title\">Примите участие в акции туристический кешбэк</h3>\r\n            <p class=\"blog-detailed-block__text\">Спешите отправиться в путешествие по нашей стране с очень хорошей скидкой!\r\n            </p>\r\n            <h3 class=\"blog-detailed-block__title\">Скидка за туры 20%</h3>\r\n            <p class=\"blog-detailed-block__text\">предоставляется при единовременной оплате онлайн с помощью карты МИР,\r\n                зарегистрированной в программе. Оплатить туристические услуги необходимо&nbsp;до 30.04.2022&nbsp;включительно, а ваша\r\n                поездка должна состояться&nbsp;до 30.06.2022.&nbsp;Максимальная сумма к\r\n                возврату - 20 000 рублей. Кешбэк возможен не только за пакетные туры, но и за отдельные услуги, такие как\r\n                проживание в отеле, санатории или путешествие-круиз. Важно, чтобы длительность вашей поездки была&nbsp;дольше 2-х\r\n                ночей&nbsp;включительно.Кроме\r\n                того, есть возможность получить возврат за детский лагерь! В этом случае кешбэк составит 50% стоимости\r\n                путевки, но также не более 20 000 рублей. Приобрести детскую путевку нужно до 31.08.2022.</p>\r\n            <h3 class=\"blog-detailed-block__title\">Выбирайте любой регион России</h3>\r\n            <p class=\"blog-detailed-block__text\">- Байкал, Казань, Карелия, Кавказ, Калининград, Владивосток, Камчатка,\r\n                Сочи, Алтай, Крым и многие-многие другие! А мы поможем в организации вашего лучшего путешествия.</p>\r\n            <a href=\"\" class=\"blog-detailed-block__search-tours\">Поиск туров с кешбэк 20%</a>', 'images/news/amLQRBUPRr9zGCzfbmNuDELPhO7fCUPQXy8sXyWG.jpg', 'На границе с Китаем в сумке туриста нашли зубы кашалота', NULL, 'images/news//iwR38Zjx8HSACoqOb4QA4lkF892KQqJ1ZyewT8RE.png', 1, 0, '2024-08-23 10:17:47', '2024-08-26 10:22:18');
 
 -- --------------------------------------------------------
 
@@ -918,7 +1106,7 @@ INSERT INTO `pages` (`id`, `title`, `url`, `text`, `about_text_1`, `about_text_2
 (2, 'Туристам', 'turistam', '<h1 class=\"agency-description__header\" style=\"margin: unset; font-family: Inter, sans-serif; font-size: 32px; line-height: 38.73px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Сведения о туроператоре:</h1><p class=\"agency-description__text\" style=\"margin-top: 30px; margin-bottom: 30px; font-family: Inter, sans-serif; font-size: 18px; line-height: 30px; letter-spacing: -0.02em;\">В соответствии с требованиями федерального закона «О внесении изменений в Федеральный закон» об основах туристской деятельности в Российской Федерации», вступившего в действие 1 июня 2007 г., ООО «Туристическая фирма «Меркурий», ОГРН 1047833025635, внесена в единый федеральный реестр туроператоров под номером 017558, серия РТ0.</p><h2 class=\"agency-description__title\" style=\"margin-top: unset; margin-right: unset; margin-bottom: 30px; margin-left: unset; font-family: Inter, sans-serif; font-size: 24px; line-height: 30px; letter-spacing: -0.02em;\">Ответственность Туроператора застрахована в страховой компании:</h2><h3 class=\"agency-description__subtitle\" style=\"margin: unset; font-family: Inter, sans-serif; font-size: 18px; line-height: 30px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Международный выездной туризм</h3><p class=\"agency-description__text\" style=\"margin-top: 30px; margin-bottom: 30px; font-family: Inter, sans-serif; font-size: 18px; line-height: 30px; letter-spacing: -0.02em;\">На основании решения Ассоциации \"Объединение туроператоров всфере выездного туризма \"ТУРПОМОЩЬ\" № 317 от 07.03.2024 г. длясферы \"выездной туризм\" финансовое обеспечение не требуется до01.04.2025г.</p><h3 class=\"agency-description__subtitle\" style=\"margin: unset; font-family: Inter, sans-serif; font-size: 18px; line-height: 30px; letter-spacing: -0.02em; color: rgb(52, 38, 53);\">Внутренний туризм, международный въездной</h3><p class=\"agency-description__text\" style=\"margin-top: 30px; margin-bottom: 30px; font-family: Inter, sans-serif; font-size: 18px; line-height: 30px; letter-spacing: -0.02em;\">Общество с Ограниченной Ответственностью «Русское Страховое Общество«Евроинс». Адрес (место нахождения) организации: Смоленская обл, г Смоленск, улГлинки, д 7Документ:№ № ЛСП02/23/ГО-ТУР№ 2671163 от 06/12/2023Срок действия финансового обеспечения: с с 29/01/2024 по 28/01/2025 г.Размер финансового обеспечения: 500000 р.</p><p class=\"agency-description__text\" style=\"margin-top: 30px; margin-bottom: 30px; font-family: Inter, sans-serif; font-size: 18px; line-height: 30px; letter-spacing: -0.02em;\">ООО «Туристическая фирма «МЕРКУРИЙ» в&nbsp;<a href=\"http://localhost/pages/turistam\" class=\"agency-description-text_link\" style=\"font-family: Inter, sans-serif; font-weight: 400; line-height: 30px; letter-spacing: -0.02em; color: rgb(52, 38, 53); text-decoration: none; border-bottom: 1px solid rgb(52, 38, 53);\">Едином федеральном реестре на сайте Ростуризма</a>&nbsp;Желаем Вам успешных продаж и надеемся на плодотворное сотрудничество!</p>', NULL, NULL, NULL, 0, 0, '2024-08-16 10:39:29', '2024-08-19 10:01:12'),
 (3, 'Страхование', 'straxovanie', NULL, NULL, NULL, NULL, 0, 0, '2024-08-16 10:41:33', '2024-08-16 10:41:33'),
 (4, 'Контакты', 'kontakty', NULL, NULL, NULL, NULL, 0, 0, '2024-08-19 12:16:14', '2024-08-19 12:16:14'),
-(5, 'Агентствам', 'agentstvam', NULL, NULL, NULL, NULL, 0, 0, '2024-08-19 12:20:43', '2024-08-19 12:20:43'),
+(5, 'Агентствам', 'agentstvam', '<h1 class=\"agency-description__header\">Сведения о туроператоре:</h1>\r\n                <p class=\"agency-description__text\">В соответствии с требованиями федерального закона «О внесении изменений в\r\n                    Федеральный закон» об основах туристской деятельности в Российской Федерации», вступившего в действие 1\r\n                    июня 2007 г., ООО «Туристическая фирма «Меркурий», ОГРН 1047833025635,\r\n                    внесена в единый федеральный реестр туроператоров под номером 017558, серия РТ0.</p>\r\n                <h2 class=\"agency-description__title\">Ответственность Туроператора застрахована в страховой компании:</h2>\r\n                <h3 class=\"agency-description__subtitle\">Международный выездной туризм</h3>\r\n                <p class=\"agency-description__text\">На основании решения Ассоциации \"Объединение туроператоров всфере\r\n                    выездного туризма \"ТУРПОМОЩЬ\" № 317 от 07.03.2024 г. длясферы \"выездной туризм\" финансовое обеспечение\r\n                    не требуется до01.04.2025г.</p>\r\n                <h3 class=\"agency-description__subtitle\">Внутренний туризм, международный въездной</h3>\r\n                <p class=\"agency-description__text\">Общество с Ограниченной Ответственностью «Русское Страховое\r\n                    Общество«Евроинс». Адрес (место нахождения) организации: Смоленская обл, г Смоленск, улГлинки, д\r\n                    7Документ:№ № ЛСП02/23/ГО-ТУР№ 2671163 от 06/12/2023Срок действия финансового\r\n                    обеспечения: с с 29/01/2024 по 28/01/2025 г.Размер финансового обеспечения: 500000 р.</p>\r\n                <p class=\"agency-description__text\">\r\n                    ООО «Туристическая фирма «МЕРКУРИЙ» в <a href=\"\" class=\"agency-description-text_link\">Едином\r\n                        федеральном реестре на сайте Ростуризма</a> Желаем Вам успешных продаж и надеемся на плодотворное\r\n                    сотрудничество!\r\n                </p>', NULL, NULL, NULL, 0, 0, '2024-08-19 12:20:43', '2024-08-26 11:44:44'),
 (6, 'Рекламные туры', 'reklamnye-tury', NULL, NULL, NULL, NULL, 0, 0, '2024-08-19 12:22:22', '2024-08-19 12:22:22'),
 (7, 'Сотрудничество', 'sotrudnicestvo', NULL, NULL, NULL, NULL, 0, 0, '2024-08-19 12:22:33', '2024-08-19 12:22:33'),
 (8, 'Документы', 'dokumenty', NULL, NULL, NULL, NULL, 0, 0, '2024-08-19 12:22:45', '2024-08-19 12:22:45'),
@@ -1014,19 +1202,19 @@ CREATE TABLE `requests` (
 
 CREATE TABLE `seo` (
   `id` bigint NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `canonical` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `og_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `og_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `og_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `twitter_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `twitter_site` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jsonld_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jsonld_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `jsonld_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `canonical` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `keywords` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `og_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `og_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `og_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `twitter_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `twitter_site` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jsonld_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jsonld_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `jsonld_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1081,7 +1269,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `address`, `phones`, `email`, `whatsapp`, `telegram`, `vk`, `created_at`, `updated_at`) VALUES
-(1, 'Санкт-Петербург, 7-я Красноармейская ул, дом 7 пом 7Н, домофон 3', '+7 (812) 957-01-85,+7 (812) 702-77-85', 'info@mercury-europe.ru', NULL, NULL, NULL, NULL, '2024-08-19 09:22:10');
+(1, 'Санкт-Петербург, 7-я Красноармейская ул, дом 7 пом 7Н, домофон 31', '+7 (812) 957-01-85,+7 (812) 702-77-85', 'info@mercury-europe.ru', NULL, NULL, NULL, NULL, '2024-08-26 10:20:42');
 
 -- --------------------------------------------------------
 
@@ -1171,6 +1359,29 @@ INSERT INTO `specs` (`id`, `title`, `text`, `image`, `hide`, `rating`, `updated_
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `status`
+--
+
+CREATE TABLE `status` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rating` int DEFAULT '0',
+  `hide` tinyint DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `status`
+--
+
+INSERT INTO `status` (`id`, `name`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
+(1, 'Хит', 0, 0, '2024-08-22 12:56:24', '2024-08-22 12:56:24'),
+(4, 'Новинка', 0, 0, '2024-08-22 13:19:21', '2024-08-22 13:19:21');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `texts`
 --
 
@@ -1214,9 +1425,12 @@ CREATE TABLE `tours` (
   `preview_text` text COLLATE utf8mb4_general_ci,
   `preview_price` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `preview_nights` varchar(256) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `preview_image` text COLLATE utf8mb4_general_ci,
   `agreement_info` longtext COLLATE utf8mb4_general_ci,
   `tour_cost_info` longtext COLLATE utf8mb4_general_ci,
   `tour_additional_cost` longtext COLLATE utf8mb4_general_ci,
+  `isHiddenCountryInfo` tinyint(1) DEFAULT '0',
+  `isHiddenTouristInfo` tinyint(1) DEFAULT '0',
   `rating` int DEFAULT '0',
   `hide` tinyint DEFAULT '0',
   `background_image` text COLLATE utf8mb4_general_ci,
@@ -1228,8 +1442,22 @@ CREATE TABLE `tours` (
 -- Дамп данных таблицы `tours`
 --
 
-INSERT INTO `tours` (`id`, `url`, `description`, `title`, `subtitle`, `preview_title`, `preview_header`, `preview_text`, `preview_price`, `preview_nights`, `agreement_info`, `tour_cost_info`, `tour_additional_cost`, `rating`, `hide`, `background_image`, `created_at`, `updated_at`) VALUES
-(1, 'ekskursionnyy-tur-zolotoy-treugolnik', '<span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; font-size: 20px; letter-spacing: -0.6px;\">Все, что есть в Индии, создано благодаря любви. Любовь к науке и истине позволяет сегодня лицезреть нам обсерваторию Джантар Мантар в Джайпуре. Благодаря бхакти, любви к богу, люди возвели храмы Вриндавана, Храм Лотоса и Акшардхам в Дели. Любовь к женам один из правителей реализовал в великолепном дворце Хава Махал - где жили женщины гарема. Хрестоматиен пример любви, благодаря которой мы можем любоваться мавзолеем Тадж Махал. Да и в нашем случае виновата любовь к путешествиям – с нее обычно и начинается любовь к Индии.</span>', 'Экскурсионный тур: «Золотой треугольник»', 'Самый лучший тур по Индии для первого знакомства!', 'Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду', 'Майские праздники в Тайланде', '<p><span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; letter-spacing: -0.48px;\">Таиланд- это сказочный «остров богов», «остров тысячи храмов» и драгоценная жемчужина Индонезии... В цене проживани...</span><br></p>', 'от 120 587 ₽', '7-12 ночей', '<p><span style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\">Туроператор оставляет за собой право менять время и порядок проведения экскурсий, при этом не меняя общую программу обслуживания.</span><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><span style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\">Принимающая сторона несет ответственность за организацию программ, работу сотрудников компании, уровень предоставляемого сервиса и своевременную оплату контрагентам, тем не менее мы хотели бы обратить ваше внимание на следующие обстоятельства, которые выходят за рамки прямого контроля, и мы сделаем все возможное, чтобы оптимизировать любые расходы в чрезвычайных ситуациях. К таким ситуациям относятся случаи задержки/ отмены/ изменения расписания рейсов и поездов, а также стихийные бедствия, погодные аномалии, закрытия дорог, болезни и т.д.</span><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><span style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\">Принимающая сторона оставляет за собой право изменять отели с учетом их соответствия стандартам в случае, если в указанных отелях номера закончились. Стандартное время заселения и выселения в отелях 12.00 дня. Время переездов указано индикативно и может меняться в зависимости от трафика.</span><br></p>', '<p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                    <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                    <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                                </svg> Международный перелет (включен или не включен в зависимости от выбранного типа подпакета)\r\n                            </p><p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                    <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                    <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                                </svg> Проживание в выбранном отеле с указанным типом питания\r\n                            </p>', '<p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                            </svg> Личные расходы и все, что не указано явно в программе тура\r\n                            </p><p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                            </svg> Страховка от невыезда 3,5% или 5,5% от стоимости тура (оформляется по желанию)\r\n                            </p>', 0, 0, 'images/tours/4qRsuekB357BdhjFBrvADP3w48A51SUJLDUlLDFJ.png', '2024-08-15 08:01:32', '2024-08-15 11:47:58');
+INSERT INTO `tours` (`id`, `url`, `description`, `title`, `subtitle`, `preview_title`, `preview_header`, `preview_text`, `preview_price`, `preview_nights`, `preview_image`, `agreement_info`, `tour_cost_info`, `tour_additional_cost`, `isHiddenCountryInfo`, `isHiddenTouristInfo`, `rating`, `hide`, `background_image`, `created_at`, `updated_at`) VALUES
+(1, 'ekskursionnyi-tur-zolotoi-treugolnik', '<span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; font-size: 20px; letter-spacing: -0.6px;\">Все, что есть в Индии, создано благодаря любви. Любовь к науке и истине позволяет сегодня лицезреть нам обсерваторию Джантар Мантар в Джайпуре. Благодаря бхакти, любви к богу, люди возвели храмы Вриндавана, Храм Лотоса и Акшардхам в Дели. Любовь к женам один из правителей реализовал в великолепном дворце Хава Махал - где жили женщины гарема. Хрестоматиен пример любви, благодаря которой мы можем любоваться мавзолеем Тадж Махал. Да и в нашем случае виновата любовь к путешествиям – с нее обычно и начинается любовь к Индии.</span>', 'Экскурсионный тур: «Золотой треугольник»', 'Самый лучший тур по Индии для первого знакомства!', 'Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду', 'Майские праздники в Тайланде', '<p><span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; letter-spacing: -0.48px;\">Таиланд- это сказочный «остров богов», «остров тысячи храмов» и драгоценная жемчужина Индонезии... В цене проживани...</span><br></p>', 'от 120 587 ₽', '7-12 ночей', NULL, '<p><span style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\">Туроператор оставляет за собой право менять время и порядок проведения экскурсий, при этом не меняя общую программу обслуживания.</span><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><span style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\">Принимающая сторона несет ответственность за организацию программ, работу сотрудников компании, уровень предоставляемого сервиса и своевременную оплату контрагентам, тем не менее мы хотели бы обратить ваше внимание на следующие обстоятельства, которые выходят за рамки прямого контроля, и мы сделаем все возможное, чтобы оптимизировать любые расходы в чрезвычайных ситуациях. К таким ситуациям относятся случаи задержки/ отмены/ изменения расписания рейсов и поездов, а также стихийные бедствия, погодные аномалии, закрытия дорог, болезни и т.д.</span><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><br style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\"><span style=\"color: rgb(97, 97, 97); font-family: Inter, sans-serif; font-size: 15px; font-style: italic; letter-spacing: -0.3px;\">Принимающая сторона оставляет за собой право изменять отели с учетом их соответствия стандартам в случае, если в указанных отелях номера закончились. Стандартное время заселения и выселения в отелях 12.00 дня. Время переездов указано индикативно и может меняться в зависимости от трафика.</span><br></p>', '<p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                    <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                    <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                                </svg> Международный перелет (включен или не включен в зависимости от выбранного типа подпакета)\r\n                            </p><p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                    <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                    <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                                </svg> Проживание в выбранном отеле с указанным типом питания\r\n                            </p>', '<p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                            </svg> Личные расходы и все, что не указано явно в программе тура\r\n                            </p><p>\r\n                                <svg width=\"22\" height=\"22\" viewBox=\"0 0 22 22\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n                                <path d=\"M18.6064 2.92497C18.521 2.84406 18.4078 2.79903 18.2902 2.79919C18.1726 2.79936 18.0595 2.84471 17.9744 2.92586L8.48499 11.9802L5.44271 9.06726C4.97499 8.61836 4.35219 8.36711 3.70391 8.36577C3.05563 8.36444 2.4318 8.61313 1.96224 9.0601L1.73128 9.27897C1.48362 9.51398 1.28626 9.79684 1.15116 10.1104C1.01606 10.4239 0.946029 10.7617 0.945318 11.1031C0.944607 11.4445 1.01323 11.7825 1.14702 12.0966C1.28082 12.4107 1.477 12.6944 1.72368 12.9304L8.16899 19.0749C8.2542 19.1557 8.36714 19.2007 8.48455 19.2007C8.60196 19.2007 8.7149 19.1557 8.80011 19.0749L21.8348 6.6534C21.8798 6.6105 21.9155 6.55893 21.9399 6.50181C21.9643 6.44468 21.9768 6.3832 21.9767 6.32109C21.9766 6.25898 21.9639 6.19753 21.9394 6.14048C21.9148 6.08342 21.879 6.03195 21.8339 5.98918L18.6064 2.92497ZM11.3966 15.3456L8.48454 18.1104L2.35746 12.268C2.20046 12.1177 2.0756 11.9372 1.99043 11.7372C1.90526 11.5373 1.86157 11.3222 1.86198 11.1049C1.8624 10.8875 1.90693 10.6726 1.99287 10.473C2.0788 10.2734 2.20436 10.0933 2.36194 9.94364L2.5929 9.72522C2.89183 9.44056 3.28904 9.28216 3.70182 9.283C4.1146 9.28383 4.51116 9.44383 4.80894 9.7297L8.16766 12.9452C8.25292 13.0267 8.3663 13.0722 8.48424 13.0723C8.60219 13.0724 8.71564 13.027 8.80101 12.9456L18.2917 3.89042L19.7792 5.30255L14.7938 10.0103C14.7063 10.094 14.6554 10.2089 14.6523 10.3299C14.6492 10.451 14.6941 10.5683 14.7772 10.6564C14.8603 10.7444 14.9748 10.796 15.0958 10.8C15.2168 10.8039 15.3345 10.7598 15.4231 10.6772L20.4452 5.93479L20.8537 6.32263L11.3966 15.3456Z\" fill=\"#4509A8\"></path>\r\n                                <path d=\"M13.142 11.5733L11.8668 12.7774C11.7791 12.861 11.728 12.976 11.7248 13.0971C11.7215 13.2183 11.7664 13.3358 11.8496 13.424C11.9328 13.5121 12.0475 13.5638 12.1687 13.5676C12.2898 13.5714 12.4076 13.5271 12.4961 13.4443L13.7713 12.2403C13.859 12.1566 13.91 12.0417 13.9131 11.9206C13.9163 11.7995 13.8714 11.682 13.7883 11.5939C13.7051 11.5058 13.5905 11.4542 13.4694 11.4503C13.3483 11.4465 13.2306 11.4907 13.142 11.5733Z\" fill=\"#4509A8\"></path>\r\n                            </svg> Страховка от невыезда 3,5% или 5,5% от стоимости тура (оформляется по желанию)\r\n                            </p>', 0, 0, 0, 0, 'images/tours/4qRsuekB357BdhjFBrvADP3w48A51SUJLDUlLDFJ.png', '2024-08-15 08:01:32', '2024-08-26 08:30:41'),
+(2, 'kasablanka-rabat-sefsauen-voliubilis-fes-merzuga-uarzazat-ait-ben-xaddu', NULL, 'Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду', 'Отдых в Као-Лаке', 'Касабланка - Рабат - Шефшауэн - (Волюбилис) - Фес - Мерзуга - Уарзазат - Айт бен Хадду', 'Отдых в Као-Лаке', '<p><span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; letter-spacing: -0.48px;\">От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - п роживание в выбранном отеле, индивидуальны трансферы, мед. страховки.</span><br></p>', 'от 120 587 ₽', '7-12 ночей', NULL, NULL, NULL, NULL, 0, 1, 0, 0, 'images/tours/aTthVxu6i7OLSMu8vGxJZL36uK0GvzlmLiDpGIsz.jpg', '2024-08-23 08:56:01', '2024-08-26 13:22:09'),
+(3, '12', NULL, 'Паттайя - о. Ко-Чанг - Бангкок', NULL, 'Паттайя - о. Ко-Чанг - Бангкок', 'Комбинированный тур: \"Паттайя + о. Ко-Чанг + Бангкок\"', '<p><span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; letter-spacing: -0.48px;\">От 2 до 21 ночей отдыха в курортном городке Таиланда Као-Лак. В цене - проживание в выбранном отеле</span><br></p>', 'от 89 600 ₽', '6 ночей', 'images/tours/B6BPGz40jeXHk2dErdvi1OycKRTadpkPThYDKJFd.png', NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 08:56:08', '2024-08-23 09:22:46'),
+(4, '13', NULL, 'Сан Пауло - Парати - Ангра - Рио-де-Жанейро - Игуаcу - Буэнос-Айрес', NULL, 'Сан Пауло - Парати - Ангра - Рио-де-Жанейро - Игуаcу - Буэнос-Айрес', 'Отдых на о. Самуи', '<p><span style=\"color: rgb(52, 38, 53); font-family: Inter, sans-serif; letter-spacing: -0.48px;\">Бали - это сказочный «остров богов», «остров тысячи храмов» и драгоценная жемчужина Индонезии... В цене проживание в выбранном отеле, трансферы, страховка</span><br></p>', 'от 360 400 ₽', '10-12 ночей', 'images/tours/GGUXvkSm8EqGX1UBku1ChWxEIxT7Vy7feMNORA4H.png', NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 08:56:16', '2024-08-23 09:23:51'),
+(5, '11', NULL, '11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:14:51', '2024-08-23 13:14:51'),
+(6, '12', NULL, '12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:14:57', '2024-08-23 13:14:57'),
+(7, '13', NULL, '13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:15:03', '2024-08-23 13:15:03'),
+(8, '14', NULL, '14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:15:09', '2024-08-23 13:15:09'),
+(9, '15', NULL, '15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:15:16', '2024-08-23 13:15:16'),
+(10, '16', NULL, '16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:15:23', '2024-08-23 13:15:23'),
+(11, '17', NULL, '17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:15:32', '2024-08-23 13:15:32'),
+(12, '18', NULL, '18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:15:40', '2024-08-23 13:15:40'),
+(13, '19', NULL, '19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:16:02', '2024-08-23 13:16:02'),
+(14, '20', NULL, '20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:16:13', '2024-08-23 13:16:13'),
+(15, '21', NULL, '21', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, NULL, '2024-08-23 13:16:25', '2024-08-23 13:16:25');
 
 -- --------------------------------------------------------
 
@@ -1242,7 +1470,7 @@ CREATE TABLE `tour_country` (
   `tour_id` bigint UNSIGNED NOT NULL,
   `country_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1250,7 +1478,10 @@ CREATE TABLE `tour_country` (
 --
 
 INSERT INTO `tour_country` (`id`, `tour_id`, `country_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2024-08-20 11:59:36', '2024-08-20 11:59:41');
+(1, 2, 1, '2024-08-23 09:06:15', '2024-08-23 09:06:15'),
+(2, 3, 1, '2024-08-23 09:22:46', '2024-08-23 09:22:46'),
+(3, 14, 3, '2024-08-23 14:40:33', '2024-08-23 14:40:33'),
+(4, 1, 4, '2024-08-26 08:33:16', '2024-08-26 08:33:16');
 
 -- --------------------------------------------------------
 
@@ -1297,6 +1528,31 @@ INSERT INTO `tour_programs` (`id`, `tour_id`, `day`, `text`, `title`, `hide`, `r
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `tour_status`
+--
+
+CREATE TABLE `tour_status` (
+  `id` bigint UNSIGNED NOT NULL,
+  `tour_id` bigint UNSIGNED DEFAULT NULL,
+  `status_id` bigint UNSIGNED DEFAULT NULL,
+  `rating` int DEFAULT '0',
+  `hide` tinyint DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `tour_status`
+--
+
+INSERT INTO `tour_status` (`id`, `tour_id`, `status_id`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
+(5, 1, 1, 0, 0, '2024-08-22 13:21:51', '2024-08-22 13:21:51'),
+(6, 2, 1, 0, 0, '2024-08-23 09:06:16', '2024-08-23 09:06:16'),
+(7, 3, 1, 0, 0, '2024-08-23 09:22:46', '2024-08-23 09:22:46');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `tour_type`
 --
 
@@ -1313,7 +1569,7 @@ CREATE TABLE `tour_type` (
 --
 
 INSERT INTO `tour_type` (`id`, `tour_type_id`, `tour_id`, `created_at`, `updated_at`) VALUES
-(13, 2, 1, '2024-08-20 11:59:41', '2024-08-20 11:59:41');
+(1, 1, 15, '2024-08-23 14:38:57', '2024-08-23 14:38:57');
 
 -- --------------------------------------------------------
 
@@ -1324,6 +1580,8 @@ INSERT INTO `tour_type` (`id`, `tour_type_id`, `tour_id`, `created_at`, `updated
 CREATE TABLE `tour_types` (
   `id` bigint UNSIGNED NOT NULL,
   `type` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rating` tinyint DEFAULT '0',
+  `hide` tinyint DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -1332,11 +1590,11 @@ CREATE TABLE `tour_types` (
 -- Дамп данных таблицы `tour_types`
 --
 
-INSERT INTO `tour_types` (`id`, `type`, `created_at`, `updated_at`) VALUES
-(2, 'Серфинг', '2024-08-20 10:40:00', '2024-08-20 10:40:00'),
-(3, 'Гарантированные блоки мест', '2024-08-20 11:00:27', '2024-08-20 11:00:27'),
-(4, 'Групповые туры ITM club', '2024-08-20 11:00:38', '2024-08-20 11:00:38'),
-(5, 'Экспедиционные круизы', '2024-08-20 11:00:49', '2024-08-20 11:00:49');
+INSERT INTO `tour_types` (`id`, `type`, `rating`, `hide`, `created_at`, `updated_at`) VALUES
+(1, 'Гарантированные блоки мест', 0, 0, '2024-08-22 13:02:53', '2024-08-22 13:02:53'),
+(2, 'Групповые туры ITM club', 0, 0, '2024-08-22 13:03:02', '2024-08-22 13:03:02'),
+(3, 'Серфинг', 0, 0, '2024-08-22 13:03:23', '2024-08-22 13:03:23'),
+(7, 'Экспедиционные круизы', 0, 0, '2024-08-22 13:05:12', '2024-08-22 13:05:12');
 
 -- --------------------------------------------------------
 
@@ -1475,6 +1733,12 @@ ALTER TABLE `infografika`
   ADD KEY `infografika_about_id_foreign` (`about_id`);
 
 --
+-- Индексы таблицы `mailling`
+--
+ALTER TABLE `mailling`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `migrations`
 --
 ALTER TABLE `migrations`
@@ -1556,6 +1820,12 @@ ALTER TABLE `specs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `texts`
 --
 ALTER TABLE `texts`
@@ -1588,6 +1858,14 @@ ALTER TABLE `tour_days`
 ALTER TABLE `tour_programs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tour_programs_tour_id_foreign` (`tour_id`);
+
+--
+-- Индексы таблицы `tour_status`
+--
+ALTER TABLE `tour_status`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tour_status_tour_id_foreign` (`tour_id`),
+  ADD KEY `tour_status_status_id_foreign` (`status_id`);
 
 --
 -- Индексы таблицы `tour_type`
@@ -1631,43 +1909,43 @@ ALTER TABLE `about`
 -- AUTO_INCREMENT для таблицы `admin_access_rights`
 --
 ALTER TABLE `admin_access_rights`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=341;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
 
 --
 -- AUTO_INCREMENT для таблицы `admin_event_logs`
 --
 ALTER TABLE `admin_event_logs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=441;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=576;
 
 --
 -- AUTO_INCREMENT для таблицы `advs`
 --
 ALTER TABLE `advs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `attached_files`
 --
 ALTER TABLE `attached_files`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `attached_pages`
 --
 ALTER TABLE `attached_pages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
 
 --
 -- AUTO_INCREMENT для таблицы `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -1694,16 +1972,22 @@ ALTER TABLE `infografika`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT для таблицы `mailling`
+--
+ALTER TABLE `mailling`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
 
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `pages`
@@ -1760,6 +2044,12 @@ ALTER TABLE `specs`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT для таблицы `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT для таблицы `texts`
 --
 ALTER TABLE `texts`
@@ -1769,13 +2059,13 @@ ALTER TABLE `texts`
 -- AUTO_INCREMENT для таблицы `tours`
 --
 ALTER TABLE `tours`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT для таблицы `tour_country`
 --
 ALTER TABLE `tour_country`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `tour_days`
@@ -1790,16 +2080,22 @@ ALTER TABLE `tour_programs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT для таблицы `tour_status`
+--
+ALTER TABLE `tour_status`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT для таблицы `tour_type`
 --
 ALTER TABLE `tour_type`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `tour_types`
 --
 ALTER TABLE `tour_types`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -1844,6 +2140,13 @@ ALTER TABLE `tour_days`
 --
 ALTER TABLE `tour_programs`
   ADD CONSTRAINT `tour_programs_tour_id_foreign` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `tour_status`
+--
+ALTER TABLE `tour_status`
+  ADD CONSTRAINT `tour_status_status_id_foreign` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tour_status_tour_id_foreign` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `tour_type`

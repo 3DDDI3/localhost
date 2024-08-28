@@ -45,6 +45,8 @@ class NewsController extends Controller
 
         $news = News::query()->orderBy('created_at', 'desc')->paginate(12);
 
+        if (!$news) abort(404, 'Не удалось найти новости');
+
         return view('pages.news', [
             'breadcrumbs' => $breadCrumbs,
             'news' => $news,
@@ -55,6 +57,9 @@ class NewsController extends Controller
     public function new($url)
     {
         $news = News::query()->where(['url' => $url])->first();
+
+        if (!$news) abort(404, 'Не удалось найти новость');
+
         $otherNews = News::query()->where('url', '<>', $url)->orderBy('created_at', 'desc')->take(6)->get();
 
         $breadCrumbs = collect([

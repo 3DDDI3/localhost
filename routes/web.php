@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\ToursController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/', [ToursController::class, 'index']);
         Route::get('/{url}', [ToursController::class, 'tour']);
     });
+
+    Route::get('/search', [SearchController::class, 'index']);
 
     include('admin.php');
 });

@@ -660,7 +660,7 @@ $(function () {
     });
 
     $("input[type='search']").on("keydown", function (e) {
-        console.log(1);
+        if (e.key === 'Enter') window.location.href = `/search?search=${$(this).val()}`;
     });
 
 });

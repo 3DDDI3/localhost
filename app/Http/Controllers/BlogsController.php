@@ -17,6 +17,8 @@ class BlogsController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
+        if (!$blogs) abort(404, 'Не удалось найти блоги');
+
         $breadCrumbs = collect([
             (object)[
                 'name' => 'Главная',
@@ -60,6 +62,8 @@ class BlogsController extends Controller
         $blog = Blog::query()->where(['url' => $url])->first();
 
         $otherBlogs = Blog::query()->where('url', '<>', $url)->take(6)->get();
+
+        if (!$blog) abort(404, 'Не удалось найти блог');
 
         $breadCrumbs = collect([
             (object)[
