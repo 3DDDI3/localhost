@@ -77,6 +77,11 @@ class ToursController extends Controller
 
         $status = Status::query()->orderBy('rating', 'desc')->get();
 
+        $defaultStatus = new Status();
+        $defaultStatus->id = 0;
+
+        dd($status->prepend($defaultStatus));
+
         $statusHead = null;
 
         if (!empty($object->tourStatus()))

@@ -28,15 +28,18 @@ Route::get('files/download/{path}', function ($path) {
 });
 
 Route::get('/samotur/getCountries', function () {
-        $client = new Client(['verify' => false]);
-        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_STATES&TOWNFROMINC=' . request()->input('id'));
-        $combobox = new ComboboxItem();
-        $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
-        return $combobox->render()->with(
-                ['attributes' => new ComponentAttributeBag(
-                        ['objects' => count($content) > 0 ? $content : null]
-                )]
-        );
+        try {
+                $client = new Client(['verify' => false]);
+                $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_STATES&TOWNFROMINC=' . request()->input('id'));
+                $combobox = new ComboboxItem();
+                $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
+                return $combobox->render()->with(
+                        ['attributes' => new ComponentAttributeBag(
+                                ['objects' => count($content) > 0 ? $content : null]
+                        )]
+                );
+        } catch (\Throwable $th) {
+        }
 });
 
 Route::post('mailler/create', function () {

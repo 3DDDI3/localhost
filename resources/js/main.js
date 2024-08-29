@@ -233,6 +233,10 @@ $(function () {
         });
     });
 
+    $(".popular-tours__tour-card").on("click", function () {
+        window.location.href = `${$(this).data("href")}`;
+    });
+
     if ($(".sliders").length > 0) new Splide('.sliders', {
         pagination: false,
         type: 'loop',
@@ -635,7 +639,7 @@ $(function () {
     if ($("#map").length > 0) ymaps.ready(init);
 
     $(".agency-document__download").on("click", function () {
-        window.location.href = `/api/files/download/${$(this).data("path")}`
+        window.location.href = `/ api / files / download / ${$(this).data("path")} `
     });
 
     $(".profile-button").on("click", function () {
@@ -661,6 +665,10 @@ $(function () {
 
     $("input[type='search']").on("keydown", function (e) {
         if (e.key === 'Enter') window.location.href = `/search?search=${$(this).val()}`;
+    });
+
+    $(".tour-card").on("click", function () {
+        window.location.href = $(this).data("href");
     });
 
 });

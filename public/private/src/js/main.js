@@ -683,3 +683,15 @@ $(".chosen-results").on("click", function (e) {
         $("select[name='attached_pages']").prop("selectedIndex", 0);
 })
 
+
+/**
+ * Тип тура и страна в редактировании тура
+ */
+$(".chosen_country").on("change", function (e) {
+    $("select[name='tour_types'] option:selected").prop("selected", false);
+})
+
+$("select[name='tour_types']").on("change", function () {
+    $(".chosen_country option:selected").prop("selected", false);
+});
+

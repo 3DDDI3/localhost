@@ -135,28 +135,21 @@ class InfografikaController extends Controller
                         'title',
                         'text',
                         'subtitle',
-                        'about_id',
-                        'tour_id'
                     ]
                 )
             );
 
-            if ($request->input('attached_pages') == 0 && $request->input('tour_id') == 0)
-                $object->fill(['tour_id' => null, 'about_id' => null]);
-            else {
-                if (!empty($request->input('attached_pages')))
-                    $object->fill(['about_id' => $request->input('attached_pages'), 'tour_id' => null]);
-                else {
-                    $object->fill(['tour_id' => $request->input('tour_id'), 'about_id' => null]);
-                }
-            }
+            if ((int)$request->attached_pages > 0 && empty($object->about_id))
+                $object->fill([
+                    'about_id' => $request->attached_pages,
+                    'tour_id' => null,
+                ]);
 
-            if ($request->input('page_id') > 0 && empty($request->input('attached_pages'))) $object->fill(['about_id' => $request->input('page_id')]);
-            else {
-                $object->fill(['about_page' => $request->input('attached_pages')]);
-                $object->fill(['tourd_id' => null]);
-            }
-            if ($request->input('tour_id') > 0) $object->fill(['tour_id' => $request->input('tour_id')]);
+            if ((int)$request->tour_id > 0 && empty($objec->tour_id))
+                $object->fill([
+                    'about_id' => null,
+                    'tour_id' => $request->tour_id,
+                ]);
 
             $object->save();
 

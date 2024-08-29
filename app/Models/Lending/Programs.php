@@ -29,6 +29,6 @@ class Programs extends Model
 
     public function gallery(): BelongsTo
     {
-        return $this->belongsTo(Gallery::class, "id", "item_id");
+        return $this->belongsTo(Gallery::class, "id", "item_id")->where(['item_type' => 'programs']);
     }
 }

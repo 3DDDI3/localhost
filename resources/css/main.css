@@ -48,6 +48,13 @@ p {
     background-color: #f3f3f3;
     height: inherit;
     border-radius: 0 22px 22px 0;
+    border-bottom: 1px solid transparent;
+    color: #342635;
+    font-family: Inter, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 20.57px;
 }
 
 .icon {
@@ -437,7 +444,7 @@ input {
         .header-menu {
             display: flex;
             column-gap: 41px;
-            padding-top: 45px;
+            padding-top: 42px;
 
             .header-menu__item {
                 .header-menu__link {
@@ -446,6 +453,7 @@ input {
                     font-weight: 700;
                     letter-spacing: -0.01em;
                     line-height: 16.92px;
+                    font-size: 17px;
                     border-bottom: 2px solid transparent;
                 }
 
@@ -1331,6 +1339,7 @@ main {
                 width: auto;
 
                 .popular-tours__tour-card {
+                    cursor: pointer;
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
@@ -2476,6 +2485,7 @@ main {
                         button[type="submit"] {
                             width: auto;
                             margin-top: 25px;
+                            flex-shrink: 0;
                         }
                     }
                 }
@@ -3355,6 +3365,7 @@ main {
                         button[type="submit"] {
                             width: auto;
                             margin-top: 25px;
+                            flex-shrink: 0;
                         }
                     }
                 }
@@ -3933,6 +3944,7 @@ main {
 
     .box_active {
         margin-top: unset !important;
+        margin-right: 10px !important;
     }
 
     .box_active+.header__messengers {
@@ -4320,6 +4332,7 @@ main {
                         button[type="submit"] {
                             width: auto;
                             margin-top: 25px;
+                            flex-shrink: 0;
                         }
                     }
                 }
@@ -5319,6 +5332,7 @@ main {
                         button[type="submit"] {
                             width: auto;
                             margin-top: 25px;
+                            flex-shrink: 0;
                         }
                     }
                 }
@@ -6099,6 +6113,7 @@ main {
                         button[type="submit"] {
                             width: auto;
                             margin-top: 25px;
+                            flex-shrink: 0;
                         }
                     }
                 }

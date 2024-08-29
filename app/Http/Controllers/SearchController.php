@@ -6,7 +6,6 @@ use App\Models\Lending\Blog;
 use App\Models\Lending\News;
 use App\Models\Lending\Tour;
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchController extends Controller
@@ -23,25 +22,28 @@ class SearchController extends Controller
             ],
         ]);
 
-        $client = new Client(['verify' => false]);
-        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
-        $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
-
         $currencies = collect();
 
-        foreach ($currencyBody as $currencyBase) {
-            if ($currencyBase->name == "RUB") {
-                foreach ($currencyBody as $currency) {
-                    if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                        $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
-                        $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
-                        $currencies->push((object)[
-                            'currency' => $currency->name . "/" . $currencyBase->name,
-                            'rate' => round($currencyContent->rate, 2),
-                        ]);
+        try {
+            $client = new Client(['verify' => false]);
+            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
+
+            foreach ($currencyBody as $currencyBase) {
+                if ($currencyBase->name == "RUB") {
+                    foreach ($currencyBody as $currency) {
+                        if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
+                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
+                            $currencies->push((object)[
+                                'currency' => $currency->name . "/" . $currencyBase->name,
+                                'rate' => round($currencyContent->rate, 2),
+                            ]);
+                        }
                     }
                 }
             }
+        } catch (\Throwable $th) {
         }
 
         if (empty(request()->search)) abort(404, 'Не удалось найти');

@@ -12,7 +12,7 @@
             </li>
             <li class="splide__slide">
                 <div class="slider__block">
-                    <div class="slider-text-wrapper" id="search-tour">
+                    <div class="slider-text-wrapper">
                         <span class="slider__text">Европа</span>
                     </div>
                     <!-- <img src="./img/slider1.png" alt=""> -->

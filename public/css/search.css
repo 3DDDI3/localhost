@@ -1,1 +1,105 @@
-main{margin:auto;width:1348px;.page-headding{margin-top:80px}.search-headding{padding-top:78px;.search__headding{align-items:flex-start;display:flex;flex-direction:column;.search-headding__date{color:#342635;font-family:Inter,sans-serif;font-size:20px;font-weight:400;letter-spacing:-.02em;line-height:26px;margin:42px 0;opacity:.6}}.search-headding__title{font-family:HelveticaNeueCyr,sans-serif;font-size:60px;font-weight:700;letter-spacing:-.02em;line-height:59.7px;margin-top:25px}}.search-result{margin-top:50px;.search-result__list{display:flex;flex-wrap:wrap;gap:68px 36px;margin:72px 0 65px;.blog__card{cursor:pointer;display:flex;flex-direction:column;transition:transform .3s linear;width:425px;.blog__img{margin-bottom:30px;-o-object-fit:cover;object-fit:cover;width:100%}.blog__date{color:#342635;font-family:Inter,sans-serif;font-size:16px;font-weight:400;letter-spacing:-.02em;line-height:20.8px;margin-bottom:6px;opacity:.6}.blog__title{font-size:24px;font-weight:500;letter-spacing:-.01em;line-height:28.8px;margin-bottom:20px}.blog__text,.blog__title{color:#342635;font-family:Inter,sans-serif;transition:color .3s linear}.blog__text{font-size:17px;font-weight:400;letter-spacing:-.02em;line-height:25px}}.blog__card:hover{transform:scale(1.1);.blog__text,.blog__title{color:#582f9a}}}}}
+main {
+    width: 1348px;
+    margin: auto;
+
+    .page-headding {
+        margin-top: 80px;
+    }
+
+    .search-headding {
+        padding-top: 78px;
+
+        .search__headding {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .search-headding__date {
+                font-family: 'Inter', sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: -0.02em;
+                color: #342635;
+                opacity: .6;
+                margin: 42px 0;
+            }
+        }
+
+        .search-headding__title {
+            font-family: 'HelveticaNeueCyr', sans-serif;
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 59.7px;
+            letter-spacing: -0.02em;
+            margin-top: 25px;
+        }
+    }
+
+    .search-result {
+        margin-top: 50px;
+
+        .search-result__list {
+            margin: 72px 0 65px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 68px 36px;
+
+            .blog__card {
+                cursor: pointer;
+                width: 425px;
+                display: flex;
+                flex-direction: column;
+                transition: transform .3s linear;
+
+                .blog__img {
+                    width: 100%;
+                    -o-object-fit: cover;
+                       object-fit: cover;
+                    margin-bottom: 30px;
+                }
+
+                .blog__date {
+                    margin-bottom: 6px;
+                    color: #342635;
+                    opacity: .6;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 20.8px;
+                    letter-spacing: -0.02em;
+                }
+
+                .blog__title {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 24px;
+                    font-weight: 500;
+                    line-height: 28.8px;
+                    letter-spacing: -0.01em;
+                    color: #342635;
+                    margin-bottom: 20px;
+                    transition: color .3s linear;
+                }
+
+                .blog__text {
+                    transition: color .3s linear;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 17px;
+                    font-weight: 400;
+                    line-height: 25px;
+                    letter-spacing: -0.02em;
+                    color: #342635;
+                }
+            }
+
+            .blog__card:hover {
+                transform: scale(1.1);
+
+                .blog__text,
+                .blog__title {
+                    color: #582F9A;
+                }
+            }
+        }
+    }
+}

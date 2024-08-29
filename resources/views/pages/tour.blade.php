@@ -12,9 +12,8 @@
             <div class="tour-headding">
                 <x-templates.bread-crumbs :data="$breadcrumbs" />
                 <h1 class="tour-headding__title">{{ $tour->title }}</h1>
-                {{-- <img src="{{ asset('storage/' . $tour->path) }}" alt=""> --}}
                 <div class="tour-headding__description">
-                    <p class="tour-headding__subtitle">Самый лучший тур по Индии для первого знакомства!</p>
+                    <p class="tour-headding__subtitle">{{ $tour->subtitle }}</p>
                     <div class="tour-headding__actions">
                         @if ($tour->isHiddenCountryInfo == 0)
                             <button class="tour-country-info">
@@ -174,22 +173,14 @@
                             class="tour-day-programm__subtitle page-headding__subtitle">по дням:</span></span>
                 </div>
                 <div class="tour-day-programm__list">
-                    @for ($i = 0; $i < $tour->programs()->orderBy('rating', 'desc')->get()->count(); $i++)
+                    @foreach ($tour->programs()->orderBy('rating', 'desc')->get() as $program)
                         @php
-                            $program = $tour->programs()->orderBy('rating', 'desc')->get()[$i];
-                            $slider_data = $tour
-                                ->programs()
-                                ->orderBy('rating', 'desc')
-                                ->get()
-                                [$i]->gallery()
-                                ->get()
-                                ->all();
-                            $slider_class = 'tour-day-programm__gallary-slider' . $i + 1;
+                            $slider_class = 'tour-day-programm__gallary-slider' . $loop->index + 1;
                         @endphp
-                        <x-templates.tour-day day="{{ $program->day }}" title="{{ $program->get()[$i]->title }}"
-                            text="{{ $program->get()[$i]->text }}">
+                        <x-templates.tour-day day="{{ $program->day }}" title="{{ $program->title }}"
+                            text="{{ $program->text }}">
                             <x-sliders.gallery :$slider_class>
-                                @foreach ($slider_data as $item)
+                                @foreach ($program->gallery()->orderBy('rating', 'desc')->get() as $item)
                                     <x-templates.gallery-item>
                                         <img src="/storage/{{ $item->file_name }}" class="tour-gallary-block__image"
                                             alt="">
@@ -197,7 +188,7 @@
                                 @endforeach
                             </x-sliders.gallery>
                         </x-templates.tour-day>
-                    @endfor
+                    @endforeach
 
                 </div>
             </div>

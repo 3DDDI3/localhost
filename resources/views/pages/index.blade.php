@@ -4,7 +4,7 @@
 
         <x-sliders.main-slider />
 
-        <div class="search-tours">
+        <div id="search-tour" class="search-tours">
             <div class="search-tours__wrapper">
                 <section class="search-tour-buttons__slider splide">
                     <div class="splide__track">

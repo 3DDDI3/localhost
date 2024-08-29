@@ -100,10 +100,10 @@
                     href="/pages/{{ $pages->find(1)->url }}">{{ $pages->find(1)->title }}</a></li>
             <li><a class="menu-items__connect" href="/news">Новости</a></li>
             <li><a class="menu-items__cost" href="/blogs">Блог</a></li>
-            <li><a class="menu-items__qa" href="/pages/{{ $pages->find(4)->url }}">{{ $pages->find(1)->title }}</a>
+            <li><a class="menu-items__qa" href="/pages/{{ $pages->find(4)->url }}">{{ $pages->find(4)->title }}</a>
             </li>
             <li><a class="menu-items__entrance"
-                    href="/pages/{{ $pages->find(5)->url }}">{{ $pages->find(5)->url }}</a></li>
+                    href="/pages/{{ $pages->find(5)->url }}">{{ $pages->find(5)->title }}</a></li>
         </div>
         <div class="menu-info more-info">
             <a href="tel:{{ $phones[0] }}" class="menu-info__phone more-info__phone">{{ $phones[0] }}</a>

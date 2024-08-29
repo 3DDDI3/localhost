@@ -60,11 +60,31 @@
         </div>
 
         <div class="tours-list" style="margin-top: -179px;">
+
             @foreach ($tours as $tour)
-                <x-templates.tour type="хит" class="" alt="" img="/storage/{{ $tour->preview_image }}"
-                    info="{{ $tour->preview_title }}" title="{{ $tour->preview_header }}" text="{{ $tour->preview_text }}"
-                    nights="{{ $tour->preview_nights }}" price="{{ $tour->preview_price }}"
-                    url="tours/{{ $tour->url }}" />
+                @switch(get_class($tour))
+                    @case('App\Models\Lending\TourCountry')
+                        <x-templates.tour type="хит" class="" alt=""
+                            img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
+                            title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
+                            nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
+                            url="tours/{{ $tour->tour->url }}" />
+                    @break
+
+                    @case('App\Models\Lending\TourType')
+                        <x-templates.tour type="хит" class="" alt=""
+                            img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
+                            title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
+                            nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
+                            url="tours/{{ $tour->tour->url }}" />
+                    @break
+
+                    @default
+                        <x-templates.tour type="хит" class="" alt="" img="/storage/{{ $tour->preview_image }}"
+                            info="{{ $tour->preview_title }}" title="{{ $tour->preview_header }}"
+                            text="{{ $tour->preview_text }}" nights="{{ $tour->preview_nights }}"
+                            price="{{ $tour->preview_price }}" url="tours/{{ $tour->url }}" />
+                @endswitch
             @endforeach
         </div>
 

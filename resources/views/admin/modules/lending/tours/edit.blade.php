@@ -45,6 +45,7 @@
                 'name' => 'select',
                 'select' => $countries,
                 'select_head' => $countryHead,
+                'class' => 'country',
             ])
 
             {!! \App\Helpers\GenerateForm::makeMultipleSelect(
@@ -52,6 +53,7 @@
                 'tour_types',
                 $tourTypes->all(),
                 $selectedTourTypes->all(),
+                
             ) !!}
 
             @include('admin.includes.textbox', [

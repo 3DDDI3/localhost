@@ -20,11 +20,11 @@
             <div class="footer__main-menu">
                 <ul class="footer-main-menu menu">
                     <li class="footer-main-menu__item menu__item">
-                        <a href="news" class="footer-main-menu__link menu__link">Новости
+                        <a href="/news" class="footer-main-menu__link menu__link">Новости
                         </a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="blogs" class="footer-main-menu__link menu__link">Блог</a>
+                        <a href="/blogs" class="footer-main-menu__link menu__link">Блог</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
                         <a href="{{ $pages->find(4)->url }}"

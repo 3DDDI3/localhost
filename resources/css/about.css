@@ -123,7 +123,7 @@ main {
         }
 
         .company-statistics__text {
-            padding-left: 16px;
+            /* padding-left: 16px; */
             font-family: 'Inter', sans-serif;
             font-size: 18px;
             font-weight: 400;
