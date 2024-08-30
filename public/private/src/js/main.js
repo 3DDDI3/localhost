@@ -656,42 +656,34 @@ $(".js-bonus-accrual__button").on("click", function () {
 });
 
 $("select[name='infografika_tour']").on("change", function () {
-    if ($(this).val() > 0) {
-        location.href = `?tour_id=${$(this).val()}`;
-    }
+    location.href = `?tour_id=${$(this).val()}`;
 });
 
 $("select[name='infografika_page']").on("change", function () {
-    if ($(this).val() > 0) {
-        location.href = `?page_id=${$(this).val()}`;
-    }
+    location.href = `?page_id=${$(this).val()}`;
 });
-
-$("select[name='attached_pages']").on("change", function () {
-    if ($(this).val() != 0) $("a.chosen-single span").text("Не выбрано");
-});
-
-$(".chosen-container").on("click", function () {
-    Array.from($(".chosen-results li")).forEach((e) => {
-        $(e).removeClass("result-selected");
-    });
-    $($(".chosen-results li")[0]).addClass("result-selected");
-});
-
-$(".chosen-results").on("click", function (e) {
-    if ($(e.target).text() != 'Не выбрано')
-        $("select[name='attached_pages']").prop("selectedIndex", 0);
-})
-
 
 /**
  * Тип тура и страна в редактировании тура
  */
-$(".chosen_country").on("change", function (e) {
-    $("select[name='tour_types'] option:selected").prop("selected", false);
+$(".chosen.country").on("change", function (e) {
+    $("select[name='tour_types[]'] option:selected").prop("selected", false);
 })
 
-$("select[name='tour_types']").on("change", function () {
-    $(".chosen_country option:selected").prop("selected", false);
+$("select[name='tour_types[]']").on("change", function () {
+    $(".chosen.country option:selected").prop("selected", false);
+    $('.chosen.country').trigger("chosen:updated");
 });
 
+/**
+ * Страница и тур на странице редактирования инфографики
+ */
+$(".chosen.page").on("change", function (e) {
+    $(".chosen.tour option:selected").prop("selected", false);
+    $('.chosen.tour').trigger("chosen:updated");
+})
+
+$(".chosen.tour").on("change", function () {
+    $(".chosen.page option:selected").prop("selected", false);
+    $('.chosen.page').trigger("chosen:updated");
+});

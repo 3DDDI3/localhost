@@ -53,7 +53,6 @@
                 'tour_types',
                 $tourTypes->all(),
                 $selectedTourTypes->all(),
-                
             ) !!}
 
             @include('admin.includes.textbox', [

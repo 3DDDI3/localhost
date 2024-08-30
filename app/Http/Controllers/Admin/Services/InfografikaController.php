@@ -21,26 +21,14 @@ class InfografikaController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $selectedPage = null;
-        $selectedTour = null;
+        $objects = Infografika::query()->orderBy('rating', 'desc')->paginate(10);
 
-        if ($request->input("tour_id") != null)
-            $objects = Infografika::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
-        else
-            $objects = Infografika::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate();
-
-        if ($request->input("page_id") != null) {
-            $objects = Infografika::where(['about_id' => $request->input("page_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate();
-            $selectedPage = Page::where('id', 1)->first()->title;
-        }
-
-        if (!empty($objects->tour_id))
-            $selectedTour = $objects->first()->tour()->title;
-        else {
-            $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()?->title;
-        }
-
-        $tours = collect();
+        $tours = collect(
+            [(object)[
+                'id' => 0,
+                'name' => 'Не выбрано',
+            ]]
+        );
 
         foreach (Tour::orderBy('title')->get() as $tour) {
             $tours->push(
@@ -51,23 +39,37 @@ class InfografikaController extends Controller
             );
         }
 
-        $pages = collect(
-            [
-                (object)[
-                    'id' => (int)Page::where('id', 1)->first()->id,
-                    'name' => Page::where('id', 1)->first()->title
-                ]
-            ]
-        );
+        $selectedPage = null;
+        $selectedTour = null;
 
-        foreach (Page::orderBy('title')->get() as $page) {
-            $tours->push(
-                (object)[
-                    'id' => $page->id,
-                    'name' => $page->title
-                ]
-            );
+        if ((int)$request->tour_id > 0) {
+            $selectedTour = Tour::query()
+                ->where(['id' => $request->tour_id])
+                ->first()->title;
+            $objects = Infografika::query()
+                ->where(['tour_id' => $request->tour_id])
+                ->paginate(10);
         }
+
+        if ((int)$request->page_id > 0) {
+            $selectedPage = Page::query()
+                ->where(['id' => $request->page_id])
+                ->first()->title;
+            $objects = Infografika::query()
+                ->where(['about_id' => $request->page_id])
+                ->paginate(10);
+        }
+
+        $pages = collect([
+            (object)[
+                'id' => 0,
+                'name' => "Не выбрано",
+            ],
+            (object)[
+                'id' => (int)Page::where('id', 1)->first()->id,
+                'name' => Page::where('id', 1)->first()->title
+            ]
+        ]);
 
         if ($request->search) {
             $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
@@ -98,58 +100,54 @@ class InfografikaController extends Controller
 
         $object = $id ? Infografika::find($id) : new Infografika();
 
-        $tours = collect();
-
-        $pages = collect(
-            [
-                (object)[
-                    'id' => (int)Page::where('id', 1)->first()->id,
-                    'name' => Page::where('id', 1)->first()->title
-                ]
+        $tours = collect([
+            (object)[
+                "id" => 0,
+                "name" => "Не выбрано",
             ]
-        );
+        ]);
 
-        $selectedTour = null;
-        $selectedPage = null;
+        $pages = collect([
+            (object)[
+                "id" => 0,
+                "name" => "Не выбрано",
+            ],
+            (object)[
+                "id" => (int)Page::where('id', 1)->first()->id,
+                "name" => Page::where('id', 1)->first()->title
+            ]
+        ]);
 
         foreach (Tour::orderBy('title')->get() as $tour) {
             $tours->push(
                 (object)[
-                    'id' => $tour->id,
-                    'name' => $tour->title
+                    "id" => $tour->id,
+                    "name" => $tour->title
                 ]
             );
         }
 
-        foreach ($object->page()->get() as $page) {
-            $selectedPage = $page->id;
-        }
-
-        if (!empty($object->tour_id))
-            $selectedTour = $object->tour()->count() == 0 ? null : $object->tour()->first()->title;
+        $selectedPage = !empty($object->page) ? $object->page->title : null;
+        $selectedTour = !empty($object->tour) ? $object->tour->title : null;
 
         if ($request->isMethod('post')) {
             $object->fill(
-                $request->only(
-                    [
-                        'title',
-                        'text',
-                        'subtitle',
-                    ]
-                )
+                $request->only([
+                    'title',
+                    'text',
+                    'subtitle',
+                ])
             );
 
-            if ((int)$request->attached_pages > 0 && empty($object->about_id))
-                $object->fill([
-                    'about_id' => $request->attached_pages,
-                    'tour_id' => null,
-                ]);
+            if ((int)$request->attached_pages > 0)
+                $object->fill(['about_id' => $request->attached_pages]);
+            else
+                $object->fill(['about_id' => null]);
 
-            if ((int)$request->tour_id > 0 && empty($objec->tour_id))
-                $object->fill([
-                    'about_id' => null,
-                    'tour_id' => $request->tour_id,
-                ]);
+            if ((int)$request->tour_id > 0)
+                $object->fill(['tour_id' => $request->tour_id]);
+            else
+                $object->fill(['tour_id' => null]);
 
             $object->save();
 

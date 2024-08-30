@@ -8,14 +8,23 @@
     @if ($objects)
         @include('admin.includes.sortable.info')
         <div class="sortable_list">
+            <div
+                style="
+            display: flex; 
+            column-gap: 30px; 
+            padding: 14px 30px; 
+            background-color:#212121;
+            color: #ffffff">
+                <p style="flex-basis: 50%;">Страница</p>
+            </div>
             @foreach ($objects as $object)
                 <div class="list_item">
-                    <div class="list_item-info">
+                    <div class="list_item-info" style="flex-basis: 50%">
                         {{-- <h4>{{ $object->id }}</h4> --}}
                         {{ $object->title }}
-                        @if ($object->image)
+                        {{-- @if ($object->image)
                             @include('admin.includes.image', ['path' => '/storage/' . $object->image])
-                        @endif
+                        @endif --}}
                     </div>
                     <div class="list_item-actions">
                         @include('admin.includes.sortable.rating')

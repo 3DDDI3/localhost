@@ -17,21 +17,20 @@
 
             {{-- @dd($selectedPages->all(), $pages->all()) --}}
 
-            {!! \App\Helpers\GenerateForm::makeSelect(
-                'Прикрепленная страница',
-                'attached_pages',
-                $pages->all(),
-                $selectedPage,
-                nullTitle: 'Не выбрано',
-            ) !!}
-
-            {{-- @dd($tours->all(), $selectedTour) --}}
+            @include('admin.includes.select', [
+                'label' => 'Страница',
+                'name' => 'attached_pages',
+                'select' => $pages->all(),
+                'select_head' => $selectedPage,
+                'class' => 'page',
+            ])
 
             @include('admin.includes.select', [
                 'label' => 'Тур',
                 'name' => 'tour_id',
                 'select' => $tours->all(),
                 'select_head' => $selectedTour,
+                'class' => 'tour',
             ])
 
             @include('admin.includes.textbox', [

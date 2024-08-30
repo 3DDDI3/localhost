@@ -9,13 +9,23 @@
     @if ($objects)
         @include('admin.includes.sortable.info')
         <div class="sortable_list">
+            <div
+                style="
+            display: flex; 
+            column-gap: 30px; 
+            padding: 14px 30px; 
+            background-color:#212121;
+            color: #ffffff">
+                <p style="flex-basis: 40%">Заголовок</p>
+                <p style="flex-basis: 40%">Подзаголовок</p>
+            </div>
             @foreach ($objects as $object)
-                <div class="list_item">
-                    <div class="list_item-info">
+                <div class="list_item" style="column-gap: 30px">
+                    <div class="list_item-info" style="flex-basis: 40%">
                         {{-- <h4>{{ $object->id }}</h4> --}}
                         {{ $object->title }}
                     </div>
-                    <div class="list_item-info">
+                    <div class="list_item-info" style="flex-grow:1">
                         {{-- <h4>{{ $object->id }}</h4> --}}
                         {{ $object->subtitle }}
                     </div>

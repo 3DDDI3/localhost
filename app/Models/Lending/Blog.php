@@ -24,7 +24,7 @@ class Blog extends Model
     protected function createdAt(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('d.m.Y')
+            get: fn(string $value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('H:i d.m.Y')
         );
     }
 }

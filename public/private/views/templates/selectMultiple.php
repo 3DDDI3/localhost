@@ -1,6 +1,6 @@
 <div class='input_block'>
     <span><?= $title ?>:</span>
-    <select name='<?= $name ?>' size='10' multiple>
+    <select name='<?= $name ?>[]' size='10' multiple>
         <?php foreach ($object as $item): ?>
             <option value='<?= $item->id ?>'
                 <?php if (in_array($item->id, $selected)) echo 'selected' ?>><?= $item->name ?></option>

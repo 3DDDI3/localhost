@@ -10,7 +10,6 @@ use App\Models\Lending\Country;
 use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
-use App\Models\Lending\TourStatus;
 use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
 use App\Models\User\AdminEventLogs;
@@ -52,7 +51,15 @@ class ToursController extends Controller
 
         if (empty($object)) $object = new Tour();
 
-        $countries = Country::all();
+        $countries = Country::query()
+            ->orderBy('rating', 'desc')
+            ->get()
+            ->prepend(
+                (new Country())->fill([
+                    "id" => 0,
+                    "name" => "Не выбрано",
+                ])
+            );
 
         $tourTypes = collect();
 
@@ -71,26 +78,29 @@ class ToursController extends Controller
                 $selectedTourTypes->push($tourType->tourType()->first()->id);
             }
 
-        $countryHead = !empty($object->id) && $object->country()->count() > 0 ? $object->country()->first()->country()->first()->name : null;
+        $countryHead = $object->country != null ? $object->country->name : null;
+
 
         $images = Gallery::where(['item_id' => 1, 'item_type' => 1])->get();
 
-        $status = Status::query()->orderBy('rating', 'desc')->get();
+        $status = Status::query()
+            ->orderBy('rating', 'desc')
+            ->get()
+            ->prepend(
+                (new Status())->fill([
+                    "id" => 0,
+                    "name" => "Не выбрано",
+                ])
+            );
 
-        $defaultStatus = new Status();
-        $defaultStatus->id = 0;
-
-        dd($status->prepend($defaultStatus));
-
-        $statusHead = null;
-
-        if (!empty($object->tourStatus()))
-            $statusHead = $object->tourStatus()->status()->name;
+        $statusHead = $object->tourStatus != null ? $object->tourStatus->name : null;
 
         if ($request->isMethod('post')) {
 
-            $object->isHiddenCountryInfo = 0;
-            $object->isHiddenTouristInfo = 0;
+            $object->fill([
+                'isHiddenCountryInfo' => 0,
+                'isHiddenTouristInfo' => 0,
+            ]);
 
             $object->fill(
                 $request->only(
@@ -126,31 +136,41 @@ class ToursController extends Controller
 
             $object->save();
 
-            if ($request->input("select") > 0) {
-                $countryTour = TourCountry::where(['tour_id' => $object->id])->first();
+            if ((int)$request->input("select") > 0)
+                TourCountry::query()
+                    ->where(['tour_id' => $object->id])
+                    ->first()
+                    ->fill([
+                        'country_id' => $request->select,
+                    ])
+                    ->save();
+            else
+                TourCountry::query()
+                    ->where(['tour_id' => $object->id])
+                    ->first()
+                    ->fill([
+                        'country_id' => null,
+                    ])
+                    ->save();
 
-                if ($countryTour == null)
-                    TourCountry::create(["tour_id" => empty($object->id) ? 1 : $object->id, "country_id" => $request->input("select")]);
-                else {
-                    $countryTour->country_id = $request->input("select");
-                    $countryTour->save();
+            if (!empty($request->tour_types)) {
+                TourType::query()
+                    ->where([
+                        'tour_id' => $object->id,
+                    ])
+                    ->delete();
+                foreach ($request->tour_types as $tourType) {
+                    TourType::create([
+                        'tour_id' => $object->id,
+                        'tour_type_id' => $tourType
+                    ]);
                 }
-            }
-
-            if ($request->input('status') > 0) {
-                TourStatus::query()->where(['tour_id' => $object->id])->delete();
-                $status = TourStatus::create([
-                    'status_id' => $request->input('status'),
-                    'tour_id' => $object->id,
-                ]);
-            }
-
-            if (!empty($request->input('tour_types'))) {
-                TourType::where(['tour_id' => $object->id])->delete();
-                foreach ($request->input('tour_types')  as $typeId) {
-                    TourType::create(['tour_type_id' => (int)$typeId, "tour_id" => $object->id]);
-                }
-            } else TourType::where(['tour_id' => $object->id])->delete();
+            } else
+                TourType::query()
+                    ->where([
+                        'tour_id' => $object->id,
+                    ])
+                    ->delete();
 
             AdminEventLogs::log($object, $id);
 

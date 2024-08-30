@@ -1,15 +1,12 @@
 <?php
 
-use App\Http\Controllers\AboutCompanyController;
-use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\BlogsController;
-use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\TouristController;
 use App\Http\Controllers\ToursController;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +47,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     });
 
     Route::get('/search', [SearchController::class, 'index']);
+
+    Route::get('/pdf', function () {
+        $pdf = Pdf::loadView('pdf.test');
+        return $pdf->stream();
+    });
 
     include('admin.php');
 });

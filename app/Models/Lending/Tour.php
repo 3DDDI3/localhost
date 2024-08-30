@@ -3,18 +3,13 @@
 namespace App\Models\Lending;
 
 use App\Models\Gallery;
-use App\Models\Lending\Country as LendingCountry;
-use App\Models\Service\Country;
 use App\Models\Services\Infografika;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use PhpParser\ErrorHandler\Collecting;
 
 class Tour extends Model
 {
@@ -22,9 +17,17 @@ class Tour extends Model
 
     protected $table = 'tours';
 
-    public function country(): HasOne
+    protected function createdAt(): Attribute
     {
-        return $this->hasOne(TourCountry::class);
+        return Attribute::make(
+            get: fn(string $value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('H:i d.m.Y')
+        );
+    }
+
+    public function country()
+    {
+        // return $this->hasOne(TourCountry::class);
+        return $this->hasOneThrough(Country::class, TourCountry::class, 'tour_id', 'id', 'id', 'country_id');
     }
 
     public function tours(): HasMany
@@ -54,13 +57,12 @@ class Tour extends Model
 
     public function tourTypes(): Collection
     {
-        return LendingCountry::query()->where(['hide' => 0])->orderBy('id')->get();
+        return Country::query()->where(['hide' => 0])->orderBy('id')->get();
     }
 
     public function tourStatus()
     {
-        if ($this->hasMany(TourStatus::class, 'tour_id', 'id')->count() > 0) return $this->hasMany(TourStatus::class, 'tour_id', 'id')->first();
-        else new TourStatus();
+        return $this->hasOneThrough(Status::class, TourStatus::class, 'tour_id', 'id', 'id', 'status_id');
     }
 
     protected $fillable = [
