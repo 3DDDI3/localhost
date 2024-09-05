@@ -820,6 +820,7 @@ input {
 
             .combobox-header__subtitle_invisible {
                 line-height: 0px !important;
+                height: auto !important;
             }
         }
 
@@ -3539,7 +3540,7 @@ main {
                 a:nth-child(3) {
                     img {
                         width: 32px;
-                        height: 19px;
+                        height: 21px;
                         -o-object-fit: cover;
                            object-fit: cover;
                     }

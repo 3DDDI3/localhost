@@ -2,11 +2,13 @@
 
 @section('head')
     <link rel="stylesheet" href="{{ asset('/css/tour.css') }}?v={{ sha1_file(public_path() . '/css/tour.css') }}">
+    <script src="{{ asset('/private/src/js/swal.js') }}?v={{ sha1_file(public_path() . '/private/src/js/swal.js') }}">
+    </script>
 @endsection
 
 @section('content')
     <main>
-
+        {{-- @dd($meals, $city, $hotels) --}}
         <div class="tour-headding__wrapper"
             style="background-image: url('{{ asset('storage/' . $tour->background_image) }}')">
             <div class="tour-headding">
@@ -194,21 +196,23 @@
             </div>
         @endif
 
-        <div class="tour-cost" id="calc">
+
+        <div class="tour-cost" id="calc" data-country="{{ $samotour->id_country }}"
+            data-tour="{{ $samotour->id_tour }}">
             <h1 class="tour-cost__title">Стоимость тура</h1>
             <form class="tour-cost__form">
                 <div class="tour-cost-form__first-row">
                     <div class="tour-cost__date">
                         <div class="tour-cost-dates__wrapper">
-                            <label for="tour_datapicker">
-                                <div class="tour-cost__dates">
-                                    <span class="tour-cost-dates__title">Дата заезда</span>
-                                    <span class="tour-cost-dates__subtitle">Москва</span>
+                            <label for="datapicker-from">
+                                <div class="search-tour__dates">
+                                    <span class="search-tour-dates__title">Дата вылета</span>
+                                    <span class="search-tour-dates__subtitle"></span>
                                 </div>
-                                <input id="tour_datapicker" class="tour-cost-dates__datapicker" type="text"
-                                    name="tour_datefilter" value="" />
-                                <svg class="tour-cost-date__icon" width="23" height="23" viewBox="0 0 23 23"
-                                    fill="inherit">
+                                <input id="datapicker-from" class="search-tour-dates__datapicker" type="text"
+                                    name="datefilter" value="" />
+                                <svg class="search-tour-date__icon" width="23" height="23" viewBox="0 0 23 23"
+                                    fill="#ffffff">
                                     <g opacity="0.3">
                                         <path
                                             d="M5.75033 21.0833H17.2503C18.2667 21.0822 19.2411 20.678 19.9597 19.9594C20.6784 19.2407 21.0826 18.2663 21.0837 17.25V7.66663C21.0826 6.65029 20.6784 5.67589 19.9597 4.95723C19.2411 4.23857 18.2667 3.83436 17.2503 3.83329H16.292V2.87496C16.292 2.62079 16.191 2.37704 16.0113 2.19732C15.8316 2.01759 15.5878 1.91663 15.3337 1.91663C15.0795 1.91663 14.8357 2.01759 14.656 2.19732C14.4763 2.37704 14.3753 2.62079 14.3753 2.87496V3.83329H8.62533V2.87496C8.62533 2.62079 8.52436 2.37704 8.34464 2.19732C8.16491 2.01759 7.92116 1.91663 7.66699 1.91663C7.41283 1.91663 7.16907 2.01759 6.98935 2.19732C6.80963 2.37704 6.70866 2.62079 6.70866 2.87496V3.83329H5.75033C4.73401 3.83443 3.75965 4.23867 3.04101 4.95731C2.32237 5.67595 1.91813 6.65031 1.91699 7.66663V17.25C1.91813 18.2663 2.32237 19.2406 3.04101 19.9593C3.75965 20.6779 4.73401 21.0822 5.75033 21.0833ZM3.83366 10.5416H19.167V17.25C19.1664 17.7581 18.9643 18.2453 18.605 18.6046C18.2457 18.9639 17.7585 19.166 17.2503 19.1666H5.75033C5.24215 19.1661 4.75493 18.964 4.3956 18.6047C4.03626 18.2454 3.83417 17.7581 3.83366 17.25V10.5416Z"
@@ -222,7 +226,8 @@
                         <div class="combobox__header">
                             <div class="combobox-header-block">
                                 <span class="combobox-header__title">Город вылета</span>
-                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle"
+                                    data-id="{{ $city[0]->id }}">{{ $city[0]->name }}</span>
                             </div>
                             <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -240,22 +245,19 @@
                             </svg>
                         </div>
                         <div class="combobox__list combobox__list_invisible">
-                            <span class="combobox__item">
-                                Москва
-                            </span>
-                            <span class="combobox__item">
-                                Санкт-Петербург
-                            </span>
-                            <span class="combobox__item">
-                                Екатеринбург
-                            </span>
+                            @foreach ($city as $_city)
+                                <span data-id="{{ $_city->id }}" class="combobox__item">
+                                    {{ $_city->name }}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                     <div class="search-tour__tourist combobox">
                         <div class="combobox__header">
                             <div class="combobox-header-block">
                                 <span class="combobox-header__title">Туристы</span>
-                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">1
+                                    человек</span>
                             </div>
                             <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,6 +275,9 @@
                             </svg>
                         </div>
                         <div class="combobox__list combobox__list_invisible">
+                            <span class="combobox__item">
+                                1 человек
+                            </span>
                             <span class="combobox__item">
                                 2 человека
                             </span>
@@ -288,7 +293,7 @@
                         <div class="combobox__header">
                             <div class="combobox-header-block">
                                 <span class="combobox-header__title">Детей</span>
-                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">1</span>
                             </div>
                             <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -323,7 +328,7 @@
                         <div class="combobox__header">
                             <div class="combobox-header-block">
                                 <span class="combobox-header__title">Ночей</span>
-                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">1</span>
                             </div>
                             <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,22 +346,19 @@
                             </svg>
                         </div>
                         <div class="combobox__list combobox__list_invisible">
-                            <span class="combobox__item">
-                                1
-                            </span>
-                            <span class="combobox__item">
-                                2
-                            </span>
-                            <span class="combobox__item">
-                                3
-                            </span>
+                            @foreach ($nights as $night)
+                                <span class="combobox__item">
+                                    {{ $night }}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                     <div class="search-tour__hotel-category combobox">
                         <div class="combobox__header">
                             <div class="combobox-header-block">
                                 <span class="combobox-header__title">Категория отеля</span>
-                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                <span class="combobox-header__subtitle combobox-header__subtitle_invisible"
+                                    data-id="{{ $stars[0]->id }}">{{ $stars[0]->name }}</span>
                             </div>
                             <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -374,15 +376,11 @@
                             </svg>
                         </div>
                         <div class="combobox__list combobox__list_invisible">
-                            <span class="combobox__item">
-                                4*
-                            </span>
-                            <span class="combobox__item">
-                                3*
-                            </span>
-                            <span class="combobox__item">
-                                5*
-                            </span>
+                            @foreach ($stars as $star)
+                                <span data-id="{{ $star->id }}" class="combobox__item">
+                                    {{ $star->name }}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                     <div class="search-tour__hotel combobox">
@@ -407,15 +405,12 @@
                             </svg>
                         </div>
                         <div class="combobox__list combobox__list_invisible">
-                            <span class="combobox__item">
-                                Гостиница №1
-                            </span>
-                            <span class="combobox__item">
-                                Гостиница №2
-                            </span>
-                            <span class="combobox__item">
-                                Гостиница №2
-                            </span>
+                            @foreach ($hotels as $hotel)
+                                <span data-id="{{ $hotel->id }}" data-star="{{ $hotel->star_id }}"
+                                    class="combobox__item">
+                                    {{ $hotel->name }}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                     <div class="search-tour__feed combobox">
@@ -440,15 +435,11 @@
                             </svg>
                         </div>
                         <div class="combobox__list combobox__list_invisible">
-                            <span class="combobox__item">
-                                ВВ
-                            </span>
-                            <span class="combobox__item">
-                                ВВ
-                            </span>
-                            <span class="combobox__item">
-                                Екатеринбург
-                            </span>
+                            @foreach ($meals as $meal)
+                                <span data-id="{{ $meal->id }}" class="combobox__item">
+                                    {{ $meal->name }}
+                                </span>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -457,7 +448,7 @@
                 <div class="tour-cost-block">
                     <div class="tour-cost__info">
                         <span class="tour-cost__tite">Стоимость за всех:</span>
-                        <span class="tour-cost__value">120 250 руб.</span>
+                        <span class="tour-cost__value">Н/Д</span>
                     </div>
                     <button class="tour-cost__update">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

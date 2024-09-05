@@ -6,24 +6,34 @@ use App\Models\Lending\Country;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
 use App\Models\Lending\TourType;
+use App\Models\Services\SamotourTour;
 use GuzzleHttp\Client;
 
 class ToursController extends Controller
 {
+    private $samotour_url;
+    private $samotour_token;
+
+    public function __construct()
+    {
+        $this->samotour_url = config('samotour.samotour_api_url');
+        $this->samotour_token = config('samotour.samotour_api_token');
+    }
+
     public function index()
     {
         $currencies = collect();
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -128,14 +138,14 @@ class ToursController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -173,7 +183,6 @@ class ToursController extends Controller
         }
 
         if ($tour->country()->count() > 0) {
-
             $breadCrumbs = collect([
                 (object)[
                     'name' => 'Главная',
@@ -184,8 +193,8 @@ class ToursController extends Controller
                     'url' => '/tours?country_id=*'
                 ],
                 (object)[
-                    'name' => $tour->country->country->name,
-                    'url' => "/tours?country_id=" . $tour->country->country->id
+                    'name' => $tour->country->name,
+                    'url' => "/tours?country_id=" . $tour->country->id
                 ],
                 (object)[
                     'name' => $tour->title,
@@ -209,11 +218,84 @@ class ToursController extends Controller
             ]);
         }
 
+        $samotourTour = $tour->samotourTour;
+
+        $city = collect();
+
+        try {
+            $client = new Client(['verify' => false]);
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_TOWNFROMS");
+
+            foreach (json_decode($res->getBody()->getContents())->SearchTour_TOWNFROMS as $_city) {
+                if ($_city->id == $samotourTour->id_city)
+                    $city->push($_city);
+            }
+        } catch (\Throwable $th) {
+        }
+
+        $hotels = collect();
+        $stars = collect();
+
+        try {
+            $client = new Client(['verify' => false]);
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_HOTELS&TOWNFROMINC=$samotourTour->id_city&STATEINC=$samotourTour->id_country&TOURS=$samotourTour->id_tour");
+
+            foreach (json_decode($res->getBody()->getContents())->SearchTour_HOTELS as $_hotel) {
+                $hotels->push((object)[
+                    'id' => $_hotel->id,
+                    'name' => $_hotel->name,
+                    'star_id' => $_hotel->starGroupList,
+                ]);
+                if (!$stars->contains('name', $_hotel->star))
+                    $stars->push((object)[
+                        'id' => $_hotel->starGroupList,
+                        'name' => $_hotel->star,
+                    ]);
+            }
+        } catch (\Throwable $th) {
+        }
+
+        $stars = $stars->sortDesc();
+
+        $nights = collect();
+
+        try {
+            $client = new Client(['verify' => false]);
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_NIGHTS&TOWNFROMINC=$samotourTour->id_city&STATEINC=$samotourTour->id_country");
+
+            foreach (json_decode($res->getBody()->getContents())->SearchTour_NIGHTS->nights as $_night) {
+                $nights->push($_night);
+            }
+        } catch (\Throwable $th) {
+        }
+
+        $meals = collect();
+
+        try {
+            $client = new Client(['verify' => false]);
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_MEALS&TOWNFROMINC=$samotourTour->id_city&STATEINC=$samotourTour->id_country");
+
+
+            foreach (json_decode($res->getBody()->getContents())->SearchTour_MEALS as $_meal) {
+                $meals->push((object)[
+                    'id' => $_meal->id,
+                    'name' => $_meal->name
+                ]);
+            }
+        } catch (\Throwable $th) {
+        }
+
         if (!empty($tour))
             return view('pages.tour', [
                 "breadcrumbs" => $breadCrumbs,
                 "tour" => $tour,
                 'currencies' => $currencies,
+                'meals' => $meals,
+                'hotels' => $hotels,
+                'city' => $city,
+                'stars' => $stars,
+                'samotour' => $samotourTour,
+                'nights' => $nights,
             ]);
         else abort(404, 'Не удалось найти тур');
     }

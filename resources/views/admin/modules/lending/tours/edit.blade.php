@@ -40,6 +40,13 @@
                 'select_head' => $statusHead,
             ])
 
+            @include('admin.includes.select', [ 
+                'label' => 'Связь с туром в Самотуре:',
+                'name' => 'samotour',
+                'select' => $samotour,
+                'select_head' => $samotourHead,
+            ])
+
             @include('admin.includes.select', [
                 'label' => 'Страна:',
                 'name' => 'select',

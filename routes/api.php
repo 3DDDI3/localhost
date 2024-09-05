@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\Lending\InfografikaController;
+use App\Jobs\Parse;
+use App\Models\Job;
+use App\Models\Lending\Tour;
 use App\Models\Mailler;
 use App\View\Components\Blocks\ComboboxItem;
+use Barryvdh\DomPDF\Facade\Pdf;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\ComponentAttributeBag;
@@ -27,22 +31,65 @@ Route::get('files/download/{path}', function ($path) {
         return Storage::download("files/$path");
 });
 
-Route::get('/samotur/getCountries', function () {
-        try {
-                $client = new Client(['verify' => false]);
-                $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_STATES&TOWNFROMINC=' . request()->input('id'));
-                $combobox = new ComboboxItem();
-                $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
-                return $combobox->render()->with(
-                        ['attributes' => new ComponentAttributeBag(
-                                ['objects' => count($content) > 0 ? $content : null]
-                        )]
-                );
-        } catch (\Throwable $th) {
-        }
-});
-
 Route::post('mailler/create', function () {
         Mailler::create(['email' => request()->input('email')]);
         return response(status: 200);
+});
+
+Route::post('export_tours', function () {
+        if (Job::all()->count() > 0) return response()->json(['message' => 'Операция уже выполняется']);
+        Parse::dispatch();
+});
+
+Route::get('/files', function (Request $request) {
+        $programs = Tour::query()->where(['url' => $request->tour])->first()->programs;
+        $pdf = Pdf::loadView('pdf.test', ['programs' => $programs]);
+        return $pdf->stream();
+});
+
+Route::prefix('samotour')->group(function () {
+        Route::get('/getPrice', function (Request $request) {
+                $samotour_url = config('samotour.samotour_api_url');
+                $samotour_token = config('samotour.samotour_api_token');
+
+                if ($request->child != null) {
+                        $ages = [];
+
+                        for ($i = 0; $i < $request->child; $i++) {
+                                $ages[] = 0;
+                        }
+                        $ages = implode(",", $ages);
+                }
+
+                try {
+                        $client = new Client(['verify' => false]);
+                        $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_PRICES&TOWNFROMINC=$request->from&STATEINC=$request->country&CHECKIN_BEG=$request->begDate&CHECKIN_END=$request->endDate&NIGHTS_FROM=$request->nights&NIGHTS_TILL=$request->nights&ADULT=$request->adults&CURRENCY=1&STARS=$request->hotelCategory&MEALS=$request->meal&CHILD=$request->child&HOTELS=$request->hotel&TOURS=$request->tour&AGES=$ages");
+                        $tours = json_decode($res->getBody()->getContents())->SearchTour_PRICES->prices;
+                        if (count($tours) == 0)
+                                return response()->json([], 404);
+
+                        return response()->json([
+                                'id' => $tours[0]->id,
+                                'price' => number_format(preg_replace("/[^0-9]/", "", $tours[0]->convertedPrice), 2, '.', ' ')
+                        ], 200);
+                } catch (\Throwable $th) {
+                }
+        });
+
+        Route::get('/getCountries', function (Request $request) {
+                $samotour_url = config('samotour.samotour_api_url');
+                $samotour_token = config('samotour.samotour_api_token');
+                try {
+                        $client = new Client(['verify' => false]);
+                        $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
+                        $combobox = new ComboboxItem();
+                        $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
+                        return $combobox->render()->with(
+                                ['attributes' => new ComponentAttributeBag(
+                                        ['objects' => count($content) > 0 ? $content : null]
+                                )]
+                        );
+                } catch (\Throwable $th) {
+                }
+        });
 });

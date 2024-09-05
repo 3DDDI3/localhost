@@ -3837,10 +3837,15 @@ $(function () {
       "border-bottom-color": "transparent" // "height": "48px",
 
     });
-    $(this).parents(".combobox").find(".combobox-header__subtitle").css("line-height", "18.15px");
+    $(this).parents(".combobox").find(".combobox-header__subtitle").css("line-height", "19.15px");
     $(this).parents(".combobox").find(".combobox-header__subtitle").text($(this).text());
     $(this).parents(".combobox").find(".combobox-header__subtitle").data("id", $(this).data("id"));
     $(this).parents(".combobox").find(".combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
+    $(this).parents(".combobox").css("border-right-color", "transparent");
+    $(this).parents(".combobox").find(".combobox-header__subtitle").css({
+      "height": "21px",
+      "overflow": "hidden"
+    });
 
     if ($(this).parents(".combobox").hasClass("search-tour__from")) {
       $(".search-tour__to.combobox").find(".combobox-header__title").css("font-size", "18px");
@@ -3916,6 +3921,26 @@ $(function () {
   });
   $('input[name="tour_datefilter"]').on('hide.daterangepicker', function (ev, picker) {
     $(".tour-cost-dates__subtitle").text("".concat(picker.startDate.format('DD.MM')));
+  });
+  $('#datapicker-from').daterangepicker({
+    autoUpdateInput: false,
+    "singleDatePicker": true,
+    "autoApply": true,
+    "locale": {
+      "format": "MM/DD/YYYY",
+      "applyLabel": "Сохранить",
+      "cancelLabel": "Назад",
+      "daysOfWeek": ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      "monthNames": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      "firstDay": 1
+    }
+  });
+  $('#datapicker-from').on('hide.daterangepicker', function (ev, picker) {
+    $(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM')));
+    $(".search-tour-dates__subtitle").css({
+      "line-height": "19.15px"
+    });
+    $(".tour-cost__date").css("border-right-color", "transparent");
   });
   $(".popular-tours__tour-card").on("mouseenter", function () {
     $(this).css("width", "500px");
@@ -4395,6 +4420,115 @@ $(function () {
   });
   $(".tour-card").on("click", function () {
     window.location.href = $(this).data("href");
+  });
+  /**
+   * Обработка калькулятора в туре
+   */
+
+  var hotelCategory,
+      hotel,
+      meal,
+      child = undefined;
+  $('#datapicker-from').on('hide.daterangepicker', function (ev, picker) {
+    begDate = picker.startDate.format('YYYYMMDD'); // endDate = picker.startDate.clone().add(10, 'day').format('YYYYMMDD');
+
+    endDate = picker.startDate.format('YYYYMMDD');
+  });
+  $(".search-tour__hotel-category-category .combobox__item").on("click", function () {
+    hotelCategory = $(this).data("id");
+    $(".search-tour__hotel .combobox-header__subtitle").text($(".search-tour__hotel .combobox__item[data-star=\"".concat(hotelCategory, "\"]")).text().replace(/\s{2,}/g, ""));
+    $(".search-tour__hotel .combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
+    $(".search-tour__hotel .combobox-header__subtitle").css({
+      "height": "21px !important",
+      "overflow": "hidden"
+    });
+  });
+  $(".search-tour__from .combobox__item").on("click", function () {
+    from = $(this).data("id");
+  });
+  $(".search-tour__hotel .combobox__item").on("click", function () {
+    hotel = $(this).data("id");
+    $(".search-tour__hotel-category .combobox-header__subtitle").text($(".search-tour__hotel-category .combobox__item[data-id=\"".concat($(this).data('star'), "\"]")).text());
+    $(".search-tour__hotel-category .combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
+    $(".search-tour__hotel-category .combobox-header__subtitle").css({
+      "height": "21px !important",
+      "overflow": "hidden"
+    });
+  });
+  $(".search-tour__feed .combobox__item").on("click", function () {
+    meal = $(this).data("id");
+  });
+  $(".search-tour__nights .combobox__item").on("click", function () {
+    nights = $(this).text().replace(/\s+/g, "");
+  });
+  $(".search-tour__children .combobox__item").on("click", function () {
+    child = $(this).text().replace(/\s+/g, "");
+  });
+  $(".search-tour__tourist .combobox__item").on("click", function () {
+    adults = $(this).text().replace(/\s+|[^0-9]+/g, "");
+  });
+  $(".tour-cost__update").on("click", function (e) {
+    e.preventDefault();
+    var country = $("#calc").data("country");
+    if (from == undefined) from = $(".search-tour__from .combobox-header__subtitle").data("id");
+    if (begDate == undefined) $(".tour-cost__date").css("border-right-color", "red");
+    if (adults == undefined) $(".search-tour__tourist").css("border-right-color", "red");
+    if (child == undefined) $(".search-tour__children").css("border-right-color", "red");
+    if (nights == undefined) $(".search-tour__nights").css("border-right-color", "red");
+    if (child == undefined || adults == undefined || nights == undefined || begDate == undefined) Swal.fire({
+      title: "Заполните обязательные поля",
+      timer: 2000
+    });else $.ajax({
+      type: "GET",
+      url: "/api/samotour/getPrice",
+      data: {
+        from: from,
+        begDate: begDate,
+        endDate: endDate,
+        country: country,
+        nights: nights,
+        hotelCategory: hotelCategory,
+        hotel: hotel,
+        adults: adults,
+        child: child,
+        meal: meal,
+        tour: $(".tour-cost").data("tour")
+      },
+      dataType: "json",
+      success: function success(response) {
+        $("#calc").data("id", response.id);
+        $(".tour-cost__value").text("".concat(response.price, " \u0440\u0443\u0431."));
+      },
+      error: function error(xhr, textStatus, errorThrown) {
+        $(".tour-cost__value").text("Н/Д");
+        Swal.fire({
+          title: "Не удалось найти тур",
+          timer: 2000
+        });
+      }
+    });
+  });
+  $(".tour-cost__button").on("click", function (e) {
+    e.preventDefault();
+    var id = $("#calc").data("id");
+    var country = $("#calc").data("country");
+    from = $(".search-tour__from .combobox-header__subtitle").data("id");
+    if (begDate == undefined) $(".tour-cost__date").css("border-right-color", "red");
+    if (adults == undefined) $(".search-tour__tourist").css("border-right-color", "red");
+    if (child == undefined) $(".search-tour__children").css("border-right-color", "red");
+    if (nights == undefined) $(".search-tour__nights").css("border-right-color", "red");
+    if (child == undefined || adults == undefined || nights == undefined || begDate == undefined) Swal.fire({
+      title: "Заполните обязательные поля",
+      timer: 2000
+    });else {
+      if ($(".tour-cost__value").text() == "Н/Д") Swal.fire({
+        title: "Обновите стоимость тура",
+        timer: 2000
+      });else window.open("https://samo.mercury-europe.ru/bron_person?CATCLAIM=".concat(id, "&CURRENCY=1&TOWNFROMINC=").concat(from, "&STATEINC=").concat(country, "&GUEST=1"));
+    }
+  });
+  $(".tour-download").on("click", function () {
+    window.open("".concat(location.origin, "/api/files?tour=").concat(location.pathname.replace(/\/\w+\//, "")));
   });
 });
 

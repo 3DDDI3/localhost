@@ -12,7 +12,9 @@ use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
 use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
+use App\Models\Services\SamotourTour;
 use App\Models\User\AdminEventLogs;
+use GuzzleHttp\Client;
 
 class ToursController extends Controller
 {
@@ -80,7 +82,6 @@ class ToursController extends Controller
 
         $countryHead = $object->country != null ? $object->country->name : null;
 
-
         $images = Gallery::where(['item_id' => 1, 'item_type' => 1])->get();
 
         $status = Status::query()
@@ -94,6 +95,18 @@ class ToursController extends Controller
             );
 
         $statusHead = $object->tourStatus != null ? $object->tourStatus->name : null;
+
+        $samotour = SamotourTour::query()
+            ->orderBy("name")
+            ->get()
+            ->prepend(
+                (new SamotourTour())->fill([
+                    "id" => 0,
+                    "name" => "Не выбрано"
+                ])
+            );
+
+        $samotourHead = $object->samotourTour != null ? $object->samotourTour->name : null;
 
         if ($request->isMethod('post')) {
 
@@ -134,6 +147,10 @@ class ToursController extends Controller
             if ($request->file('galary') != null && !empty($object))
                 FileUpload::uploadGallery('galary', $object->id, "tour", path: "/images/tours/gallary", request: $request);
 
+            if ((int)$request->input("samotour") > 0) {
+                $object->samotour_tour_id = $request->input("samotour");
+            } else $object->samotour_tour_id = null;
+
             $object->save();
 
             if ((int)$request->input("select") > 0)
@@ -152,6 +169,8 @@ class ToursController extends Controller
                         'country_id' => null,
                     ])
                     ->save();
+
+
 
             if (!empty($request->tour_types)) {
                 TourType::query()
@@ -188,6 +207,8 @@ class ToursController extends Controller
             'status',
             'statusHead',
             'countryHead',
+            'samotour',
+            'samotourHead',
         ));
     }
 }

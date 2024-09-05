@@ -4,6 +4,7 @@ namespace App\Models\Lending;
 
 use App\Models\Gallery;
 use App\Models\Services\Infografika;
+use App\Models\Services\SamotourTour;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -58,6 +59,11 @@ class Tour extends Model
     public function tourTypes(): Collection
     {
         return Country::query()->where(['hide' => 0])->orderBy('id')->get();
+    }
+
+    public function samotourTour()
+    {
+        return $this->belongsTo(SamotourTour::class);
     }
 
     public function tourStatus()

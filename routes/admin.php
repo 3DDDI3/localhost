@@ -13,12 +13,13 @@ use App\Http\Controllers\Admin\Services\AdvController;
 use App\Http\Controllers\Admin\Services\DocumentController;
 use App\Http\Controllers\Admin\Services\InfografikaController;
 use App\Http\Controllers\Admin\Services\PersonalController;
+use App\Http\Controllers\Admin\Services\SamotourTourController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User\PermittedIPs;
 use App\Models\Location\Geo;
-
+use App\Models\Services\SamotourTour;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
@@ -149,6 +150,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 Route::group(['prefix' => 'advs', 'as' => 'advs.'], function () {
                     Route::get('/', [AdvController::class, 'index'])->name('index');
                     Route::match(['get', 'post'], '/edit/{id?}', [AdvController::class, 'edit'])->name('edit');
+                });
+                Route::group(['prefix' => 'export', 'as' => 'export.'], function () {
+                    Route::get('/', [SamotourTourController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [SamotourTourController::class, 'edit'])->name('edit');
                 });
             });
         });

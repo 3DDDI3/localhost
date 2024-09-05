@@ -466,6 +466,7 @@ main {
             .search-tour__hotel-category,
             .search-tour__hotel,
             .search-tour__feed {
+                border-right: 5px solid transparent;
                 flex-grow: 1;
                 height: 60px;
                 background-color: #272B4C;
@@ -479,6 +480,7 @@ main {
 
                 .combobox-header__subtitle {
                     color: #FFFFFF;
+                    height: 21px;
                 }
             }
         }
@@ -673,6 +675,51 @@ main {
                     }
                 }
             }
+        }
+    }
+
+    .tour-cost-dates__wrapper {
+        display: flex;
+        cursor: pointer;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+
+        label {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .search-tour__dates {
+            display: flex;
+            flex-direction: column;
+            row-gap: 2px;
+
+            .search-tour-dates__title {
+                font-family: 'Inter', sans-serif;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 21.78px;
+                letter-spacing: -0.02em;
+                color: #FFFFFF;
+                opacity: .5;
+            }
+
+            .search-tour-dates__subtitle {
+                line-height: 0px;
+                letter-spacing: -0.02em;
+                font-family: "Inter", sans-serif;
+                font-weight: 400;
+                font-size: 18px;
+                color: #FFFFFF;
+                overflow-y: hidden;
+                transition: line-height 0.3s;
+            }
+        }
+
+        .search-tour-dates__datapicker {
+            width: 0;
+            cursor: pointer;
         }
     }
 }

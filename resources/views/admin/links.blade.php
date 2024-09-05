@@ -85,6 +85,12 @@
     ])
 
     @include('admin.includes.menu.item', [
+        'route' => 'admin.services.export.index',
+        'name' => 'Экспорт туров из Самотура',
+        'data' => 'export',
+    ])
+
+    @include('admin.includes.menu.item', [
         'route' => 'admin.services.personal.index',
         'name' => 'Персонал',
         'data' => 'personal',

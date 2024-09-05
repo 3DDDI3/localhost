@@ -321,5 +321,18 @@ $(document).ready(function () {
         });
     });
 
-
+    $(".exportButton").on("click", function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/api/export_tours",
+            success: function (response) {
+                if (response == "") return;
+                Swal.fire({
+                    title: response.message,
+                    timer: 2000,
+                });
+            }
+        });
+    });
 });
