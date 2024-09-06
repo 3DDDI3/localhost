@@ -72,151 +72,17 @@
             <div class="contacts-company-info__map" id="map"></div>
         </div>
 
-        <div class="company-experts contacts-experts">
-            <h2 class="company-experts__headding contacts-experts__headding">Контакты экспертов и отделов:</h2>
+        <div class="company-experts">
+            <h2 class="company-experts__headding">Контакты экспертов и отделов:</h2>
             <div class="company-experts-table">
                 <div class="company-experts-table__headding">
                     <span class="company-experts-table__header">ФИО</span>
                     <span class="company-experts-table__header">Почта</span>
                 </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Татьяна Худякова</h3>
-                        <p class="company-experts__description">
-                            Африка - Кения, Танзания, Намибия, ЮАР, Намибия, Куба, Индийский океан - Сейшелы, Мальдивы, ЮВА
-                            - Индонезия, Латинская Америка - Перу, Европа - Франция и Португалия
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:exotic1@mercury-europe.ru"
-                            class="company-experts__mail">exotic1@mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Светлана Сапега</h3>
-                        <p class="company-experts__description">
-                            ОАЭ, Индия, Катар, Оман, Таиланд, Филиппины, Малайзия, Сингапур, Иран
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:svetlana@mercury-europe.ru"
-                            class="company-experts__mail">svetlana@mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Екатерина Тарасенкова</h3>
-                        <p class="company-experts__description">
-                            Италия, Хорватия, Черногория, Венгрия, Турция, Испания, Кипр, Индонезия, Вьетнам, Египет,
-                            Шри-Ланка
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:ekaterina@italy-spb.ru" class="company-experts__mail">ekaterina@italy-spb.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Татьяна Иванова
-                        </h3>
-                        <p class="company-experts__description">
-                            Италия, Франция, Испания, Сербия, Китай, Израиль, Кипр, Узбекистан, Армения, Скандинавия,
-                            Прибалтика, Болгария
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:booking@italy-spb.ru" class="company-experts__mail">booking@italy-spb.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Кристина Калашникова</h3>
-                        <p class="company-experts__description">
-                            Мальдивы, Маврикий, Мексика, Доминикана, Греция, Великобритания, Япония
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:kristina@mercury-europe.ru"
-                            class="company-experts__mail">kristina@mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Мария Слободян</h3>
-                        <p class="company-experts__description">
-                            Россия, Абхазия, Венгрия, Беларусь, Мальта, Словения, Швейцария, Южная Корея
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:booking1@mercury-europe.ru"
-                            class="company-experts__mail">booking1@mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Наталья Денисюк</h3>
-                        <p class="company-experts__description">
-                            Италия, Андорра, Португалия, Испания (острова)
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:natalia@italy-spb.ru" class="company-experts__mail">natalia@italy-spb.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Бухгалтерия</h3>
-                        <p class="company-experts__description"></p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:buh@ mercury-europe.ru" class="company-experts__mail">buh@ mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Отдел по работе с агентствами</h3>
-                        <p class="company-experts__description"></p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:travel@ mercury-europe.ru" class="company-experts__mail">
-                            travel@ mercury-europe.ru
-                        </a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">ТОтдел тарификации</h3>
-                        <p class="company-experts__description"></p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:pavel@mercury-europe.ru"
-                            class="company-experts__mail">epavel@mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Добрев Александр</h3>
-                        <p class="company-experts__description">
-                            Директор по продукту
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:product@mercury-europe.ru"
-                            class="company-experts__mail">product@mercury-europe.ru</a>
-                    </div>
-                </div>
-                <div class="company-experts-table-row">
-                    <div class="company-experts-fio-block">
-                        <h3 class="company-experts__fio">Логачева Юлия Юрьевна</h3>
-                        <p class="company-experts__description">
-                            Генеральный директор
-                        </p>
-                    </div>
-                    <div class="company-experts-mail-block">
-                        <a href="mailto:info@mercury-europe.ru" class="company-experts__mail">info@mercury-europe.ru</a>
-                    </div>
-                </div>
+                @foreach ($personal as $person)
+                    <x-blocks.personal name="{{ $person->name }}" description="{{ $person->description }}"
+                        email="{{ $person->email }}" />
+                @endforeach
             </div>
         </div>
 
@@ -224,9 +90,7 @@
 
     </main>
 
-    <script type="text/javascript">
-        
-    </script>
+    <script type="text/javascript"></script>
 
     <style>
         .ya_map {

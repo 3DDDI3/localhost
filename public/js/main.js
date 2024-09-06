@@ -3784,6 +3784,35 @@ window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.
 window.daterangepicker = __webpack_require__(/*! daterangepicker */ "./node_modules/daterangepicker/daterangepicker.js");
 
 
+
+function init() {
+  var center = [59.911833615112705, 30.31557668469041];
+  var map = new ymaps.Map('map', {
+    center: center,
+    zoom: 19
+  });
+  var placemark = new ymaps.Placemark(center, {}, {
+    iconLayout: 'default#image',
+    iconImageHref: '/images/marker.svg',
+    iconImageSize: [200, 150],
+    iconImageOffset: [-140, -130]
+  }); // map.controls.add('mapTools');
+
+  map.controls.remove('geolocationControl'); // удаляем геолокацию
+
+  map.controls.remove('searchControl'); // удаляем поиск
+
+  map.controls.remove('trafficControl'); // удаляем контроль трафика
+  // map.controls.remove('typeSelector'); // удаляем тип
+
+  map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+  // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+
+  map.controls.remove('rulerControl'); // удаляем контрол правил
+
+  map.geoObjects.add(placemark);
+}
+
 $(function () {
   var _;
 
@@ -4397,9 +4426,6 @@ $(function () {
   $(".agency-document__download").on("click", function () {
     window.location.href = "/ api / files / download / ".concat($(this).data("path"), " ");
   });
-  $(".profile-button").on("click", function () {
-    window.location.href = "https://samo.mercury-europe.ru/search_tour?samo_action=logon";
-  });
   $(".search-tour__form").on("submit", function (e) {
     e.preventDefault();
     window.open("https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=".concat(begDate == undefined ? "" : begDate, "&STATEINC=").concat(to == undefined ? "" : to, "&NIGHTS_FROM=").concat(nights == undefined ? "" : nights, "&CHECKIN_END=").concat(endDate == undefined ? "" : endDate, "&NIGHTS_TILL=").concat(nights == undefined ? "" : nights, "&ADULT=").concat(adults == undefined ? "" : adults));
@@ -4530,41 +4556,29 @@ $(function () {
   $(".tour-download").on("click", function () {
     window.open("".concat(location.origin, "/api/files?tour=").concat(location.pathname.replace(/\/\w+\//, "")));
   });
-});
-
-function init() {
-  var center = [59.911833615112705, 30.31557668469041];
-  var map = new ymaps.Map('map', {
-    center: center,
-    zoom: 19
+  $(".profile-button").on("click", function () {
+    $("#registration").show(300);
   });
-  var placemark = new ymaps.Placemark(center, {}, {
-    iconLayout: 'default#image',
-    iconImageHref: '/images/marker.svg',
-    iconImageSize: [200, 150],
-    iconImageOffset: [-140, -130]
-  }); // map.controls.add('mapTools');
-
-  map.controls.remove('geolocationControl'); // удаляем геолокацию
-
-  map.controls.remove('searchControl'); // удаляем поиск
-
-  map.controls.remove('trafficControl'); // удаляем контроль трафика
-  // map.controls.remove('typeSelector'); // удаляем тип
-
-  map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
-  // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
-
-  map.controls.remove('rulerControl'); // удаляем контрол правил
-
-  map.geoObjects.add(placemark);
-}
+  $(".registration__login-button").on("click", function (e) {
+    e.preventDefault();
+    $("#registration").hide(300);
+    $("#enter").show(300);
+  });
+  $(".modal-header__exit").on("click", function () {
+    $(this).parents(".modal-wrapper").hide(300);
+  });
+  $(".enter__register-button").on("click", function (e) {
+    e.preventDefault();
+    $("#enter").hide(300);
+    $("#registration").show(300);
+  });
+});
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css":
 /*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css ***!
   \***************************************************************************************************************************************************************************************************************************/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17017,6 +17031,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ "./resources/css/search.css":
 /*!**********************************!*\
   !*** ./resources/css/search.css ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/modals.css":
+/*!**********************************!*\
+  !*** ./resources/css/modals.css ***!
   \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -38974,7 +39001,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_15_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_15_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../css-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[1]!../../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[2]!./splide.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[15].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css");
+/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_16_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_16_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../css-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[1]!../../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[2]!./splide.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[16].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css");
 
             
 
@@ -38983,11 +39010,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_15_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_15_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_16_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_16_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_css_loader_dist_cjs_js_ruleSet_1_rules_15_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_15_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ __webpack_exports__["default"] = (_css_loader_dist_cjs_js_ruleSet_1_rules_16_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_16_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -39400,6 +39427,7 @@ module.exports = function (list, options) {
 /******/ 			"css/blog": 0,
 /******/ 			"css/agency": 0,
 /******/ 			"css/about": 0,
+/******/ 			"css/modals": 0,
 /******/ 			"css/search": 0,
 /******/ 			"css/fonts": 0,
 /******/ 			"css/tours": 0,
@@ -39461,17 +39489,18 @@ module.exports = function (list, options) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/search.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/search.css"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/modals.css"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

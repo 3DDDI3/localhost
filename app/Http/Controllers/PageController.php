@@ -98,6 +98,7 @@ class PageController extends Controller
                     'object' => $object,
                     'breadcrumbs' => $breadCrumbs,
                     'currencies' => $currencies,
+                    'personal' => $personal,
                 ]);
                 break;
 

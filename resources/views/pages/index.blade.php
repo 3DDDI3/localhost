@@ -10,11 +10,12 @@
                                 <button class="search-tour__button search-tour__button_active">Туры</button>
                             </li>
                             <li class="splide__slide">
-                                <button class="search-tour__button search-tour__button_inactive">Авиабилеты</button>
+                                <button data-href="https://samo.mercury-europe.ru/tickets"
+                                    class="search-tour__button search-tour__button_inactive">Авиабилеты</button>
                             </li>
-
                             <li class="splide__slide">
-                                <button class="search-tour__button search-tour__button_inactive">Отели</button>
+                                <button data-href="https://samo.mercury-europe.ru/search_hotel"
+                                    class="search-tour__button search-tour__button_inactive">Отели</button>
                             </li>
                             {{-- <li class="splide__slide">
                                 <button class="search-tour__button search-tour__button_inactive">FIT
@@ -236,4 +237,16 @@
         <x-blocks.offer />
 
     </main>
+
+    {{-- <x-blocks.modal-window id="registration" class="registration-modal" title="Регистрация">
+        <x-blocks.registration-form />
+    </x-blocks.modal-window>
+
+    <x-blocks.modal-window id="enter" class="enter-modal" title="Войти">
+        <x-blocks.enter-form />
+    </x-blocks.modal-window> --}}
+
+    <x-blocks.modal-window id="notification" class="notification-modal" title="">
+        <x-blocks.notification />
+    </x-blocks.modal-window>
 @endsection

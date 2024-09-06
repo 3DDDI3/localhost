@@ -63,6 +63,7 @@ Route::prefix('samotour')->group(function () {
 
                 try {
                         $client = new Client(['verify' => false]);
+                        // dd("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_PRICES&TOWNFROMINC=$request->from&STATEINC=$request->country&CHECKIN_BEG=$request->begDate&CHECKIN_END=$request->endDate&NIGHTS_FROM=$request->nights&NIGHTS_TILL=$request->nights&ADULT=$request->adults&CURRENCY=1&STARS=$request->hotelCategory&MEALS=$request->meal&CHILD=$request->child&HOTELS=$request->hotel&TOURS=$request->tour&AGES=$ages");
                         $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_PRICES&TOWNFROMINC=$request->from&STATEINC=$request->country&CHECKIN_BEG=$request->begDate&CHECKIN_END=$request->endDate&NIGHTS_FROM=$request->nights&NIGHTS_TILL=$request->nights&ADULT=$request->adults&CURRENCY=1&STARS=$request->hotelCategory&MEALS=$request->meal&CHILD=$request->child&HOTELS=$request->hotel&TOURS=$request->tour&AGES=$ages");
                         $tours = json_decode($res->getBody()->getContents())->SearchTour_PRICES->prices;
                         if (count($tours) == 0)

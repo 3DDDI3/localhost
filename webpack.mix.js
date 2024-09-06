@@ -12,5 +12,6 @@ mix.js('resources/js/main.js', 'public/js')
     .css('resources/css/tours.css', 'public/css')
     .css('resources/css/fonts.css', 'public/css')
     .css('resources/css/search.css', 'public/css')
+    .css('resources/css/modals.css', 'public/css')
 
     .version();

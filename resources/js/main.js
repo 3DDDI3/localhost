@@ -6,6 +6,32 @@ window.daterangepicker = require('daterangepicker');
 import "@splidejs/splide/css";
 import Splide, { EVENT_SLIDE_KEYDOWN } from "@splidejs/splide";
 
+function init() {
+    let center = [59.911833615112705, 30.31557668469041];
+    let map = new ymaps.Map('map', {
+        center: center,
+        zoom: 19
+    });
+
+    let placemark = new ymaps.Placemark(center, {}, {
+        iconLayout: 'default#image',
+        iconImageHref: '/images/marker.svg',
+        iconImageSize: [200, 150],
+        iconImageOffset: [-140, -130]
+    });
+    // map.controls.add('mapTools');
+    map.controls.remove('geolocationControl'); // удаляем геолокацию
+    map.controls.remove('searchControl'); // удаляем поиск
+    map.controls.remove('trafficControl'); // удаляем контроль трафика
+    // map.controls.remove('typeSelector'); // удаляем тип
+    map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+
+    // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+    map.controls.remove('rulerControl'); // удаляем контрол правил
+    map.geoObjects.add(placemark);
+}
+
+
 $(function () {
     let combobox, search, from, nights, begDate, adults, endDate, to = undefined;
 
@@ -689,18 +715,13 @@ $(function () {
         window.location.href = `/ api / files / download / ${$(this).data("path")} `
     });
 
-    $(".profile-button").on("click", function () {
-        window.location.href = "https://samo.mercury-europe.ru/search_tour?samo_action=logon";
-    });
-
     $(".search-tour__form").on("submit", function (e) {
         e.preventDefault();
         window.open(`https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${begDate == undefined ? "" : begDate}&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${nights == undefined ? "" : nights}&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${nights == undefined ? "" : nights}&ADULT=${adults == undefined ? "" : adults}`);
     });
 
     $(".footer__notification").on("submit", function (e) {
-        e.preventDefault();
-        $.ajax({
+        e.preventDefault(); $.ajax({
             type: "POST",
             url: "/api/mailler/create",
             data: {
@@ -842,30 +863,26 @@ $(function () {
     $(".tour-download").on("click", function () {
         window.open(`${location.origin}/api/files?tour=${location.pathname.replace(/\/\w+\//, "")}`);
     });
+
+
+    $(".profile-button").on("click", function () {
+        $("#registration").show(300);
+    });
+
+    $(".registration__login-button").on("click", function (e) {
+        e.preventDefault();
+        $("#registration").hide(300);
+        $("#enter").show(300);
+    });
+
+    $(".modal-header__exit").on("click", function () {
+        $(this).parents(".modal-wrapper").hide(300);
+    });
+
+    $(".enter__register-button").on("click", function (e) {
+        e.preventDefault();
+        $("#enter").hide(300);
+        $("#registration").show(300);
+    });
+
 });
-
-function init() {
-    let center = [59.911833615112705, 30.31557668469041];
-    let map = new ymaps.Map('map', {
-        center: center,
-        zoom: 19
-    });
-
-    let placemark = new ymaps.Placemark(center, {}, {
-        iconLayout: 'default#image',
-        iconImageHref: '/images/marker.svg',
-        iconImageSize: [200, 150],
-        iconImageOffset: [-140, -130]
-    });
-    // map.controls.add('mapTools');
-    map.controls.remove('geolocationControl'); // удаляем геолокацию
-    map.controls.remove('searchControl'); // удаляем поиск
-    map.controls.remove('trafficControl'); // удаляем контроль трафика
-    // map.controls.remove('typeSelector'); // удаляем тип
-    map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
-
-    // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
-    map.controls.remove('rulerControl'); // удаляем контрол правил
-    map.geoObjects.add(placemark);
-}
-

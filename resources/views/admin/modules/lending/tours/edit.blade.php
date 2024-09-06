@@ -19,6 +19,11 @@
                     'name' => 'isHiddenTouristInfo',
                     'value' => $object->isHiddenTouristInfo,
                 ])
+                @include('admin.includes.checkbox', [
+                    'label' => 'Скрыть кнопку форму "Стоимость тура"',
+                    'name' => 'isHiddenTourCost',
+                    'value' => $object->isHiddenTourCost,
+                ])
             </div>
 
             @include('admin.includes.input', [
@@ -40,7 +45,7 @@
                 'select_head' => $statusHead,
             ])
 
-            @include('admin.includes.select', [ 
+            @include('admin.includes.select', [
                 'label' => 'Связь с туром в Самотуре:',
                 'name' => 'samotour',
                 'select' => $samotour,
