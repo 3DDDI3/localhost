@@ -7,7 +7,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ToursController;
 use App\Jobs\Parse;
+use App\Mail\RegistrationMail;
+use App\Mail\RegistrationMailer;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +56,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/pdf', function () {
         $pdf = Pdf::loadView('pdf.test');
         return $pdf->stream();
+    });
+
+    Route::get('/test', function (Request $request) {
+        Mail::to("edik2898@gmail.com")->send(new RegistrationMail());
     });
 
     include('admin.php');

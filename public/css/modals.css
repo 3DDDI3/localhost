@@ -1,5 +1,5 @@
 .modal-wrapper {
-    /* display: none; */
+    display: none;
 }
 
 .modal-wrapper::before {
@@ -145,7 +145,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                row-gap: 3px;
+                row-gap: 5px;
                 font-family: 'HelveticaNeueCyr', sans-serif;
                 font-size: 20px;
                 font-weight: 400;
@@ -158,6 +158,66 @@
                     line-height: 19px;
                     letter-spacing: -0.02em;
                     color: #984995;
+                }
+            }
+        }
+
+        .modal__chosen-form {
+            display: flex;
+            -moz-column-gap: 45px;
+                 column-gap: 45px;
+
+            label {
+                display: flex;
+                align-items: center;
+                -moz-column-gap: 18px;
+                     column-gap: 18px;
+
+                input[type="radio"] {
+                    display: none;
+                }
+
+                .radio {
+                    width: 21px;
+                    height: 21px;
+                    border: 1px solid #C6C6C6;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    span {
+                        width: 13px;
+                        height: 13px;
+                        display: block;
+                        border-radius: 50%;
+                        z-index: 1001;
+                        position: relative;
+                        background-color: transparent;
+                    }
+                }
+
+                input[type="radio"]:checked~.radio {
+
+                    span {
+                        width: 13px;
+                        height: 13px;
+                        display: block;
+                        border-radius: 50%;
+                        z-index: 1001;
+                        position: relative;
+                        background-color: #582F9A;
+                    }
+
+                }
+
+                span {
+                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-size: 22px;
+                    font-weight: 400;
+                    line-height: 20.9px;
+                    letter-spacing: 0.01em;
+                    color: #342635;
                 }
             }
         }
@@ -334,7 +394,7 @@
             border: 1px solid;
             border-image-slice: 1;
             border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
-            font-family: Inter;
+            font-family: 'Inter', sans-serif;
             font-size: 18px;
             font-weight: 600;
             line-height: 21.78px;
@@ -383,6 +443,33 @@
     }
 }
 
+.reset-password {
+    .reset-password__fields {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        .reset-password__button {
+            background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+            border: 1px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 21.78px;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+    }
+}
+
 @media (min-width: 805px) and (max-width: 840px) {
     .modal__window {}
 }
@@ -414,7 +501,9 @@
 }
 
 @media (min-width: 320px) and (max-width: 534px) {
-    .enter-modal {
+
+    .enter-modal,
+    .reset-password-modal {
         width: calc(100% - 30px) !important;
     }
 
@@ -423,6 +512,7 @@
         align-items: center;
 
         .modal__form {
+            width: 100%;
             min-width: 230px;
             max-width: 304px;
 

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Lending\BlogController;
 use App\Http\Controllers\Admin\Lending\CountryController;
 use App\Http\Controllers\Admin\Lending\NewsController;
@@ -15,11 +16,7 @@ use App\Http\Controllers\Admin\Services\InfografikaController;
 use App\Http\Controllers\Admin\Services\PersonalController;
 use App\Http\Controllers\Admin\Services\SamotourTourController;
 use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Models\User\PermittedIPs;
-use App\Models\Location\Geo;
-use App\Models\Services\SamotourTour;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
@@ -30,6 +27,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::post('login', [LoginController::class, 'login']);
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+    
 
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('login', 'LoginController@login')->name('login');

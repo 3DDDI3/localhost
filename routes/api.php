@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonalAcount\AuthorizationController;
 use App\Jobs\Parse;
 use App\Models\Job;
 use App\Models\Lending\Tour;
@@ -23,9 +24,9 @@ use Illuminate\View\ComponentAttributeBag;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+        return $request->user();
+});
 
 Route::get('files/download/{path}', function ($path) {
         return Storage::download("files/$path");
@@ -94,3 +95,12 @@ Route::prefix('samotour')->group(function () {
                 }
         });
 });
+
+Route::prefix('/auth')
+        ->controller(AuthorizationController::class)
+        ->group(function () {
+                Route::post('/signin', 'signin');
+                Route::post('/login', 'login');
+                Route::post('/logout', 'logout')->middleware('auth:sanctum');
+                Route::get('/check', 'check')->middleware('auth:sanctum');
+        });

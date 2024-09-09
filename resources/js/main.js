@@ -1,5 +1,7 @@
 window.$ = window.jQuery = require('jquery');
+import axios from 'axios';
 
+window.axios = axios;
 window.moment = require('moment');
 window.daterangepicker = require('daterangepicker');
 
@@ -13,11 +15,11 @@ function init() {
         zoom: 19
     });
 
-    let placemark = new ymaps.Placemark(center, {}, {
+    let placemark = new ymaps.Placemark(center, null, {
         iconLayout: 'default#image',
         iconImageHref: '/images/marker.svg',
-        iconImageSize: [200, 150],
-        iconImageOffset: [-140, -130]
+        iconImageSize: [150, 150],
+        iconImageOffset: [-75, -115]
     });
     // map.controls.add('mapTools');
     map.controls.remove('geolocationControl'); // удаляем геолокацию
@@ -883,6 +885,36 @@ $(function () {
         e.preventDefault();
         $("#enter").hide(300);
         $("#registration").show(300);
+    });
+
+    $(".registration__register-button").on("click", function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "api/auth/signin",
+            data: {
+                name: $("input[name='login']").val(),
+                password: $("input[name='password']").val(),
+                email: $("input[name='email']").val(),
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+    $(".enter__button").on("click", function (e) {
+        e.preventDefault();
+        window.axios.defaults.withCredential = true;
+        window.axios.defaults.withXSRFToken = true;
+        window.axios.get('http://localhost/sanctum/csrf-cookie').then(response => {
+            const data = {
+                name: 'admin',
+                password: '1234',
+            };
+            window.axios.post('http://localhost/api/auth/login', data);
+        });
     });
 
 });

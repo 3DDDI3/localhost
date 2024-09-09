@@ -237,16 +237,4 @@
         <x-blocks.offer />
 
     </main>
-
-    {{-- <x-blocks.modal-window id="registration" class="registration-modal" title="Регистрация">
-        <x-blocks.registration-form />
-    </x-blocks.modal-window>
-
-    <x-blocks.modal-window id="enter" class="enter-modal" title="Войти">
-        <x-blocks.enter-form />
-    </x-blocks.modal-window> --}}
-
-    <x-blocks.modal-window id="notification" class="notification-modal" title="">
-        <x-blocks.notification />
-    </x-blocks.modal-window>
 @endsection

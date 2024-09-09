@@ -9,11 +9,18 @@
                 fill="#984995" />
         </svg>
     </div>
-    <h1 class="modal-notification__header">Спасибо за регистрацию!</h1>
-    <span class="modal-notification__description">Ваша заявка на рассмотрении</span>
-    <p class="modal-notification__text">
-        Мы пришлем подтверждение
-        на электронную почту
-        <span>aaa@mail.ru</span>
-    </p>
+    @if ($attributes->get('title'))
+        <h1 class="modal-notification__header">{{ $attributes->get('title') }}</h1>
+    @endif
+    @if ($attributes->get('subtitle'))
+        <span class="modal-notification__description">{{ $attributes->get('subtitle') }}</span>
+    @endif
+    @if ($attributes->get('text'))
+        <p class="modal-notification__text">
+            {{ $attributes->get('text') }}
+            @if ($attributes->get('email'))
+                <span>{{ $attributes->get('email') }}</span>
+            @endif
+        </p>
+    @endif
 </div>

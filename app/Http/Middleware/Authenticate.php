@@ -15,18 +15,18 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        $route = Route::currentRouteName(); //текущий мартрут
+        // $route = Route::currentRouteName(); //текущий мартрут
+        
+        // if (! $request->expectsJson()) {
 
-        if (! $request->expectsJson()) {
-
-            switch($route) {
-                case 'profile':
-                    return route('main', ['login' => 1]);
-                    break;
-                default:
-                    return route('admin.login');
-                    break;
-            }
-        }
+        //     switch ($route) {
+        //         case 'profile':
+        //             return route('main', ['login' => 1]);
+        //             break;
+        //         default:
+        //             return route('admin.login');
+        //             break;
+        //     }
+        // }
     }
 }
