@@ -17,6 +17,7 @@
         "copy-webpack-plugin": "",
         "imagemin-mozjpeg": "^9.0.0",
         "imagemin-webpack-plugin": "^2.4.2",
+        "inputmask": "^5.0.9",
         "jquery": "^3.7.1",
         "laravel-mix": "^6.0.6",
         "laravel-mix-polyfill": "^3.0.0",
@@ -31,9 +32,11 @@
     "dependencies": {
         "@splidejs/splide": "^4.1.4",
         "aos": "^2.3.4",
+        "axios": "^1.7.7",
         "daterangepicker": "^3.1.0",
         "smoothscroll-polyfill": "^0.4.4",
         "svg4everybody": "^2.1.9",
+        "sweetalert": "^2.1.2",
         "swiper": "^9.2.1"
     }
 }

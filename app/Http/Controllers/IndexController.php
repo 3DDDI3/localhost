@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
+    private $samotour_url;
+    private $samotour_token;
+
+    public function __construct()
+    {
+        $this->samotour_url = config('samotour.samotour_api_url');
+        $this->samotour_token = config('samotour.samotour_api_token');
+    }
+
     public function index(Request $request)
     {
         $setting = Setting::find(1);
@@ -53,7 +62,7 @@ class IndexController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_TOWNS');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_TOWNS");
 
             $cities = collect();
             foreach (json_decode($res->getBody()->getContents())->SearchTour_TOWNS as $city) {
@@ -65,14 +74,14 @@ class IndexController extends Controller
                 );
             }
 
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,

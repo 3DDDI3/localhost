@@ -4,6 +4,8 @@ import axios from 'axios';
 window.axios = axios;
 window.moment = require('moment');
 window.daterangepicker = require('daterangepicker');
+import Inputmask from "inputmask";
+import swal from 'sweetalert';
 
 import "@splidejs/splide/css";
 import Splide, { EVENT_SLIDE_KEYDOWN } from "@splidejs/splide";
@@ -36,6 +38,8 @@ function init() {
 
 $(function () {
     let combobox, search, from, nights, begDate, adults, endDate, to = undefined;
+
+    Inputmask("8(999) 999-9999").mask(document.getElementsByName('phone'));
 
     $(".combobox").on("click", function () {
         if (!$(this).find(".combobox__item").hasClass("combobox__item_visible")) {
@@ -803,7 +807,7 @@ $(function () {
         if (nights == undefined) $(".search-tour__nights").css("border-right-color", "red");
 
         if (child == undefined || adults == undefined || nights == undefined || begDate == undefined)
-            Swal.fire({
+            swal({
                 title: "Заполните обязательные поля",
                 timer: 2000,
             });
@@ -830,7 +834,7 @@ $(function () {
             },
             error: function (xhr, textStatus, errorThrown) {
                 $(".tour-cost__value").text("Н/Д");
-                Swal.fire({
+                swal({
                     title: "Не удалось найти тур",
                     timer: 2000,
                 });
@@ -849,12 +853,12 @@ $(function () {
         if (nights == undefined) $(".search-tour__nights").css("border-right-color", "red");
 
         if (child == undefined || adults == undefined || nights == undefined || begDate == undefined)
-            Swal.fire({
+            swal({
                 title: "Заполните обязательные поля",
                 timer: 2000,
             });
         else {
-            if ($(".tour-cost__value").text() == "Н/Д") Swal.fire({
+            if ($(".tour-cost__value").text() == "Н/Д") swal({
                 title: "Обновите стоимость тура",
                 timer: 2000,
             });
@@ -868,7 +872,28 @@ $(function () {
 
 
     $(".profile-button").on("click", function () {
-        $("#registration").show(300);
+
+        window.axios.defaults.withCredential = true;
+        window.axios.defaults.withXSRFToken = true;
+
+        window.axios.post('/api/auth/check')
+            .then(response => {
+                console.log(response);
+                window.location.href = `/pa/${response.data.url}`;
+            })
+            .catch(response => {
+                $("#enter").show(300);
+            });
+    });
+
+    $(".pa-exit-button").on("click", function () {
+        window.axios.defaults.withCredential = true;
+        window.axios.defaults.withXSRFToken = true;
+
+        window.axios.post('/api/auth/logout')
+            .then(response => {
+                window.location.href = `/`;
+            })
     });
 
     $(".registration__login-button").on("click", function (e) {
@@ -887,34 +912,89 @@ $(function () {
         $("#registration").show(300);
     });
 
+    $("#law-aggree").on("change", function () {
+        if ($(this).prop("checked"))
+            $(".modal-aggrees__checkbox").css("border-color", "#F3F3F3");
+        else $(".modal-aggrees__checkbox").css("border-color", "#8D58E5");
+    })
+
+    $(".modal__window input").on("cut copy paste input", function () {
+        $(this).css("border-color", "transparent");
+    })
+
     $(".registration__register-button").on("click", function (e) {
         e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "api/auth/signin",
-            data: {
-                name: $("input[name='login']").val(),
-                password: $("input[name='password']").val(),
-                email: $("input[name='email']").val(),
-            },
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
-            }
-        });
+
+        let company = $(this).parents(".registration").find("input[name='company']"),
+            address = $(this).parents(".registration").find("input[name='address']"),
+            email = $(this).parents(".registration").find("input[name='email']"),
+            phone = $(this).parents(".registration").find("input[name='phone']"),
+            login = $(this).parents(".registration").find("input[name='login']"),
+            password = $(this).parents(".registration").find("input[name='password']");
+
+        if (!$("#law-aggree").prop('checked') || email.val() == "" || phone.val() == "" || login.val() == "" || phone.val() == "") {
+            email.val() == "" ? email.css("border-right-color", "red") : null;
+            phone.val() == "" ? phone.css("border-right-color", "red") : null;
+            login.val() == "" ? login.css("border-right-color", "red") : null;
+            password.val() == "" ? password.css("border-right-color", "red") : null;
+
+            !$("#law-aggree").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
+
+            swal({
+                title: "Заполните обязательные поля",
+                timer: 2000,
+            });
+            return;
+        }
+
+        window.axios.defaults.withCredential = true;
+        window.axios.defaults.withXSRFToken = true;
+        // window.axios.defaults.headers.common['Accept'] = 'text/html';
+
+        const data = {
+            name: $(this).parents(".registration").find("input[name='login']").val(),
+            password: $(this).parents(".registration").find("input[name='password']").val(),
+            company: $(this).parents(".registration").find("input[name='company']").val(),
+            address: $(this).parents(".registration").find("input[name='address']").val(),
+            email: $(this).parents(".registration").find("input[name='email']").val(),
+            phone: $(this).parents(".registration").find("input[name='phone']").val(),
+        };
+
+        window.axios.post('/api/auth/signin', data)
+            .then(response => {
+                $(this).parents(".modal-wrapper").hide(300);
+                $(".modal-notification__text span").text(response.data.email);
+                $("#notification").show(300);
+                $(this).parents(".registration").find("input").val("");
+            })
+            .catch(response => {
+                swal({
+                    title: response.response.data.message,
+                    timer: 2000,
+                });
+                $(this).parents(".registration").find("input").val("");
+            });
     });
 
     $(".enter__button").on("click", function (e) {
         e.preventDefault();
+
         window.axios.defaults.withCredential = true;
         window.axios.defaults.withXSRFToken = true;
-        window.axios.get('http://localhost/sanctum/csrf-cookie').then(response => {
+
+        window.axios.get('/sanctum/csrf-cookie',).then(response => {
             const data = {
-                name: 'admin',
-                password: '1234',
+                name: $(this).parents(".enter__fields").find("input[name='login']").val(),
+                password: $(this).parents(".enter__fields").find("input[name='password']").val(),
             };
-            window.axios.post('http://localhost/api/auth/login', data);
+            window.axios.post('/api/auth/login', data)
+                .then(response => {
+                    console.log(response);
+                    window.location.href = `/pa/${response.data.url}`;
+                    // $(this).parents(".modal-wrapper").hide(300);
+                });
         });
+
     });
 
 });

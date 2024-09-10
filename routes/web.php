@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     // Route::get('/', 'IndexController@index');
-    Route::match(['get', 'post'], '/', [IndexController::class, 'index']);
+    Route::match(['get', 'post'], '/', [IndexController::class, 'index'])->name('index');
 
     Route::prefix('pages')->group(function () {
         Route::get('/{url}', [PageController::class, 'index']);
@@ -61,6 +61,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/test', function (Request $request) {
         Mail::to("edik2898@gmail.com")->send(new RegistrationMail());
     });
+
+    Route::get('/test1', function () {
+        echo 1;
+    })->middleware('auth:sanctum');
 
     include('admin.php');
 });

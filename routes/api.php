@@ -79,9 +79,9 @@ Route::prefix('samotour')->group(function () {
         });
 
         Route::get('/getCountries', function (Request $request) {
-                $samotour_url = config('samotour.samotour_api_url');
-                $samotour_token = config('samotour.samotour_api_token');
                 try {
+                        $samotour_url = config('samotour.samotour_api_url');
+                        $samotour_token = config('samotour.samotour_api_token');
                         $client = new Client(['verify' => false]);
                         $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
                         $combobox = new ComboboxItem();
@@ -102,5 +102,5 @@ Route::prefix('/auth')
                 Route::post('/signin', 'signin');
                 Route::post('/login', 'login');
                 Route::post('/logout', 'logout')->middleware('auth:sanctum');
-                Route::get('/check', 'check')->middleware('auth:sanctum');
+                Route::post('/check', 'check')->middleware('auth:sanctum');
         });

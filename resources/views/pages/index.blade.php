@@ -1,4 +1,5 @@
 @extends('layouts.default')
+
 @section('content')
     <main>
         <div id="search-tour" class="search-tours">
