@@ -1,5 +1,5 @@
 .modal-wrapper {
-    display: none;
+    /* display: none; */
 }
 
 .modal-wrapper::before {
@@ -90,15 +90,31 @@
         }
 
         .modal__header {
-            text-align: center;
 
-            .modal-header__title {
-                color: #342635;
-                font-family: 'HelveticaNeueCyr', sans-serif;
-                font-size: 50px;
-                font-weight: 700;
-                line-height: 47.5px;
-                letter-spacing: -0.02em;
+            .modal__headding {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+
+                .modal-header__title {
+                    color: #342635;
+                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-size: 60px;
+                    font-weight: 700;
+                    line-height: 47.5px;
+                    letter-spacing: -0.02em;
+                }
+
+                .modal-header__subtitle {
+                    color: #342635;
+                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-size: 60px;
+                    font-weight: 300;
+                    line-height: 57px;
+                    letter-spacing: 0.02em;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #9a939a;
+                }
             }
         }
 
@@ -239,6 +255,35 @@
     font-family: "Inter", sans-serif;
 }
 
+textarea {
+    resize: none;
+    outline: unset;
+    border: unset;
+    background-color: #F3F3F3;
+    width: 100%;
+    min-height: 139px;
+    color: #494949;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20.57px;
+    letter-spacing: -0.02em;
+}
+
+textarea::placeholder {
+    color: #494949;
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20.57px;
+    letter-spacing: -0.02em;
+}
+
+textarea:focus {
+    outline: unset;
+}
+
+
 /*
 Форма регистрации
 */
@@ -357,6 +402,38 @@
             transform: translateX(0);
             transition: .3s transform linear, .3s height linear .5s;
         }
+    }
+}
+
+.feedback {
+    .feedback__fields {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    .feedback__columns {
+        display: flex;
+        column-gap: 20px;
+    }
+
+    .feedback__button {
+        background: linear-gradient(121.37deg, #582F9A 32.87%, #33145A 65.46%, #33145A 81.58%);
+        border: 1px solid;
+        border-image-source: linear-gradient(274.38deg, #8D58E5 3.55%, #722DC7 81.16%);
+        border-image-slice: 1;
+        color: #FFFFFF;
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 21.78px;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 280px;
+        height: 60px;
+        flex-shrink: 0;
     }
 }
 

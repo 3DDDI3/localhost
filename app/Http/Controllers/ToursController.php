@@ -6,6 +6,7 @@ use App\Models\Lending\Country;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
 use App\Models\Lending\TourType;
+use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
 use GuzzleHttp\Client;
 
@@ -46,6 +47,10 @@ class ToursController extends Controller
         } catch (\Throwable $th) {
         }
 
+        $tourTypes = new TourTypes();
+        $tourCountries = new Country();
+        $tours = new Tour();
+
         $breadCrumbs = collect([
             (object)[
                 'name' => 'Главная',
@@ -60,9 +65,8 @@ class ToursController extends Controller
                     'url' => '/tours?type_id=*',
                 ]);
 
-                $tours = TourType::query()->whereNotNull(
-                    'tour_type_id'
-                )->paginate(12);
+                $tourTypes = TourTypes::has('tours')
+                    ->paginate(12);
             } else {
                 $tourType = TourType::query()->where([
                     'tour_type_id' => request()->input("type_id")
@@ -89,11 +93,12 @@ class ToursController extends Controller
         if (!empty(request()->input("country_id"))) {
             if (request()->input("country_id") == "*") {
                 $breadCrumbs->push((object)[
-                    'name' => "Страны",
+                    'name' => "Туры по стране",
                     'url' => '/tours?country_id=*',
                 ]);
 
-                $tours = TourCountry::query()->whereNotNull('country_id')->paginate(12);
+                $tourCountries = Country::has('tours')
+                    ->paginate(4);
             } else {
 
                 $country = Country::query()->where(['id' => request()->input('country_id')])->first();
@@ -112,7 +117,7 @@ class ToursController extends Controller
 
                 $tours = TourCountry::query()->where([
                     'country_id' => request()->input("country_id")
-                ])->paginate(12);
+                ])->paginate(4);
             }
         }
 
@@ -126,7 +131,9 @@ class ToursController extends Controller
         }
 
         return view('pages.tours', [
+            "tourTypes" => $tourTypes,
             "tours" => $tours,
+            "tourCountries" => $tourCountries,
             'breadcrumbs' => $breadCrumbs,
             'currencies' => $currencies,
         ]);

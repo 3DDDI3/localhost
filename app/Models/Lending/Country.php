@@ -19,8 +19,8 @@ class Country extends Model
         'name',
     ];
 
-    public function toursCount(): int
+    public function tours()
     {
-        return $this->hasMany(TourCountry::class)->get()->count();
+        return $this->hasMany(TourCountry::class);
     }
 }

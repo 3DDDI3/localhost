@@ -1,10 +1,13 @@
 <x-mail::message>
-# Introduction
 
-The body of your message.
+<h1 style="text-align: center">Смена пароля</h1>
+
+{{-- <div style="text-align: center">
+    The body of your message.
+</div> --}}
 
 <x-mail::button :url="''">
-Button Text
+    Сменить пароль
 </x-mail::button>
 
 Thanks,<br>

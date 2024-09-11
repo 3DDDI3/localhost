@@ -103,4 +103,5 @@ Route::prefix('/auth')
                 Route::post('/login', 'login');
                 Route::post('/logout', 'logout')->middleware('auth:sanctum');
                 Route::post('/check', 'check')->middleware('auth:sanctum');
+                Route::post('/reset', 'reset');
         });

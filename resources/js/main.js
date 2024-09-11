@@ -969,6 +969,7 @@ $(function () {
             })
             .catch(response => {
                 swal({
+                    icon: "warning",
                     title: response.response.data.message,
                     timer: 2000,
                 });
@@ -995,6 +996,59 @@ $(function () {
                 });
         });
 
+    });
+
+    $(".enter__login-button").on("click", function (e) {
+        e.preventDefault();
+        $(this).parents(".modal-wrapper").hide(300);
+        $("#reset-password").show(300);
+    })
+
+    $(".reset-password__button").on("click", function (e) {
+        e.preventDefault();
+        let login = $(this).parents(".modal-form__fields").find("input[name='login']"),
+            password = $(this).parents(".modal-form__fields").find("input[name='password']"),
+            retypePassword = $(this).parents(".modal-form__fields").find("input[name='retype-password']");
+        if (login.val() == "" || password.val() == "" || retypePassword.val() == "") {
+            login.val() == "" ? login.css("border-right-color", "red") : null;
+            password.val() == "" ? password.css("border-right-color", "red") : null;
+            retypePassword.val() == "" ? retypePassword.css("border-right-color", "red") : null;
+
+            swal({
+                icon: "error",
+                title: "Заполните обязательные поля",
+                timer: 2000,
+            });
+        }
+        else {
+            console.log
+            if (password.val() != retypePassword.val())
+                swal({
+                    icon: "error",
+                    title: "Пароли не совпадают",
+                    timer: 2000,
+                });
+            else {
+
+                const data = {
+                    login: login,
+                    password: password,
+                };
+                window.axios.post('/api/auth/reset', data).then(response => {
+                    console.log(response);
+                });
+            }
+        }
+    })
+
+    $("#pa-button").on("click", function (e) {
+        e.preventDefault();
+        $("#hamburger").prop("checked", false);
+        $("#enter").show(300);
+    });
+
+    $(".tour-country-type-block").on("click", function () {
+        window.location.href = `${window.location.origin}${window.location.pathname}${$(this).data("href")}`;
     });
 
 });

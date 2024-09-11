@@ -4644,6 +4644,7 @@ $(function () {
       $(_this).parents(".registration").find("input").val("");
     })["catch"](function (response) {
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+        icon: "warning",
         title: response.response.data.message,
         timer: 2000
       });
@@ -4666,6 +4667,51 @@ $(function () {
         window.location.href = "/pa/".concat(response.data.url); // $(this).parents(".modal-wrapper").hide(300);
       });
     });
+  });
+  $(".enter__login-button").on("click", function (e) {
+    e.preventDefault();
+    $(this).parents(".modal-wrapper").hide(300);
+    $("#reset-password").show(300);
+  });
+  $(".reset-password__button").on("click", function (e) {
+    e.preventDefault();
+    var login = $(this).parents(".modal-form__fields").find("input[name='login']"),
+        password = $(this).parents(".modal-form__fields").find("input[name='password']"),
+        retypePassword = $(this).parents(".modal-form__fields").find("input[name='retype-password']");
+
+    if (login.val() == "" || password.val() == "" || retypePassword.val() == "") {
+      login.val() == "" ? login.css("border-right-color", "red") : null;
+      password.val() == "" ? password.css("border-right-color", "red") : null;
+      retypePassword.val() == "" ? retypePassword.css("border-right-color", "red") : null;
+      sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+        icon: "error",
+        title: "Заполните обязательные поля",
+        timer: 2000
+      });
+    } else {
+      console.log;
+      if (password.val() != retypePassword.val()) sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+        icon: "error",
+        title: "Пароли не совпадают",
+        timer: 2000
+      });else {
+        var data = {
+          login: login,
+          password: password
+        };
+        window.axios.post('/api/auth/reset', data).then(function (response) {
+          console.log(response);
+        });
+      }
+    }
+  });
+  $("#pa-button").on("click", function (e) {
+    e.preventDefault();
+    $("#hamburger").prop("checked", false);
+    $("#enter").show(300);
+  });
+  $(".tour-country-type-block").on("click", function () {
+    window.location.href = "".concat(window.location.origin).concat(window.location.pathname).concat($(this).data("href"));
   });
 });
 

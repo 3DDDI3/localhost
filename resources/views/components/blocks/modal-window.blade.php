@@ -3,7 +3,12 @@
         <div {{ $attributes->merge(['class' => 'modal__window']) }}>
             @if ($attributes->get('title') != '')
                 <div class="modal__header">
-                    <span class="modal-header__title">{{ $attributes->get('title') }}</span>
+                    <header class="modal__headding">
+                        <span class="modal-header__title">{{ $attributes->get('title') }}</span>
+                        @if ($attributes->get('subtitle'))
+                            <span class="modal-header__subtitle">{{ $attributes->get('subtitle')    }}</span>
+                        @endif
+                    </header>
                     <svg class="modal-header__exit" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

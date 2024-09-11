@@ -271,6 +271,76 @@ main {
                 }
             }
         }
+
+        .tour-country-type-block {
+            display: flex;
+            height: 200px;
+            width: 425px;
+            padding: 35px 35px 35px 30px;
+            box-sizing: border-box;
+            flex-direction: column;
+            background-color: #F8F8F8;
+            justify-content: space-between;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+
+            .tour-country-type-block__image {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .tour-country-type-block__description {
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                z-index: 1;
+
+                .tour-country-type-block__title {
+                    font-family: 'HelveticaNeueCyr', sans-serif;
+                    font-size: 22px;
+                    font-weight: 550;
+                    line-height: 21.74px;
+                    letter-spacing: -0.02em;
+                    color: #342635;
+                }
+
+                .tour-country-type-block__subtitle {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 17px;
+                    font-weight: 300;
+                    line-height: 20.57px;
+                    letter-spacing: -0.01em;
+                    color: #342635;
+                }
+            }
+
+            .tour-country-type-block__bg-image {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                transition: .8s transform ease-out;
+                transform: translateY(100%);
+            }
+        }
+
+        .tour-country-type-block:hover {
+            .tour-country-type-block__bg-image {
+                transform: translateY(0) !important;
+            }
+
+            .tour-country-type-block__title {
+                color: #FFFFFF;
+            }
+
+            .tour-country-type-block__subtitle {
+                color: #FFFFFF;
+            }
+        }
     }
 }
 

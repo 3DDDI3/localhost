@@ -8,6 +8,7 @@ use App\Models\User\User;
 use App\View\Components\blocks\notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\ComponentAttributeBag;
 
@@ -52,10 +53,11 @@ class AuthorizationController extends Controller
 
     public function login(Request $request)
     {
-        $request->session()->flush();
+        // $request->session()->flush();
+        // Cookie::forget('new_session');
         if (!Auth::attempt($request->only(['name', 'password'])))
             return response()->json(['message' => "Неверный логин или пароль"], 401);
-        session()->regenerate();
+        // $request->session()->regenerate();
         $user = User::where(request()->only('name'))->first();
         $user->createToken('App')->plainTextToken;
 
@@ -72,5 +74,19 @@ class AuthorizationController extends Controller
     {
         $request->user()->tokens()->delete();
         return response(status: 200);
+    }
+
+    public function reset(Request $request)
+    {
+        $user = User::query()
+            ->where(['name' => $request->login])
+            ->first();
+
+        if (!$user) return response()->json(['message' => 'Неверный паоль и/или логин'], 400);
+
+        $user->fill(['password' => Hash::make($request->password)])
+            ->save();
+
+        return response()->json(['message' => 'Смена пароля прошла успешно'], 200);
     }
 }

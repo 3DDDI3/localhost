@@ -1,3 +1,6 @@
+@php
+    $inputs = ['country_id', 'type_id'];
+@endphp
 @if ($paginator->hasPages())
     <ul class="pagination menu">
         {{-- Previous Page Link --}}
@@ -33,6 +36,13 @@
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
+                    @php
+                        foreach (request()->input() as $key => $input) {
+                            if (in_array($key, $inputs)) {
+                                $url = "$url&$key=$input";
+                            }
+                        }
+                    @endphp
                     @if ($page == $paginator->currentPage())
                         <li class="pagination__item pagination__item_active menu__item">
                             <a href="{{ $url }}"

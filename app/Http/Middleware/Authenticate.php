@@ -24,6 +24,7 @@ class Authenticate extends Middleware
                     return route('main', ['login' => 1]);
                     break;
                 default:
+                    // $request->session()->flush();
                     return route('admin.login');
                     break;
             }

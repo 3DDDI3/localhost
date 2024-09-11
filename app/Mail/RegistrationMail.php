@@ -32,7 +32,7 @@ class RegistrationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address('info@u129171.test-handyhost.ru'),
+            from: new Address('info@mangaspace.ru'),
             subject: 'Registration Mail',
         );
     }

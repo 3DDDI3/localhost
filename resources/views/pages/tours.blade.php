@@ -60,35 +60,63 @@
         </div>
 
         <div class="tours-list" style="margin-top: -179px;">
+            @if (request()->country_id != '*' && request()->type_id != '*')
+                @foreach ($tours as $tour)
+                    @switch(get_class($tour))
+                        @case('App\Models\Lending\TourCountry')
+                            <x-templates.tour type="хит" class="" alt=""
+                                img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
+                                title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
+                                nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
+                                url="tours/{{ $tour->tour->url }}" />
+                        @break
 
-            @foreach ($tours as $tour)
-                @switch(get_class($tour))
-                    @case('App\Models\Lending\TourCountry')
-                        <x-templates.tour type="хит" class="" alt=""
-                            img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
-                            title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
-                            nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
-                            url="tours/{{ $tour->tour->url }}" />
-                    @break
+                        @case('App\Models\Lending\TourType')
+                            <x-templates.tour type="хит" class="" alt=""
+                                img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
+                                title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
+                                nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
+                                url="tours/{{ $tour->tour->url }}" />
+                        @break
 
-                    @case('App\Models\Lending\TourType')
-                        <x-templates.tour type="хит" class="" alt=""
-                            img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
-                            title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
-                            nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
-                            url="tours/{{ $tour->tour->url }}" />
-                    @break
+                        @default
+                            <x-templates.tour type="хит" class="" alt=""
+                                img="/storage/{{ $tour->preview_image }}" info="{{ $tour->preview_title }}"
+                                title="{{ $tour->preview_header }}" text="{{ $tour->preview_text }}"
+                                nights="{{ $tour->preview_nights }}" price="{{ $tour->preview_price }}"
+                                url="tours/{{ $tour->url }}" />
+                    @endswitch
+                @endforeach
+            @endif
 
-                    @default
-                        <x-templates.tour type="хит" class="" alt="" img="/storage/{{ $tour->preview_image }}"
-                            info="{{ $tour->preview_title }}" title="{{ $tour->preview_header }}"
-                            text="{{ $tour->preview_text }}" nights="{{ $tour->preview_nights }}"
-                            price="{{ $tour->preview_price }}" url="tours/{{ $tour->url }}" />
-                @endswitch
-            @endforeach
+            @if (request()->country_id == '*')
+                @foreach ($tourCountries as $tourCountry)
+                    <x-blocks.tour-type-country url="?country_id={{ $tourCountry->id }}" icon="/images/abh.svg"
+                        iconAlt="" title="{{ $tourCountry->name }}" subtitle="{{ $tourCountry->tours->count() }}"
+                        image="/images/abh-full.png" imageAlt="" />
+                @endforeach
+            @endif
+
+            @if (request()->type_id == '*')
+                @foreach ($tourTypes as $tourType)
+                    <x-blocks.tour-type-country url="?type_id={{ $tourType->id }}" icon="/images/abh.svg" iconAlt=""
+                        title="{{ $tourType->type }}" subtitle="{{ $tourType->tours->count() }}"
+                        image="/images/abh-full.png" imageAlt="" />
+                @endforeach
+            @endif
         </div>
 
-        {{ $tours->onEachSide(1)->links('components.paginator.index') }}
+        @if (method_exists($tourCountries, 'onEachSide'))
+            {{ $tourCountries->onEachSide(1)->links('components.paginator.index') }}
+        @endif
+
+        @if (method_exists($tours, 'onEachSide'))
+            {{ $tours->onEachSide(1)->links('components.paginator.index') }}
+        @endif
+
+        @if (method_exists($tourTypes, 'onEachSide'))
+            {{ $tourTypes->onEachSide(1)->links('components.paginator.index') }}
+        @endif
 
         <x-blocks.offer />
 
