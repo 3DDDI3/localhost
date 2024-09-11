@@ -29,7 +29,7 @@
 
     @yield('content')
 
-    {{-- <x-blocks.modal-window id="registration" class="registration-modal" title="Регистрация">
+    <x-blocks.modal-window id="registration" class="registration-modal" title="Регистрация">
         <x-blocks.registration-form />
     </x-blocks.modal-window>
 
@@ -52,7 +52,7 @@
 
     <x-blocks.modal-window id="reset-password" class="reset-password-modal" title="Сброс пароля">
         <x-blocks.reset-password />
-    </x-blocks.modal-window> --}}
+    </x-blocks.modal-window>
 
     <x-blocks.modal-window id="feedback" class="feedback-modal" title="Подберем лучший тур"
         subtitle="по вашим параметрам">

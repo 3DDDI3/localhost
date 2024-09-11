@@ -9,13 +9,15 @@
         <textarea name="textarea" class="feedback__textarea modal-form__textarea input__textarea"></textarea>
     </div>
     <div class="modal__aggrees">
-        <label for="law-aggree">
-            <input type="checkbox" id="law-aggree">
-            <span class="modal-aggrees__checkbox"></span>
-        </label> <span class="modal-aggrees__text">Я соглашаюсь на обработку моих персональных данных в
-            соответствии с требованиями Федерального закона РФ от 27 июля 2006 года № 152-ФЗ «О
-            персональных данных»
-        </span>
+        <div class="modal-aggrees__description">
+            <label for="law-aggree">
+                <input type="checkbox" id="law-aggree">
+                <span class="modal-aggrees__checkbox"></span>
+            </label> <span class="modal-aggrees__text">Я соглашаюсь на обработку моих персональных данных в
+                соответствии с требованиями Федерального закона РФ от 27 июля 2006 года № 152-ФЗ «О
+                персональных данных»
+            </span>
+        </div>
         <button class="feedback__button">Восстановить пароль</button>
     </div>
 

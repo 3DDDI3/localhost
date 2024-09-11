@@ -12,7 +12,6 @@ use App\Models\Lending\TourTypes;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
@@ -59,12 +58,12 @@ class IndexController extends Controller
             ->get();
 
         $currencies = collect();
+        $cities = collect();
 
         try {
             $client = new Client(['verify' => false]);
             $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_TOWNS");
 
-            $cities = collect();
             foreach (json_decode($res->getBody()->getContents())->SearchTour_TOWNS as $city) {
                 $cities->push(
                     (object)[
