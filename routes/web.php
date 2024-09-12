@@ -62,6 +62,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Mail::to("edik2898@gmail.com")->send(new RegistrationMail());
     });
 
+    Route::get('t', function () {
+        return view('pdf.test');
+    });
+
     include('admin.php');
 });
 

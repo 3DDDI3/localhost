@@ -14,7 +14,7 @@
                     <div class="pa-notification__description">
                         <h1 class="pa-notification__title">Спасибо за регистрацию!</h1>
                         <div class="pa-notification__text">Ваша заявка на рассмотрении
-                            Мы пришлем подтверждение на электронную почту <span>aaa@mail.ru</span></div>
+                            Мы пришлем подтверждение на электронную почту <span>{{ $agent->email }}</span></div>
                     </div>
                 </div>
             @else

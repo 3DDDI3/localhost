@@ -1,12 +1,19 @@
 <x-mail::message>
-# Introduction
 
-The body of your message.
+<h1 style="text-align: center">Пользователь зарегистрировался в системе:</h1> 
 
-<x-mail::button :url="''">
-Button Text
+<x-mail::table>
+| Имя                |      Телефон        |          Адрес      |     Текст          |
+| -------------------|---------------------|---------------------|--------------------|
+| {{$agent->name}}   | {{$agent->phone}}   | {{$agent->email}}   | {{$agent->text}}   |
+</x-mail::table>
+
+@php
+    // $url = config('app.url') . '/admin/requests?search=' . $request->name;
+@endphp
+
+<x-mail::button :$url>
+    Перейти к заявке
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
 </x-mail::message>

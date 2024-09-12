@@ -16,9 +16,10 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         $route = Route::currentRouteName(); //текущий мартрут
-        
-        if (! $request->expectsJson()) {
 
+        if (! $request->expectsJson()) {
+            if (preg_match('/pa/', $route))
+                return route('index');
             switch ($route) {
                 case 'profile':
                     return route('main', ['login' => 1]);

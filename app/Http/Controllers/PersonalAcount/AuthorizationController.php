@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PersonalAcount;
 
 use App\Http\Controllers\Controller;
 use App\Mail\PasswordResetMail;
+use App\Mail\RegistrationMail;
 use App\Models\ResetPassword;
 use App\Models\Services\Agent;
 use App\Models\User\User;
@@ -45,6 +46,8 @@ class AuthorizationController extends Controller
 
         $user->createToken('App')->plainTextToken;
 
+        Mail::to(config('mail.from.address'))->send(new RegistrationMail($agent));
+
         if ($request->expectsJson())
             return response()->json([
                 'title' => 'Спасибо за регистрацию',
@@ -56,16 +59,15 @@ class AuthorizationController extends Controller
 
     public function login(Request $request)
     {
-        // $request->session()->flush();
-        // Cookie::forget('new_session');
         if (!Auth::attempt($request->only(['name', 'password'])))
             return response()->json(['message' => "Неверный логин или пароль"], 401);
-        // $request->session()->regenerate();
+
         $user = User::where(request()->only('name'))->first();
+
         $user->createToken('App')->plainTextToken;
 
         if ($request->expectsJson())
-            return response(200);
+            return response()->json(['url' => $user->agent->url], 200);
     }
 
     public function check(Request $request)

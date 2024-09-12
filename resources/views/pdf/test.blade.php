@@ -155,10 +155,16 @@
 </style>
 
 <body>
-    <div class="program__title div">
-        <span style="width: 50%">title</span>
-        <span style="width:50%">subtitle</span>
+    <div class="program__title div" style="position: relative">
+        <img style="position: absolute; left: 0" src="{{ asset('images/logo.svg') }}" alt="">
+        <div style="position: absolute; right:0; text-align: right">
+            ООО “ Туристическая фирма «МЕРКУРИЙ»”<br>
+            Санкт-Петербург, 7-я Красноармейская, 7<br>
+            Телефон: (812) 702 7785 / 715 9241<br>
+            E-mail: res@italy-spb.ru
+        </div>
     </div>
+    <p class="header" style="text-align: center">Тайны Несвижского замка, 5 дней</p>
 </body>
 
 </html>

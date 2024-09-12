@@ -26,6 +26,8 @@ class PersonalAcountController extends Controller
                 'url' => $url,
             ])->first();
 
+        if (!$agent->isActive) abort(404, 'Не удалось найти');
+
         $currencies = collect();
 
         try {
