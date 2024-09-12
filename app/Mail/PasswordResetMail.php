@@ -2,14 +2,16 @@
 
 namespace App\Mail;
 
+use App\Models\ResetPassword;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 
-class RegistrationMail extends Mailable
+class PasswordResetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,10 +20,9 @@ class RegistrationMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public ResetPassword $resetPassword
+    ) {}
 
     /**
      * Get the message envelope.
@@ -31,7 +32,8 @@ class RegistrationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Registration Mail',
+            from: new Address(config('mail.from.address')),
+            subject: 'Восстанволение пароля',
         );
     }
 
@@ -43,7 +45,7 @@ class RegistrationMail extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'mail.registration',
+            markdown: 'mail.password_reset',
         );
     }
 

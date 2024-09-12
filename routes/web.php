@@ -62,10 +62,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Mail::to("edik2898@gmail.com")->send(new RegistrationMail());
     });
 
-    Route::get('/test1', function () {
-        echo 1;
-    })->middleware('auth:sanctum');
-
     include('admin.php');
 });
 

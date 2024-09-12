@@ -21,6 +21,7 @@
                 <th>Дата:</th>
                 <th>Имя:</th>
                 <th>Телефон:</th>
+                <th>Email:</th>
                 <th>Сообщение:</th>
                 <th></th>
             </tr>
@@ -33,8 +34,9 @@
                     <td>{{ $object->id }}</td>
                     <td>{{ $object->created_at }}</td>
                     <td>{{ $object->name ?? '' }}</td>
-                    <td>{{ $object->tel ?? '' }}</td>
-                    <td>{{ $object->message ?? '' }}</td>
+                    <td>{{ $object->phone ?? '' }}</td>
+                    <td>{{ $object->email ?? '' }}</td>
+                    <td>{{ $object->text ?? '' }}</td>
                     <td><a href="?delete={{ $object->id }}" class="admin_delete" title="Удалить"></a></td>
                 </tr>
             @endforeach

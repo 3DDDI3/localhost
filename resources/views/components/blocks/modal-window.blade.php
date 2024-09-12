@@ -1,4 +1,4 @@
-<div id="{{ $attributes->get('id') }}" class="modal-wrapper">
+<div id="{{ $attributes->get('id') }}" style="{{ $attributes->get('style') }}" class="modal-wrapper">
     <div class="modal">
         <div {{ $attributes->merge(['class' => 'modal__window']) }}>
             @if ($attributes->get('title') != '')
@@ -6,7 +6,7 @@
                     <header class="modal__headding">
                         <span class="modal-header__title">{{ $attributes->get('title') }}</span>
                         @if ($attributes->get('subtitle'))
-                            <span class="modal-header__subtitle">{{ $attributes->get('subtitle')    }}</span>
+                            <span class="modal-header__subtitle">{{ $attributes->get('subtitle') }}</span>
                         @endif
                     </header>
                     <svg class="modal-header__exit" width="20" height="20" viewBox="0 0 20 20" fill="none"

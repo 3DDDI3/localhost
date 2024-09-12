@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\PersonalAcount;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PasswordResetMail;
+use App\Models\ResetPassword;
 use App\Models\Services\Agent;
 use App\Models\User\User;
 use App\View\Components\blocks\notification;
@@ -10,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\ComponentAttributeBag;
 
 class AuthorizationController extends Controller
@@ -76,17 +79,47 @@ class AuthorizationController extends Controller
         return response(status: 200);
     }
 
+    public function sendMail(Request $request)
+    {
+        if (User::query()->where([
+            'email' => $request->email,
+        ])->count() == 0)
+            return response()->json(['message' => 'Пользователя с таким email не существует'], 400);
+
+        $token = str_random();
+        while (ResetPassword::query()->where(['email' => $token])->count() > 0) {
+            $token = str_random();
+        }
+
+        $resetPassword = ResetPassword::create([
+            'email' => $request->email,
+            'token' => $token,
+        ]);
+
+        Mail::to($resetPassword->email)->send(new PasswordResetMail($resetPassword));
+
+        return response()->json(['message' => 'На почту выслано сообщение']);
+    }
+
     public function reset(Request $request)
     {
-        $user = User::query()
-            ->where(['name' => $request->login])
-            ->first();
+        if (ResetPassword::query()->where(['token' => $request->token])->count() == 0)
+            return response()->json(['message' => 'Недействительная ссылка'], 404);
 
-        if (!$user) return response()->json(['message' => 'Неверный паоль и/или логин'], 400);
+        if ($request->password != $request->retypePassword)
+            return response(['message' => 'Пароли не совпадают'], 400);
+
+        $user = User::query()
+            ->where(
+                ['email' => ResetPassword::query()
+                    ->where(['token' => $request->token])
+                    ->first()
+                    ->email]
+            )->first();
 
         $user->fill(['password' => Hash::make($request->password)])
             ->save();
 
-        return response()->json(['message' => 'Смена пароля прошла успешно'], 200);
+        return response()->json(['message' => 'Пароль успешно изменен'], 200);
     }
 }

@@ -396,23 +396,19 @@ input {
         }
     }
 
-    .pagination__item:hover > .pagination__link {
+    .pagination__item:hover>.pagination__link {
         fill: #ffffff;
     }
 
     .pagination__item_active {
-        background: linear-gradient(
-            121.37deg,
-            #582f9a 32.87%,
-            #33145a 65.46%,
-            #33145a 81.58%
-        );
+        background: linear-gradient(121.37deg,
+                #582f9a 32.87%,
+                #33145a 65.46%,
+                #33145a 81.58%);
         border: 1px solid;
-        border-image-source: linear-gradient(
-            274.38deg,
-            #8d58e5 3.55%,
-            #722dc7 81.16%
-        );
+        border-image-source: linear-gradient(274.38deg,
+                #8d58e5 3.55%,
+                #722dc7 81.16%);
 
         .tours-pagination__link {
             color: #ffffff;
@@ -420,18 +416,14 @@ input {
     }
 
     .pagination__item:hover {
-        background: linear-gradient(
-            121.37deg,
-            #582f9a 32.87%,
-            #33145a 65.46%,
-            #33145a 81.58%
-        );
+        background: linear-gradient(121.37deg,
+                #582f9a 32.87%,
+                #33145a 65.46%,
+                #33145a 81.58%);
         border: 1px solid;
-        border-image-source: linear-gradient(
-            274.38deg,
-            #8d58e5 3.55%,
-            #722dc7 81.16%
-        );
+        border-image-source: linear-gradient(274.38deg,
+                #8d58e5 3.55%,
+                #722dc7 81.16%);
 
         .pagination__link {
             color: #ffffff;
@@ -568,12 +560,10 @@ input {
             cursor: pointer;
             height: 50px;
             width: 230px;
-            background: linear-gradient(
-                121.37deg,
-                #582f9a 32.87%,
-                #33145a 65.46%,
-                #33145a 81.58%
-            );
+            background: linear-gradient(121.37deg,
+                    #582f9a 32.87%,
+                    #33145a 65.46%,
+                    #33145a 81.58%);
             font-family: "Inter", sans-serif;
             letter-spacing: -0.02em;
             font-size: 20px;
@@ -652,8 +642,7 @@ input {
         opacity: 0.3;
     }
 
-    .slider__title {
-    }
+    .slider__title {}
 }
 
 .splide__slide.is-next {
@@ -664,36 +653,28 @@ input {
 
 .sliders .splide__arrow:hover:not(:disabled) {
     opacity: unset !important;
-    background: linear-gradient(
-        121.37deg,
-        #582f9a 32.87%,
-        #33145a 65.46%,
-        #33145a 81.58%
-    );
+    background: linear-gradient(121.37deg,
+            #582f9a 32.87%,
+            #33145a 65.46%,
+            #33145a 81.58%);
     border: 1px solid;
-    border-image-source: linear-gradient(
-        121.37deg,
-        #582f9a 32.87%,
-        #33145a 65.46%,
-        #33145a 81.58%
-    );
+    border-image-source: linear-gradient(121.37deg,
+            #582f9a 32.87%,
+            #33145a 65.46%,
+            #33145a 81.58%);
 }
 
 .news__slider .splide__arrow:hover:not(:disabled) {
     opacity: unset !important;
-    background: linear-gradient(
-        121.37deg,
-        #582f9a 32.87%,
-        #33145a 65.46%,
-        #33145a 81.58%
-    );
+    background: linear-gradient(121.37deg,
+            #582f9a 32.87%,
+            #33145a 65.46%,
+            #33145a 81.58%);
     border: 1px solid;
-    border-image-source: linear-gradient(
-        121.37deg,
-        #582f9a 32.87%,
-        #33145a 65.46%,
-        #33145a 81.58%
-    );
+    border-image-source: linear-gradient(121.37deg,
+            #582f9a 32.87%,
+            #33145a 65.46%,
+            #33145a 81.58%);
 
     svg {
         fill: #ffffff;
@@ -901,18 +882,14 @@ main {
                     }
 
                     button[type="submit"] {
-                        background: linear-gradient(
-                            121.37deg,
-                            #582f9a 32.87%,
-                            #33145a 65.46%,
-                            #33145a 81.58%
-                        );
+                        background: linear-gradient(121.37deg,
+                                #582f9a 32.87%,
+                                #33145a 65.46%,
+                                #33145a 81.58%);
                         border: 1px solid;
-                        border-image-source: linear-gradient(
-                            274.38deg,
-                            #8d58e5 3.55%,
-                            #722dc7 81.16%
-                        );
+                        border-image-source: linear-gradient(274.38deg,
+                                #8d58e5 3.55%,
+                                #722dc7 81.16%);
                         width: 224px;
                         height: 60px;
                         color: #ffffff;
@@ -1007,8 +984,7 @@ main {
                     }
                 }
 
-                .search-tour-date__icon {
-                }
+                .search-tour-date__icon {}
             }
 
             .search-tour__people-count {
@@ -1460,11 +1436,9 @@ main {
                             left: 0;
                             right: 0;
                             height: 220px;
-                            background: linear-gradient(
-                                2.75deg,
-                                rgba(0, 0, 0, 0.8) 22.42%,
-                                rgba(255, 255, 255, 0) 89.95%
-                            );
+                            background: linear-gradient(2.75deg,
+                                    rgba(0, 0, 0, 0.8) 22.42%,
+                                    rgba(255, 255, 255, 0) 89.95%);
                         }
                     }
 
@@ -1549,12 +1523,10 @@ main {
 
                             .popular-tours-tour-card__button:hover {
                                 opacity: unset;
-                                background: linear-gradient(
-                                    121.37deg,
-                                    #582f9a 32.87%,
-                                    #33145a 65.46%,
-                                    #33145a 81.58%
-                                );
+                                background: linear-gradient(121.37deg,
+                                        #582f9a 32.87%,
+                                        #33145a 65.46%,
+                                        #33145a 81.58%);
                                 color: #ffffff;
                             }
                         }
@@ -1799,11 +1771,9 @@ main {
             position: absolute;
             height: 100%;
             opacity: 0.7;
-            background: linear-gradient(
-                90deg,
-                #21162e 0%,
-                rgba(33, 22, 46, 0) 100%
-            );
+            background: linear-gradient(90deg,
+                    #21162e 0%,
+                    rgba(33, 22, 46, 0) 100%);
         }
 
         .offer__wrapper {
@@ -1852,18 +1822,14 @@ main {
 
             .offer__button {
                 cursor: pointer;
-                background: linear-gradient(
-                    121.37deg,
-                    #582f9a 32.87%,
-                    #33145a 65.46%,
-                    #33145a 81.58%
-                );
+                background: linear-gradient(121.37deg,
+                        #582f9a 32.87%,
+                        #33145a 65.46%,
+                        #33145a 81.58%);
                 border: 1px solid;
-                border-image-source: linear-gradient(
-                    274.38deg,
-                    #8d58e5 3.55%,
-                    #722dc7 81.16%
-                );
+                border-image-source: linear-gradient(274.38deg,
+                        #8d58e5 3.55%,
+                        #722dc7 81.16%);
                 border-image-slice: 1;
                 width: 231px;
                 height: 55px;
@@ -2129,8 +2095,7 @@ main {
                     column-gap: 5px;
                     align-items: center;
 
-                    .currency__image {
-                    }
+                    .currency__image {}
 
                     .currency-icon_mobile {
                         display: none;
@@ -2179,12 +2144,10 @@ main {
 
                 button[type="submit"] {
                     cursor: pointer;
-                    background: linear-gradient(
-                        121.37deg,
-                        #582f9a 32.87%,
-                        #33145a 65.46%,
-                        #33145a 81.58%
-                    );
+                    background: linear-gradient(121.37deg,
+                            #582f9a 32.87%,
+                            #33145a 65.46%,
+                            #33145a 81.58%);
                     width: 163px;
                     height: 100%;
                     color: #ffffff;
@@ -2241,6 +2204,7 @@ main {
 }
 
 @media (min-width: 320px) and (max-width: 374px) {
+
     body,
     html {
         width: 100%;
@@ -2469,7 +2433,7 @@ main {
                 }
 
                 .search-tour__form {
-                    height: 327px;
+                    height: 100%;
                     margin: 0 15px 15px 15px;
                     padding: 25px;
 
@@ -2718,14 +2682,12 @@ main {
                     left: 0;
                     top: 145px;
 
-                    .services-others__title {
-                    }
+                    .services-others__title {}
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {
-                                }
+                                .services-others__name {}
                             }
                         }
                     }
@@ -2977,6 +2939,7 @@ main {
         }
 
         .second__level {
+
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -3021,8 +2984,7 @@ main {
             }
         }
 
-        .footer-menu {
-        }
+        .footer-menu {}
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -3162,6 +3124,7 @@ main {
 }
 
 @media (min-width: 375px) and (max-width: 424px) {
+
     body,
     html {
         width: 100%;
@@ -3392,7 +3355,7 @@ main {
                 }
 
                 .search-tour__form {
-                    height: 327px;
+                    height: 100%;
                     margin: 0 15px 15px 15px;
                     padding: 25px;
 
@@ -3627,14 +3590,12 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {
-                    }
+                    .services-others__title {}
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {
-                                }
+                                .services-others__name {}
                             }
                         }
                     }
@@ -3883,6 +3844,7 @@ main {
         }
 
         .second__level {
+
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -3927,8 +3889,7 @@ main {
             }
         }
 
-        .footer-menu {
-        }
+        .footer-menu {}
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -4097,11 +4058,11 @@ main {
         margin-right: 10px !important;
     }
 
-    .box_active + .header__messengers {
+    .box_active+.header__messengers {
         display: none !important;
     }
 
-    .box_active ~ label.hamburger {
+    .box_active~label.hamburger {
         display: none !important;
     }
 }
@@ -4244,8 +4205,8 @@ main {
         margin-top: unset !important;
     }
 
-    .box_active + .header__messengers,
-    .box_active + .hamburger {
+    .box_active+.header__messengers,
+    .box_active+.hamburger {
         display: none !important;
     }
 }
@@ -4281,6 +4242,7 @@ main {
 }
 
 @media (min-width: 425px) and (max-width: 767px) {
+
     body,
     html {
         width: 100%;
@@ -4469,7 +4431,7 @@ main {
                 }
 
                 .search-tour__form {
-                    height: 327px;
+                    height: 100%;
                     margin: 0 15px 15px 15px;
                     padding: 25px;
 
@@ -4706,14 +4668,12 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {
-                    }
+                    .services-others__title {}
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {
-                                }
+                                .services-others__name {}
                             }
                         }
                     }
@@ -4966,6 +4926,7 @@ main {
         }
 
         .second__level {
+
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -5010,8 +4971,7 @@ main {
             }
         }
 
-        .footer-menu {
-        }
+        .footer-menu {}
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -5172,8 +5132,7 @@ main {
                 }
             }
 
-            .footer-pages-messengers {
-            }
+            .footer-pages-messengers {}
 
             .third__level {
                 margin-bottom: 40px;
@@ -5268,6 +5227,7 @@ main {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+
     body,
     html {
         width: 100%;
@@ -5481,7 +5441,7 @@ main {
                 }
 
                 .search-tour__form {
-                    height: 327px;
+                    height: 100%;
                     margin: 0 15px 15px 15px;
                     padding: 25px;
 
@@ -5719,14 +5679,12 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {
-                    }
+                    .services-others__title {}
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {
-                                }
+                                .services-others__name {}
                             }
                         }
                     }
@@ -5975,6 +5933,7 @@ main {
         }
 
         .second__level {
+
             .footer-menu,
             .footer__main-menu {
                 display: none !important;
@@ -6019,8 +5978,7 @@ main {
             }
         }
 
-        .footer-menu {
-        }
+        .footer-menu {}
 
         .footer-pages-messengers {
             margin-top: 0;
@@ -6191,7 +6149,7 @@ main {
             margin-right: 50px !important;
         }
 
-        .box_active ~ .search-profile {
+        .box_active~.search-profile {
             display: none !important;
         }
 
@@ -6447,8 +6405,7 @@ main {
 
                     .services-vacation-type__info {
                         .services-vacation-type__list {
-                            .services-vacation-type__item {
-                            }
+                            .services-vacation-type__item {}
                         }
                     }
                 }
@@ -6479,14 +6436,12 @@ main {
                     left: 25px;
                     top: 145px;
 
-                    .services-others__title {
-                    }
+                    .services-others__title {}
 
                     .services-others__info {
                         .services-others__list {
                             .services-others__item {
-                                .services-others__name {
-                                }
+                                .services-others__name {}
                             }
                         }
                     }
@@ -6802,6 +6757,7 @@ main {
         margin: 30px 20px 0px 20px;
     }
 }
+
 @media (min-width: 1351px) and (max-width: 1440px) {
     .search-tours__wrapper {
         padding: 25px 0 !important;

@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 
 import "@splidejs/splide/css";
 import Splide, { EVENT_SLIDE_KEYDOWN } from "@splidejs/splide";
+import { message } from 'laravel-mix/src/Log';
 
 function init() {
     let center = [59.911833615112705, 30.31557668469041];
@@ -38,6 +39,7 @@ function init() {
 
 $(function () {
     let combobox, search, from, nights, begDate, adults, endDate, to = undefined;
+    let user = undefined;
 
     Inputmask("8(999) 999-9999").mask(document.getElementsByName('phone'));
 
@@ -102,7 +104,7 @@ $(function () {
 
             $.ajax({
                 type: "GET",
-                url: "/api/samotur/getCountries",
+                url: "/api/samotour/getCountries",
                 data: {
                     id: id
                 },
@@ -483,6 +485,9 @@ $(function () {
             1024: {
                 perPage: 1,
             },
+            1400: {
+                perPage: 1,
+            }
         }
     }).mount();
 
@@ -727,14 +732,25 @@ $(function () {
     });
 
     $(".footer__notification").on("submit", function (e) {
-        e.preventDefault(); $.ajax({
-            type: "POST",
-            url: "/api/mailler/create",
-            data: {
-                email: $(".footer__notification input[type='email']").val(),
-            },
-            dataType: "json",
-        });
+        e.preventDefault();
+        $("#chose-user").show(300);
+    });
+
+    $(".modal__chosen-form label input[name='user']").on("change", function () {
+        user = $(this).attr("id");
+
+        /**
+         * @todo Доделать реализацию выбора пользователя от его выбора
+         */
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/api/mailler/create",
+        //     data: {
+        //         email: $(".footer__notification input[type='email']").val(),
+        //     },
+        //     dataType: "json",
+        // });
     });
 
     $("input[type='search']").on("keydown", function (e) {
@@ -912,7 +928,7 @@ $(function () {
         $("#registration").show(300);
     });
 
-    $("#law-aggree").on("change", function () {
+    $(".modal-aggrees__description input[type='checkbox']").on("change", function () {
         if ($(this).prop("checked"))
             $(".modal-aggrees__checkbox").css("border-color", "#F3F3F3");
         else $(".modal-aggrees__checkbox").css("border-color", "#8D58E5");
@@ -1001,44 +1017,62 @@ $(function () {
     $(".enter__login-button").on("click", function (e) {
         e.preventDefault();
         $(this).parents(".modal-wrapper").hide(300);
-        $("#reset-password").show(300);
+        $("#reset-password-send-mail").show(300);
     })
 
-    $(".reset-password__button").on("click", function (e) {
+    $(".reset-password-send-mail").on("submit", function (e) {
         e.preventDefault();
-        let login = $(this).parents(".modal-form__fields").find("input[name='login']"),
-            password = $(this).parents(".modal-form__fields").find("input[name='password']"),
-            retypePassword = $(this).parents(".modal-form__fields").find("input[name='retype-password']");
-        if (login.val() == "" || password.val() == "" || retypePassword.val() == "") {
-            login.val() == "" ? login.css("border-right-color", "red") : null;
-            password.val() == "" ? password.css("border-right-color", "red") : null;
-            retypePassword.val() == "" ? retypePassword.css("border-right-color", "red") : null;
 
-            swal({
-                icon: "error",
-                title: "Заполните обязательные поля",
-                timer: 2000,
-            });
-        }
-        else {
-            console.log
-            if (password.val() != retypePassword.val())
+        $.ajax({
+            type: "POST",
+            url: "/api/auth/send-mail",
+            data: {
+                email: $(this).find("input[type='email']").val(),
+            },
+            dataType: "json",
+            success: function (response) {
+                $("#notification-small .modal-notification__text").text(response.message);
+                $(this).parents(".modal-wrapper").hide(300);
+                $("#notification-small").show(300);
+            }.bind(this),
+            error: function (response) {
                 swal({
                     icon: "error",
-                    title: "Пароли не совпадают",
+                    title: response.responseJSON.message,
                     timer: 2000,
                 });
-            else {
+            }
+        });
+    })
 
-                const data = {
-                    login: login,
-                    password: password,
-                };
-                window.axios.post('/api/auth/reset', data).then(response => {
-                    console.log(response);
+    $(".reset-password").on("submit", function (e) {
+        e.preventDefault();
+
+        let token = window.location.href.match(/token=[a-zA-Z0-9]+/)[0].split("=")[1];
+
+        $.ajax({
+            type: "POST",
+            url: "/api/auth/reset",
+            data: {
+                password: $(this).find("input[name='password']").val(),
+                retypePassword: $(this).find("input[name='retype-password']").val(),
+                token: token,
+            },
+            dataType: "json",
+            success: function (response) {
+                $("#notification-small .modal-notification__text").text(response.message);
+                $(this).parents(".modal-wrapper").hide(300);
+                $("#notification-small").show(300);
+            }.bind(this),
+            error: function (error) {
+                console.log();
+                swal({
+                    icon: "error",
+                    title: error.responseJSON.message,
+                    timer: 2000,
                 });
             }
-        }
+        });
     })
 
     $("#pa-button").on("click", function (e) {
@@ -1050,5 +1084,48 @@ $(function () {
     $(".tour-country-type-block").on("click", function () {
         window.location.href = `${window.location.origin}${window.location.pathname}${$(this).data("href")}`;
     });
+
+    $(".offer__button").on("click", function () {
+        $("#feedback").show(300);
+    });
+
+    $(".feedback").on("submit", function (e) {
+        e.preventDefault();
+
+        let name = $(this).find("input[name='name']"),
+            phone = $(this).find("input[name='phone']"),
+            email = $(this).find("input[name='email']"),
+            text = $(this).find("textarea[name='textarea']");
+
+        if (!$("#law-aggree1").prop('checked')) {
+            $(".modal-aggrees__checkbox").css("border-color", "red");
+
+            swal({
+                icon: 'error',
+                title: "Подтвердите свое согласие",
+                timer: 2000,
+            });
+
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/feedback/create",
+            data: {
+                name: name.val(),
+                phone: phone.val(),
+                email: email.val(),
+                text: text.val(),
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                $("#notification-small .modal-notification__text").text(response.message);
+                $(this).parents(".modal-wrapper").hide(300);
+                $("#notification-small").show(300);
+            }.bind(this)
+        });
+    })
 
 });

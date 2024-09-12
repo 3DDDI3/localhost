@@ -17,8 +17,8 @@ class RequestsController extends Controller
         $objects = Requests::orderBy('id', 'desc');
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
-                ->orWhere('tel', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = $objects->where('phone', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
+                ->orWhere('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
         }
 
         if ($id = $request->delete) {
@@ -31,5 +31,4 @@ class RequestsController extends Controller
 
         return view('admin.modules.requests.index', compact('objects'));
     }
-
 }

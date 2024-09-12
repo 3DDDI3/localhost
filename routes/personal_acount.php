@@ -3,6 +3,8 @@
 use App\Http\Controllers\PersonalAcount\PersonalAcountController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{url}', [PersonalAcountController::class, 'index'])
-    ->name('pa')
-    ->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->controller(PersonalAcountController::class)->group(function () {
+    Route::get('/{url}', 'index')->name('pa');
+    Route::get('/auth/reset-password', 'resetPassword')->withoutMiddleware('auth:sanctum');
+});

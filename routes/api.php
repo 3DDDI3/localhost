@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PersonalAcount\AuthorizationController;
 use App\Jobs\Parse;
 use App\Models\Job;
@@ -83,7 +84,7 @@ Route::prefix('samotour')->group(function () {
                         $samotour_url = config('samotour.samotour_api_url');
                         $samotour_token = config('samotour.samotour_api_token');
                         $client = new Client(['verify' => false]);
-                        $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
+                        $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
                         $combobox = new ComboboxItem();
                         $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
                         return $combobox->render()->with(
@@ -103,5 +104,13 @@ Route::prefix('/auth')
                 Route::post('/login', 'login');
                 Route::post('/logout', 'logout')->middleware('auth:sanctum');
                 Route::post('/check', 'check')->middleware('auth:sanctum');
-                Route::post('/reset', 'reset');
+                Route::post('/send-mail', 'sendMail')->withoutMiddleware('api');
+                Route::post('/reset', 'reset')->withoutMiddleware('api');
+        });
+
+Route::prefix('feedback')
+        ->controller(FeedbackController::class)
+        ->withoutMiddleware('api')
+        ->group(function () {
+                Route::post('/create', 'create');
         });

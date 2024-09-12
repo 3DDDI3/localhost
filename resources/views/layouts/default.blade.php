@@ -50,9 +50,19 @@
         <x-blocks.chosen-form />
     </x-blocks.modal-window>
 
-    <x-blocks.modal-window id="reset-password" class="reset-password-modal" title="Сброс пароля">
+    @php
+        $resetPasswordStyle = !empty(request()->token) ? 'display:block' : null;
+    @endphp
+
+    <x-blocks.modal-window id="reset-password-send-mail"
+        class="reset-password-send-mail-modal" title="Сброс пароля">
+        <x-blocks.reset-password-send-mail />
+    </x-blocks.modal-window>
+
+    <x-blocks.modal-window style="{{ $resetPasswordStyle }}" id="reset-password" class="reset-password-modal" title="Сброс пароля">
         <x-blocks.reset-password />
     </x-blocks.modal-window>
+
 
     <x-blocks.modal-window id="feedback" class="feedback-modal" title="Подберем лучший тур"
         subtitle="по вашим параметрам">

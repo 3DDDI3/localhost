@@ -156,7 +156,7 @@
                     @endforeach
                 </div>
                 <form class="footer__notification">
-                    <input type="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" name="email" placeholder="E-mail">
+                    <input type="email" name="email" placeholder="E-mail">
                     <button type="submit">Подписаться</button>
                 </form>
             </div>
