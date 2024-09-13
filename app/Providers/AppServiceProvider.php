@@ -23,6 +23,7 @@ use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -63,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
 
         $setting = Setting::find(1);
 
-
+        JsonResource::withoutWrapping();
 
         $seo = new \App\Services\SEO\SEO(
             SEO::where('url', Request::path())->first(),

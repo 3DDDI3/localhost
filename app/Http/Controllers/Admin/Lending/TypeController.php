@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Lending;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
@@ -54,6 +55,8 @@ class TypeController extends Controller
             );
 
             $object->save();
+
+            FileUpload::uploadImage('image', TourTypes::class, 'image', $object->id, 425, 200, '/images/tours', request: $request);
 
             AdminEventLogs::log($object, $id);
 

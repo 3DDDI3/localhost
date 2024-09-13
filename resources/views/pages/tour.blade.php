@@ -18,7 +18,7 @@
                     <p class="tour-headding__subtitle">{{ $tour->subtitle }}</p>
                     <div class="tour-headding__actions">
                         @if ($tour->isHiddenCountryInfo == 0)
-                            <button class="tour-country-info">
+                            <button class="tour-country-info" data-href="{{ $tour->path1 }}">
                                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -41,7 +41,7 @@
                             </button>
                         @endif
                         @if ($tour->isHiddenTouristInfo == 0)
-                            <button class="tour-tourist-reminder">
+                            <button class="tour-tourist-reminder" data-href="{{ $tour->path2 }}">
                                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -197,6 +197,7 @@
         @endif
 
         @isset($samotour)
+        {{-- @dd($samotour) --}}
             <div class="tour-cost" id="calc" data-country="{{ $samotour->id_country }}"
                 data-tour="{{ $samotour->id_tour }}">
                 <h1 class="tour-cost__title">Стоимость тура</h1>

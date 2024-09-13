@@ -4627,18 +4627,21 @@ $(function () {
     $("#chose-user").show(300);
   });
   $(".modal__chosen-form label input[name='user']").on("change", function () {
-    user = $(this).attr("id");
-    /**
-     * @todo Доделать реализацию выбора пользователя от его выбора
-     */
-    // $.ajax({
-    //     type: "POST",
-    //     url: "/api/mailler/create",
-    //     data: {
-    //         email: $(".footer__notification input[type='email']").val(),
-    //     },
-    //     dataType: "json",
-    // });
+    user = $(this).attr("id") == "agent" ? 1 : 0;
+    $.ajax({
+      type: "POST",
+      url: "/api/mailler/create",
+      data: {
+        email: $($(".footer__notification input[type='email']")[1]).val(),
+        isAgent: user
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#notification-small .modal-notification__text").text(response.message);
+        $(this).parents(".modal-wrapper").hide(300);
+        $("#notification-small").show(300);
+      }.bind(this)
+    });
   });
   $("input[type='search']").on("keydown", function (e) {
     if (e.key === 'Enter') window.location.href = "/search?search=".concat($(this).val());
@@ -4753,7 +4756,7 @@ $(function () {
     }
   });
   $(".tour-download").on("click", function () {
-    window.open("".concat(location.origin, "/api/files?tour=").concat(location.pathname.replace(/\/\w+\//, "")));
+    window.open("".concat(location.origin, "/files?url=").concat(location.pathname.replace(/\/\w+\//, "")));
   });
   $(".profile-button").on("click", function () {
     window.axios.defaults.withCredential = true;
@@ -4854,6 +4857,12 @@ $(function () {
       window.axios.post('/api/auth/login', data).then(function (response) {
         console.log(response);
         window.location.href = "/pa/".concat(response.data.url); // $(this).parents(".modal-wrapper").hide(300);
+      })["catch"](function (response) {
+        sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+          icon: "error",
+          title: response.response.data.message,
+          timer: 2000
+        });
       });
     });
   });
@@ -4956,6 +4965,16 @@ $(function () {
         $(this).parents(".modal-wrapper").hide(300);
         $("#notification-small").show(300);
       }.bind(this)
+    });
+  });
+  $(".tour-country-info").on("click", function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "/api/files/download",
+      data: "data",
+      dataType: "dataType",
+      success: function success(response) {}
     });
   });
 });

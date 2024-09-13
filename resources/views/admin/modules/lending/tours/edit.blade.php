@@ -26,6 +26,26 @@
                 ])
             </div>
 
+            {{-- @dd($object) --}}
+
+            {!! \App\Helpers\GenerateForm::makeFile(
+                'Документ "Стоимость тура"',
+                'file1',
+                $object,
+                '/storage/files',
+                accept: '.doc,.docx,.pdf',
+                field: 'path1',
+            ) !!}
+
+            {!! \App\Helpers\GenerateForm::makeFile(
+                'Документ "Информация о стране"',
+                'file2',
+                $object,
+                '/storage/files',
+                accept: '.doc,.docx,.pdf',
+                field: 'path2',
+            ) !!}
+
             @include('admin.includes.input', [
                 'label' => 'Заголовок:',
                 'name' => 'title',

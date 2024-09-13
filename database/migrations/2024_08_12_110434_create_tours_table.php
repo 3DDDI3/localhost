@@ -35,6 +35,8 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->text('path1')->nullable();
+            $table->text('path2')->nullable();
             $table->tinyInteger('isHiddenCountryInfo')->nullable()->default(0);
             $table->tinyInteger('isHiddenTouristInfo')->nullable()->default(0);
             $table->tinyInteger('isHiddenTourCost')->nullable()->default(0);

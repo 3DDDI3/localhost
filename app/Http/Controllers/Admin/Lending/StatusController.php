@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Lending;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Lending\Status;
 use App\Models\User\AdminEventLogs;
@@ -52,6 +53,8 @@ class StatusController extends Controller
             );
 
             $object->save();
+
+            FileUpload::uploadImage('icon', Status::class, 'icon', $object->id, 24, 24, '/images/tours/static_icons', request: $request);
 
             AdminEventLogs::log($object, $id);
 

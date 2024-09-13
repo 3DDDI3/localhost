@@ -733,24 +733,27 @@ $(function () {
 
     $(".footer__notification").on("submit", function (e) {
         e.preventDefault();
+
         $("#chose-user").show(300);
     });
 
     $(".modal__chosen-form label input[name='user']").on("change", function () {
-        user = $(this).attr("id");
+        user = $(this).attr("id") == "agent" ? 1 : 0;
 
-        /**
-         * @todo Доделать реализацию выбора пользователя от его выбора
-         */
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/api/mailler/create",
-        //     data: {
-        //         email: $(".footer__notification input[type='email']").val(),
-        //     },
-        //     dataType: "json",
-        // });
+        $.ajax({
+            type: "POST",
+            url: "/api/mailler/create",
+            data: {
+                email: $($(".footer__notification input[type='email']")[1]).val(),
+                isAgent: user,
+            },
+            dataType: "json",
+            success: function (response) {
+                $("#notification-small .modal-notification__text").text(response.message);
+                $(this).parents(".modal-wrapper").hide(300);
+                $("#notification-small").show(300);
+            }.bind(this)
+        });
     });
 
     $("input[type='search']").on("keydown", function (e) {
@@ -883,7 +886,7 @@ $(function () {
     });
 
     $(".tour-download").on("click", function () {
-        window.open(`${location.origin}/api/files?tour=${location.pathname.replace(/\/\w+\//, "")}`);
+        window.open(`${location.origin}/files?url=${location.pathname.replace(/\/\w+\//, "")}`);
     });
 
 
@@ -1009,6 +1012,13 @@ $(function () {
                     console.log(response);
                     window.location.href = `/pa/${response.data.url}`;
                     // $(this).parents(".modal-wrapper").hide(300);
+                })
+                .catch(response => {
+                    swal({
+                        icon: "error",
+                        title: response.response.data.message,
+                        timer: 2000,
+                    });
                 });
         });
 
@@ -1127,5 +1137,19 @@ $(function () {
             }.bind(this)
         });
     })
+
+    $(".tour-country-info").on("click", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "/api/files/download",
+            data: "data",
+            dataType: "dataType",
+            success: function (response) {
+                
+            }
+        });
+    });
 
 });

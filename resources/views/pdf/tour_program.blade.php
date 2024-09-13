@@ -46,7 +46,7 @@
         font-family: 'Inter';
         font-weight: 600;
         font-style: normal;
-        src: url('public_path("/fonts/Inter/Inter-SemiBold.ttf")');
+        src: url('{{ public_path('/fonts/Inter/Inter-SemiBold.ttf') }}');
     }
 
     @font-face {
@@ -60,14 +60,14 @@
         font-family: 'Inter';
         font-weight: 800;
         font-style: normal;
-        src: url('public_path("/fonts/Inter/Inter-ExtraBold.ttf")');
+        src: url('{{ public_path('/fonts/Inter/Inter-ExtraBold.ttf') }}');
     }
 
     @font-face {
         font-family: 'Inter';
         font-weight: 900;
         font-style: normal;
-        src: url('public_path("/fonts/Inter/Inter-Black.ttf")');
+        src: url('{{ public_path('/fonts/Inter/Inter-Black.ttf') }}');
     }
 
 
@@ -137,34 +137,56 @@
     .program__day {
         color: #342635;
         font-family: 'Inter', sans-serif;
-        font-size: 26px;
+        font-size: 15px;
         font-weight: 700;
-        line-height: 31.47px;
-        letter-spacing: -0.04em;
     }
 
     .program__title {
         flex-grow: .8;
         font-family: 'Inter', sans-serif;
-        font-size: 28px;
-        font-weight: 300;
-        line-height: 33.89px;
-        letter-spacing: -0.03em;
+        font-size: 15px;
+        font-weight: 700;
         color: #342635;
+    }
+
+    .text {
+        font-family: 'Inter', sans-serif;
     }
 </style>
 
 <body>
-    <div class="program__title div" style="position: relative">
-        <img style="position: absolute; left: 0" src="{{ asset('images/logo.svg') }}" alt="">
-        <div style="position: absolute; right:0; text-align: right">
-            ООО “ Туристическая фирма «МЕРКУРИЙ»”<br>
-            Санкт-Петербург, 7-я Красноармейская, 7<br>
-            Телефон: (812) 702 7785 / 715 9241<br>
-            E-mail: res@italy-spb.ru
-        </div>
-    </div>
-    <p class="header" style="text-align: center">Тайны Несвижского замка, 5 дней</p>
+    <table style="width: 100%">
+        <tr>
+            <td style="width: 30%">
+                <img style="width: 200px" src="{{ public_path('images/logo.svg') }}" alt="">
+            </td>
+            <td style="width: 70%; text-align: right" class="program__title">ООО “ Туристическая фирма «МЕРКУРИЙ»”<br>
+                Санкт-Петербург, 7-я Красноармейская, 7<br>
+                Телефон: (812) 702 7785 / 715 9241<br>
+                E-mail: res@italy-spb.ru</td>
+        </tr>
+    </table>
+
+    <h1 class="text" style="text-align: center">{{ $tour->title }}</h1>
+
+    <div class="text" style="text-align: center"> {!! html_entity_decode($tour->description) !!}</div>
+
+    <h1 style="text-align: center;" class="text">Программа</h1>
+
+    <table style="margin-top:30px; width: 100%">
+        @foreach ($tour->programs()->orderBy('day', 'asc')->get() as $program)
+            <tr>
+                <td class="text" style="font-weight: 800; width: 30%">{{ $program->day }}</td>
+                <td class="text" style="width: 70%">{{ $program->title }}</td>
+            </tr>
+            <tr>
+                <td style="width: 30%"></td>
+                <td style="width: 70%" class="text">
+                    {!! html_entity_decode($program->text) !!}
+                </td>
+            </tr>
+        @endforeach
+    </table>
 </body>
 
 </html>

@@ -17,6 +17,8 @@ class Country extends Model
     protected $fillable = [
         'id',
         'name',
+        'icon',
+        'image',
     ];
 
     public function tours()

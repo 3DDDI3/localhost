@@ -98,7 +98,7 @@ class ToursController extends Controller
                 ]);
 
                 $tourCountries = Country::has('tours')
-                    ->paginate(4);
+                    ->paginate(12);
             } else {
 
                 $country = Country::query()->where(['id' => request()->input('country_id')])->first();
@@ -117,7 +117,7 @@ class ToursController extends Controller
 
                 $tours = TourCountry::query()->where([
                     'country_id' => request()->input("country_id")
-                ])->paginate(4);
+                ])->paginate(12);
             }
         }
 

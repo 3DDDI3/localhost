@@ -9,6 +9,7 @@ use App\Http\Controllers\ToursController;
 use App\Jobs\Parse;
 use App\Mail\RegistrationMail;
 use App\Mail\RegistrationMailer;
+use App\Models\Lending\Tour;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -53,22 +54,20 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::get('/search', [SearchController::class, 'index']);
 
-    Route::get('/pdf', function () {
-        $pdf = Pdf::loadView('pdf.test');
+    Route::get('/files', function (Request $request) {
+        $tour = Tour::query()->where(['url' => $request->url])->first();
+        $pdf = Pdf::loadView('pdf.tour_program', compact('tour'));
         return $pdf->stream();
     });
 
-    Route::get('/test', function (Request $request) {
-        Mail::to("edik2898@gmail.com")->send(new RegistrationMail());
-    });
-
     Route::get('t', function () {
-        return view('pdf.test');
+        return view('pdf.tour_program');
     });
 
     include('admin.php');
 });
 
+//2024-08-23 11:56:01
 
 
 //Route::view('{any?}' , 'app' );

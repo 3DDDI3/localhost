@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Admin\Users;
 use App\Helpers\Admin\Helper;
 use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
-// use App\Models\Location\Phone_code;
-// use App\Models\Profile\ClientCard;
-// use App\Models\Profile\ClientType;
 use App\Models\User\User;
 use App\Models\User\UserСlass;
 use Illuminate\Http\Request;
@@ -23,7 +20,7 @@ class UsersController extends Controller
         $path = $this->PATH;
         $title = $this->TITLE;
 
-        $objects = User::orderBy('id', 'desc');
+        $objects = User::doesntHave('agent')->orderBy('id', 'desc');
 
         if ($request->search)
             $objects = Helper::search($objects, $request->search, ['name', 'email']);
@@ -43,11 +40,6 @@ class UsersController extends Controller
         foreach ($objects as $item) {
             $user_class = UserСlass::find($item->class_id ?? 0);
             $item->class_name = $user_class->name ?? '';
-
-            // if (!empty($item->client_type))
-            //     $item->client_type_info = ClientType::where('id', $item->client_type)->first();
-            // if (!empty($item->client_card))
-            //     $item->client_card_info = ClientCard::where('id', $item->client_card)->first();
         }
 
         $select = UserСlass::all();

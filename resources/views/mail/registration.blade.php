@@ -9,7 +9,7 @@
 </x-mail::table>
 
 @php
-    // $url = config('app.url') . '/admin/requests?search=' . $request->name;
+    $url = config('app.url') . '/admin/requests?search=' . $agent->name;
 @endphp
 
 <x-mail::button :$url>

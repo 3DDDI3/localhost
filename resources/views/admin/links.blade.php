@@ -121,6 +121,11 @@
         'name' => 'Классы пользователей',
         'data' => 'classes',
     ])
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.users.agents.index',
+        'name' => 'Агенты',
+        'data' => 'agents',
+    ])
     {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.users.admin_event_logs.index',
         'name' => 'Журнал событий',

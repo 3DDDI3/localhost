@@ -15,6 +15,7 @@ class Mailler extends Model
 
     protected $fillable = [
         'email',
+        'isAgent',
     ];
 
     protected function createdAt(): Attribute

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Services\DocumentController;
 use App\Http\Controllers\Admin\Services\InfografikaController;
 use App\Http\Controllers\Admin\Services\PersonalController;
 use App\Http\Controllers\Admin\Services\SamotourTourController;
+use App\Http\Controllers\Admin\Users\AgentController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('login', [LoginController::class, 'login']);
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-    
+
 
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('login', 'LoginController@login')->name('login');
@@ -39,6 +40,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
                     Route::get('/', 'UsersController@index')->name('index');
                     Route::match(['get', 'post'], '/edit/{id?}', 'UsersController@edit')->name('edit');
+                });
+
+                Route::group(['prefix' => 'agents', 'as' => 'agents.'], function () {
+                    Route::get('/', [AgentController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [AgentController::class, 'edit'])->name('edit');
                 });
 
                 Route::group(['prefix' => 'classes', 'as' => 'classes.'], function () {

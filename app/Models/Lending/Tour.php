@@ -18,12 +18,9 @@ class Tour extends Model
 
     protected $table = 'tours';
 
-    protected function createdAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn(string $value) => Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('H:i d.m.Y')
-        );
-    }
+    protected $casts = [
+        'created_at' => 'datetime:H:i d.m.Y',
+    ];
 
     public function country()
     {
@@ -87,5 +84,7 @@ class Tour extends Model
         'background_image',
         'isHiddenTouristInfo',
         'isHiddenCountryInfo',
+        'path1',
+        'path2',
     ];
 }

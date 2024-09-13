@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('mailling', function (Blueprint $table) {
             $table->id();
             $table->string('email', 1000);
+            $table->boolean('isAgent')->nullable()->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
         });

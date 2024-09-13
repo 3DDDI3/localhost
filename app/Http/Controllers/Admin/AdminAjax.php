@@ -173,8 +173,10 @@ class AdminAjax extends Controller
     {
         $object = $className::find($id);
 
+        // dd(public_path() . '/' . $path . '/' . $object->$field);
+
         if ($object) {
-            unlink(public_path() . '/' . $path . '/' . $object->path);
+            unlink(public_path() . $path . '/' . $object->$field);
             $object->$field = null;
             $object->save();
             echo 'success';

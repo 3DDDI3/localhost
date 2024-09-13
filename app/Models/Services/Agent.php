@@ -19,7 +19,7 @@ class Agent extends Model
         'url',
         'logo',
         'user_id',
-        'isAcitve',
+        'isActive',
         'isConfirmed',
     ];
 

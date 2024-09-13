@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PersonalAcount\AuthorizationController;
+use App\Http\Resources\MaillerResource;
 use App\Jobs\Parse;
 use App\Models\Job;
 use App\Models\Lending\Tour;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\ComponentAttributeBag;
+use Psy\Command\WhereamiCommand;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,29 +27,38 @@ use Illuminate\View\ComponentAttributeBag;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return $request->user();
-});
-
 Route::get('files/download/{path}', function ($path) {
         return Storage::download("files/$path");
 });
 
-Route::post('mailler/create', function () {
-        Mailler::create(['email' => request()->input('email')]);
-        return response(status: 200);
+Route::withoutMiddleware('api')
+        ->post('mailler/create', function (Request $request) {
+                if (
+                        Mailler::query()
+                        ->where(['email' => $request->email])
+                        ->count() > 0
+                )
+                        return response()->json(['message' => 'Вы уже подписаны на рассылку'], 200);
+                else {
+                        Mailler::create([
+                                'email' => $request->email,
+                                'isAgent' => $request->isAgent,
+                        ]);
+                        return response()->json(['message' => 'Вы подписались на рассылку!'], 200);
+                }
+        });
+
+Route::get('/getUsers', function (Request $request) {
+        return MaillerResource::collection(Mailler::query()->select('email')->get());
 });
 
-Route::post('export_tours', function () {
-        if (Job::all()->count() > 0) return response()->json(['message' => 'Операция уже выполняется']);
-        Parse::dispatch();
-});
+Route::withoutMiddleware('api')
+        ->post('export_tours', function () {
+                if (Job::all()->count() > 0)
+                        return response()->json(['message' => 'Операция уже выполняется']);
 
-Route::get('/files', function (Request $request) {
-        $programs = Tour::query()->where(['url' => $request->tour])->first()->programs;
-        $pdf = Pdf::loadView('pdf.test', ['programs' => $programs]);
-        return $pdf->stream();
-});
+                Parse::dispatch();
+        });
 
 Route::prefix('samotour')->group(function () {
         Route::get('/getPrice', function (Request $request) {

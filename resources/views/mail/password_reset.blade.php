@@ -14,6 +14,6 @@
 
 <p>Если это не вы хотите сменить пароля, то ничего не делайте</p>
 
-<p style="margin-top: 20px">C уважением, <br>Администранция сайта {{ config('app.name') }}</p>
+<p style="margin-top: 20px">C уважением, <br>Администрация сайта {{ config('app.name') }}</p>
 
 </x-mail::message>

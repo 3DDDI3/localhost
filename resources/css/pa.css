@@ -144,6 +144,7 @@ main {
             width: 456px;
             padding: 63px 59px 76px 61px;
             border: 1px solid #596B90;
+            flex-shrink: 0;
         }
 
         .pa__description {

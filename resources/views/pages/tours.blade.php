@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <main>
         <div class="tour-headding" style="height: 494px; background-image: url('images/slider1.png')">
             <x-templates.bread-crumbs :data="$breadcrumbs" />
@@ -91,17 +92,17 @@
 
             @if (request()->country_id == '*')
                 @foreach ($tourCountries as $tourCountry)
-                    <x-blocks.tour-type-country url="?country_id={{ $tourCountry->id }}" icon="/images/abh.svg"
+                    {{-- @dd($tourCountry) --}}
+                    <x-blocks.tour-type-country url="?country_id={{ $tourCountry->id }}" icon="{{ $tourCountry->icon }}"
                         iconAlt="" title="{{ $tourCountry->name }}" subtitle="{{ $tourCountry->tours->count() }}"
-                        image="/images/abh-full.png" imageAlt="" />
+                        image="{{ $tourCountry->image }}" imageAlt="" />
                 @endforeach
             @endif
 
             @if (request()->type_id == '*')
                 @foreach ($tourTypes as $tourType)
-                    <x-blocks.tour-type-country url="?type_id={{ $tourType->id }}" icon="/images/abh.svg" iconAlt=""
-                        title="{{ $tourType->type }}" subtitle="{{ $tourType->tours->count() }}"
-                        image="/images/abh-full.png" imageAlt="" />
+                    <x-blocks.tour-type-country url="?type_id={{ $tourType->id }}" title="{{ $tourType->type }}"
+                        subtitle="{{ $tourType->tours->count() }}" image="{{ $tourType->image }}" imageAlt="" />
                 @endforeach
             @endif
         </div>

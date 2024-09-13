@@ -15,6 +15,7 @@ use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
 use App\Models\User\AdminEventLogs;
 use GuzzleHttp\Client;
+use Symfony\Component\Console\Input\Input;
 
 class ToursController extends Controller
 {
@@ -147,6 +148,12 @@ class ToursController extends Controller
             if ($request->file('galary') != null && !empty($object))
                 FileUpload::uploadGallery('galary', $object->id, "tour", path: "/images/tours/gallary", request: $request);
 
+            if ($request->file('file1') != null)
+                FileUpload::uploadFile('file1', $object, 'path1', $object->id, '/storage/files');
+
+            if ($request->file('file2') != null)
+                FileUpload::uploadFile('file2', $object, 'path2', $object->id, '/storage/files');
+
             if ((int)$request->input("samotour") > 0) {
                 $object->samotour_tour_id = $request->input("samotour");
             } else $object->samotour_tour_id = null;
@@ -161,16 +168,16 @@ class ToursController extends Controller
                         'country_id' => $request->select,
                     ])
                     ->save();
-            else
-                TourCountry::query()
+            else {
+                $tourCountry = TourCountry::query()
                     ->where(['tour_id' => $object->id])
-                    ->first()
-                    ->fill([
-                        'country_id' => null,
-                    ])
-                    ->save();
+                    ->first();
+                if (!$tourCountry) $tourCountry = new TourCountry();
 
-
+                $tourCountry->fill([
+                    'country_id' => null,
+                ])->save();
+            }
 
             if (!empty($request->tour_types)) {
                 TourType::query()

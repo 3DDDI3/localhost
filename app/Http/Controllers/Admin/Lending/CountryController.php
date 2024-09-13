@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Lending;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Lending\Country;
 use App\Models\User\AdminEventLogs;
@@ -55,6 +56,10 @@ class CountryController extends Controller
             if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
 
             $object->save();
+
+            FileUpload::uploadImage('icon', Country::class, 'icon', $object->id, 35, 35, '/images/tours/static_icons', request: $request);
+
+            FileUpload::uploadImage('image', Country::class, 'image', $object->id, 425, 200, '/images/tours/static_icons', request: $request);
 
             AdminEventLogs::log($object, $id);
 
