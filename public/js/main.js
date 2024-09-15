@@ -4969,13 +4969,11 @@ $(function () {
   });
   $(".tour-country-info").on("click", function (e) {
     e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: "/api/files/download",
-      data: "data",
-      dataType: "dataType",
-      success: function success(response) {}
-    });
+    if ($(this).data("url") != "") window.location.href = "/api/files/download/".concat($(this).data("url"));
+  });
+  $(".tour-tourist-reminder").on("click", function (e) {
+    e.preventDefault();
+    if ($(this).data("url") != "") window.location.href = "/api/files/download/".concat($(this).data("url"));
   });
 });
 

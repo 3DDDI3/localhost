@@ -36,6 +36,7 @@ class AuthorizationController extends Controller
         $agent->fill([
             'user_id' => $user->id,
             'url' => str_slug($request->name),
+            'isActive' => 1,
         ]);
 
         if ($request->company != null) $agent->name = $request->company;

@@ -67,7 +67,5 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     include('admin.php');
 });
 
-//2024-08-23 11:56:01
-
 
 //Route::view('{any?}' , 'app' );

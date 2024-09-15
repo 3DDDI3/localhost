@@ -7,7 +7,7 @@ main {
 
         .contacts-headding__title {
             margin: 30px 0 50px 0;
-            font-family: 'HelveticaNeueCyr', sans-serif;
+            font-family: "HelveticaNeueCyr", sans-serif;
             font-size: 60px;
             font-weight: 700;
             line-height: 59.7px;
@@ -24,8 +24,8 @@ main {
         .contacts-social__call {
             flex-grow: 1;
             padding: 51px 35px 40px 66px;
-            background-color: #0E1237;
-            background-image: url('/images/contacts/bg.png');
+            background-color: #0e1237;
+            background-image: url("/images/contacts/bg.png");
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
@@ -34,12 +34,12 @@ main {
             row-gap: 31px;
 
             .contacts-social__title {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 36px;
                 font-weight: 700;
                 line-height: 40px;
                 letter-spacing: -0.02em;
-                color: #FFFFFF;
+                color: #ffffff;
             }
 
             .contacts-social__contacts {
@@ -51,28 +51,28 @@ main {
                     flex-direction: column;
 
                     .contacts-social-contact__phone {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 32px;
                         font-weight: 400;
                         line-height: 40px;
                         letter-spacing: -0.02em;
-                        color: #FFFFFF;
+                        color: #ffffff;
                         text-decoration: none;
                         border-bottom: 2px solid transparent;
                         width: max-content;
                     }
 
                     .contacts-social-contact__phone:hover {
-                        border-bottom-color: #FFFFFF;
+                        border-bottom-color: #ffffff;
                     }
 
                     .contacts-social-contact__title {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 20px;
                         font-weight: 400;
                         line-height: 40px;
                         letter-spacing: -0.02em;
-                        color: #FFFFFF;
+                        color: #ffffff;
                     }
                 }
             }
@@ -80,18 +80,18 @@ main {
 
         .contacts-social__messangers {
             padding: 55px 77px 76px 77px;
-            background-color: #0E1237;
+            background-color: #0e1237;
             display: flex;
             flex-direction: column;
             row-gap: 25px;
 
             .contacts-social-messangers__title {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 24px;
                 font-weight: 700;
                 line-height: 40px;
                 letter-spacing: -0.02em;
-                color: #FFFFFF;
+                color: #ffffff;
             }
 
             .contacts-social-messangers-list {
@@ -101,19 +101,19 @@ main {
 
                 .contacts-social-messangers__telegram {
                     svg {
-                        fill: #FFFFFF;
+                        fill: #ffffff;
                     }
                 }
 
                 .contacts-social-messangers__vk {
                     svg {
-                        fill: #FFFFFF;
+                        fill: #ffffff;
                     }
                 }
 
                 .contacts-social-messangers__vk:hover {
                     svg {
-                        fill: #26a9ea
+                        fill: #26a9ea;
                     }
                 }
 
@@ -133,7 +133,7 @@ main {
         .contacts-company-info-wrapper {
             padding: 63px 59px 95px 61px;
             width: 456px;
-            border: 1px solid #596B90;
+            border: 1px solid #596b90;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -143,7 +143,7 @@ main {
                 flex-direction: column;
 
                 .contacts-company-info__title {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 24px;
                     font-weight: 700;
                     line-height: 40px;
@@ -153,7 +153,7 @@ main {
                 }
 
                 .contacts-company-info__text {
-                    font-family: 'Inter', sans-serif;
+                    font-family: "Inter", sans-serif;
                     font-size: 22px;
                     font-weight: 400;
                     line-height: 40px;
@@ -164,12 +164,12 @@ main {
             }
 
             .contacts-company-info__map-search {
-                font-family: 'Inter', sans-serif;
+                font-family: "Inter", sans-serif;
                 font-size: 22px;
                 font-weight: 700;
                 line-height: 30px;
                 letter-spacing: -0.02em;
-                color: #582F9A;
+                color: #582f9a;
                 align-items: flex-end;
             }
 
@@ -178,7 +178,8 @@ main {
             }
         }
 
-        .contacts-company-info__map {}
+        .contacts-company-info__map {
+        }
     }
 
     .contacts-experts {
@@ -193,7 +194,7 @@ main {
         margin-top: 30px;
 
         .company-experts__headding {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             font-size: 24px;
             font-weight: 700;
             line-height: 40px;
@@ -207,13 +208,14 @@ main {
                 height: 59px;
                 display: flex;
                 align-items: center;
-                background-color: #0E1237;
+                background-color: #0e1237;
                 margin-bottom: 40px;
                 padding: 0 36px;
+                column-gap: 50px;
 
                 .company-experts-table__header {
-                    color: #FFFFFF;
-                    font-family: 'Inter', sans-serif;
+                    color: #ffffff;
+                    font-family: "Inter", sans-serif;
                     font-size: 17px;
                     font-weight: 700;
                     line-height: 20.57px;
@@ -234,7 +236,7 @@ main {
                 min-height: 140px;
                 margin-bottom: 20px;
                 padding: 0 36px 0 36px;
-                column-gap: 20px;
+                column-gap: 50px;
 
                 .company-experts-fio-block {
                     flex-basis: 70%;
@@ -244,7 +246,7 @@ main {
 
                     .company-experts__fio {
                         width: 70%;
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 17px;
                         font-weight: 700;
                         line-height: 20.57px;
@@ -253,7 +255,7 @@ main {
                     }
 
                     .company-experts__description {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 17px;
                         font-weight: 400;
                         line-height: 20.57px;
@@ -264,12 +266,12 @@ main {
 
                 .company-experts-mail-block {
                     flex-basis: 30%;
-                    align-items: center;
+                    /* align-items: center; */
                     display: flex;
                     flex-direction: column;
 
                     .company-experts__mail {
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 17px;
                         font-weight: 400;
                         line-height: 20.57px;
@@ -282,7 +284,7 @@ main {
                     .company-experts-mail__title {
                         display: none;
                         width: 70%;
-                        font-family: 'Inter', sans-serif;
+                        font-family: "Inter", sans-serif;
                         font-size: 17px;
                         font-weight: 700;
                         line-height: 20.57px;
@@ -308,7 +310,8 @@ main {
         .contacts-headding {
             margin-top: 30px !important;
 
-            .contacts-headding__title {}
+            .contacts-headding__title {
+            }
         }
 
         .contacts-social {
@@ -370,7 +373,6 @@ main {
 
                 .company-experts-fio-block {
                     word-break: break-word;
-
                 }
 
                 .company-experts-mail-block {
@@ -395,7 +397,8 @@ main {
         .contacts-headding {
             margin-top: 30px !important;
 
-            .contacts-headding__title {}
+            .contacts-headding__title {
+            }
         }
 
         .contacts-social {
@@ -426,7 +429,8 @@ main {
                     font-size: 20px !important;
                 }
 
-                .contacts-social-messangers-list {}
+                .contacts-social-messangers-list {
+                }
             }
         }
 
@@ -479,7 +483,8 @@ main {
         .contacts-headding {
             margin-top: 30px !important;
 
-            .contacts-headding__title {}
+            .contacts-headding__title {
+            }
         }
 
         .contacts-social {
@@ -510,7 +515,8 @@ main {
                     font-size: 20px !important;
                 }
 
-                .contacts-social-messangers-list {}
+                .contacts-social-messangers-list {
+                }
             }
         }
 
@@ -571,6 +577,12 @@ main {
 }
 
 @media (min-width: 768px) and (max-width: 1230px) {
+    .company-experts-table__headding {
+        column-gap: 20px;
+    }
+    .company-experts-mail-block {
+        align-items: start !important;
+    }
     .contacts-company-info {
         flex-direction: column-reverse;
         row-gap: 20px;

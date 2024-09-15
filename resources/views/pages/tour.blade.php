@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
     <main>
         {{-- @dd($meals, $city, $hotels) --}}
         <div class="tour-headding__wrapper"
@@ -18,7 +19,7 @@
                     <p class="tour-headding__subtitle">{{ $tour->subtitle }}</p>
                     <div class="tour-headding__actions">
                         @if ($tour->isHiddenCountryInfo == 0)
-                            <button class="tour-country-info" data-href="{{ $tour->path1 }}">
+                            <button class="tour-country-info" data-url="{{ $tour->path1 }}">
                                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -41,7 +42,7 @@
                             </button>
                         @endif
                         @if ($tour->isHiddenTouristInfo == 0)
-                            <button class="tour-tourist-reminder" data-href="{{ $tour->path2 }}">
+                            <button class="tour-tourist-reminder" data-url="{{ $tour->path2 }}">
                                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path

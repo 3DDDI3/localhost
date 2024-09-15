@@ -1140,16 +1140,14 @@ $(function () {
 
     $(".tour-country-info").on("click", function (e) {
         e.preventDefault();
+        if ($(this).data("url") != "")
+            window.location.href = `/api/files/download/${$(this).data("url")}`;
+    });
 
-        $.ajax({
-            type: "POST",
-            url: "/api/files/download",
-            data: "data",
-            dataType: "dataType",
-            success: function (response) {
-                
-            }
-        });
+    $(".tour-tourist-reminder").on("click", function (e) {
+        e.preventDefault();
+        if ($(this).data("url") != "")
+            window.location.href = `/api/files/download/${$(this).data("url")}`;
     });
 
 });

@@ -39,6 +39,7 @@ return new class extends Migration
             $table->text('path2')->nullable();
             $table->tinyInteger('isHiddenCountryInfo')->nullable()->default(0);
             $table->tinyInteger('isHiddenTouristInfo')->nullable()->default(0);
+            $table->boolean('isHiddenCalculator')->nullable()->default(0);
             $table->tinyInteger('isHiddenTourCost')->nullable()->default(0);
             $table->integer('rating')->nullable()->default(0);
             $table->tinyInteger('hide')->nullable()->default(0);

@@ -84,6 +84,7 @@ class Tour extends Model
         'background_image',
         'isHiddenTouristInfo',
         'isHiddenCountryInfo',
+        'isHiddenTourCost',
         'path1',
         'path2',
     ];

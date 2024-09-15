@@ -114,6 +114,7 @@ class ToursController extends Controller
             $object->fill([
                 'isHiddenCountryInfo' => 0,
                 'isHiddenTouristInfo' => 0,
+                'isHiddenTourCost' => 0,
             ]);
 
             $object->fill(
@@ -133,6 +134,7 @@ class ToursController extends Controller
                         'agreement_info',
                         'isHiddenCountryInfo',
                         'isHiddenTouristInfo',
+                        'isHiddenTourCost',
                     ]
                 )
             );
