@@ -18,7 +18,7 @@ class TourStatus extends Model
 
     public function status()
     {
-        return $this->hasOne(Status::class, 'id', 'status_id')->first();
+        return $this->hasOne(Status::class, 'id', 'status_id');
     }
 
     public function tour(): Tour

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Lending;
 use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Files;
+use App\Models\Gallery;
 use App\Models\Lending\AttachedFiles;
 use App\Models\Lending\AttachedPage;
 use App\Models\Lending\File;
@@ -82,6 +83,8 @@ class PageController extends Controller
             }
         }
 
+        $images = Gallery::where(['item_id' => 1, 'item_type' => "about"])->get();
+
         if ($request->isMethod('post')) {
             $object ?? $object = new Page();
 
@@ -106,6 +109,9 @@ class PageController extends Controller
                         AttachedPage::create(['page_id' => $object->id, 'attached_page_id' => $page]);
                 }
             }
+
+            if ($request->file('galary') != null && !empty($object))
+                FileUpload::uploadGallery('galary', $object->id, "about", path: "/images/tours/gallary", request: $request);
 
             $object->save();
 
@@ -142,7 +148,8 @@ class PageController extends Controller
             'pages',
             'attached_pages',
             'docs',
-            'selectedDocs'
+            'selectedDocs',
+            'images',
         ));
     }
 }

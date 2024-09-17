@@ -13,7 +13,7 @@
         </div>
 
         <x-sliders.gallery slider_class="personal__slider">
-            <li class="splide__slide">
+            {{-- <li class="splide__slide">
                 <img src="{{ asset('images/card1.png') }}" alt="">
             </li>
             <li class="splide__slide">
@@ -24,7 +24,12 @@
             </li>
             <li class="splide__slide">
                 <img src="{{ asset('images/card2.png') }}" alt="">
-            </li>
+            </li> --}}
+            @foreach ($gallery as $image)
+                <li class="splide__slide">
+                    <img src="/storage/{{ $image->file_name }}" alt="">
+                </li>
+            @endforeach
         </x-sliders.gallery>
 
         <div class="company-background__text"><span>Туристическая фирма «Меркурий»</span> - лицензированный

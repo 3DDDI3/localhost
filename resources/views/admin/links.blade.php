@@ -74,6 +74,18 @@
 
     </x-Admin.NavBar>
 
+    <x-Admin.NavBar title="Слайдеры" url="lending"
+        style="border-bottom: unset !important; margin: 10px 0 0 0!important; padding-bottom:0 !important"
+        all="{{ isset($all) && $all }}">
+
+        @include('admin.includes.menu.item', [
+            'route' => 'admin.lending.sliders.index',
+            'name' => 'Главная',
+            'data' => 'sliders',
+        ])
+
+    </x-Admin.NavBar>
+
 </x-Admin.NavBar>
 
 <x-Admin.NavBar title="Служебное" url="services" all="{{ isset($all) && $all }}">

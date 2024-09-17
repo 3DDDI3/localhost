@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use App\Models\Lending\Page;
 use App\Models\Lending\Personal;
 use GuzzleHttp\Client;
 
 class PageController extends Controller
 {
+    private $samotour_url;
+    private $samotour_token;
+
+    public function __construct()
+    {
+        $this->samotour_url = config('samotour.samotour_api_url');
+        $this->samotour_token = config('samotour.samotour_api_token');
+    }
+
     public function index($url)
     {
-
         $breadCrumbs = collect([
             (object)[
                 'name' => 'Главная',
@@ -24,14 +33,14 @@ class PageController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -50,6 +59,15 @@ class PageController extends Controller
 
         switch ($url) {
             case 'o-kompanii':
+
+                $gallery = Gallery::query()
+                    ->where([
+                        'item_type' => 'about',
+                        'item_id' => 1
+                    ])
+                    ->orderBy('rating', 'desc')
+                    ->get();
+
                 $breadCrumbs->push((object)[
                     'name' => $object->title,
                     'url' => $object->url,
@@ -60,6 +78,7 @@ class PageController extends Controller
                     'breadcrumbs' => $breadCrumbs,
                     'personal' => $personal,
                     'currencies' => $currencies,
+                    'gallery' => $gallery
                 ]);
                 break;
             case 'turistam':

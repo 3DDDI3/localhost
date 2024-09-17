@@ -3959,8 +3959,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
 /* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-mix/src/Log */ "./node_modules/laravel-mix/src/Log.js");
 /* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0__["default"];
@@ -4001,8 +3999,6 @@ function init() {
 }
 
 $(function () {
-  var _;
-
   var combobox,
       search,
       from,
@@ -4227,11 +4223,31 @@ $(function () {
   $(".popular-tours__tour-card").on("click", function () {
     window.location.href = "".concat($(this).data("href"));
   });
-  if ($(".sliders").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.sliders', {
+  var slider,
+      subSlider = undefined;
+  if ($(".subSliders").length > 0) subSlider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".subSliders", {
+    pagination: false,
+    arrows: false,
+    type: 'loop',
+    breakpoints: {
+      786: {
+        autoWidth: true,
+        perPage: 1,
+        padding: 0
+      },
+      1023: {
+        autoHeight: true,
+        perPage: 1,
+        padding: 0,
+        type: 'slide'
+      }
+    }
+  });
+  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.sliders', {
     pagination: false,
     type: 'loop',
-    padding: '30rem',
-    // fixedWidth: 1000
+    padding: '30em',
+    perPage: 1,
     breakpoints: {
       375: {
         height: 462,
@@ -4258,33 +4274,40 @@ $(function () {
         height: 462,
         type: 'slide'
       },
-      1150: (_ = {
+      1150: {
         autoHeight: true,
         perPage: 1,
         padding: 0,
-        height: 462
-      }, _defineProperty(_, "padding", "18em"), _defineProperty(_, "type", 'loop'), _),
+        type: 'loop'
+      },
       1250: {
         autoHeight: true,
         perPage: 1,
-        padding: "18em",
         type: 'loop'
       },
       1300: {
         autoHeight: true,
         perPage: 1,
-        padding: "20em",
-        type: 'loop'
+        type: 'loop',
+        padding: 0
+      },
+      1780: {
+        autoHeight: true,
+        perPage: 1,
+        type: 'loop',
+        padding: 0
       },
       1920: {
         autoHeight: true,
         perPage: 1,
-        padding: "21em",
         type: 'loop'
       }
     },
     height: 779
-  }).mount();
+  });
+  slider.sync(subSlider);
+  slider.mount();
+  subSlider.mount();
   if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.news__slider', {
     gap: 35,
     pagination: false,
@@ -4616,11 +4639,11 @@ $(function () {
   }).mount();
   if ($("#map").length > 0) ymaps.ready(init);
   $(".agency-document__download").on("click", function () {
-    window.location.href = "/ api / files / download / ".concat($(this).data("path"), " ");
+    window.location.href = "/api/files/download/".concat($(this).data("path"));
   });
   $(".search-tour__form").on("submit", function (e) {
     e.preventDefault();
-    window.open("https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=".concat(begDate == undefined ? "" : begDate, "&STATEINC=").concat(to == undefined ? "" : to, "&NIGHTS_FROM=").concat(nights == undefined ? "" : nights, "&CHECKIN_END=").concat(endDate == undefined ? "" : endDate, "&NIGHTS_TILL=").concat(nights == undefined ? "" : nights, "&ADULT=").concat(adults == undefined ? "" : adults));
+    window.open("https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=".concat(begDate == undefined ? "" : begDate, "&STATEINC=").concat(to == undefined ? "" : to, "&NIGHTS_FROM=").concat(nights == undefined ? "" : nights, "&CHECKIN_END=").concat(endDate == undefined ? "" : endDate, "&NIGHTS_TILL=").concat(nights == undefined ? "" : nights, "&ADULT=").concat(adults == undefined ? "" : adults, "&TOWNFROMINC=").concat(from == undefined ? "" : from));
   });
   $(".footer__notification").on("submit", function (e) {
     e.preventDefault();
@@ -4640,6 +4663,7 @@ $(function () {
         $("#notification-small .modal-notification__text").text(response.message);
         $(this).parents(".modal-wrapper").hide(300);
         $("#notification-small").show(300);
+        $(this).prop("checked", false);
       }.bind(this)
     });
   });
@@ -4830,13 +4854,13 @@ $(function () {
       phone: $(this).parents(".registration").find("input[name='phone']").val()
     };
     window.axios.post('/api/auth/signin', data).then(function (response) {
-      $(_this).parents(".modal-wrapper").hide(300);
+      $(_this).parents(".modal-wrapper").hide();
       $(".modal-notification__text span").text(response.data.email);
-      $("#notification").show(300);
+      $("#notification").show();
       $(_this).parents(".registration").find("input").val("");
     })["catch"](function (response) {
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-        icon: "warning",
+        icon: "error",
         title: response.response.data.message,
         timer: 2000
       });
@@ -4908,11 +4932,13 @@ $(function () {
       dataType: "json",
       success: function (response) {
         $("#notification-small .modal-notification__text").text(response.message);
-        $(this).parents(".modal-wrapper").hide(300);
-        $("#notification-small").show(300);
+        $(this).parents(".modal-wrapper").hide();
+        $("#notification-small").show();
+        setTimeout(function () {
+          window.location.href = window.location.origin;
+        }, 500);
       }.bind(this),
       error: function error(_error) {
-        console.log();
         sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
           icon: "error",
           title: _error.responseJSON.message,

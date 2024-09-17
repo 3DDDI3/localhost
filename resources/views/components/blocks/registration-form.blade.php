@@ -5,16 +5,16 @@
         <input type="text" name="address" class="registration__text modal-form__text input__text"
             placeholder="Адрес офиса">
         <div class="registration__columns">
-            <input type="email" name="email" class="registration__email model-form__email input__email"
-                placeholder="E-mail">
-            <input type="text" name="login" class="registration__text model-form__text input__text"
-                placeholder="Логин">
+            <input type="email" name="email" autocomplete="off"
+                class="registration__email model-form__email input__email" placeholder="E-mail">
+            <input type="text" name="login" autocomplete="off"
+                class="registration__text model-form__text input__text" placeholder="Логин">
         </div>
         <div class="registration__columns">
             <input type="phone" name="phone" class="registration__text model-form__text input__phone"
                 placeholder="Телефон">
-            <input type="password" name="password" class="registration__text model-form__password input__password"
-                placeholder="Пароль">
+            <input type="password" autocomplete="off" name="password"
+                class="registration__text model-form__password input__password" placeholder="Пароль">
         </div>
     </div>
     <div class="modal__aggrees">

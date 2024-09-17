@@ -2,23 +2,17 @@
 
 namespace App\Models\Lending;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    protected $table = 'slider';
+    use HasFactory;
 
-    public $fillable = [
-        'title',
+    protected $table = "sliders";
+
+    protected $fillable = [
         'text',
-        'text2',
-        'fact1',
-        'fact2',
-        'fact3',
         'image',
-        'preview',
-        'hide',
-        'rating'
     ];
-
 }

@@ -12,7 +12,7 @@
             <div class="tour-header">
                 <h1 class="tour__title">{{ $breadcrumbs->last()->name }}</h1>
                 @if (preg_match('/\d+/', request()->input('country_id')))
-                    <div class="tour-actions">
+                    {{-- <div class="tour-actions">
                         <button class="tour-country-info">
                             <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +55,7 @@
                             </svg>
                             Информация о стране
                         </button>
-                    </div>
+                    </div> --}}
                 @endif
             </div>
         </div>

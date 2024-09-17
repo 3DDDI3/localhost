@@ -25,6 +25,10 @@
 <body>
     @csrf
 
+    @php
+        $resetPasswordStyle = !empty(request()->token) && !isset($error) ? 'display:block' : null;
+    @endphp
+
     @include('includes.header')
 
     @yield('content')
@@ -50,16 +54,12 @@
         <x-blocks.chosen-form />
     </x-blocks.modal-window>
 
-    @php
-        $resetPasswordStyle = !empty(request()->token) ? 'display:block' : null;
-    @endphp
-
-    <x-blocks.modal-window id="reset-password-send-mail"
-        class="reset-password-send-mail-modal" title="Сброс пароля">
+    <x-blocks.modal-window id="reset-password-send-mail" class="reset-password-send-mail-modal" title="Сброс пароля">
         <x-blocks.reset-password-send-mail />
     </x-blocks.modal-window>
 
-    <x-blocks.modal-window style="{{ $resetPasswordStyle }}" id="reset-password" class="reset-password-modal" title="Сброс пароля">
+    <x-blocks.modal-window style="{{ $resetPasswordStyle }}" id="reset-password" class="reset-password-modal"
+        title="Сброс пароля">
         <x-blocks.reset-password />
     </x-blocks.modal-window>
 

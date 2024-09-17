@@ -58,12 +58,12 @@
                 'value' => $object->subtitle ?? '',
             ])
 
-            @include('admin.includes.select', [
-                'label' => 'Статус:',
-                'name' => 'status',
-                'select' => $status,
-                'select_head' => $statusHead,
-            ])
+            {!! \App\Helpers\GenerateForm::makeMultipleSelect(
+                'Типы тура',
+                'statuses',
+                $statuses->all(),
+                $selectedStatus->all(),
+            ) !!}
 
             @include('admin.includes.select', [
                 'label' => 'Связь с туром в Самотуре:',

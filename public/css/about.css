@@ -183,8 +183,8 @@ main {
             min-height: 140px;
             margin-bottom: 20px;
             padding: 0 36px 0 36px;
-            -moz-column-gap: 20px;
-                 column-gap: 20px;
+            -moz-column-gap: 50px;
+                 column-gap: 50px;
 
             .company-experts-fio-block {
                 flex-basis: 70%;
@@ -615,7 +615,7 @@ main {
     }
 }
 
-@media (min-width: 1023px) and (max-width: 1440px) {
+@media (min-width: 1024px) and (max-width: 1440px) {
     main {
         .company-experts-table__header:last-child {
             /* padding-left: 36px; */
@@ -641,7 +641,7 @@ main {
 
         .company-experts-table {
             .company-experts-table-row {
-                padding: 0 !important;
+                /* padding: 0 !important; */
 
                 .company-experts-fio-block {
                     width: 70%;

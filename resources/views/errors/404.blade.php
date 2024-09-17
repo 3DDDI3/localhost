@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    @php
+        $error = 1;
+    @endphp
     <main>
         <div class="error-message">
             {{ $exception->getMessage() }}

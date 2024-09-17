@@ -6,6 +6,7 @@ use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Services\Agent;
 use App\Models\User\AdminEventLogs;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
@@ -55,7 +56,7 @@ class AgentController extends Controller
 
             $object->fill($request->only([
                 'name',
-                'email',
+                'phone',
                 'address',
                 'text',
                 'isConfirmed',
@@ -63,6 +64,9 @@ class AgentController extends Controller
             ]));
 
             $object->save();
+
+            $object->user->email = $request->email;
+            $object->user->save();
 
             FileUpload::uploadImage('logo', Agent::class, 'logo', $object->id, 190, 160, '/images/agents', request: $request);
 

@@ -28,15 +28,7 @@ class IndexController extends Controller
     {
         $setting = Setting::find(1);
 
-        $tourStatuses = TourStatus::query()->where(
-            [
-                'status_id' => Status::query()->where([
-                    'name' => 'Хит',
-                    'hide' => 0
-                ])->first()->id,
-                'hide' => 0
-            ]
-        )->get();
+        $tourStatuses = Tour::has('tourStatus')->get();
 
         $countries = Country::query()
             ->orderBy('name')

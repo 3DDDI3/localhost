@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="{{ asset('/css/pa.css') }}?v={{ sha1_file(public_path() . '/css/pa.css') }}">
 @endsection
 
+@php
+    $phone = explode(',', $settings->phones)[0];
+@endphp
+
 @section('content')
     <main>
 
@@ -13,7 +17,7 @@
                     <img src="{{ asset('images/pa/image.png') }}" alt="" class="pa-notification__image">
                     <div class="pa-notification__description">
                         <h1 class="pa-notification__title">Спасибо за регистрацию!</h1>
-                        <div class="pa-notification__text">Ваша заявка на рассмотрении
+                        <div class="pa-notification__text">Ваша заявка на рассмотрении<br>
                             Мы пришлем подтверждение на электронную почту <span>{{ $agent->email }}</span></div>
                     </div>
                 </div>
@@ -45,7 +49,11 @@
                 </div>
 
                 <div class="pa-address-desctipion">
-                    <div class="pa__addres">{!! html_entity_decode($agent->address) !!}</div>
+                    <pa class="pa-address-block">
+                        <h1 class="pa-address__title">Адрес</h1>
+                        <div class="pa__addres">{!! html_entity_decode($agent->address) !!}</div>
+                        <button class="pa-exit-button">Выйти из аккаунта</button>
+                    </pa>
                     <div class="pa__description">
                         <img src="{{ asset('images/pa/bg.png') }}" alt="" class="pa-description__image">
                         <div class="pa-description__text">Теперь вы можете скачивать программу тура с вашими данными.
@@ -55,18 +63,16 @@
                         <div class="pa-description-info">
                             <div class="pa-description-phone">
                                 <span class="pa-description-phone__title">Телефон:</span>
-                                <a href="tel:{{ $agent->phone }}" class="pa-description-phone__info">{{ $agent->phone }}</a>
+                                <a href="tel:{{ $phone }}" class="pa-description-phone__info">{{ $phone }}</a>
                             </div>
                             <div class="pa-description-email">
                                 <span class="pa-description-email__title">Почта:</span>
-                                <a href="mailto:{{ $agent->user->email }}"
-                                    class="pa-description-email__info">{{ $agent->user->email }}</a>
+                                <a href="mailto:{{ $settings->email }}"
+                                    class="pa-description-email__info">{{ $settings->email }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <button class="pa-exit-button">Выйти из аккаунта</button>
             @endif
         @else
             <div style="min-height: 400px"></div>

@@ -8,7 +8,7 @@
             <input type="email" required name="email" class="feedback__text modal-form__text input__email"
                 placeholder="Email">
         </div>
-        <textarea required placeholder="Укажите даты отдыха, страну, город и любые другие ваши пожелания" name="textarea"
+        <textarea placeholder="Укажите даты отдыха, страну, город и любые другие ваши пожелания" name="textarea"
             class="feedback__textarea modal-form__textarea input__textarea"></textarea>
     </div>
     <div class="modal__aggrees">

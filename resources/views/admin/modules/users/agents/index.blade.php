@@ -30,7 +30,7 @@
                         <h4>{{ !empty($object->user->email) ? $object->user->email : null }}</h4>
                     </div>
                     <div class="list_item-actions">
-                        @include('admin.includes.actions.open', ['link' => "/pa/$object->url"])
+                        {{-- @include('admin.includes.actions.open', ['link' => "/pa/$object->url"]) --}}
                         @include('admin.includes.actions.edit')
                         @include('admin.includes.actions.delete')
                     </div>

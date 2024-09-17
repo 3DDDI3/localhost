@@ -10,6 +10,7 @@ use App\Jobs\Parse;
 use App\Mail\RegistrationMail;
 use App\Mail\RegistrationMailer;
 use App\Models\Lending\Tour;
+use App\Models\Services\Agent;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -55,13 +56,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/search', [SearchController::class, 'index']);
 
     Route::get('/files', function (Request $request) {
+        if (!$request->url)
+            abort(404, 'Что-то пошло не так');
         $tour = Tour::query()->where(['url' => $request->url])->first();
-        $pdf = Pdf::loadView('pdf.tour_program', compact('tour'));
-        return $pdf->stream();
-    });
 
-    Route::get('t', function () {
-        return view('pdf.tour_program');
+        $agent = auth()->user() == null ? null : auth()->user()->agent;
+
+        $pdf = Pdf::loadView('pdf.tour_program', compact('tour', 'agent'));
+        return $pdf->stream();
     });
 
     include('admin.php');

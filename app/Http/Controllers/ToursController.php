@@ -72,7 +72,7 @@ class ToursController extends Controller
                     'tour_type_id' => request()->input("type_id")
                 ])->first();
 
-                if (!$tourType) abort(404, 'Не удалось найти туры');
+                if (!$tourType) abort(404, 'Что-то пошло не так.');
 
                 $breadCrumbs->push((object)[
                     'name' => "Туры по типу отдыха",
@@ -103,7 +103,7 @@ class ToursController extends Controller
 
                 $country = Country::query()->where(['id' => request()->input('country_id')])->first();
 
-                if (!$country) abort(404, 'Не удалось найти туры',);
+                if (!$country) abort(404, 'Что-то пошло нет.',);
 
                 $breadCrumbs->push((object)[
                     'name' => "Страны",
@@ -167,7 +167,7 @@ class ToursController extends Controller
 
         $tour = Tour::where(["hide" => 0, 'url' => $url])->first();
 
-        if (!$tour) abort(404, 'Не удалось найти тур');
+        if (!$tour) abort(404, 'Что-то пошло не так.');
 
         if ($tour->tourType()->count() > 0) {
             $breadCrumbs = collect([
@@ -304,6 +304,6 @@ class ToursController extends Controller
                 'samotour' => $samotourTour,
                 'nights' => $nights,
             ]);
-        else abort(404, 'Не удалось найти тур');
+        else abort(404, 'Что-то пошло не так.');
     }
 }

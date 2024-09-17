@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\PersonalAcount;
 
 use App\Http\Controllers\Controller;
+use App\Models\ResetPassword;
 use App\Models\Services\Agent;
+use App\Models\Setting;
 use App\Models\User\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -26,7 +28,7 @@ class PersonalAcountController extends Controller
                 'url' => $url,
             ])->first();
 
-        if (!$agent->isActive) abort(404, 'Не удалось найти');
+        if (!$agent->isActive) abort(404, 'Что-то пошло не так');
 
         $currencies = collect();
 
@@ -76,15 +78,22 @@ class PersonalAcountController extends Controller
             ]
         );
 
+        $setting = Setting::find(1);
+
         return view('personal_acount.index', [
             'currencies' => $currencies,
             'agent' => $agent,
+            'settings' => $setting,
             'breadcrumbs' => $breadcrumbs,
         ]);
     }
 
     public function resetPassword(Request $request)
     {
+        if (ResetPassword::query()->where(['token' => $request->token])->count() == 0) {
+            abort(404, 'Что-то пошло не так.');
+        }
+
         $currencies = collect();
 
         try {
@@ -137,6 +146,7 @@ class PersonalAcountController extends Controller
             'currencies' => $currencies,
             'agent' => null,
             'breadcrumbs' => $breadcrumbs,
+            'settings' => Setting::find(1)->first()
         ]);
     }
 }

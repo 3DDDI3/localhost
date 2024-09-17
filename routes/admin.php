@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Lending\CountryController;
 use App\Http\Controllers\Admin\Lending\NewsController;
 use App\Http\Controllers\Admin\Lending\PageController;
 use App\Http\Controllers\Admin\Lending\ProgramsController;
+use App\Http\Controllers\Admin\Lending\SliderController;
 use App\Http\Controllers\Admin\Lending\StatusController;
 use App\Http\Controllers\Admin\Lending\ToursController;
 use App\Http\Controllers\Admin\Lending\TypeController;
@@ -128,6 +129,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                         Route::get('/', [ProgramsController::class, 'index'])->name('index');
                         Route::match(['get', 'post'], '/edit/{id?}', [ProgramsController::class, 'edit'])->name('edit');
                     });
+                });
+
+                Route::group(['prefix' => 'sliders', 'as' => 'sliders.'], function () {
+                    Route::get('/', [SliderController::class, 'index'])->name('index');
+                    Route::match(['get', 'post'], '/edit/{id?}', [SliderController::class, 'edit'])->name('edit');
                 });
             });
 

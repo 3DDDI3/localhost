@@ -2,36 +2,34 @@
 
 namespace App\Http\Controllers\Admin\Lending;
 
+use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Models\Lending\Slider;
+use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
-use App\Helpers\FileUpload;
 
 class SliderController extends Controller
 {
-    public $PATH = 'lending.slider';
-    public $TITLE = ['Категории', 'категории'];
-    public $MODEL = Slider::class;
+    public $PATH = 'lending.sliders';
+    public $TITLE = ['Слайдер', 'изображения'];
 
     public function index(Request $request)
     {
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = $this->MODEL::orderBy('rating', 'desc')->orderBy('id', 'desc');
+        $objects = Slider::query()->orderBy('rating', 'desc')->paginate(10);
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = Slider::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();
         }
 
         if ($id = $request->delete) {
-            $item = $this->MODEL::find($id);
+            $item = Slider::find($id);
             $item->delete();
-            \App\Models\User\AdminEventLogs::log($item, $id);
+            AdminEventLogs::log($item, $id);
             return redirect()->back()->with('message', 'Удалено');
         }
-
-        $objects = $objects->get();
 
         return view('admin.modules.' . $path . '.index', compact('objects', 'path', 'title'));
     }
@@ -41,19 +39,33 @@ class SliderController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $object = $id ? $this->MODEL::find($id) : new $this->MODEL();
+        $object = $id ? Slider::find($id) : new Slider();
+
+        if (empty($object)) $object = new Slider();
 
         if ($request->isMethod('post')) {
-            
-            $object->fill($request->except(['_token', 'image']));
-            $object->save();
-            FileUpload::uploadImage('image', $this->MODEL, 'image', $object->id, 377, 377, '/images/slider', false, $request);
-            FileUpload::uploadImage('preview', $this->MODEL, 'preview', $object->id, 377, 377, '/images/slider', false, $request);
 
-            \App\Models\User\AdminEventLogs::log($object, $id);
+            // $object->save();
+
+            $slider = Slider::query()->orderBy('id', 'desc')->first();
+
+            $object->id = $slider->id + 1;
+            $object->save();
+
+            // dd(phpinfo());
+            FileUpload::uploadImage('text', Slider::class, 'text', $object->id, 425, 200, '/images/tours', request: $request);
+
+            FileUpload::uploadImage('image', Slider::class, 'image', $object->id, 400, 779, '/images/tours', request: $request);
+
+            // AdminEventLogs::log($object, $id);
+
             return redirect()->route('admin.' . $this->PATH . '.edit', ['id' => $object->id])->with('message', 'Сохранено');
         }
 
-        return view('admin.modules.' . $this->PATH . '.edit', compact('object', 'path', 'title'));
+        return view('admin.modules.' . $this->PATH . '.edit', compact(
+            'object',
+            'path',
+            'title',
+        ));
     }
 }

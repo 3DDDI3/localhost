@@ -7,9 +7,7 @@
 @endsection
 
 @section('content')
-
     <main>
-        {{-- @dd($meals, $city, $hotels) --}}
         <div class="tour-headding__wrapper"
             style="background-image: url('{{ asset('storage/' . $tour->background_image) }}')">
             <div class="tour-headding">
@@ -197,8 +195,9 @@
             </div>
         @endif
 
-        @isset($samotour)
-        {{-- @dd($samotour) --}}
+
+
+        @if ($samotour != null && $tour->isHiddenTourCost == 0)
             <div class="tour-cost" id="calc" data-country="{{ $samotour->id_country }}"
                 data-tour="{{ $samotour->id_tour }}">
                 <h1 class="tour-cost__title">Стоимость тура</h1>
@@ -213,8 +212,8 @@
                                     </div>
                                     <input id="datapicker-from" class="search-tour-dates__datapicker" type="text"
                                         name="datefilter" value="" />
-                                    <svg class="search-tour-date__icon" width="23" height="23" viewBox="0 0 23 23"
-                                        fill="#ffffff">
+                                    <svg class="search-tour-date__icon" width="23" height="23"
+                                        viewBox="0 0 23 23" fill="#ffffff">
                                         <g opacity="0.3">
                                             <path
                                                 d="M5.75033 21.0833H17.2503C18.2667 21.0822 19.2411 20.678 19.9597 19.9594C20.6784 19.2407 21.0826 18.2663 21.0837 17.25V7.66663C21.0826 6.65029 20.6784 5.67589 19.9597 4.95723C19.2411 4.23857 18.2667 3.83436 17.2503 3.83329H16.292V2.87496C16.292 2.62079 16.191 2.37704 16.0113 2.19732C15.8316 2.01759 15.5878 1.91663 15.3337 1.91663C15.0795 1.91663 14.8357 2.01759 14.656 2.19732C14.4763 2.37704 14.3753 2.62079 14.3753 2.87496V3.83329H8.62533V2.87496C8.62533 2.62079 8.52436 2.37704 8.34464 2.19732C8.16491 2.01759 7.92116 1.91663 7.66699 1.91663C7.41283 1.91663 7.16907 2.01759 6.98935 2.19732C6.80963 2.37704 6.70866 2.62079 6.70866 2.87496V3.83329H5.75033C4.73401 3.83443 3.75965 4.23867 3.04101 4.95731C2.32237 5.67595 1.91813 6.65031 1.91699 7.66663V17.25C1.91813 18.2663 2.32237 19.2406 3.04101 19.9593C3.75965 20.6779 4.73401 21.0822 5.75033 21.0833ZM3.83366 10.5416H19.167V17.25C19.1664 17.7581 18.9643 18.2453 18.605 18.6046C18.2457 18.9639 17.7585 19.166 17.2503 19.1666H5.75033C5.24215 19.1661 4.75493 18.964 4.3956 18.6047C4.03626 18.2454 3.83417 17.7581 3.83366 17.25V10.5416Z"
@@ -392,7 +391,8 @@
                             <div class="combobox__header">
                                 <div class="combobox-header-block">
                                     <span class="combobox-header__title">Гостиница</span>
-                                    <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                    <span
+                                        class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
                                 </div>
                                 <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -422,7 +422,8 @@
                             <div class="combobox__header">
                                 <div class="combobox-header-block">
                                     <span class="combobox-header__title">Питание</span>
-                                    <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
+                                    <span
+                                        class="combobox-header__subtitle combobox-header__subtitle_invisible">Москва</span>
                                 </div>
                                 <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -453,7 +454,7 @@
                     <div class="tour-cost-block">
                         <div class="tour-cost__info">
                             <span class="tour-cost__tite">Стоимость за всех:</span>
-                            <span class="tour-cost__value">Н/Д</span>
+                            <span class="tour-cost__value">Тур не найден</span>
                         </div>
                         <button class="tour-cost__update">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -468,7 +469,7 @@
                     <button class="tour-cost__button">Забронировать</button>
                 </form>
             </div>
-        @endisset
+        @endif
 
         {{-- <div class="tour__user-info">
             {!! html_entity_decode($tour->agreement_info) !!}

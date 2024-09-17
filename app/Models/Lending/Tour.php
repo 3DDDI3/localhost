@@ -65,7 +65,7 @@ class Tour extends Model
 
     public function tourStatus()
     {
-        return $this->hasOneThrough(Status::class, TourStatus::class, 'tour_id', 'id', 'id', 'status_id');
+        return $this->hasManyThrough(Status::class, TourStatus::class, 'tour_id', 'id', 'id', 'status_id');
     }
 
     protected $fillable = [

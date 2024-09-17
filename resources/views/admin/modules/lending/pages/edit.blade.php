@@ -29,6 +29,8 @@
                         'name' => 'about_text_2',
                         'value' => $object->about_text_2 ?? '',
                     ])
+
+                    {!! \App\Helpers\GenerateForm::makeGallery('Галерея', 'galary', $images, '/images/tours/gallary/') !!}
                 @break
 
                 @case(2)

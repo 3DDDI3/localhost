@@ -318,11 +318,32 @@ $(function () {
         window.location.href = `${$(this).data("href")}`;
     });
 
-    if ($(".sliders").length > 0) new Splide('.sliders', {
+    let slider, subSlider = undefined;
+
+    if ($(".subSliders").length > 0) subSlider = new Splide(".subSliders", {
+        pagination: false,
+        arrows: false,
+        type: 'loop',
+        breakpoints: {
+            786: {
+                autoWidth: true,
+                perPage: 1,
+                padding: 0,
+            },
+            1023: {
+                autoHeight: true,
+                perPage: 1,
+                padding: 0,
+                type: 'slide',
+            },
+        },
+    });
+
+    if ($(".sliders").length > 0) slider = new Splide('.sliders', {
         pagination: false,
         type: 'loop',
-        padding: '30rem',
-        // fixedWidth: 1000
+        padding: '30em',
+        perPage: 1,
         breakpoints: {
             375: {
                 height: 462,
@@ -353,31 +374,38 @@ $(function () {
                 autoHeight: true,
                 perPage: 1,
                 padding: 0,
-                height: 462,
-                padding: "18em",
                 type: 'loop',
             },
             1250: {
                 autoHeight: true,
                 perPage: 1,
-                padding: "18em",
                 type: 'loop',
             },
             1300: {
                 autoHeight: true,
                 perPage: 1,
-                padding: "20em",
                 type: 'loop',
+                padding: 0,
+            },
+            1780: {
+                autoHeight: true,
+                perPage: 1,
+                type: 'loop',
+                padding: 0,
             },
             1920: {
                 autoHeight: true,
                 perPage: 1,
-                padding: "21em",
                 type: 'loop',
             }
         },
         height: 779
-    }).mount();
+    });
+
+    slider.sync(subSlider);
+
+    slider.mount();
+    subSlider.mount();
 
     if ($(".news__slider").length > 0) new Splide('.news__slider', {
         gap: 35,
@@ -723,12 +751,12 @@ $(function () {
     if ($("#map").length > 0) ymaps.ready(init);
 
     $(".agency-document__download").on("click", function () {
-        window.location.href = `/ api / files / download / ${$(this).data("path")} `
+        window.location.href = `/api/files/download/${$(this).data("path")}`;
     });
 
     $(".search-tour__form").on("submit", function (e) {
         e.preventDefault();
-        window.open(`https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${begDate == undefined ? "" : begDate}&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${nights == undefined ? "" : nights}&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${nights == undefined ? "" : nights}&ADULT=${adults == undefined ? "" : adults}`);
+        window.open(`https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${begDate == undefined ? "" : begDate}&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${nights == undefined ? "" : nights}&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${nights == undefined ? "" : nights}&ADULT=${adults == undefined ? "" : adults}&TOWNFROMINC=${from == undefined ? "" : from}`);
     });
 
     $(".footer__notification").on("submit", function (e) {
@@ -752,6 +780,7 @@ $(function () {
                 $("#notification-small .modal-notification__text").text(response.message);
                 $(this).parents(".modal-wrapper").hide(300);
                 $("#notification-small").show(300);
+                $(this).prop("checked", false);
             }.bind(this)
         });
     });
@@ -981,14 +1010,14 @@ $(function () {
 
         window.axios.post('/api/auth/signin', data)
             .then(response => {
-                $(this).parents(".modal-wrapper").hide(300);
+                $(this).parents(".modal-wrapper").hide();
                 $(".modal-notification__text span").text(response.data.email);
-                $("#notification").show(300);
+                $("#notification").show();
                 $(this).parents(".registration").find("input").val("");
             })
             .catch(response => {
                 swal({
-                    icon: "warning",
+                    icon: "error",
                     title: response.response.data.message,
                     timer: 2000,
                 });
@@ -1071,11 +1100,13 @@ $(function () {
             dataType: "json",
             success: function (response) {
                 $("#notification-small .modal-notification__text").text(response.message);
-                $(this).parents(".modal-wrapper").hide(300);
-                $("#notification-small").show(300);
+                $(this).parents(".modal-wrapper").hide();
+                $("#notification-small").show();
+                setTimeout(() => {
+                    window.location.href = window.location.origin;
+                }, 500);
             }.bind(this),
             error: function (error) {
-                console.log();
                 swal({
                     icon: "error",
                     title: error.responseJSON.message,

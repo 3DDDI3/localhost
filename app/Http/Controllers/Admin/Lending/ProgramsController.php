@@ -8,6 +8,7 @@ use App\Models\Gallery;
 use App\Models\Lending\Programs;
 use App\Models\Lending\Tour;
 use App\Models\User\AdminEventLogs;
+use App\View\Components\blocks\tour as BlocksTour;
 use Illuminate\Http\Request;
 
 class ProgramsController extends Controller
@@ -21,13 +22,15 @@ class ProgramsController extends Controller
         $title = $this->TITLE;
 
         if ($request->input("tour_id") != null)
-            $objects = Programs::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Programs::where(['tour_id' => $request->input("tour_id")])->orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(12);
         else
-            $objects = Programs::orderBy('rating', 'desc')->orderBy('id', 'desc')->get();
+            $objects = Programs::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(12);
 
         $selectedTour = null;
 
-        if ($request->input("tour_id") != null) $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()->title;
+        if ($request->input("tour_id") > 0)
+            $selectedTour = Tour::where(['id' => $request->input("tour_id")])->first()->title;
+        else $selectedTour = "Не выбрано";
 
         $tours = collect();
 
@@ -40,9 +43,17 @@ class ProgramsController extends Controller
             );
         }
 
-        if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
-        }
+        $tours->prepend(
+            (object)[
+                "id" => 0,
+                "name" => "Не выбрано",
+            ]
+        );
+
+        if ($request->input("tour_id") > 0) {
+            $objects = Programs::query()->where(['tour_id' => $request->tour_id])->paginate(12);
+        } else
+            $objects = Programs::query()->orderBy('rating', 'desc')->paginate(12);
 
         if ($id = $request->delete) {
             $item = Programs::find($id);

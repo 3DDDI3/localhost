@@ -23,7 +23,7 @@ class AuthorizationController extends Controller
         if (User::query()->where([
             'name' => $request->name,
         ])->orWhere(['email' => $request->email])->count() > 0)
-            return response()->json(['message' => 'Пользователь с такими данными уже существует'], 401);
+            return response()->json(['message' => 'Пользователь с такими логином и/или email уже существует'], 401);
 
         $user = User::create([
             'name' => $request->name,
@@ -40,7 +40,7 @@ class AuthorizationController extends Controller
         ]);
 
         if ($request->company != null) $agent->name = $request->company;
-        if ($request->address != null) $agent->address = $request->addres;
+        if ($request->address != null) $agent->address = $request->address;
         if ($request->phone != null) $agent->phone = $request->phone;
 
         $agent->save();
@@ -67,6 +67,9 @@ class AuthorizationController extends Controller
 
         $user->createToken('App')->plainTextToken;
 
+        if ($user->agent == null)
+            return response()->json(['message' => 'Неверный логин или пароль'], 401);
+
         if ($request->expectsJson())
             return response()->json(['url' => $user->agent->url], 200);
     }
@@ -78,7 +81,8 @@ class AuthorizationController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return response(status: 200);
     }
 
@@ -106,9 +110,6 @@ class AuthorizationController extends Controller
 
     public function reset(Request $request)
     {
-        if (ResetPassword::query()->where(['token' => $request->token])->count() == 0)
-            return response()->json(['message' => 'Недействительная ссылка'], 404);
-
         if ($request->password != $request->retypePassword)
             return response(['message' => 'Пароли не совпадают'], 400);
 
@@ -122,6 +123,8 @@ class AuthorizationController extends Controller
 
         $user->fill(['password' => Hash::make($request->password)])
             ->save();
+
+        ResetPassword::query()->where(['token' => $request->token])->delete();
 
         return response()->json(['message' => 'Пароль успешно изменен'], 200);
     }

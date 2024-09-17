@@ -1,8 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-
     <main>
+        <x-sliders.main-slider />
+
         <div id="search-tour" class="search-tours">
             <div class="search-tours__wrapper">
                 <section class="search-tour-buttons__slider splide">

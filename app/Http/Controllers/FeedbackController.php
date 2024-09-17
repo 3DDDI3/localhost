@@ -24,6 +24,6 @@ class FeedbackController extends Controller
 
         Mail::to("info@mangaspace.ru")->send(new FeedbackMail($requests));
 
-        return response()->json(['message' => 'Ваша заявка находится в обработке'], 200);
+        return response()->json(['message' => 'Мы свяжемся с вами в ближайшее время'], 200);
     }
 }

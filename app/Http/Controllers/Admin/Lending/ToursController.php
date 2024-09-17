@@ -10,6 +10,7 @@ use App\Models\Lending\Country;
 use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
+use App\Models\Lending\TourStatus;
 use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
@@ -85,17 +86,21 @@ class ToursController extends Controller
 
         $images = Gallery::where(['item_id' => 1, 'item_type' => 1])->get();
 
-        $status = Status::query()
-            ->orderBy('rating', 'desc')
-            ->get()
-            ->prepend(
-                (new Status())->fill([
-                    "id" => 0,
-                    "name" => "Не выбрано",
-                ])
-            );
+        $statuses = collect();
 
-        $statusHead = $object->tourStatus != null ? $object->tourStatus->name : null;
+        foreach (Status::all() as $status) {
+            $statuses->push((object)[
+                "id" => $status->id,
+                "name" => $status->name,
+            ]);
+        }
+
+        $selectedStatus = collect();
+
+        if ($object->tourStatus()->count() > 0)
+            foreach ($object->tourStatus()->get() as $tourType) {
+                $selectedStatus->push($tourType->id);
+            }
 
         $samotour = SamotourTour::query()
             ->orderBy("name")
@@ -181,6 +186,19 @@ class ToursController extends Controller
                 ])->save();
             }
 
+            if (!empty($request->statuses)) {
+                TourStatus::query()
+                    ->where(['tour_id' => $object->id])
+                    ->delete();
+                    
+                foreach ($request->statuses as $status) {
+                    TourStatus::create([
+                        'status_id' => $status,
+                        'tour_id' => $object->id
+                    ]);
+                }
+            }
+
             if (!empty($request->tour_types)) {
                 TourType::query()
                     ->where([
@@ -213,8 +231,8 @@ class ToursController extends Controller
             'images',
             'tourTypes',
             'selectedTourTypes',
-            'status',
-            'statusHead',
+            'statuses',
+            'selectedStatus',
             'countryHead',
             'samotour',
             'samotourHead',

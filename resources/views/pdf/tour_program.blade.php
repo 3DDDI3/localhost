@@ -154,16 +154,29 @@
     }
 </style>
 
+@php
+    $url = $agent != null ? "/storage/$agent->logo" : '/images/logo.svg';
+@endphp
+
 <body>
     <table style="width: 100%">
         <tr>
             <td style="width: 30%">
-                <img style="width: 200px" src="{{ public_path('images/logo.svg') }}" alt="">
+                <img style="width: 200px" src="{{ public_path($url) }}" alt="">
             </td>
-            <td style="width: 70%; text-align: right" class="program__title">ООО “ Туристическая фирма «МЕРКУРИЙ»”<br>
-                Санкт-Петербург, 7-я Красноармейская, 7<br>
-                Телефон: (812) 702 7785 / 715 9241<br>
-                E-mail: res@italy-spb.ru</td>
+            <td style="width: 70%; text-align: right" class="program__title">
+                @if ($agent == null)
+                    ООО “ Туристическая фирма «МЕРКУРИЙ»”<br>
+                    Санкт-Петербург, 7-я Красноармейская, 7<br>
+                    Телефон: (812) 702 7785 / 715 9241<br>
+                    E-mail: res@italy-spb.ru
+                @else
+                    {{ $agent->name }}<br>
+                    {!! html_entity_decode($agent->address) !!}<br>
+                    Телефон: {{ $agent->phone }}<br>
+                    Email: {{ $agent->user->email }}
+                @endif
+            </td>
         </tr>
     </table>
 
@@ -187,6 +200,17 @@
             </tr>
         @endforeach
     </table>
+
+    <div class="text" style="margin-top: 30px">
+        <h1 class="text">В стоимость тура входит:</h1>
+        <div class="text">{!! html_entity_decode($tour->tour_cost_info) !!}</div>
+    </div>
+
+    <div class="text" style="margin-top: 30px">
+        <h1 class="text">Дополнительно оплачивается:</h1>
+        <div class="text">{!! html_entity_decode($tour->tour_additional_cost) !!}</div>
+    </div>
+
 </body>
 
 </html>

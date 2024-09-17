@@ -28,6 +28,12 @@
             ])
 
             @include('admin.includes.input', [
+                'label' => 'Телефон',
+                'name' => 'phone',
+                'value' => $object->phone ?? '',
+            ])
+
+            @include('admin.includes.input', [
                 'label' => 'Email',
                 'name' => 'email',
                 'value' => $object->user->email ?? '',

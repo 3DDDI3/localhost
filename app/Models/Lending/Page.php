@@ -2,6 +2,7 @@
 
 namespace App\Models\Lending;
 
+use App\Models\Gallery;
 use App\Models\Services\Infografika;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

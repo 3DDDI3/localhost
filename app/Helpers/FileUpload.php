@@ -137,7 +137,6 @@ class FileUpload
 
     public static function uploadImage($inputName, $class, $field, $id, $width = null, $height = null, $path = '/storage', $webp = false, Request $request = null)
     {
-
         $filePath = $_FILES[$inputName]['tmp_name'];
 
         $errorCode = $_FILES[$inputName]['error'];
@@ -155,6 +154,8 @@ class FileUpload
         // Создадим ресурс FileInfo
         $fi = finfo_open(FILEINFO_MIME_TYPE);
 
+
+
         // Получим MIME-тип
         $mime = (string)finfo_file($fi, $filePath);
 
@@ -166,7 +167,6 @@ class FileUpload
 
         // Зададим ограничения для картинок
         $limitBytes = 1024 * 1024 * self::$maxFileSize;
-
         // Проверим нужные параметры
         if (filesize($filePath) > $limitBytes) die('Размер изображения не должен превышать ' . self::$maxFileSize . ' Мбайт.');
 

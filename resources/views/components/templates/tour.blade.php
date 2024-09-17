@@ -16,6 +16,7 @@
                     </svg>
                     <img src="{{ asset('images/hot.png') }}" alt="">
                 </div>
+                
                 <div class="popular-tours-tour__status">
                     <svg width="40" height="50" viewBox="0 0 40 50" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

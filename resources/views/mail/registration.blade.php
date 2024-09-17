@@ -3,13 +3,13 @@
 <h1 style="text-align: center">Пользователь зарегистрировался в системе:</h1> 
 
 <x-mail::table>
-| Имя                |      Телефон        |          Адрес      |     Текст          |
-| -------------------|---------------------|---------------------|--------------------|
-| {{$agent->name}}   | {{$agent->phone}}   | {{$agent->email}}   | {{$agent->text}}   |
+| Имя                 |      Телефон          |          Email            |             Адрес             |
+|:-------------------:|:---------------------:|:-------------------------:|:-----------------------------:|
+| {{$agent->name}}    | {{$agent->phone}}     | {{$agent->user->email}}   | {{$agent->address}}           |
 </x-mail::table>
 
 @php
-    $url = config('app.url') . '/admin/requests?search=' . $agent->name;
+    $url = config('app.url') . '/admin/users/agents?search=' . $agent->name;
 @endphp
 
 <x-mail::button :$url>
