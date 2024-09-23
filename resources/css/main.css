@@ -24,7 +24,7 @@ p {
     height: 42px;
     align-content: center;
     margin-top: 30px;
-    margin: 32px 61px 0 70px;
+    margin: 32px 61px 0 61px;
     width: 42px;
 }
 
@@ -162,6 +162,7 @@ input {
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
+    padding: 15px 0;
 }
 
 .header .hamburger-lines .line {
@@ -312,6 +313,7 @@ input {
         overflow-x: hidden;
         overflow-y: scroll;
         position: absolute;
+        padding: 10px 0;
         z-index: 5;
         top: 110%;
         width: 100%;
@@ -339,6 +341,7 @@ input {
 
     .combobox__list_invisible {
         line-height: 0px;
+        padding: unset !important;
     }
 }
 
@@ -454,6 +457,7 @@ input {
             display: flex;
             column-gap: 41px;
             padding-top: 42px;
+            margin-right: 90px;
 
             .header-menu__item {
                 .header-menu__link {
@@ -598,6 +602,11 @@ input {
             }
         }
     }
+}
+
+.sliders .splide__pagination__page.is-active {
+    background-color: #7737a9;
+    opacity: 1;
 }
 
 .splide__arrow--next {
@@ -1102,6 +1111,53 @@ main {
                             }
                         }
                     }
+
+                }
+
+                .service_country__sublist {
+                    padding-top: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+
+                    .service_country-sublist__item {
+                        text-decoration: unset;
+
+                        .service_country-sublist__name {
+                            font-family: "Inter", sans-serif;
+                            font-size: 17px;
+                            font-weight: 400;
+                            line-height: 20.57px;
+                            letter-spacing: -0.01em;
+                            color: #342635;
+                        }
+
+                        .service_country-sublist__counter {
+                            color: #533059;
+                            font-family: "Inter", sans-serif;
+                            font-size: 17px;
+                            font-weight: 400;
+                            line-height: 20.57px;
+                            letter-spacing: -0.01em;
+                            opacity: 0.3;
+                        }
+                    }
+                }
+
+                .service_country__sublist_hidden {
+                    line-height: 0 !important;
+
+                    .service_country-sublist__item {
+                        line-height: 0 !important;
+
+                        .service_country-sublist__name {
+                            line-height: 0 !important;
+                        }
+
+                        .service_country-sublist__counter {
+                            line-height: 0 !important;
+                        }
+                    }
                 }
 
                 .services-country-tour__all-button {
@@ -1116,6 +1172,10 @@ main {
                     cursor: pointer;
                     padding: unset;
                     fill: #4509a8;
+
+                    svg {
+                        transform: rotate(90deg);
+                    }
                 }
 
                 .services-country-tour__all-button:hover {
@@ -2315,6 +2375,7 @@ main {
 
             .header-messengers__telegram {
                 margin: unset;
+                padding: 5px;
 
                 path {
                     fill: #582f9a;
@@ -2323,6 +2384,7 @@ main {
 
             .header-messengers__whatsapp {
                 margin: unset;
+                padding: 5px;
 
                 path {
                     fill: #582f9a;
@@ -2341,50 +2403,14 @@ main {
     }
 
     .menu-hamburger {
-        .footer__wrapper {
-            .footer__logo {
-                display: none !important;
-            }
-
-            margin-top: 40px;
-
-            .second__level {
-                .footer__corporation-info {
-                    a:nth-child(1) {
-                        text-align: center;
-                        flex-grow: 1;
-                        width: 100%;
-                        margin-right: 0;
-                    }
-
-                    a:nth-child(2) {
-                        flex-grow: 1;
-                        text-align: center;
-                    }
-
-                    a:nth-child(3) {
-                        flex-grow: 1;
-                        text-align: center;
-                    }
-                }
-            }
-
-            .footer-pages-messengers {
-                justify-content: center;
-            }
-
-            .third__level {
-                .footer__currencies {
-                    margin: 0 auto 30px;
-                    justify-content: center !important;
-                }
-            }
+        .footer {
+            text-align: left;
         }
     }
 
     main {
         .subSliders {
-            height: 462px;
+            height: 300px;
 
             .splide__track {
                 height: 100%;
@@ -2400,7 +2426,7 @@ main {
         }
 
         .sliders {
-            height: 462px;
+            height: 300px;
 
             .splide__arrow--prev {
                 left: 1em;
@@ -2417,7 +2443,7 @@ main {
                     justify-content: center;
 
                     img {
-                        width: calc(100% - 100px);
+                        width: calc(50%);
                     }
                 }
             }
@@ -2470,6 +2496,8 @@ main {
                             flex-direction: column;
                             height: 96px;
                             flex-shrink: 0;
+                            row-gap: 5px;
+                            background-color: transparent;
 
                             .search-tour__from {
                                 height: 48px;
@@ -2481,13 +2509,14 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 border-bottom-color: transparent;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -2510,7 +2539,6 @@ main {
 
                             .search-tour__to {
                                 height: 48px;
-                                border-top: 1px solid rgb(178, 178, 178);
                                 padding: 7px 20px 9px;
                                 flex-basis: auto;
                                 box-sizing: border-box;
@@ -2518,6 +2546,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 justify-content: center;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -2543,6 +2572,8 @@ main {
 
                             .search-tour-dates__wrapper {
                                 flex-direction: column;
+                                background-color: transparent;
+                                row-gap: 5px;
 
                                 label {
                                     height: 48px;
@@ -2550,6 +2581,7 @@ main {
                                     display: flex;
                                     justify-content: space-between;
                                     border-right: unset;
+                                    background-color: #f3f3f3;
 
                                     .search-tour__dates {
                                         display: flex;
@@ -2558,9 +2590,10 @@ main {
                                 }
 
                                 .search-tour__nights {
-                                    border-top: 1px solid rgb(178, 178, 178);
+                                    background-color: #f3f3f3;
                                     padding: 14px 20px 16px 20px;
                                     box-sizing: border-box;
+                                    height: 48px;
                                 }
                             }
                         }
@@ -3243,6 +3276,7 @@ main {
 
             .header-messengers__telegram {
                 margin: unset;
+                padding: 8px;
 
                 path {
                     fill: #582f9a;
@@ -3251,6 +3285,7 @@ main {
 
             .header-messengers__whatsapp {
                 margin: unset;
+                padding: 8px;
 
                 path {
                     fill: #582f9a;
@@ -3269,50 +3304,14 @@ main {
     }
 
     .menu-hamburger {
-        .footer__wrapper {
-            .footer__logo {
-                display: none !important;
-            }
-
-            margin-top: 40px;
-
-            .second__level {
-                .footer__corporation-info {
-                    a:nth-child(1) {
-                        text-align: center;
-                        flex-grow: 1;
-                        width: 100%;
-                        margin-right: 0;
-                    }
-
-                    a:nth-child(2) {
-                        flex-grow: 1;
-                        text-align: center;
-                    }
-
-                    a:nth-child(3) {
-                        flex-grow: 1;
-                        text-align: center;
-                    }
-                }
-            }
-
-            .footer-pages-messengers {
-                justify-content: center;
-            }
-
-            .third__level {
-                .footer__currencies {
-                    margin: 0 auto 30px;
-                    justify-content: center !important;
-                }
-            }
+        .footer {
+            text-align: left;
         }
     }
 
     main {
         .subSliders {
-            height: 462px;
+            height: 300px;
 
             .splide__track {
                 height: 100%;
@@ -3328,7 +3327,7 @@ main {
         }
 
         .sliders {
-            height: 462px;
+            height: 300px;
 
             .splide__arrow--prev {
                 left: 1em;
@@ -3351,7 +3350,7 @@ main {
                     justify-content: center;
 
                     img {
-                        width: calc(100% - 100px);
+                        width: calc(50%);
                     }
                 }
             }
@@ -3396,6 +3395,8 @@ main {
                             flex-direction: column;
                             height: 96px;
                             flex-shrink: 0;
+                            row-gap: 5px;
+                            background-color: transparent;
 
                             .search-tour__from {
                                 height: 48px;
@@ -3407,6 +3408,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 border-bottom-color: transparent;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -3436,7 +3438,6 @@ main {
 
                             .search-tour__to {
                                 height: 48px;
-                                border-top: 1px solid rgb(178, 178, 178);
                                 padding: 7px 20px 9px;
                                 flex-basis: auto;
                                 box-sizing: border-box;
@@ -3444,6 +3445,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 justify-content: center;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -3469,6 +3471,8 @@ main {
 
                             .search-tour-dates__wrapper {
                                 flex-direction: column;
+                                background-color: transparent;
+                                row-gap: 5px;
 
                                 label {
                                     height: 48px;
@@ -3476,6 +3480,7 @@ main {
                                     display: flex;
                                     justify-content: space-between;
                                     border-right: unset;
+                                    background-color: #f3f3f3;
 
                                     .search-tour__dates {
                                         display: flex;
@@ -3484,9 +3489,10 @@ main {
                                 }
 
                                 .search-tour__nights {
-                                    border-top: 1px solid rgb(178, 178, 178);
+                                    background-color: #f3f3f3;
                                     padding: 14px 20px 16px 20px;
                                     box-sizing: border-box;
+                                    height: 48px;
                                 }
                             }
                         }
@@ -4095,7 +4101,7 @@ main {
 }
 
 @media (min-width: 425px) and (max-width: 550px) {
-    .menu-hamburger {
+    /* .menu-hamburger {
         .footer__wrapper {
             .footer__logo {
                 display: none !important;
@@ -4130,10 +4136,10 @@ main {
                 justify-content: center;
             }
         }
-    }
+    } */
 }
 
-@media (min-width: 605px) and (max-width: 800px) {
+/* @media (min-width: 605px) and (max-width: 800px) {
     .menu-hamburger {
         .footer {
             .footer__wrapper {
@@ -4201,7 +4207,7 @@ main {
             }
         }
     }
-}
+} */
 
 @media (min-width: 425px) and (max-width: 499px) {
     .box {
@@ -4365,6 +4371,7 @@ main {
 
             .header-messengers__telegram {
                 margin: unset;
+                padding: 10px;
 
                 path {
                     fill: #582f9a;
@@ -4373,6 +4380,7 @@ main {
 
             .header-messengers__whatsapp {
                 margin: unset;
+                padding: 10px;
 
                 path {
                     fill: #582f9a;
@@ -4392,7 +4400,7 @@ main {
 
     main {
         .subSliders {
-            height: 462px;
+            height: 300px;
 
             .splide__track {
                 height: 100%;
@@ -4408,7 +4416,7 @@ main {
         }
 
         .sliders {
-            height: 462px;
+            height: 300px;
 
             .splide__arrow--prev {
                 left: 1em;
@@ -4431,7 +4439,7 @@ main {
                     justify-content: center;
 
                     img {
-                        width: calc(100% - 100px);
+                        width: calc(50%);
                     }
                 }
             }
@@ -4476,6 +4484,8 @@ main {
                             flex-direction: column;
                             height: 96px;
                             flex-shrink: 0;
+                            row-gap: 5px;
+                            background-color: transparent;
 
                             .search-tour__from {
                                 height: 48px;
@@ -4487,6 +4497,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 border-bottom-color: transparent;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -4516,7 +4527,6 @@ main {
 
                             .search-tour__to {
                                 height: 48px;
-                                border-top: 1px solid rgb(178, 178, 178);
                                 padding: 7px 20px 9px;
                                 flex-basis: auto;
                                 box-sizing: border-box;
@@ -4524,6 +4534,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 justify-content: center;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -4549,6 +4560,8 @@ main {
 
                             .search-tour-dates__wrapper {
                                 flex-direction: column;
+                                background-color: transparent;
+                                row-gap: 5px;
 
                                 label {
                                     height: 48px;
@@ -4556,6 +4569,7 @@ main {
                                     display: flex;
                                     justify-content: space-between;
                                     border-right: unset;
+                                    background-color: #f3f3f3;
 
                                     .search-tour__dates {
                                         display: flex;
@@ -4564,9 +4578,10 @@ main {
                                 }
 
                                 .search-tour__nights {
-                                    border-top: 1px solid rgb(178, 178, 178);
+                                    background-color: #f3f3f3;
                                     padding: 14px 20px 16px 20px;
                                     box-sizing: border-box;
+                                    height: 48px;
                                 }
                             }
                         }
@@ -4945,6 +4960,12 @@ main {
         }
     }
 
+    .menu-hamburger {
+        .footer {
+            text-align: left;
+        }
+    }
+
     .footer {
         padding: 30px 20px 31px 20px;
 
@@ -5138,6 +5159,12 @@ main {
 }
 
 @media (min-width: 605px) and (max-width: 800px) {
+    .menu-hamburger {
+        .footer {
+            text-align: left;
+        }
+    }
+
     .footer {
         .footer__wrapper {
             .second__level {
@@ -5193,6 +5220,12 @@ main {
 }
 
 @media (min-width: 801px) and (max-width: 1024px) {
+    .menu-hamburger {
+        .footer {
+            text-align: left;
+        }
+    }
+
     .footer {
         .footer__wrapper {
             .second__level {
@@ -5379,6 +5412,7 @@ main {
 
             .header-messengers__telegram {
                 margin: unset;
+                padding: 10px;
 
                 path {
                     fill: #582f9a;
@@ -5387,6 +5421,7 @@ main {
 
             .header-messengers__whatsapp {
                 margin: unset;
+                padding: 10px;
 
                 path {
                     fill: #582f9a;
@@ -5488,6 +5523,8 @@ main {
                             flex-direction: column;
                             height: 96px;
                             flex-shrink: 0;
+                            row-gap: 5px;
+                            background-color: transparent;
 
                             .search-tour__from {
                                 height: 48px;
@@ -5499,6 +5536,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 border-bottom-color: transparent;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -5528,7 +5566,6 @@ main {
 
                             .search-tour__to {
                                 height: 48px;
-                                border-top: 1px solid rgb(178, 178, 178);
                                 padding: 7px 20px 9px;
                                 flex-basis: auto;
                                 box-sizing: border-box;
@@ -5536,6 +5573,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 justify-content: center;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -5561,6 +5599,8 @@ main {
 
                             .search-tour-dates__wrapper {
                                 flex-direction: column;
+                                background-color: transparent;
+                                row-gap: 5px;
 
                                 label {
                                     height: 48px;
@@ -5568,6 +5608,7 @@ main {
                                     display: flex;
                                     justify-content: space-between;
                                     border-right: unset;
+                                    background-color: #f3f3f3;
 
                                     .search-tour__dates {
                                         display: flex;
@@ -5576,9 +5617,10 @@ main {
                                 }
 
                                 .search-tour__nights {
-                                    border-top: 1px solid rgb(178, 178, 178);
+                                    background-color: #f3f3f3;
                                     padding: 14px 20px 16px 20px;
                                     box-sizing: border-box;
+                                    height: 48px;
                                 }
                             }
                         }
@@ -6267,7 +6309,7 @@ main {
                 }
 
                 .search-tour__form {
-                    height: 327px;
+                    height: 100%;
                     margin: 0 15px 15px 15px;
                     padding: 25px;
 
@@ -6281,6 +6323,8 @@ main {
                             flex-direction: column;
                             height: 96px;
                             flex-shrink: 0;
+                            row-gap: 5px;
+                            background-color: transparent;
 
                             .search-tour__from {
                                 height: 48px;
@@ -6292,11 +6336,19 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 border-bottom-color: transparent;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
 
                                     .combobox-header-block {
+                                        .combobox-header__title {
+                                            font-size: 15px;
+                                            font-weight: 400;
+                                            line-height: 18.15px;
+                                            letter-spacing: -0.02em;
+                                        }
+
                                         .combobox-header__subtitle {
                                             font-size: 15px;
                                             font-weight: 400;
@@ -6314,7 +6366,6 @@ main {
 
                             .search-tour__to {
                                 height: 48px;
-                                border-top: 1px solid rgb(178, 178, 178);
                                 padding: 7px 20px 9px;
                                 flex-basis: auto;
                                 box-sizing: border-box;
@@ -6322,6 +6373,7 @@ main {
                                 flex-direction: column;
                                 border-right-color: transparent;
                                 justify-content: center;
+                                background-color: #f3f3f3;
 
                                 .combobox__header {
                                     height: auto;
@@ -6347,6 +6399,8 @@ main {
 
                             .search-tour-dates__wrapper {
                                 flex-direction: column;
+                                background-color: transparent;
+                                row-gap: 5px;
 
                                 label {
                                     height: 48px;
@@ -6354,6 +6408,7 @@ main {
                                     display: flex;
                                     justify-content: space-between;
                                     border-right: unset;
+                                    background-color: #f3f3f3;
 
                                     .search-tour__dates {
                                         display: flex;
@@ -6362,10 +6417,10 @@ main {
                                 }
 
                                 .search-tour__nights {
-                                    border-top: 1px solid rgb(178, 178, 178);
-                                    padding: 0 20px;
-                                    height: 48px;
+                                    background-color: #f3f3f3;
+                                    padding: 14px 20px 16px 20px;
                                     box-sizing: border-box;
+                                    height: 48px;
                                 }
                             }
                         }
@@ -6906,7 +6961,7 @@ main {
     }
 }
 
-@media (min-width: 1600px) and (max-width: 1700px) {
+@media (min-width: 1600px) and (max-width: 1730px) {
     .header {
         .header-actions-logo {
             img {
@@ -6915,6 +6970,7 @@ main {
 
             .header-menu {
                 display: flex;
+                margin-right: unset !important;
             }
         }
     }

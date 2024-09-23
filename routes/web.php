@@ -13,6 +13,7 @@ use App\Models\Lending\Tour;
 use App\Models\Services\Agent;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 

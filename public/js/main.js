@@ -3959,6 +3959,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
 /* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-mix/src/Log */ "./node_modules/laravel-mix/src/Log.js");
 /* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0__["default"];
@@ -3999,6 +4001,8 @@ function init() {
 }
 
 $(function () {
+  var _Splide;
+
   var combobox,
       search,
       from,
@@ -4243,71 +4247,73 @@ $(function () {
       }
     }
   });
-  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.sliders', {
+  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.sliders', (_Splide = {
     pagination: false,
     type: 'loop',
     padding: '30em',
-    perPage: 1,
-    breakpoints: {
-      375: {
-        height: 462,
-        perPage: 1,
-        padding: 0,
-        type: 'slide'
-      },
-      425: {
-        height: 462,
-        perPage: 1,
-        padding: 0,
-        type: 'slide'
-      },
-      768: {
-        height: 462,
-        perPage: 1,
-        padding: 0,
-        type: 'slide'
-      },
-      1023: {
-        autoHeight: true,
-        perPage: 1,
-        padding: 0,
-        height: 462,
-        type: 'slide'
-      },
-      1150: {
-        autoHeight: true,
-        perPage: 1,
-        padding: 0,
-        type: 'loop'
-      },
-      1250: {
-        autoHeight: true,
-        perPage: 1,
-        type: 'loop'
-      },
-      1300: {
-        autoHeight: true,
-        perPage: 1,
-        type: 'loop',
-        padding: 0
-      },
-      1780: {
-        autoHeight: true,
-        perPage: 1,
-        type: 'loop',
-        padding: 0
-      },
-      1920: {
-        autoHeight: true,
-        perPage: 1,
-        type: 'loop'
-      }
+    perPage: 1
+  }, _defineProperty(_Splide, "pagination", true), _defineProperty(_Splide, "breakpoints", {
+    375: {
+      height: 300,
+      perPage: 1,
+      padding: 0,
+      type: 'slide'
     },
-    height: 779
-  });
-  slider.sync(subSlider);
-  slider.mount();
-  subSlider.mount();
+    425: {
+      height: 300,
+      perPage: 1,
+      padding: 0,
+      type: 'slide'
+    },
+    768: {
+      height: 462,
+      perPage: 1,
+      padding: 0,
+      type: 'slide'
+    },
+    1023: {
+      autoHeight: true,
+      perPage: 1,
+      padding: 0,
+      height: 462,
+      type: 'slide'
+    },
+    1150: {
+      autoHeight: true,
+      perPage: 1,
+      padding: 0,
+      type: 'loop'
+    },
+    1250: {
+      autoHeight: true,
+      perPage: 1,
+      type: 'loop'
+    },
+    1300: {
+      autoHeight: true,
+      perPage: 1,
+      type: 'loop',
+      padding: 0
+    },
+    1740: {
+      autoHeight: true,
+      perPage: 1,
+      type: 'loop',
+      padding: 0
+    },
+    1920: {
+      autoHeight: true,
+      perPage: 1,
+      type: 'loop'
+    }
+  }), _defineProperty(_Splide, "height", 779), _Splide));
+
+  if (slider != undefined && subSlider != undefined) {
+    slider.sync(subSlider);
+    slider.mount();
+    subSlider.mount();
+  }
+
   if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.news__slider', {
     gap: 35,
     pagination: false,
@@ -4728,8 +4734,8 @@ $(function () {
     if (child == undefined) $(".search-tour__children").css("border-right-color", "red");
     if (nights == undefined) $(".search-tour__nights").css("border-right-color", "red");
     if (child == undefined || adults == undefined || nights == undefined || begDate == undefined) sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-      title: "Заполните обязательные поля",
-      timer: 2000
+      title: "Заполните обязательные поля" // timer: 2000,
+
     });else $.ajax({
       type: "GET",
       url: "/api/samotour/getPrice",
@@ -4754,8 +4760,8 @@ $(function () {
       error: function error(xhr, textStatus, errorThrown) {
         $(".tour-cost__value").text("Н/Д");
         sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-          title: "Не удалось найти тур",
-          timer: 2000
+          title: "Не удалось найти тур" // timer: 2000,
+
         });
       }
     });
@@ -4770,12 +4776,12 @@ $(function () {
     if (child == undefined) $(".search-tour__children").css("border-right-color", "red");
     if (nights == undefined) $(".search-tour__nights").css("border-right-color", "red");
     if (child == undefined || adults == undefined || nights == undefined || begDate == undefined) sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-      title: "Заполните обязательные поля",
-      timer: 2000
+      title: "Заполните обязательные поля" // timer: 2000,
+
     });else {
       if ($(".tour-cost__value").text() == "Н/Д") sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-        title: "Обновите стоимость тура",
-        timer: 2000
+        title: "Обновите стоимость тура" // timer: 2000,
+
       });else window.open("https://samo.mercury-europe.ru/bron_person?CATCLAIM=".concat(id, "&CURRENCY=1&TOWNFROMINC=").concat(from, "&STATEINC=").concat(country, "&GUEST=1"));
     }
   });
@@ -4815,6 +4821,9 @@ $(function () {
   $(".modal-aggrees__description input[type='checkbox']").on("change", function () {
     if ($(this).prop("checked")) $(".modal-aggrees__checkbox").css("border-color", "#F3F3F3");else $(".modal-aggrees__checkbox").css("border-color", "#8D58E5");
   });
+  $(".modal__aggrees input[type='checkbox']").on("change", function () {
+    if ($(this).prop("checked")) $(".modal-aggrees__checkbox").css("border-color", "#F3F3F3");else $(".modal-aggrees__checkbox").css("border-color", "#8D58E5");
+  });
   $(".modal__window input").on("cut copy paste input", function () {
     $(this).css("border-color", "transparent");
   });
@@ -4836,8 +4845,8 @@ $(function () {
       password.val() == "" ? password.css("border-right-color", "red") : null;
       !$("#law-aggree").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-        title: "Заполните обязательные поля",
-        timer: 2000
+        title: "Заполните обязательные поля" // timer: 2000,
+
       });
       return;
     }
@@ -4861,8 +4870,8 @@ $(function () {
     })["catch"](function (response) {
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
         icon: "error",
-        title: response.response.data.message,
-        timer: 2000
+        title: response.response.data.message // timer: 2000,
+
       });
       $(_this).parents(".registration").find("input").val("");
     });
@@ -4884,8 +4893,8 @@ $(function () {
       })["catch"](function (response) {
         sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
           icon: "error",
-          title: response.response.data.message,
-          timer: 2000
+          title: response.response.data.message // timer: 2000,
+
         });
       });
     });
@@ -4906,14 +4915,14 @@ $(function () {
       dataType: "json",
       success: function (response) {
         $("#notification-small .modal-notification__text").text(response.message);
-        $(this).parents(".modal-wrapper").hide(300);
-        $("#notification-small").show(300);
+        $(this).parents(".modal-wrapper").hide();
+        $("#notification-small").show();
       }.bind(this),
       error: function error(response) {
         sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
           icon: "error",
-          title: response.responseJSON.message,
-          timer: 2000
+          title: response.responseJSON.message // timer: 2000,
+
         });
       }
     });
@@ -4941,8 +4950,8 @@ $(function () {
       error: function error(_error) {
         sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
           icon: "error",
-          title: _error.responseJSON.message,
-          timer: 2000
+          title: _error.responseJSON.message // timer: 2000,
+
         });
       }
     });
@@ -4969,8 +4978,8 @@ $(function () {
       $(".modal-aggrees__checkbox").css("border-color", "red");
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
         icon: 'error',
-        title: "Подтвердите свое согласие",
-        timer: 2000
+        title: "Подтвердите свое согласие" // timer: 2000,
+
       });
       return;
     }
@@ -4988,8 +4997,8 @@ $(function () {
       success: function (response) {
         console.log(response);
         $("#notification-small .modal-notification__text").text(response.message);
-        $(this).parents(".modal-wrapper").hide(300);
-        $("#notification-small").show(300);
+        $(this).parents(".modal-wrapper").hide();
+        $("#notification-small").show();
       }.bind(this)
     });
   });

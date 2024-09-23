@@ -2,7 +2,7 @@
 @section('content')
     <h1>{{ $title[0] }}</h1>
 
-    @include('admin.includes.search')
+    {{-- @include('admin.includes.search') --}}
 
     @include('admin.includes.add')
 
@@ -16,7 +16,7 @@
             padding: 14px 30px; 
             background-color:#212121;
             color: #ffffff">
-                <p style="flex-basis: 50%;">Тип</p>
+                <p style="flex-basis: 50%;">Изображение</p>
             </div>
             @foreach ($objects as $object)
                 <div class="list_item" style="column-gap: 30px">

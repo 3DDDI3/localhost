@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lending\Adv;
 use App\Models\Lending\Country;
 use App\Models\Lending\News;
+use App\Models\Lending\Slider;
 use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourStatus;
@@ -85,6 +86,11 @@ class IndexController extends Controller
         } catch (\Throwable $th) {
         }
 
+        $sliders = Slider::query()
+            ->where(['hide' => 0])
+            ->orderBy('rating', 'desc')
+            ->get();
+
         return view('pages.index', compact(
             'setting',
             'advs',
@@ -94,6 +100,7 @@ class IndexController extends Controller
             'news',
             'cities',
             'currencies',
+            'sliders'
         ));
     }
 }

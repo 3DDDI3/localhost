@@ -50,7 +50,7 @@
         <x-blocks.notification text="Вы подписались на рассылку" />
     </x-blocks.modal-window>
 
-    <x-blocks.modal-window id="chose-user" class="notification-modal" exit="false">
+    <x-blocks.modal-window id="chose-user" class="mailling-modal" title="Подписка на рассылку">
         <x-blocks.chosen-form />
     </x-blocks.modal-window>
 

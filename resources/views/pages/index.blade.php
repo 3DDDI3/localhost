@@ -2,7 +2,8 @@
 
 @section('content')
     <main>
-        <x-sliders.main-slider />
+
+        <x-sliders.main-slider :$sliders />
 
         <div id="search-tour" class="search-tours">
             <div class="search-tours__wrapper">

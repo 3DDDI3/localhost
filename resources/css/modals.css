@@ -606,6 +606,55 @@ textarea:focus {
     }
 }
 
+.mailling-modal {
+    width: 500px;
+
+    .mailling__button {
+        cursor: pointer;
+        height: 50px;
+        width: 50%;
+        background: linear-gradient(121.37deg,
+                #582f9a 32.87%,
+                #33145a 65.46%,
+                #33145a 81.58%);
+        font-family: "Inter", sans-serif;
+        letter-spacing: -0.02em;
+        font-size: 20px;
+        line-height: 24px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+    }
+}
+
+.mailling {
+
+    .mailling__fields {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+
+        .person__combobox {
+            padding: 17px 25px;
+            background-color: #f3f3f3;
+            box-sizing: border-box;
+            height: 60px;
+            font-family: "Inter", sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 20.57px;
+            letter-spacing: -0.02em;
+            color: #494949;
+
+            .combobox__list {
+                overflow-y: hidden;
+            }
+        }
+    }
+}
+
 @media (min-width: 805px) and (max-width: 840px) {
     .modal__window {}
 }
@@ -681,7 +730,8 @@ textarea:focus {
     .enter-modal,
     .feedback-modal,
     .reset-password-modal,
-    .reset-password-send-mail-modal {
+    .reset-password-send-mail-modal,
+    .mailling-modal {
         width: calc(100% - 30px) !important;
     }
 
@@ -726,6 +776,17 @@ textarea:focus {
 
     .enter {
         width: calc(100% - 50px);
+    }
+
+    .mailling__button {
+        width: auto !important;
+    }
+
+    .mailling-modal {
+        .modal__header {
+            width: 80% !important;
+            margin-bottom: unset !important;
+        }
     }
 }
 

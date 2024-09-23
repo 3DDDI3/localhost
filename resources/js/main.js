@@ -344,15 +344,16 @@ $(function () {
         type: 'loop',
         padding: '30em',
         perPage: 1,
+        pagination: true,
         breakpoints: {
             375: {
-                height: 462,
+                height: 300,
                 perPage: 1,
                 padding: 0,
                 type: 'slide',
             },
             425: {
-                height: 462,
+                height: 300,
                 perPage: 1,
                 padding: 0,
                 type: 'slide',
@@ -387,7 +388,7 @@ $(function () {
                 type: 'loop',
                 padding: 0,
             },
-            1780: {
+            1740: {
                 autoHeight: true,
                 perPage: 1,
                 type: 'loop',
@@ -402,10 +403,11 @@ $(function () {
         height: 779
     });
 
-    slider.sync(subSlider);
-
-    slider.mount();
-    subSlider.mount();
+    if (slider != undefined && subSlider != undefined) {
+        slider.sync(subSlider);
+        slider.mount();
+        subSlider.mount();
+    }
 
     if ($(".news__slider").length > 0) new Splide('.news__slider', {
         gap: 35,
@@ -857,7 +859,7 @@ $(function () {
         if (child == undefined || adults == undefined || nights == undefined || begDate == undefined)
             swal({
                 title: "Заполните обязательные поля",
-                timer: 2000,
+                // timer: 2000,
             });
         else $.ajax({
             type: "GET",
@@ -884,7 +886,7 @@ $(function () {
                 $(".tour-cost__value").text("Н/Д");
                 swal({
                     title: "Не удалось найти тур",
-                    timer: 2000,
+                    // timer: 2000,
                 });
             }
         });
@@ -903,13 +905,14 @@ $(function () {
         if (child == undefined || adults == undefined || nights == undefined || begDate == undefined)
             swal({
                 title: "Заполните обязательные поля",
-                timer: 2000,
+                // timer: 2000,
             });
         else {
-            if ($(".tour-cost__value").text() == "Н/Д") swal({
-                title: "Обновите стоимость тура",
-                timer: 2000,
-            });
+            if ($(".tour-cost__value").text() == "Н/Д")
+                swal({
+                    title: "Обновите стоимость тура",
+                    // timer: 2000,
+                });
             else window.open(`https://samo.mercury-europe.ru/bron_person?CATCLAIM=${id}&CURRENCY=1&TOWNFROMINC=${from}&STATEINC=${country}&GUEST=1`);
         }
     });
@@ -966,6 +969,12 @@ $(function () {
         else $(".modal-aggrees__checkbox").css("border-color", "#8D58E5");
     })
 
+    $(".modal__aggrees input[type='checkbox']").on("change", function () {
+        if ($(this).prop("checked"))
+            $(".modal-aggrees__checkbox").css("border-color", "#F3F3F3");
+        else $(".modal-aggrees__checkbox").css("border-color", "#8D58E5");
+    })
+
     $(".modal__window input").on("cut copy paste input", function () {
         $(this).css("border-color", "transparent");
     })
@@ -990,7 +999,7 @@ $(function () {
 
             swal({
                 title: "Заполните обязательные поля",
-                timer: 2000,
+                // timer: 2000,
             });
             return;
         }
@@ -1019,7 +1028,7 @@ $(function () {
                 swal({
                     icon: "error",
                     title: response.response.data.message,
-                    timer: 2000,
+                    // timer: 2000,
                 });
                 $(this).parents(".registration").find("input").val("");
             });
@@ -1046,7 +1055,7 @@ $(function () {
                     swal({
                         icon: "error",
                         title: response.response.data.message,
-                        timer: 2000,
+                        // timer: 2000,
                     });
                 });
         });
@@ -1071,14 +1080,14 @@ $(function () {
             dataType: "json",
             success: function (response) {
                 $("#notification-small .modal-notification__text").text(response.message);
-                $(this).parents(".modal-wrapper").hide(300);
-                $("#notification-small").show(300);
+                $(this).parents(".modal-wrapper").hide();
+                $("#notification-small").show();
             }.bind(this),
             error: function (response) {
                 swal({
                     icon: "error",
                     title: response.responseJSON.message,
-                    timer: 2000,
+                    // timer: 2000,
                 });
             }
         });
@@ -1110,7 +1119,7 @@ $(function () {
                 swal({
                     icon: "error",
                     title: error.responseJSON.message,
-                    timer: 2000,
+                    // timer: 2000,
                 });
             }
         });
@@ -1144,7 +1153,7 @@ $(function () {
             swal({
                 icon: 'error',
                 title: "Подтвердите свое согласие",
-                timer: 2000,
+                // timer: 2000,
             });
 
             return;
@@ -1163,8 +1172,8 @@ $(function () {
             success: function (response) {
                 console.log(response);
                 $("#notification-small .modal-notification__text").text(response.message);
-                $(this).parents(".modal-wrapper").hide(300);
-                $("#notification-small").show(300);
+                $(this).parents(".modal-wrapper").hide();
+                $("#notification-small").show();
             }.bind(this)
         });
     })
