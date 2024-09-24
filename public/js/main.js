@@ -5015,11 +5015,15 @@ $(function () {
     if ($(this).html().match(/Просмотреть\sвсе\s+типы/)) {
       $(this).html($(this).html().replace(/Просмотреть\sвсе\s+типы/, 'Скрыть'));
       $(this).find("svg").css("transform", "rotate(-90deg)");
-      $(".services-vacation-type__sublist").show(500);
+      $(this).parents(".services-vacation-type").find(".services-vacation-type__list").animate({
+        "max-height": "250px"
+      }, 1000);
     } else {
       $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все типы'));
       $(this).find("svg").css("transform", "rotate(90deg)");
-      $(".services-vacation-type__sublist").hide(300);
+      $(this).parents(".services-vacation-type").find(".services-vacation-type__list").animate({
+        "max-height": "128px"
+      }, 800);
     }
   });
   $(".mailling").on("submit", function (e) {

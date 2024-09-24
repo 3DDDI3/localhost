@@ -1212,7 +1212,6 @@ main {
 
             .services-vacation-type {
                 width: 274px;
-                height: 208px;
                 position: absolute;
                 top: 81px;
                 right: -111px;
@@ -1221,6 +1220,7 @@ main {
                 display: flex;
                 flex-direction: column;
                 row-gap: 24px;
+                z-index: 4;
 
                 .services-vacation-type__sublist {
                     display: flex;
@@ -1246,6 +1246,7 @@ main {
                         flex-direction: column;
                         max-height: 128px;
                         row-gap: 14px;
+                        overflow: hidden;
 
                         .services-vacation-type__item {
                             display: flex;
@@ -2693,7 +2694,6 @@ main {
                 .services-country-tour {
                     top: 145px;
                     left: 25px;
-                    height: 228px;
                     left: 0;
                     width: auto;
                     padding: 30px 25px 8px 25px;
@@ -2730,10 +2730,10 @@ main {
                 .services-vacation-type {
                     row-gap: 10px !important;
                     width: calc(100% - 60px);
-                    height: 228px;
                     left: 0;
                     top: 145px;
                     padding: 25px 30px 20px 30px;
+                    background-color: white;
 
                     .services-vacation-type__title {
                         font-family: "HelveticaNeueCyr", sans-serif;
@@ -3598,10 +3598,10 @@ main {
                 .services-country-tour {
                     top: 145px;
                     left: 25px;
-                    height: 228px;
                     width: calc(100% - 100px);
                     row-gap: 10px;
                     padding: 30px 25px 20px 25px;
+                    background-color: white;
 
                     .services-country-tour__info {
                         .services-country__list {
@@ -3637,10 +3637,10 @@ main {
                 .services-vacation-type {
                     row-gap: 10px !important;
                     width: calc(100% - 110px);
-                    height: 228px;
                     left: 25px;
                     top: 145px;
                     padding: 25px 30px 20px 30px;
+                    background-color: white;
 
                     .services-vacation-type__title {
                         font-family: "HelveticaNeueCyr", sans-serif;
@@ -4715,9 +4715,9 @@ main {
                     row-gap: 10px !important;
                     top: 145px;
                     left: 25px;
-                    height: 228px;
                     width: calc(100% - 100px);
                     padding: 30px 25px 20px 25px;
+                    background-color: white;
                 }
             }
 
@@ -4741,7 +4741,7 @@ main {
                 .services-vacation-type {
                     row-gap: 10px !important;
                     width: calc(100% - 110px);
-                    height: 228px;
+                    background-color: white;
                     left: 25px;
                     top: 145px;
                     padding: 25px 30px 20px 30px;
@@ -5755,7 +5755,7 @@ main {
                 .services-country-tour {
                     top: 145px;
                     left: 25px;
-                    height: 228px;
+                    background-color: white;
                     width: calc(100% - 100px);
                     padding: 30px 25px 20px 25px;
                 }
@@ -5780,7 +5780,7 @@ main {
 
                 .services-vacation-type {
                     width: calc(100% - 110px);
-                    height: 228px;
+                    background-color: white;
                     left: 25px;
                     top: 145px;
                     padding: 25px 30px 20px 30px;
@@ -6555,7 +6555,7 @@ main {
                 .services-country-tour {
                     top: 145px;
                     left: 25px;
-                    height: 228px;
+                    background-color: white;
                     width: calc(100% - 100px);
                     padding: 30px 25px 20px 25px;
                 }
