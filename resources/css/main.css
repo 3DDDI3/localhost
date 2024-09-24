@@ -765,6 +765,11 @@ input {
     }
 }
 
+.sliders .splide__pagination__page {
+    width: 15px;
+    height: 15px;
+}
+
 main {
     position: relative;
 
@@ -889,19 +894,20 @@ main {
                         width: 510px;
                         overflow-y: hidden;
                         display: flex;
-                        background-color: #f3f3f3;
                         height: 100%;
+                        column-gap: 3px;
                         box-sizing: border-box;
 
                         .search-tour__from {
                             flex-basis: 50%;
-                            border-right: 1px solid #c2c2c2;
                             padding: 9px 20px 11px 20px;
+                            background-color: #f3f3f3;
                         }
 
                         .search-tour__to {
                             flex-basis: 50%;
                             padding: 9px 20px 11px 20px;
+                            background-color: #f3f3f3;
                         }
                     }
 
@@ -934,13 +940,13 @@ main {
 
             .search-tour__dates-info {
                 width: 342px;
-                margin-left: 2px;
+                margin-left: 3px;
 
                 .search-tour-dates__wrapper {
                     display: flex;
                     position: relative;
                     height: 100%;
-                    background-color: #f3f3f3;
+                    column-gap: 3px;
 
                     label {
                         cursor: pointer;
@@ -950,7 +956,7 @@ main {
                         padding: 0 14px 0 22px;
                         flex-basis: 138px;
                         flex-shrink: 0;
-                        border-right: 1px solid #c2c2c2;
+                        background-color: #f3f3f3;
 
                         .search-tour-dates__title {
                             font-family: "Inter", sans-serif;
@@ -981,6 +987,8 @@ main {
                         flex-direction: column;
                         justify-content: center;
                         padding: 0 20px;
+                        background-color: #f3f3f3;
+                        flex-grow: 1;
 
                         .search-tour-nights__title {
                             color: #494949;
@@ -1055,7 +1063,6 @@ main {
 
             .services-country-tour {
                 width: 251px;
-                height: 207px;
                 display: flex;
                 flex-direction: column;
                 row-gap: 23px;
@@ -1065,6 +1072,7 @@ main {
                 right: 0;
                 background: white;
                 top: 81px;
+                z-index: 5;
 
                 .services-country-tour__title {
                     font-family: "HelveticaNeueCyr", sans-serif;
@@ -1075,13 +1083,13 @@ main {
                 }
 
                 .services-country-tour__info {
-                    height: 128px;
+                    height: auto;
 
                     .services-country__list {
                         display: flex;
                         flex-wrap: wrap;
                         flex-direction: column;
-                        height: 100%;
+                        height: 128px;
                         gap: 15px 41px;
 
                         .services-country__item {
@@ -1115,13 +1123,23 @@ main {
                 }
 
                 .service_country__sublist {
-                    padding-top: 15px;
                     display: flex;
                     flex-direction: column;
                     row-gap: 15px;
+                    max-height: 128px;
+                    overflow: hidden;
+
+                    .service_country-sublist__row {
+                        display: flex;
+                        column-gap: 20px;
+                    }
 
                     .service_country-sublist__item {
                         text-decoration: unset;
+                        display: flex;
+                        column-gap: 5px;
+                        flex-shrink: 0;
+                        flex-basis: 45%;
 
                         .service_country-sublist__name {
                             font-family: "Inter", sans-serif;
@@ -1130,6 +1148,10 @@ main {
                             line-height: 20.57px;
                             letter-spacing: -0.01em;
                             color: #342635;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            width: 65%;
                         }
 
                         .service_country-sublist__counter {
@@ -1140,22 +1162,6 @@ main {
                             line-height: 20.57px;
                             letter-spacing: -0.01em;
                             opacity: 0.3;
-                        }
-                    }
-                }
-
-                .service_country__sublist_hidden {
-                    line-height: 0 !important;
-
-                    .service_country-sublist__item {
-                        line-height: 0 !important;
-
-                        .service_country-sublist__name {
-                            line-height: 0 !important;
-                        }
-
-                        .service_country-sublist__counter {
-                            line-height: 0 !important;
                         }
                     }
                 }
@@ -1216,6 +1222,12 @@ main {
                 flex-direction: column;
                 row-gap: 24px;
 
+                .services-vacation-type__sublist {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+                }
+
                 .services-vacation-type__title {
                     width: 262px;
                     color: #342635;
@@ -1227,11 +1239,12 @@ main {
                 }
 
                 .services-vacation-type__info {
-                    height: 128px;
+                    height: auto;
 
                     .services-vacation-type__list {
                         display: flex;
                         flex-direction: column;
+                        max-height: 128px;
                         row-gap: 14px;
 
                         .services-vacation-type__item {
@@ -1281,6 +1294,30 @@ main {
                 }
 
                 .services-country-tour__all-button:hover {
+                    fill: #342635;
+                    color: #342635;
+                }
+
+                .services-type-tour__all-button {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 2px;
+                    color: #4509a8;
+                    font-family: "Inter", sans-serif;
+                    font-size: 17px;
+                    font-weight: 600;
+                    line-height: 20.57px;
+                    letter-spacing: -0.02em;
+                    padding: unset;
+                    cursor: pointer;
+                    fill: #4509a8;
+
+                    svg {
+                        transform: rotate(90deg);
+                    }
+                }
+
+                .services-type-tour__all-button:hover {
                     fill: #342635;
                     color: #342635;
                 }
@@ -2280,6 +2317,11 @@ main {
 
 @media (min-width: 320px) and (max-width: 374px) {
 
+    .error-message {
+        width: calc(100% - 50px);
+        font-size: 26px !important;
+    }
+
     body,
     html {
         width: 100%;
@@ -2336,7 +2378,7 @@ main {
     .header {
         height: 67px;
         justify-content: center;
-        column-gap: 18px;
+        column-gap: 10px;
 
         .header-actions-logo {
             margin-right: unset;
@@ -2398,7 +2440,7 @@ main {
 
         .hamburger {
             display: flex;
-            padding: 0 15px 0 0;
+            padding: 0 !important;
         }
     }
 
@@ -2629,6 +2671,18 @@ main {
                     height: 222px;
                 }
 
+                .services-country-tour {
+                    row-gap: 10px !important;
+                    padding: 30px 25px 20px 25px !important;
+                }
+
+                .service_country__sublist {
+                    .service_country-sublist__row {
+                        flex-direction: column;
+                        row-gap: 15px;
+                    }
+                }
+
                 .services-country-tour__blurred-block {
                     top: 120px;
                     left: 0;
@@ -2674,11 +2728,12 @@ main {
                 }
 
                 .services-vacation-type {
+                    row-gap: 10px !important;
                     width: calc(100% - 60px);
                     height: 228px;
                     left: 0;
                     top: 145px;
-                    padding: 25px 30px 8px 30px;
+                    padding: 25px 30px 20px 30px;
 
                     .services-vacation-type__title {
                         font-family: "HelveticaNeueCyr", sans-serif;
@@ -3181,6 +3236,11 @@ main {
 
 @media (min-width: 375px) and (max-width: 424px) {
 
+    .error-message {
+        width: calc(100% - 50px);
+        font-size: 30px !important;
+    }
+
     body,
     html {
         width: 100%;
@@ -3540,8 +3600,22 @@ main {
                     left: 25px;
                     height: 228px;
                     width: calc(100% - 100px);
-                    padding: 30px 25px 8px 25px;
+                    row-gap: 10px;
+                    padding: 30px 25px 20px 25px;
+
+                    .services-country-tour__info {
+                        .services-country__list {
+                            gap: 15px 35px !important;
+                        }
+
+                        .service_country__sublist {
+                            .service_country-sublist__row {
+                                column-gap: 35px !important;
+                            }
+                        }
+                    }
                 }
+
             }
 
             .services__vacation-type {
@@ -3561,11 +3635,12 @@ main {
                 }
 
                 .services-vacation-type {
+                    row-gap: 10px !important;
                     width: calc(100% - 110px);
                     height: 228px;
                     left: 25px;
                     top: 145px;
-                    padding: 25px 30px 8px 30px;
+                    padding: 25px 30px 20px 30px;
 
                     .services-vacation-type__title {
                         font-family: "HelveticaNeueCyr", sans-serif;
@@ -4058,6 +4133,7 @@ main {
 }
 
 @media (min-width: 320px) and (max-width: 424px) {
+
     .header-messengers__phone {
         display: none !important;
     }
@@ -4210,6 +4286,11 @@ main {
 } */
 
 @media (min-width: 425px) and (max-width: 499px) {
+    .error-message {
+        width: calc(100% - 50px);
+        font-size: 35px !important;
+    }
+
     .box {
         height: 42px;
         justify-content: flex-end;
@@ -4245,6 +4326,11 @@ main {
 }
 
 @media (min-width: 500px) and (max-width: 767px) {
+    .error-message {
+        width: calc(100% - 50px);
+        font-size: 45px !important;
+    }
+
     .header {
         align-items: center;
     }
@@ -4626,11 +4712,12 @@ main {
                 }
 
                 .services-country-tour {
+                    row-gap: 10px !important;
                     top: 145px;
                     left: 25px;
                     height: 228px;
                     width: calc(100% - 100px);
-                    padding: 30px 25px 8px 25px;
+                    padding: 30px 25px 20px 25px;
                 }
             }
 
@@ -4652,11 +4739,12 @@ main {
                 }
 
                 .services-vacation-type {
+                    row-gap: 10px !important;
                     width: calc(100% - 110px);
                     height: 228px;
                     left: 25px;
                     top: 145px;
-                    padding: 25px 30px 8px 30px;
+                    padding: 25px 30px 20px 30px;
 
                     .services-vacation-type__title {
                         font-family: "HelveticaNeueCyr", sans-serif;
@@ -5669,7 +5757,7 @@ main {
                     left: 25px;
                     height: 228px;
                     width: calc(100% - 100px);
-                    padding: 30px 25px 8px 25px;
+                    padding: 30px 25px 20px 25px;
                 }
             }
 
@@ -5695,7 +5783,7 @@ main {
                     height: 228px;
                     left: 25px;
                     top: 145px;
-                    padding: 25px 30px 8px 30px;
+                    padding: 25px 30px 20px 30px;
 
                     .services-vacation-type__title {
                         font-family: "HelveticaNeueCyr", sans-serif;
@@ -6469,7 +6557,7 @@ main {
                     left: 25px;
                     height: 228px;
                     width: calc(100% - 100px);
-                    padding: 30px 25px 8px 25px;
+                    padding: 30px 25px 20px 25px;
                 }
             }
 
@@ -6495,7 +6583,7 @@ main {
                     height: 228px;
                     left: 25px;
                     top: 145px;
-                    padding: 25px 30px 8px 30px;
+                    padding: 25px 30px 20px 30px;
 
                     .services-vacation-type__info {
                         .services-vacation-type__list {

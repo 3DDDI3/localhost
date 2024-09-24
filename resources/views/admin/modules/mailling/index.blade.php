@@ -18,9 +18,11 @@
         <thead>
             <tr>
                 <th>№</th>
-                <th>Email</th>
+                <th>Имя</th>
                 <th>Тип пользователя</th>
-                <th>Дата:</th>
+                <th>Город</th>
+                <th>Email</th>
+                <th>Дата</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,8 +32,10 @@
             @foreach ($objects as $object)
                 <tr>
                     <td>{{ $object->id }}</td>
+                    <td>{{ $object->name }}</td>
+                    <td>{{ $object->type }}</td>
+                    <td>{{ $object->city }}</td>
                     <td>{{ $object->email }}</td>
-                    <td>{{ $object->isAgent == 1 ? 'Агент' : 'Турист' }}</td>
                     <td>{{ $object->created_at }}</td>
                     <td><a href="?delete={{ $object->id }}" class="admin_delete" title="Удалить"></a></td>
                 </tr>

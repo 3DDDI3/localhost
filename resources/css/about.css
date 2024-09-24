@@ -243,6 +243,7 @@ main {
         }
     }
 }
+
 @media (max-width: 1360px) {
     main {
         width: calc(100% - 30px);
@@ -312,7 +313,7 @@ main {
             }
 
             .company-experts-table-row {
-                padding: 0 !important;
+                /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;
@@ -380,7 +381,7 @@ main {
             }
 
             .company-experts-table-row {
-                padding: 0 !important;
+                /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;
@@ -452,7 +453,7 @@ main {
             }
 
             .company-experts-table-row {
-                padding: 0 !important;
+                /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;
@@ -525,7 +526,7 @@ main {
             }
 
             .company-experts-table-row {
-                padding: 0 !important;
+                /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;

@@ -121,11 +121,12 @@ main {
 
         .agency-documents__list {
             display: flex;
-            flex-direction: column;
+        flex-direction: column;
             row-gap: 18px;
 
             .agency-document {
                 max-width: 965px;
+                align-items: center;
                 display: flex;
                 justify-content: space-between;
                 min-height: 36px;
@@ -136,6 +137,7 @@ main {
                 .agency-document-info {
                     display: flex;
                     column-gap: 25px;
+                    align-items: center;
 
                     .agency-document__icon {
                         padding-top: 5px;
@@ -179,6 +181,7 @@ main {
 
             .agency-headding__title {
                 font-size: 40px;
+                line-height: .95em !important;
             }
         }
 
@@ -220,6 +223,7 @@ main {
 
             .agency-headding__title {
                 font-size: 40px;
+                line-height: 0.95em !important;
             }
         }
 
@@ -261,6 +265,7 @@ main {
 
             .agency-headding__title {
                 font-size: 40px;
+                line-height: 0.95em !important;
             }
         }
 

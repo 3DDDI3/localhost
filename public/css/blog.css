@@ -80,15 +80,6 @@ main {
                     color: #342635;
                 }
             }
-
-            .blog__card:hover {
-                transform: scale(1.1);
-
-                .blog__text,
-                .blog__title {
-                    color: #582F9A;
-                }
-            }
         }
     }
 
@@ -182,6 +173,17 @@ main {
                     color: #342635;
                 }
             }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .blog__card:hover {
+        transform: scale(1.1);
+
+        .blog__text,
+        .blog__title {
+            color: #582F9A;
         }
     }
 }

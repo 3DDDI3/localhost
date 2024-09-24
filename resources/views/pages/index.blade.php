@@ -164,7 +164,7 @@
                 <div class="services-country-tour">
                     <h3 class="services-country-tour__title">Туры по стране</h3>
                     <x-blocks.tour-country :$countries />
-                    <button data-href="/tours?country_id=*" class="services-country-tour__all-button">Просмотреть все
+                    <button class="services-country-tour__all-button">Просмотреть все
                         страны
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +189,7 @@
                 <div class="services-vacation-type">
                     <h3 class="services-vacation-type__title">Тур по типу отдыха</h3>
                     <x-blocks.service-vacation-type :$types />
-                    <button data-href="tours?type_id=*" class="services-country-tour__all-button">
+                    <button class="services-type-tour__all-button">
                         Просмотреть все типы
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">

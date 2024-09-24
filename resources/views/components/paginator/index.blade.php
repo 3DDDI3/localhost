@@ -1,12 +1,39 @@
 @php
-    $inputs = ['country_id', 'type_id'];
+    $inputs = ['country_id', 'type_id', 'search'];
 @endphp
+
+@php
+    $prevUrl = null;
+    $nextUrl = null;
+
+    if (!empty($paginator->previousPageUrl())) {
+        $query = '';
+        foreach (request()->input() as $key => $input) {
+            if ($key != 'page') {
+                $query .= "&$key=$input";
+            }
+        }
+        $prevUrl = $paginator->previousPageUrl() . $query;
+    }
+
+    if (!empty($paginator->nextPageUrl())) {
+        $query = '';
+        foreach (request()->input() as $key => $input) {
+            if ($key != 'page') {
+                $query .= "&$key=$input";
+            }
+        }
+        $nextUrl = $paginator->nextPageUrl() . $query;
+    }
+@endphp
+
+
 @if ($paginator->hasPages())
     <ul class="pagination menu">
         {{-- Previous Page Link --}}
         @if (!$paginator->onFirstPage())
             <li class="pagination__item menu__item">
-                <a href="{{ $paginator->previousPageUrl() }}" class="pagination__link pagination__link_active menu__link">
+                <a href="{{ $prevUrl }}" class="pagination__link pagination__link_active menu__link">
                     <svg style="transform: rotate(180deg)" width="11" height="18" viewBox="0 0 11 18" fill="inherit"
                         xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_85_1044)">
@@ -60,7 +87,7 @@
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
             <li class="pagination__item menu__item">
-                <a href="{{ $paginator->nextPageUrl() }}" class="pagination__link pagination__link_active menu__link">
+                <a href="{{ $nextUrl }}" class="pagination__link pagination__link_active menu__link">
                     <svg width="11" height="18" viewBox="0 0 11 18" fill="inherit"
                         xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_85_1044)">

@@ -10,7 +10,8 @@
     @endphp
     <main>
         <div class="error-message">
-            {{ $exception->getMessage() }}
+            {{-- {{ $exception->getMessage() }} --}}
+            Что-то пошло не так
         </div>
     </main>
 @endsection

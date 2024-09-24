@@ -42,7 +42,9 @@ Route::withoutMiddleware('api')
                 else {
                         Mailler::create([
                                 'email' => $request->email,
-                                'isAgent' => $request->isAgent,
+                                'name' => $request->name,
+                                'type' => $request->agent,
+                                'city' => $request->city,
                         ]);
                         return response()->json(['message' => 'Вы подписались на рассылку!'], 200);
                 }

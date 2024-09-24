@@ -4,7 +4,7 @@
             <div class="combobox__header">
                 <div class="combobox-header-block">
                     <span class="combobox-header__title">Кто вы?</span>
-                    <span class="combobox-header__subtitle combobox-header__subtitle_invisible"></span>
+                    <span class="combobox-header__subtitle combobox-header__subtitle_invisible">Кто вы?</span>
                 </div>
                 <svg class="combobox-header__icon" width="16" height="16" viewBox="0 0 16 16" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -26,8 +26,10 @@
                 <span data-id="2" class="combobox__item">Туристическое агентство</span>
             </div>
         </div>
-        <input type="text" name="name" class="mailling__text modal-form__text input__text" placeholder="Ваше имя">
-        <input type="text" name="city" class="mailling__text modal-form__text input__text" placeholder="Город">
+        <input type="text" required name="name" class="mailling__text modal-form__text input__text"
+            placeholder="Ваше имя">
+        <input type="text" required name="city" class="mailling__text modal-form__text input__text"
+            placeholder="Город">
     </div>
     <div class="modal__aggrees">
         <label for="law-aggree2">

@@ -18,7 +18,7 @@
                 @foreach ($results as $result)
                     @switch(get_class($result))
                         @case('App\Models\Lending\Tour')
-                            <x-templates.blog url="tours/{{ $result->url }}" img="{{ $result->image }}" alt=""
+                            <x-templates.blog url="tours/{{ $result->url }}" img="{{ $result->preview_image }}" alt=""
                                 date="{{ $result->created_at }}" title="{{ $result->title }}" text="{{ $result->preview_text }}" />
                         @break
 
@@ -29,7 +29,7 @@
                         @break
 
                         @case('App\Models\Lending\News')
-                            <x-templates.blog url="news/{{ $result->url }}" img="{{ $result->image }}" alt=""
+                            <x-templates.blog url="news/{{ $result->url }}" img="{{ $result->preview_image }}" alt=""
                                 date="{{ $result->created_at }}" title="{{ $result->title }}"
                                 text="{{ $result->preview_text }}" />
                         @break

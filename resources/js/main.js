@@ -763,28 +763,7 @@ $(function () {
 
     $(".footer__notification").on("submit", function (e) {
         e.preventDefault();
-
         $("#chose-user").show(300);
-    });
-
-    $(".modal__chosen-form label input[name='user']").on("change", function () {
-        user = $(this).attr("id") == "agent" ? 1 : 0;
-
-        $.ajax({
-            type: "POST",
-            url: "/api/mailler/create",
-            data: {
-                email: $($(".footer__notification input[type='email']")[1]).val(),
-                isAgent: user,
-            },
-            dataType: "json",
-            success: function (response) {
-                $("#notification-small .modal-notification__text").text(response.message);
-                $(this).parents(".modal-wrapper").hide(300);
-                $("#notification-small").show(300);
-                $(this).prop("checked", false);
-            }.bind(this)
-        });
     });
 
     $("input[type='search']").on("keydown", function (e) {
@@ -858,6 +837,7 @@ $(function () {
 
         if (child == undefined || adults == undefined || nights == undefined || begDate == undefined)
             swal({
+                icon: "error",
                 title: "Заполните обязательные поля",
                 // timer: 2000,
             });
@@ -885,6 +865,7 @@ $(function () {
             error: function (xhr, textStatus, errorThrown) {
                 $(".tour-cost__value").text("Н/Д");
                 swal({
+                    icon: "error",
                     title: "Не удалось найти тур",
                     // timer: 2000,
                 });
@@ -904,6 +885,7 @@ $(function () {
 
         if (child == undefined || adults == undefined || nights == undefined || begDate == undefined)
             swal({
+                icon: "error",
                 title: "Заполните обязательные поля",
                 // timer: 2000,
             });
@@ -998,6 +980,7 @@ $(function () {
             !$("#law-aggree").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
 
             swal({
+                icon: "error",
                 title: "Заполните обязательные поля",
                 // timer: 2000,
             });
@@ -1188,6 +1171,73 @@ $(function () {
         e.preventDefault();
         if ($(this).data("url") != "")
             window.location.href = `/api/files/download/${$(this).data("url")}`;
+    });
+
+    $(".services-country-tour__all-button").on("click", function () {
+        if ($(this).html().match(/Просмотреть\sвсе\s+страны/)) {
+            $(this).html($(this).html().replace(/Просмотреть\sвсе\s+страны/, 'Скрыть'));
+            $(this).find("svg").css("transform", "rotate(-90deg)");
+            $(this).parents(".services-country-tour").find(".service_country__sublist").animate({ "max-height": "250px" }, 1000);
+        }
+        else {
+            $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все страны'));
+            $(this).find("svg").css("transform", "rotate(90deg)");
+            $(this).parents(".services-country-tour").find(".service_country__sublist").animate({ "max-height": "128px" }, 800);
+        }
+    });
+
+    $(".services-type-tour__all-button").on("click", function () {
+        if ($(this).html().match(/Просмотреть\sвсе\s+типы/)) {
+            $(this).html($(this).html().replace(/Просмотреть\sвсе\s+типы/, 'Скрыть'));
+            $(this).find("svg").css("transform", "rotate(-90deg)");
+            $(".services-vacation-type__sublist").show(500);
+        }
+        else {
+            $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все типы'));
+            $(this).find("svg").css("transform", "rotate(90deg)");
+            $(".services-vacation-type__sublist").hide(300);
+        }
+    });
+
+    $(".mailling").on("submit", function (e) {
+        e.preventDefault();
+
+        let name = $(this).find("input[name='name']"),
+            city = $(this).find("input[name='city']"),
+            agent = $(this).find(".person__combobox"),
+            email = $($(".footer__notification input[type='email']")[1]).val();
+
+        if (!$("#law-aggree2").prop('checked') || agent.find(".combobox-header__subtitle").text() == "Кто вы?") {
+            !$("#law-aggree2").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
+            agent.find(".combobox-header__subtitle").text() == "Кто вы?" ? agent.css("border-right-color", "red") : null;
+
+            swal({
+                icon: 'error',
+                title: "Заполните обязательные поля",
+                // timer: 2000,
+            });
+
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api/mailler/create",
+            data: {
+                name: name.val(),
+                city: city.val(),
+                email: email,
+                agent: agent.find(".combobox-header__subtitle").text()
+            },
+            dataType: "json",
+            success: function (response) {
+                $("#notification-small .modal-notification__text").text(response.message);
+                $(this).parents(".modal-wrapper").hide(300);
+                $("#notification-small").show(300);
+                $(this).prop("checked", false);
+            }.bind(this)
+        });
+
     });
 
 });

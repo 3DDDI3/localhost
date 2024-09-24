@@ -156,7 +156,7 @@
                     @endforeach
                 </div>
                 <form class="footer__notification">
-                    <input type="email" name="email" placeholder="E-mail">
+                    <input type="email" required name="email" placeholder="E-mail">
                     <button type="submit">Подписаться</button>
                 </form>
             </div>

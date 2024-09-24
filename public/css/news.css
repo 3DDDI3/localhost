@@ -52,13 +52,15 @@ main {
                 transition: color .3s linear;
             }
         }
+    }
+}
 
-        .news__card:hover {
-            transform: scale(1.1);
+@media (hover: hover) {
+    .news__card:hover {
+        transform: scale(1.1);
 
-            .news__text {
-                color: #582F9A;
-            }
+        .news__text {
+            color: #582F9A;
         }
     }
 }
