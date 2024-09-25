@@ -1155,7 +1155,7 @@ input {
     display: flex;
     border-radius: unset;
     background-color: transparent;
-    border: 1px solid white;
+    border: 3px solid white;
     opacity: unset;
 
     svg {
@@ -1178,7 +1178,7 @@ input {
     display: flex;
     border-radius: unset;
     background-color: transparent;
-    border: 1px solid white;
+    border: 3px solid white;
     opacity: unset;
 
     svg {

@@ -15,6 +15,8 @@ class SamotourTour extends Model
         'id_tour',
         'id_city',
         'id_country',
-        'name',
+        'tour',
+        'country',
+        'city'
     ];
 }

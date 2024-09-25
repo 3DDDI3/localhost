@@ -414,18 +414,97 @@ textarea:focus {
 }
 
 .feedback-modal {
-    width: 883px;
+    width: 670px;
+    height: 75vh;
 
     .feedback {
+
         .feedback__fields {
             display: flex;
             flex-direction: column;
             row-gap: 20px;
+            height: 50vh;
+            overflow-y: scroll;
+
+            .feedback__row {
+                display: flex;
+                flex-direction: column;
+                row-gap: 14px;
+
+                .feedback-row__title {
+                    font-family: "Inter", sans-serif;
+                    font-size: 16px;
+                    font-weight: 300;
+                    line-height: 22.4px;
+                    letter-spacing: -0.02em;
+                    color: #342635;
+                }
+
+                .combobox {
+                    width: calc(50% - 10px);
+                    background-color: #f3f3f3;
+                    padding: 0 25px;
+                    height: 50px;
+                    border-right: 5px solid transparent;
+                    box-sizing: border-box;
+                }
+
+                .feedback__datas {
+                    width: calc(50% - 10px);
+                    background-color: #f3f3f3;
+                    height: 50px;
+                    position: relative;
+                    border-right: 5px solid transparent;
+                    box-sizing: border-box;
+
+                    input.search-tour-dates__datapicker {
+                        position: absolute;
+                        bottom: 0;
+                        width: 0;
+                        height: 0;
+                    }
+
+                    .search-tour__dates {
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 2px;
+                        padding: 0 25px;
+                        justify-content: center;
+                        height: 100%;
+
+                        .search-tour-dates__title {
+                            font-family: "Inter", sans-serif;
+                            letter-spacing: -0.03em;
+                            font-size: 13px;
+                            color: #494949;
+                            height: 15px;
+                            overflow: hidden;
+                        }
+
+                        .search-tour-dates__subtitle {
+                            letter-spacing: -0.02em;
+                            font-family: "Inter", sans-serif;
+                            font-weight: 400;
+                            font-size: 18px;
+                            color: black;
+                            overflow-y: hidden;
+
+                        }
+                    }
+                }
+            }
         }
 
         .feedback__columns {
             display: flex;
-            column-gap: 20px;
+            gap: 15px 20px;
+            flex-wrap: wrap;
+            width: calc(100% - 10px);
+
+            input {
+                width: calc(50% - 10px);
+                height: 50px;
+            }
         }
 
         .feedback__button {
@@ -458,6 +537,10 @@ textarea:focus {
             .modal-aggrees__description {
                 display: flex;
                 column-gap: 11px;
+            }
+
+            button {
+                cursor: pointer;
             }
         }
     }
@@ -657,11 +740,37 @@ textarea:focus {
     }
 }
 
+@media (min-width: 320px) and (max-width: 650px) {
+    .feedback-modal {
+        .feedback {
+            .feedback__columns {
+                input {
+                    width: calc(100% - 10px) !important;
+                }
+            }
+
+            .feedback__datas,
+            .feedback__from,
+            .feedback__to {
+                width: calc(100% - 10px) !important;
+            }
+
+            textarea {
+                width: calc(100% - 10px) !important;
+            }
+        }
+    }
+}
+
 @media (min-width: 805px) and (max-width: 840px) {
     .modal__window {}
 }
 
-@media (min-width: 730px) and (max-width: 804px) {
+@media (min-width: 805px) and (max-width: 900px) {
+    .feedback-modal {
+        padding: 35px 80px 80px 80px !important;
+        width: calc(100% - 200px) !important;
+    }
 
     .modal-header__title,
     .modal-header__subtitle {
@@ -688,8 +797,13 @@ textarea:focus {
 
 @media (min-width: 320px) and (max-width: 804px) {
 
-    .registration-modal,
     .feedback-modal {
+        height: 95vh !important;
+        width: calc(100% - 50px);
+        padding: 35px 80px 80px 80px !important;
+    }
+
+    .registration-modal {
         width: calc(100% - 30px) !important;
     }
 
@@ -701,7 +815,6 @@ textarea:focus {
     }
 
     .modal__window {
-        height: auto !important;
         box-sizing: border-box;
 
         .modal__form {
@@ -724,6 +837,14 @@ textarea:focus {
 @media (min-width: 320px) and (max-width: 350px) {
     .modal-header__exit {
         right: 20px !important;
+    }
+}
+
+@media (min-width: 731px) and (max-width: 804px) {
+
+    .modal-header__title,
+    .modal-header__subtitle {
+        font-size: 40px !important;
     }
 }
 

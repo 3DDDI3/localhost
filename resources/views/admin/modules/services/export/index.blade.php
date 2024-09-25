@@ -19,7 +19,8 @@
                 background-color:#212121;
                 color: #ffffff">
             <p style="flex-basis: 10%;">ID</p>
-            <p style="flex-grow: 1">Тур</p>
+            <p style="flex-basis: 45%">Тур</p>
+            <p style="flex-basis: 45%">Страна</p>
         </div>
         <style>
             .list_item:not(:last-child) {
@@ -32,9 +33,13 @@
                     {{-- <h4>{{ $object->id }}</h4> --}}
                     {{ $object->id }}
                 </div>
-                <div class="list_item-info" style="flex-grow: 1">
+                <div class="list_item-info" style="flex-basis: 45%">
                     {{-- <h4>{{ $object->id }}</h4> --}}
-                    {{ $object->name }}
+                    {{ $object->tour }}
+                </div>
+                <div class="list_item-info" style="flex-basis: 45%">
+                    {{-- <h4>{{ $object->id }}</h4> --}}
+                    {{ $object->country }}
                 </div>
                 {{-- <div class="list_item-actions">
                         @include('admin.includes.sortable.rating')

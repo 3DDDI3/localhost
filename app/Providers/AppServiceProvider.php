@@ -11,6 +11,7 @@ use App\Models\Constructor\ConstructorProducts;
 use App\Models\Lending\Page;
 use App\Models\Page\PageSection;
 use App\Models\SEO;
+use App\Models\Services\SamotourTour;
 use App\Models\Setting;
 use App\Models\Tests\TestsQuestions;
 use App\Services\Cart\Cart;
@@ -24,6 +25,7 @@ use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -78,11 +80,25 @@ class AppServiceProvider extends ServiceProvider
 
         $pages = Page::all();
 
+        $counties = DB::table('samotour_tours')
+            ->select('country', 'id_country')
+            ->distinct()
+            ->orderBy('country')
+            ->get();
+
+        $cities =  DB::table('samotour_tours')
+            ->select('city', 'id_city')
+            ->distinct()
+            ->orderBy('city')
+            ->get();
+
         // View::composer('includes.head', fn($view) => $view->with(['seo' => $seo]));
         View::composer('layouts.default', fn($view) => $view->with([
             'setting' => $setting,
             'seo' => $seo,
             'pages' => $pages,
+            'cities' => $cities,
+            'countries' => $counties,
         ]));
     }
 }

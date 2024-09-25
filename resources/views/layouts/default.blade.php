@@ -63,10 +63,9 @@
         <x-blocks.reset-password />
     </x-blocks.modal-window>
 
-
     <x-blocks.modal-window id="feedback" class="feedback-modal" title="Подберем лучший тур"
         subtitle="по вашим параметрам">
-        <x-blocks.feedback />
+        <x-blocks.feedback :cities="$cities" :countries="$countries" />
     </x-blocks.modal-window>
 
 

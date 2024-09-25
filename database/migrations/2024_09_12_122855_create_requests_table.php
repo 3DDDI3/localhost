@@ -18,7 +18,13 @@ return new class extends Migration
             $table->string('name', 256)->nullable();
             $table->string('phone', 30)->nullable();
             $table->string('email', 256)->nullable();
-            $table->text('text')->nullable();
+            $table->string('range', 50)->comment('диапазон даты вылета')->nullable();
+            $table->string('from', 500)->nullable();
+            $table->string('to', 500)->nullable();
+            $table->integer('nights')->nullable();
+            $table->decimal('budget')->nullable();
+            $table->integer('tourist_count')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
         });

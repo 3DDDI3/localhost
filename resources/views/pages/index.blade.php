@@ -56,8 +56,8 @@
                                 </div>
                                 <div class="combobox__list combobox__list_invisible">
                                     @foreach ($cities as $city)
-                                        <span data-id="{{ $city->id }}" class="combobox__item">
-                                            {{ $city->name }}
+                                        <span data-id="{{ $city->id_city }}" class="combobox__item">
+                                            {{ $city->city }}
                                         </span>
                                     @endforeach
                                 </div>
@@ -93,7 +93,8 @@
                                 <label for="datapicker">
                                     <div class="search-tour__dates">
                                         <span class="search-tour-dates__title">Дата вылета</span>
-                                        <span class="search-tour-dates__subtitle">02.20 - 02.04</span>
+                                        <span class="search-tour-dates__subtitle">{{ date('d.m') }} -
+                                            {{ date('d.m') }}</span>
                                     </div>
                                     <input id="datapicker" class="search-tour-dates__datapicker" type="text"
                                         name="datefilter" value="" />

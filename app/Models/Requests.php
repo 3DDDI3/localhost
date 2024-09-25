@@ -14,7 +14,13 @@ class Requests extends Model
         'name',
         'phone',
         'email',
-        'text',
+        'range',
+        'from',
+        'to',
+        'nights',
+        'budget',
+        'tourist_count',
+        'description',
     ];
 
     protected function createdAt(): Attribute

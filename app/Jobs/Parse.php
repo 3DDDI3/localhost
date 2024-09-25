@@ -14,6 +14,9 @@ class Parse implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $samotour_url;
+    private $samotour_token;
+
     /**
      * Create a new job instance.
      *
@@ -21,7 +24,8 @@ class Parse implements ShouldQueue
      */
     public function __construct()
     {
-        //
+        $this->samotour_url = config('samotour.samotour_api_url');
+        $this->samotour_token = config('samotour.samotour_api_token');
     }
 
     /**
@@ -33,35 +37,40 @@ class Parse implements ShouldQueue
     {
         try {
             $client = new Client(['verify' => false]);
-            $citiesResult = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_TOWNFROMS');
+
+            $citiesResult = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_TOWNFROMS");
 
             foreach (json_decode($citiesResult->getBody()->getContents())->SearchTour_TOWNFROMS as $city) {
-                $countriesResult = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_STATES&TOWNFROMINC=' . $city->id);
+                $countriesResult = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$city->id");
 
                 foreach (json_decode($countriesResult->getBody()->getContents())->SearchTour_STATES as $country) {
-                    $tourResult = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=SearchTour_TOURS&TOWNFROMINC=' . $city->id . '&STATEINC=' . $country->id);
+                    $tourResult = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_TOURS&TOWNFROMINC=$city->id&STATEINC=$country->id");
 
                     foreach (json_decode($tourResult->getBody()->getContents())->SearchTour_TOURS as $tour) {
-                        SamotourTour::query()->where(['id_tour' => $tour->id, 'name' => $tour->name])->count() == 0
+                        SamotourTour::query()->where(['id_tour' => $tour->id, 'tour' => $tour->name])->count() == 0
                             ? SamotourTour::create([
                                 'id_tour' => $tour->id,
+                                'tour' => $tour->name,
                                 'id_city' => $city->id,
+                                'city' => $city->name,
                                 'id_country' => $country->id,
-                                'name' => $tour->name
+                                'country' => $country->name,
                             ])
                             : SamotourTour::query()
                             ->where([
                                 'id_tour' => $tour->id,
                                 'id_city' => $city->id,
                                 'id_country' => $country->id,
-                                'name' => $tour->name
+                                'tour' => $tour->name
                             ])
                             ->first()
                             ->fill([
                                 'id_tour' => $tour->id,
+                                'tour' => $tour->name,
                                 'id_city' => $city->id,
+                                'city' => $city->name,
                                 'id_country' => $country->id,
-                                'name' => $tour->name
+                                'country' => $country->name,
                             ])->save();
                     }
                 }

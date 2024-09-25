@@ -18,10 +18,8 @@
         <thead>
             <tr>
                 <th>№</th>
-                <th>Дата:</th>
-                <th>Имя:</th>
-                <th>Телефон:</th>
-                <th>Email:</th>
+                <th>Информация о клиенте:</th>
+                <th>Информация о туре:</th>
                 <th>Сообщение:</th>
                 <th></th>
             </tr>
@@ -32,11 +30,32 @@
             @foreach ($objects as $object)
                 <tr>
                     <td>{{ $object->id }}</td>
-                    <td>{{ $object->created_at }}</td>
-                    <td>{{ $object->name ?? '' }}</td>
-                    <td>{{ $object->phone ?? '' }}</td>
-                    <td>{{ $object->email ?? '' }}</td>
-                    <td>{{ $object->text ?? '' }}</td>
+                    <td>
+                        <div
+                            style="display: flex;
+                                flex-direction: column;
+                                row-gap: 5px">
+                            <span><b>Дата подачи заявки:</b> {{ $object->created_at }}</span>
+                            <span><b>Имя:</b> {{ $object->name }}</span>
+                            <span><b>Телефон:</b> {{ $object->phone }}</span>
+                            <span><b>Email:</b> {{ $object->email }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div
+                            style="display: flex;
+                                flex-direction: column;
+                                row-gap: 5px">
+                            <span><b>Город вылета:</b> {{ $object->from }}</span>
+                            <span><b>Страна тура:</b> {{ $object->to }} </span>
+                            <span><b>Даты вылета:</b> {{ $object->range }} </span>
+                            <span><b>Продолжительность тура:</b> {{ $object->range }} </span>
+                            <span><b>Предположительный бюджет:</b> {{ $object->budget }} </span>
+                            <span><b>Продолжительность тура:</b> {{ $object->nights }} </span>
+                            <span><b>Кол-во туристов:</b> {{ $object->tourist_count }} </span>
+                        </div>
+                    </td>
+                    <td>{{ $object->description ?? '' }}</td>
                     <td><a href="?delete={{ $object->id }}" class="admin_delete" title="Удалить"></a></td>
                 </tr>
             @endforeach

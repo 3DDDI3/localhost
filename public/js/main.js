@@ -4070,17 +4070,6 @@ $(function () {
       $(".search-tour__to.combobox").find(".combobox-header__subtitle").css("line-height", 0);
       var id = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
       from = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
-      $.ajax({
-        type: "GET",
-        url: "/api/samotour/getCountries",
-        data: {
-          id: id
-        },
-        dataType: "html",
-        success: function success(response) {
-          $(".search-tour__to .combobox__list").replaceWith(response);
-        }
-      });
     }
 
     if ($(this).parents(".combobox").hasClass("search-tour__to")) to = $(this).parents(".combobox").find(".combobox-header__subtitle").data("id");
@@ -4152,6 +4141,23 @@ $(function () {
       "monthNames": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
       "firstDay": 1
     }
+  });
+  $("#feedback-data").daterangepicker({
+    autoUpdateInput: false,
+    "autoApply": true,
+    "locale": {
+      "format": "MM/DD/YYYY",
+      "applyLabel": "Сохранить",
+      "cancelLabel": "Назад",
+      "daysOfWeek": ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      "monthNames": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      "firstDay": 1
+    }
+  });
+  var range = undefined;
+  $('#feedback-data').on('hide.daterangepicker', function (ev, picker) {
+    $(this).parents("label").find(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM'), " - ").concat(picker.endDate.format('DD.MM')));
+    range = "".concat(picker.startDate.format('DD.MM'), " - ").concat(picker.endDate.format('DD.MM'));
   });
   $('#datapicker-from').on('hide.daterangepicker', function (ev, picker) {
     $(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM')));
@@ -4953,41 +4959,6 @@ $(function () {
   $(".offer__button").on("click", function () {
     $("#feedback").show(300);
   });
-  $(".feedback").on("submit", function (e) {
-    e.preventDefault();
-    var name = $(this).find("input[name='name']"),
-        phone = $(this).find("input[name='phone']"),
-        email = $(this).find("input[name='email']"),
-        text = $(this).find("textarea[name='textarea']");
-
-    if (!$("#law-aggree1").prop('checked')) {
-      $(".modal-aggrees__checkbox").css("border-color", "red");
-      sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-        icon: 'error',
-        title: "Подтвердите свое согласие" // timer: 2000,
-
-      });
-      return;
-    }
-
-    $.ajax({
-      type: "POST",
-      url: "/api/feedback/create",
-      data: {
-        name: name.val(),
-        phone: phone.val(),
-        email: email.val(),
-        text: text.val()
-      },
-      dataType: "json",
-      success: function (response) {
-        console.log(response);
-        $("#notification-small .modal-notification__text").text(response.message);
-        $(this).parents(".modal-wrapper").hide();
-        $("#notification-small").show();
-      }.bind(this)
-    });
-  });
   $(".tour-country-info").on("click", function (e) {
     e.preventDefault();
     if ($(this).data("url") != "") window.location.href = "/api/files/download/".concat($(this).data("url"));
@@ -5060,6 +5031,127 @@ $(function () {
         $("#notification-small").show(300);
         $(this).prop("checked", false);
       }.bind(this)
+    });
+  });
+  $(".feedback__from").on("click", ".combobox__item", function () {
+    $.ajax({
+      type: "GET",
+      url: "/api/samotour/getCountries",
+      data: {
+        city: $(this).data("id")
+      },
+      dataType: "json",
+      success: function success(response) {
+        $(".feedback__to .combobox__list").empty();
+        Array.from(response.countries).forEach(function (el) {
+          $(".feedback__to .combobox__list").append("<span data-id=\"".concat(el.id_country, "\" class=\"combobox__item\">").concat(el.country, "</span >"));
+        });
+      }
+    });
+  });
+  $(".feedback__to").on("click", ".combobox__item", function () {
+    $.ajax({
+      type: "GET",
+      url: "/api/samotour/getCities",
+      data: {
+        country: $(this).data("id")
+      },
+      dataType: "json",
+      success: function success(response) {
+        $(".feedback__from .combobox__list").empty();
+        Array.from(response.cities).forEach(function (el) {
+          $(".feedback__from .combobox__list").append("<span data-id=\"".concat(el.id_city, "\" class=\"combobox__item\">").concat(el.city, "</span >"));
+        });
+      }
+    });
+  });
+  $(".feedback").on("submit", function (e) {
+    e.preventDefault();
+    var from = $(".feedback__from"),
+        to = $(".feedback__to"),
+        name = $(this).find("input[name='name']").val(),
+        email = $(this).find("input[name='email']").val(),
+        phone = $(this).find("input[name='phone']").val(),
+        nights = $(this).find("input[name='feedback__nights']").val(),
+        cost = $(this).find("input[name='cost']").val(),
+        tourist = $(this).find("input[name='touristCount']").val(),
+        text = $(this).find("textarea").val();
+
+    if (!$("#law-aggree1").prop('checked') || from.find(".combobox-header__subtitle").text() == "" || to.find(".combobox-header__subtitle").text() == "") {
+      from.find(".combobox-header__subtitle").text() == "" ? from.css("border-right-color", "red") : null;
+      to.find(".combobox-header__subtitle").text() == "" ? to.css("border-right-color", "red") : null;
+      !$("#law-aggree1").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
+      sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+        icon: 'error',
+        title: "Заполните обязательные поля" // timer: 2000,
+
+      });
+      return;
+    }
+
+    from = from.find(".combobox-header__subtitle").text().replace(/\s{2,}/, "");
+    to = to.find(".combobox-header__subtitle").text().replace(/\s{2,}/, "");
+    var data = {
+      from: from,
+      to: to,
+      name: name,
+      range: range,
+      email: email,
+      phone: phone,
+      nights: nights,
+      cost: cost,
+      tourist: tourist,
+      text: text
+    };
+    $.ajax({
+      type: "POST",
+      url: "/api/feedback/create",
+      data: data,
+      dataType: "json",
+      success: function (response) {
+        $("#notification-small .modal-notification__text").text(response.message);
+        $(this).parents(".modal-wrapper").hide();
+        $("#notification-small").show();
+      }.bind(this),
+      error: function error(_error2) {
+        sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+          icon: "error",
+          title: _error2.responseJSON.message // timer: 2000,
+
+        });
+      }
+    });
+  });
+  $(".search-tour__to").on("click", ".combobox__item", function () {
+    $.ajax({
+      type: "GET",
+      url: "/api/samotour/getCities",
+      data: {
+        country: $(this).data("id")
+      },
+      dataType: "json",
+      success: function success(response) {
+        $(".search-tour__from .combobox__list").empty();
+        Array.from(response.cities).forEach(function (el) {
+          $(".search-tour__from .combobox__list").append("<span data-id=\"".concat(el.id_city, "\" class=\"combobox__item\">").concat(el.city, "</span >"));
+        });
+      }
+    });
+  });
+  $(".search-tour__from").on("click", ".combobox__item", function () {
+    $.ajax({
+      type: "GET",
+      url: "/api/samotour/getCountries",
+      data: {
+        city: $(this).data("id")
+      },
+      dataType: "json",
+      success: function success(response) {
+        $(".search-tour__to .combobox__list").empty();
+        Array.from(response.countries).forEach(function (el) {
+          $(".search-tour__to .combobox__list").append("<span data-id=\"".concat(el.id_country, "\" class=\"combobox__item\">").concat(el.country, "</span >"));
+        });
+      }
     });
   });
 });

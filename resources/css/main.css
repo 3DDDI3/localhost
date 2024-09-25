@@ -615,7 +615,7 @@ input {
     display: flex;
     border-radius: unset;
     background-color: transparent;
-    border: 1px solid white;
+    border: 3px solid white;
     opacity: unset;
 
     svg {
@@ -638,7 +638,7 @@ input {
     display: flex;
     border-radius: unset;
     background-color: transparent;
-    border: 1px solid white;
+    border: 3px solid white;
     opacity: unset;
 
     svg {
@@ -3475,7 +3475,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -4590,7 +4590,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -5631,7 +5631,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -6431,7 +6431,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;

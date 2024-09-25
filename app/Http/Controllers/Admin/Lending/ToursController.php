@@ -103,12 +103,12 @@ class ToursController extends Controller
             }
 
         $samotour = SamotourTour::query()
-            ->orderBy("name")
+            ->orderBy("tour")
             ->get()
             ->prepend(
                 (new SamotourTour())->fill([
                     "id" => 0,
-                    "name" => "Не выбрано"
+                    "tour" => "Не выбрано"
                 ])
             );
 
@@ -190,7 +190,7 @@ class ToursController extends Controller
                 TourStatus::query()
                     ->where(['tour_id' => $object->id])
                     ->delete();
-                    
+
                 foreach ($request->statuses as $status) {
                     TourStatus::create([
                         'status_id' => $status,

@@ -3,9 +3,9 @@
 <h1 style="text-align: center">Пользователь оставил заявку:</h1> 
 
 <x-mail::table>
-| Имя                |      Телефон        |          Email      |     Текст          |
-| -------------------|---------------------|---------------------|--------------------|
-| {{$request->name}} | {{$request->phone}} | {{$request->email}} | {{$request->text}} |
+| Имя                |      Телефон        |          Email      |     Текст                |
+| -------------------|---------------------|---------------------|--------------------------|
+| {{$request->name}} | {{$request->phone}} | {{$request->email}} | {{$request->descripion}} |
 </x-mail::table>
 
 @php

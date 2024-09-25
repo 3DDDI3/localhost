@@ -7,6 +7,7 @@ use App\Jobs\Parse;
 use App\Models\Job;
 use App\Models\Lending\Tour;
 use App\Models\Mailler;
+use App\Models\Services\SamotourTour;
 use App\View\Components\Blocks\ComboboxItem;
 use Barryvdh\DomPDF\Facade\Pdf;
 use GuzzleHttp\Client;
@@ -93,20 +94,36 @@ Route::prefix('samotour')->group(function () {
         });
 
         Route::get('/getCountries', function (Request $request) {
-                try {
-                        $samotour_url = config('samotour.samotour_api_url');
-                        $samotour_token = config('samotour.samotour_api_token');
-                        $client = new Client(['verify' => false]);
-                        $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
-                        $combobox = new ComboboxItem();
-                        $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
-                        return $combobox->render()->with(
-                                ['attributes' => new ComponentAttributeBag(
-                                        ['objects' => count($content) > 0 ? $content : null]
-                                )]
-                        );
-                } catch (\Throwable $th) {
-                }
+                // try {
+                //         $samotour_url = config('samotour.samotour_api_url');
+                //         $samotour_token = config('samotour.samotour_api_token');
+                //         $client = new Client(['verify' => false]);
+                //         $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
+                //         $combobox = new ComboboxItem();
+                //         $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
+                //         return $combobox->render()->with(
+                //                 ['attributes' => new ComponentAttributeBag(
+        //                         ['objects' => count($content) > 0 ? $content : ещгкnull]
+                //                 )]
+                //         );
+                // } catch (\Throwable $th) {
+                // }
+
+                $countries = SamotourTour::query()
+                        ->distinct()
+                        ->where(['id_city' => $request->city])
+                        ->get(['country', 'id_country']);
+
+                return response()->json(['countries' => $countries], 200);
+        });
+
+        Route::get('/getCities', function (Request $request) {
+                $cities = SamotourTour::query()
+                        ->distinct()
+                        ->where(['id_country' => $request->country])
+                        ->get(['city', 'id_city']);
+
+                return response()->json(['cities' => $cities], 200);
         });
 });
 

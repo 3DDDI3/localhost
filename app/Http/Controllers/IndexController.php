@@ -10,9 +10,11 @@ use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourStatus;
 use App\Models\Lending\TourTypes;
+use App\Models\Services\SamotourTour;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -51,20 +53,21 @@ class IndexController extends Controller
             ->get();
 
         $currencies = collect();
-        $cities = collect();
+
+        $cities =  DB::table('samotour_tours')
+            ->select('city', 'id_city')
+            ->distinct()
+            ->orderBy('city')
+            ->get();
+
+        $counties = DB::table('samotour_tours')
+            ->select('country', 'id_country')
+            ->distinct()
+            ->orderBy('country')
+            ->get();
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=SearchTour_TOWNS");
-
-            foreach (json_decode($res->getBody()->getContents())->SearchTour_TOWNS as $city) {
-                $cities->push(
-                    (object)[
-                        'id' => $city->id,
-                        'name' => $city->name,
-                    ]
-                );
-            }
 
             $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
@@ -99,6 +102,7 @@ class IndexController extends Controller
             'tourStatuses',
             'news',
             'cities',
+            'countries',
             'currencies',
             'sliders'
         ));
