@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\MaillingExport;
 use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\NewsController;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +67,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         $pdf = Pdf::loadView('pdf.tour_program', compact('tour', 'agent'));
         return $pdf->stream();
+    });
+
+    Route::get("excel", function () {
+        return Excel::download(new MaillingExport, 'user.xlsx');
     });
 
     include('admin.php');

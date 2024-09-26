@@ -60,7 +60,7 @@ class IndexController extends Controller
             ->orderBy('city')
             ->get();
 
-        $counties = DB::table('samotour_tours')
+        $_countries = DB::table('samotour_tours')
             ->select('country', 'id_country')
             ->distinct()
             ->orderBy('country')
@@ -103,6 +103,7 @@ class IndexController extends Controller
             'news',
             'cities',
             'countries',
+            '_countries',
             'currencies',
             'sliders'
         ));

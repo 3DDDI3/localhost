@@ -984,15 +984,13 @@ input {
 
         img {
             padding: 12px 95px 0 75px;
-            width: 131px;
-            height: 74px;
         }
 
         .header-menu {
             display: flex;
             -moz-column-gap: 41px;
                  column-gap: 41px;
-            padding-top: 42px;
+            padding-top: 45px;
             margin-right: 90px;
 
             .header-menu__item {
@@ -1014,7 +1012,7 @@ input {
     }
 
     .header__main-menu {
-        margin-top: 41px;
+        margin-top: 43px;
 
         .header-main-menu {
             display: flex;
@@ -1060,13 +1058,14 @@ input {
             fill: #26a9ea;
         }
 
-        .header-messengers__whatsapp {
+        .header-messengers__vk {
             margin-right: 15px;
             fill: #342635;
+            margin-top: -3px;
         }
 
-        .header-messengers__whatsapp:hover {
-            fill: #2cb742;
+        .header-messengers__vk:hover {
+            fill: #4a76a8;
         }
 
         .header__phone {
@@ -1145,11 +1144,26 @@ input {
 }
 
 .sliders .splide__pagination__page.is-active {
+    transform: scale(1);
     background-color: #7737a9;
     opacity: 1;
 }
 
 .splide__arrow--next {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    border-radius: unset;
+    background-color: transparent;
+    border: 1px solid white;
+    opacity: unset;
+
+    svg {
+        fill: #ffffff;
+    }
+}
+
+.sliders .splide__arrow--next {
     width: 45px;
     height: 45px;
     display: flex;
@@ -1173,6 +1187,20 @@ input {
 }
 
 .splide__arrow--prev {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    border-radius: unset;
+    background-color: transparent;
+    border: 1px solid white;
+    opacity: unset;
+
+    svg {
+        fill: #ffffff;
+    }
+}
+
+.sliders .splide__arrow--prev {
     width: 45px;
     height: 45px;
     display: flex;
@@ -1697,6 +1725,10 @@ main {
                             text-overflow: ellipsis;
                             white-space: nowrap;
                             width: 65%;
+                        }
+
+                        .service_country-sublist__name:hover {
+                            color: #7737a9;
                         }
 
                         .service_country-sublist__counter {
@@ -2729,9 +2761,9 @@ main {
                     }
                 }
 
-                .footer-messanger__whatsapp:hover {
+                .footer-messanger__vk:hover {
                     svg {
-                        fill: #2cb742;
+                        fill: #4a76a8;
                     }
                 }
             }
@@ -2995,7 +3027,7 @@ main {
                 }
             }
 
-            .header-messengers__whatsapp {
+            .header-messengers__vk {
                 margin: unset;
                 padding: 5px;
 
@@ -3108,7 +3140,7 @@ main {
                         .search-tour__directions {
                             width: auto;
                             flex-direction: column;
-                            height: 96px;
+                            height: auto;
                             flex-shrink: 0;
                             row-gap: 5px;
                             background-color: transparent;
@@ -3930,7 +3962,7 @@ main {
                 }
             }
 
-            .header-messengers__whatsapp {
+            .header-messengers__vk {
                 margin: unset;
                 padding: 8px;
 
@@ -4041,7 +4073,7 @@ main {
                         .search-tour__directions {
                             width: auto;
                             flex-direction: column;
-                            height: 96px;
+                            height: auto;
                             flex-shrink: 0;
                             row-gap: 5px;
                             background-color: transparent;
@@ -4063,7 +4095,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -5067,7 +5099,7 @@ main {
                 }
             }
 
-            .header-messengers__whatsapp {
+            .header-messengers__vk {
                 margin: unset;
                 padding: 10px;
 
@@ -5172,7 +5204,7 @@ main {
                         .search-tour__directions {
                             width: auto;
                             flex-direction: column;
-                            height: 96px;
+                            height: auto;
                             flex-shrink: 0;
                             row-gap: 5px;
                             background-color: transparent;
@@ -5194,7 +5226,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -6003,6 +6035,11 @@ main {
         width: 100%;
     }
 
+    .services-country-tour__info,
+    .services-vacation-type__info {
+        width: 70%;
+    }
+
     .popular-tours__slider .splide__arrow--next {
         right: calc(50% - 180px);
         bottom: -110px !important;
@@ -6128,7 +6165,7 @@ main {
                 }
             }
 
-            .header-messengers__whatsapp {
+            .header-messengers__vk {
                 margin: unset;
                 padding: 10px;
 
@@ -6231,7 +6268,7 @@ main {
                         .search-tour__directions {
                             width: auto;
                             flex-direction: column;
-                            height: 96px;
+                            height: auto;
                             flex-shrink: 0;
                             row-gap: 5px;
                             background-color: transparent;
@@ -6253,7 +6290,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -6922,6 +6959,11 @@ main {
         padding: 0 15px;
     }
 
+    .services-country-tour__info,
+    .services-vacation-type__list {
+        width: 50%;
+    }
+
     .header {
         justify-content: space-between;
 
@@ -6949,10 +6991,6 @@ main {
 
         .box_active~.search-profile {
             display: none !important;
-        }
-
-        .header__messengers {
-            display: none;
         }
 
         .search-profile {
@@ -7045,7 +7083,7 @@ main {
                         .search-tour__directions {
                             width: auto;
                             flex-direction: column;
-                            height: 96px;
+                            height: auto;
                             flex-shrink: 0;
                             row-gap: 5px;
                             background-color: transparent;
@@ -7067,7 +7105,7 @@ main {
 
                                     .combobox-header-block {
                                         .combobox-header__title {
-                                            font-size: 15px;
+                                            font-size: 18px;
                                             font-weight: 400;
                                             line-height: 18.15px;
                                             letter-spacing: -0.02em;
@@ -7218,7 +7256,7 @@ main {
 
                 .services-vacation-type {
                     width: calc(100% - 110px);
-                    height: 228px;
+                    height: auto;
                     left: 25px;
                     top: 145px;
                     padding: 25px 30px 20px 30px;
@@ -7571,7 +7609,7 @@ main {
     }
 }
 
-@media (min-width: 1401px) and (max-width: 1560px) {
+@media (min-width: 1351px) and (max-width: 1560px) {
     .header-main-menu {
         -moz-column-gap: 20px !important;
              column-gap: 20px !important;
@@ -7584,6 +7622,16 @@ main {
 }
 
 @media (min-width: 1351px) and (max-width: 1440px) {
+    .header-actions-logo {
+        img {
+            padding: 12px 50px 0 20px !important;
+        }
+    }
+
+    .header__phone {
+        margin-right: 30px !important;
+    }
+
     .search-tours__wrapper {
         padding: 25px 0 !important;
     }
@@ -7601,6 +7649,55 @@ main {
     .search-profile {
         margin-right: 20px !important;
     }
+
+    .header-actions-logo {
+        img {
+            padding: 12px 95px 0 20px !important;
+        }
+    }
+}
+
+@media (min-width: 1250px) and (max-width: 1350px) {
+    .header-actions-logo {
+        img {
+            padding: 12px 0 0 20px !important;
+        }
+    }
+
+    .header__phone {
+        margin-right: unset !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1250px) {
+    .header__phone {
+        display: none !important;
+    }
+
+    .header-main-menu {
+        -moz-column-gap: 10px !important;
+             column-gap: 10px !important;
+    }
+}
+
+@media (min-width: 1351px) and (max-width: 1720px) {
+    .header-menu {
+        display: none !important;
+    }
+
+    .header-main-menu {
+        -moz-column-gap: 30px !important;
+             column-gap: 30px !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1250px) {
+    .header-actions-logo {
+        img {
+            padding: 12px 0 0 20px !important
+        }
+    }
+
 }
 
 @media (min-width: 1351px) and (max-width: 1920px) {
@@ -7617,10 +7714,6 @@ main {
 
             img {
                 padding-right: unset;
-            }
-
-            .header-menu {
-                display: none;
             }
         }
     }
@@ -7693,7 +7786,7 @@ main {
 }
 
 @media (min-width: 1600px) and (max-width: 1730px) {
-    .header {
+    /* .header {
         .header-actions-logo {
             img {
                 padding-right: 20px;
@@ -7704,14 +7797,14 @@ main {
                 margin-right: unset !important;
             }
         }
-    }
+    } */
 }
 
 @media (min-width: 1701px) and (max-width: 1920px) {
     .header {
         .header-actions-logo {
             .header__logo {
-                padding: 12px 95px 0 75px;
+                padding: 12px 85px 0 85px;
             }
 
             .header-menu {
@@ -7722,8 +7815,9 @@ main {
 }
 
 @media (min-width: 1600px) and (max-width: 1919px) {
-    .search-profile {
-        margin-right: 20px !important;
+
+    .header__logo {
+        padding: 12px 50px 0px 85px !important;
     }
 
     .box {
@@ -7734,6 +7828,11 @@ main {
     .header__phone {
         margin-right: 20px !important;
     }
+
+    .header-menu {
+        margin-right: 50px !important;
+    }
+
 }
 
 @media (min-width: 1921px) {
@@ -7754,6 +7853,6 @@ main {
 
     .box {
         flex-grow: 1;
-        margin: 32px 0 0 70px !important;
+        margin: 32px 30px 0 30px !important;
     }
 }

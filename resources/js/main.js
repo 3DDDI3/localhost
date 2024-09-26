@@ -6,6 +6,7 @@ window.moment = require('moment');
 window.daterangepicker = require('daterangepicker');
 import Inputmask from "inputmask";
 import swal from 'sweetalert';
+import dateFormat, { masks } from "dateformat";
 
 import "@splidejs/splide/css";
 import Splide, { EVENT_SLIDE_KEYDOWN } from "@splidejs/splide";
@@ -84,7 +85,6 @@ $(function () {
             "border-bottom-color": "transparent",
             // "height": "48px",
         });
-        $(this).parents(".combobox").find(".combobox-header__subtitle").css("line-height", "19.15px");
         $(this).parents(".combobox").find(".combobox-header__subtitle").text($(this).text());
         $(this).parents(".combobox").find(".combobox-header__subtitle").data("id", $(this).data("id"));
         $(this).parents(".combobox").find(".combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
@@ -92,13 +92,10 @@ $(function () {
         $(this).parents(".combobox").find(".combobox-header__subtitle").css({
             "height": "21px",
             "overflow": "hidden",
+            "line-height": "19.15px"
         })
 
         if ($(this).parents(".combobox").hasClass("search-tour__from")) {
-
-            $(".search-tour__to.combobox").find(".combobox-header__title").css("font-size", "18px");
-            $(".search-tour__to.combobox").find(".combobox-header__subtitle").css("line-height", 0);
-
             let id = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
             from = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
         }
@@ -161,10 +158,13 @@ $(function () {
     });
 
     $('input[name="datefilter"]').on('hide.daterangepicker', function (ev, picker) {
+
         $(this).parents("label").find(".search-tour-dates__subtitle").text(`${picker.startDate.format('DD.MM')} - ${picker.endDate.format('DD.MM')}`);
 
         begDate = picker.startDate.format('YYYYMMDD');
         endDate = picker.endDate.format('YYYYMMDD');
+
+        console.log(begDate);
         nights = Math.round(Number(picker.endDate - picker.startDate) / (1000 * 60 * 60 * 24)) - 1;
 
         $(".search-tour-nights__subtitle").text(`${nights}`);
@@ -372,6 +372,8 @@ $(function () {
         pagination: false,
         type: 'loop',
         padding: '30em',
+        autoplay: true,
+        interval: 5000,
         perPage: 1,
         pagination: true,
         breakpoints: {
@@ -417,7 +419,7 @@ $(function () {
                 type: 'loop',
                 padding: 0,
             },
-            1740: {
+            1800: {
                 autoHeight: true,
                 perPage: 1,
                 type: 'loop',
@@ -787,6 +789,10 @@ $(function () {
 
     $(".search-tour__form").on("submit", function (e) {
         e.preventDefault();
+        if (begDate == undefined && endDate == undefined) {
+            begDate = dateFormat(new Date(), "yyyymmdd");
+            endDate = dateFormat(new Date(), "yyyymmdd");
+        }
         window.open(`https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${begDate == undefined ? "" : begDate}&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${nights == undefined ? "" : nights}&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${nights == undefined ? "" : nights}&ADULT=${adults == undefined ? "" : adults}&TOWNFROMINC=${from == undefined ? "" : from}`);
     });
 
@@ -892,7 +898,7 @@ $(function () {
                 $(".tour-cost__value").text(`${response.price} руб.`);
             },
             error: function (xhr, textStatus, errorThrown) {
-                $(".tour-cost__value").text("Н/Д");
+                $(".tour-cost__value").text("Тур не найден");
                 swal({
                     icon: "error",
                     title: "Не удалось найти тур",
@@ -919,7 +925,7 @@ $(function () {
                 // timer: 2000,
             });
         else {
-            if ($(".tour-cost__value").text() == "Н/Д")
+            if ($(".tour-cost__value").text() == "Тур не найден")
                 swal({
                     title: "Обновите стоимость тура",
                     // timer: 2000,

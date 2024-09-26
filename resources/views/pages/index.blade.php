@@ -85,6 +85,11 @@
                                     </svg>
                                 </div>
                                 <div class="combobox__list combobox__list_invisible">
+                                    @foreach ($_countries as $country)
+                                        <span data-id="{{ $country->id_country }}" class="combobox__item">
+                                            {{ $country->country }}
+                                        </span>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

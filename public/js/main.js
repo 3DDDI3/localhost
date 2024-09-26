@@ -3955,10 +3955,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var inputmask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(inputmask__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _splidejs_splide_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @splidejs/splide/css */ "./node_modules/@splidejs/splide/dist/css/splide.min.css");
-/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
-/* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! laravel-mix/src/Log */ "./node_modules/laravel-mix/src/Log.js");
-/* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var dateformat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dateformat */ "./node_modules/dateformat/lib/dateformat.js");
+/* harmony import */ var _splidejs_splide_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @splidejs/splide/css */ "./node_modules/@splidejs/splide/dist/css/splide.min.css");
+/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
+/* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! laravel-mix/src/Log */ "./node_modules/laravel-mix/src/Log.js");
+/* harmony import */ var laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(laravel_mix_src_Log__WEBPACK_IMPORTED_MODULE_6__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
@@ -3966,6 +3967,7 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 window.daterangepicker = __webpack_require__(/*! daterangepicker */ "./node_modules/daterangepicker/daterangepicker.js");
+
 
 
 
@@ -4055,19 +4057,17 @@ $(function () {
       "border-bottom-color": "transparent" // "height": "48px",
 
     });
-    $(this).parents(".combobox").find(".combobox-header__subtitle").css("line-height", "19.15px");
     $(this).parents(".combobox").find(".combobox-header__subtitle").text($(this).text());
     $(this).parents(".combobox").find(".combobox-header__subtitle").data("id", $(this).data("id"));
     $(this).parents(".combobox").find(".combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
     $(this).parents(".combobox").css("border-right-color", "transparent");
     $(this).parents(".combobox").find(".combobox-header__subtitle").css({
       "height": "21px",
-      "overflow": "hidden"
+      "overflow": "hidden",
+      "line-height": "19.15px"
     });
 
     if ($(this).parents(".combobox").hasClass("search-tour__from")) {
-      $(".search-tour__to.combobox").find(".combobox-header__title").css("font-size", "18px");
-      $(".search-tour__to.combobox").find(".combobox-header__subtitle").css("line-height", 0);
       var id = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
       from = $(this).parents(".search-tour__from.combobox").find(".combobox-header__subtitle").data("id");
     }
@@ -4108,6 +4108,7 @@ $(function () {
     $(this).parents("label").find(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM'), " - ").concat(picker.endDate.format('DD.MM')));
     begDate = picker.startDate.format('YYYYMMDD');
     endDate = picker.endDate.format('YYYYMMDD');
+    console.log(begDate);
     nights = Math.round(Number(picker.endDate - picker.startDate) / (1000 * 60 * 60 * 24)) - 1;
     $(".search-tour-nights__subtitle").text("".concat(nights));
     $(".search-tour-nights__subtitle").removeClass("search-tour-nights__subtitle_invisible");
@@ -4235,7 +4236,7 @@ $(function () {
   });
   var slider,
       subSlider = undefined;
-  if ($(".subSliders").length > 0) subSlider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".subSliders", {
+  if ($(".subSliders").length > 0) subSlider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".subSliders", {
     pagination: false,
     arrows: false,
     type: 'loop',
@@ -4253,10 +4254,12 @@ $(function () {
       }
     }
   });
-  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.sliders', (_Splide = {
+  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"]('.sliders', (_Splide = {
     pagination: false,
     type: 'loop',
     padding: '30em',
+    autoplay: true,
+    interval: 5000,
     perPage: 1
   }, _defineProperty(_Splide, "pagination", true), _defineProperty(_Splide, "breakpoints", {
     375: {
@@ -4301,7 +4304,7 @@ $(function () {
       type: 'loop',
       padding: 0
     },
-    1740: {
+    1800: {
       autoHeight: true,
       perPage: 1,
       type: 'loop',
@@ -4320,7 +4323,7 @@ $(function () {
     subSlider.mount();
   }
 
-  if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"]('.news__slider', {
+  if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"]('.news__slider', {
     gap: 35,
     pagination: false,
     perPage: 3,
@@ -4363,7 +4366,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".popular-tours__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".popular-tours__slider", {
+  if ($(".popular-tours__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".popular-tours__slider", {
     gap: 35,
     pagination: false,
     perPage: 3,
@@ -4408,7 +4411,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".advertisement-slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".advertisement-slider", {
+  if ($(".advertisement-slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".advertisement-slider", {
     pagination: false,
     perPage: 1,
     breakpoints: {
@@ -4429,7 +4432,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".search-tour-buttons__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".search-tour-buttons__slider", {
+  if ($(".search-tour-buttons__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".search-tour-buttons__slider", {
     pagination: false,
     arrows: false,
     padding: {
@@ -4499,7 +4502,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".personal__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".personal__slider", {
+  if ($(".personal__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".personal__slider", {
     gap: 35,
     pagination: false,
     perPage: 3,
@@ -4529,7 +4532,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".tour-gallary__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".tour-gallary__slider", {
+  if ($(".tour-gallary__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".tour-gallary__slider", {
     gap: 35,
     pagination: false,
     perPage: 3,
@@ -4559,7 +4562,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".tour-day-programm__gallary-slider1").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".tour-day-programm__gallary-slider1", {
+  if ($(".tour-day-programm__gallary-slider1").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".tour-day-programm__gallary-slider1", {
     gap: 35,
     pagination: false,
     perPage: 4,
@@ -4583,7 +4586,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".tour-day-programm__gallary-slider2").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".tour-day-programm__gallary-slider2", {
+  if ($(".tour-day-programm__gallary-slider2").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".tour-day-programm__gallary-slider2", {
     gap: 35,
     pagination: false,
     perPage: 4,
@@ -4605,7 +4608,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".tour-day-programm__gallary-slider3").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".tour-day-programm__gallary-slider3", {
+  if ($(".tour-day-programm__gallary-slider3").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".tour-day-programm__gallary-slider3", {
     gap: 35,
     pagination: false,
     perPage: 4,
@@ -4627,7 +4630,7 @@ $(function () {
       }
     }
   }).mount();
-  if ($(".tour-day-programm__gallary-slider4").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_4__["default"](".tour-day-programm__gallary-slider4", {
+  if ($(".tour-day-programm__gallary-slider4").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".tour-day-programm__gallary-slider4", {
     gap: 35,
     pagination: false,
     perPage: 4,
@@ -4655,6 +4658,12 @@ $(function () {
   });
   $(".search-tour__form").on("submit", function (e) {
     e.preventDefault();
+
+    if (begDate == undefined && endDate == undefined) {
+      begDate = (0,dateformat__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), "yyyymmdd");
+      endDate = (0,dateformat__WEBPACK_IMPORTED_MODULE_3__["default"])(new Date(), "yyyymmdd");
+    }
+
     window.open("https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=".concat(begDate == undefined ? "" : begDate, "&STATEINC=").concat(to == undefined ? "" : to, "&NIGHTS_FROM=").concat(nights == undefined ? "" : nights, "&CHECKIN_END=").concat(endDate == undefined ? "" : endDate, "&NIGHTS_TILL=").concat(nights == undefined ? "" : nights, "&ADULT=").concat(adults == undefined ? "" : adults, "&TOWNFROMINC=").concat(from == undefined ? "" : from));
   });
   $(".footer__notification").on("submit", function (e) {
@@ -4747,7 +4756,7 @@ $(function () {
         $(".tour-cost__value").text("".concat(response.price, " \u0440\u0443\u0431."));
       },
       error: function error(xhr, textStatus, errorThrown) {
-        $(".tour-cost__value").text("Н/Д");
+        $(".tour-cost__value").text("Тур не найден");
         sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
           icon: "error",
           title: "Не удалось найти тур" // timer: 2000,
@@ -4770,7 +4779,7 @@ $(function () {
       title: "Заполните обязательные поля" // timer: 2000,
 
     });else {
-      if ($(".tour-cost__value").text() == "Н/Д") sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
+      if ($(".tour-cost__value").text() == "Тур не найден") sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
         title: "Обновите стоимость тура" // timer: 2000,
 
       });else window.open("https://samo.mercury-europe.ru/bron_person?CATCLAIM=".concat(id, "&CURRENCY=1&TOWNFROMINC=").concat(from, "&STATEINC=").concat(country, "&GUEST=1"));
@@ -52466,6 +52475,24 @@ const asap = typeof queueMicrotask !== 'undefined' ?
   asap
 });
 
+
+/***/ }),
+
+/***/ "./node_modules/dateformat/lib/dateformat.js":
+/*!***************************************************!*\
+  !*** ./node_modules/dateformat/lib/dateformat.js ***!
+  \***************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ dateFormat; },
+/* harmony export */   "formatTimezone": function() { return /* binding */ formatTimezone; },
+/* harmony export */   "i18n": function() { return /* binding */ i18n; },
+/* harmony export */   "masks": function() { return /* binding */ masks; }
+/* harmony export */ });
+var token=/d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"|'[^']*'/g;var timezone=/\b(?:[A-Z]{1,3}[A-Z][TC])(?:[-+]\d{4})?|((?:Australian )?(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time)\b/g;var timezoneClip=/[^-+\dA-Z]/g;function dateFormat(date,mask,utc,gmt){if(arguments.length===1&&typeof date==="string"&&!/\d/.test(date)){mask=date;date=undefined}date=date||date===0?date:new Date;if(!(date instanceof Date)){date=new Date(date)}if(isNaN(date)){throw TypeError("Invalid date")}mask=String(masks[mask]||mask||masks["default"]);var maskSlice=mask.slice(0,4);if(maskSlice==="UTC:"||maskSlice==="GMT:"){mask=mask.slice(4);utc=true;if(maskSlice==="GMT:"){gmt=true}}var _=function _(){return utc?"getUTC":"get"};var _d=function d(){return date[_()+"Date"]()};var D=function D(){return date[_()+"Day"]()};var _m=function m(){return date[_()+"Month"]()};var y=function y(){return date[_()+"FullYear"]()};var _H=function H(){return date[_()+"Hours"]()};var _M=function M(){return date[_()+"Minutes"]()};var _s=function s(){return date[_()+"Seconds"]()};var _L=function L(){return date[_()+"Milliseconds"]()};var _o=function o(){return utc?0:date.getTimezoneOffset()};var _W=function W(){return getWeek(date)};var _N=function N(){return getDayOfWeek(date)};var flags={d:function d(){return _d()},dd:function dd(){return pad(_d())},ddd:function ddd(){return i18n.dayNames[D()]},DDD:function DDD(){return getDayName({y:y(),m:_m(),d:_d(),_:_(),dayName:i18n.dayNames[D()],short:true})},dddd:function dddd(){return i18n.dayNames[D()+7]},DDDD:function DDDD(){return getDayName({y:y(),m:_m(),d:_d(),_:_(),dayName:i18n.dayNames[D()+7]})},m:function m(){return _m()+1},mm:function mm(){return pad(_m()+1)},mmm:function mmm(){return i18n.monthNames[_m()]},mmmm:function mmmm(){return i18n.monthNames[_m()+12]},yy:function yy(){return String(y()).slice(2)},yyyy:function yyyy(){return pad(y(),4)},h:function h(){return _H()%12||12},hh:function hh(){return pad(_H()%12||12)},H:function H(){return _H()},HH:function HH(){return pad(_H())},M:function M(){return _M()},MM:function MM(){return pad(_M())},s:function s(){return _s()},ss:function ss(){return pad(_s())},l:function l(){return pad(_L(),3)},L:function L(){return pad(Math.floor(_L()/10))},t:function t(){return _H()<12?i18n.timeNames[0]:i18n.timeNames[1]},tt:function tt(){return _H()<12?i18n.timeNames[2]:i18n.timeNames[3]},T:function T(){return _H()<12?i18n.timeNames[4]:i18n.timeNames[5]},TT:function TT(){return _H()<12?i18n.timeNames[6]:i18n.timeNames[7]},Z:function Z(){return gmt?"GMT":utc?"UTC":formatTimezone(date)},o:function o(){return(_o()>0?"-":"+")+pad(Math.floor(Math.abs(_o())/60)*100+Math.abs(_o())%60,4)},p:function p(){return(_o()>0?"-":"+")+pad(Math.floor(Math.abs(_o())/60),2)+":"+pad(Math.floor(Math.abs(_o())%60),2)},S:function S(){return["th","st","nd","rd"][_d()%10>3?0:(_d()%100-_d()%10!=10)*_d()%10]},W:function W(){return _W()},WW:function WW(){return pad(_W())},N:function N(){return _N()}};return mask.replace(token,function(match){if(match in flags){return flags[match]()}return match.slice(1,match.length-1)})}var masks={default:"ddd mmm dd yyyy HH:MM:ss",shortDate:"m/d/yy",paddedShortDate:"mm/dd/yyyy",mediumDate:"mmm d, yyyy",longDate:"mmmm d, yyyy",fullDate:"dddd, mmmm d, yyyy",shortTime:"h:MM TT",mediumTime:"h:MM:ss TT",longTime:"h:MM:ss TT Z",isoDate:"yyyy-mm-dd",isoTime:"HH:MM:ss",isoDateTime:"yyyy-mm-dd'T'HH:MM:sso",isoUtcDateTime:"UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",expiresHeaderFormat:"ddd, dd mmm yyyy HH:MM:ss Z"};var i18n={dayNames:["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],monthNames:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","January","February","March","April","May","June","July","August","September","October","November","December"],timeNames:["a","p","am","pm","A","P","AM","PM"]};var pad=function pad(val){var len=arguments.length>1&&arguments[1]!==undefined?arguments[1]:2;return String(val).padStart(len,"0")};var getDayName=function getDayName(_ref){var y=_ref.y,m=_ref.m,d=_ref.d,_=_ref._,dayName=_ref.dayName,_ref$short=_ref["short"],_short=_ref$short===void 0?false:_ref$short;var today=new Date;var yesterday=new Date;yesterday.setDate(yesterday[_+"Date"]()-1);var tomorrow=new Date;tomorrow.setDate(tomorrow[_+"Date"]()+1);var today_d=function today_d(){return today[_+"Date"]()};var today_m=function today_m(){return today[_+"Month"]()};var today_y=function today_y(){return today[_+"FullYear"]()};var yesterday_d=function yesterday_d(){return yesterday[_+"Date"]()};var yesterday_m=function yesterday_m(){return yesterday[_+"Month"]()};var yesterday_y=function yesterday_y(){return yesterday[_+"FullYear"]()};var tomorrow_d=function tomorrow_d(){return tomorrow[_+"Date"]()};var tomorrow_m=function tomorrow_m(){return tomorrow[_+"Month"]()};var tomorrow_y=function tomorrow_y(){return tomorrow[_+"FullYear"]()};if(today_y()===y&&today_m()===m&&today_d()===d){return _short?"Tdy":"Today"}else if(yesterday_y()===y&&yesterday_m()===m&&yesterday_d()===d){return _short?"Ysd":"Yesterday"}else if(tomorrow_y()===y&&tomorrow_m()===m&&tomorrow_d()===d){return _short?"Tmw":"Tomorrow"}return dayName};var getWeek=function getWeek(date){var targetThursday=new Date(date.getFullYear(),date.getMonth(),date.getDate());targetThursday.setDate(targetThursday.getDate()-(targetThursday.getDay()+6)%7+3);var firstThursday=new Date(targetThursday.getFullYear(),0,4);firstThursday.setDate(firstThursday.getDate()-(firstThursday.getDay()+6)%7+3);var ds=targetThursday.getTimezoneOffset()-firstThursday.getTimezoneOffset();targetThursday.setHours(targetThursday.getHours()-ds);var weekDiff=(targetThursday-firstThursday)/(864e5*7);return 1+Math.floor(weekDiff)};var getDayOfWeek=function getDayOfWeek(date){var dow=date.getDay();if(dow===0){dow=7}return dow};var formatTimezone=function formatTimezone(date){return(String(date).match(timezone)||[""]).pop().replace(timezoneClip,"").replace(/GMT\+0000/g,"UTC")};
 
 /***/ })
 

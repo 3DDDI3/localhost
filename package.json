@@ -33,6 +33,7 @@
         "@splidejs/splide": "^4.1.4",
         "aos": "^2.3.4",
         "axios": "^1.7.7",
+        "dateformat": "^5.0.3",
         "daterangepicker": "^3.1.0",
         "smoothscroll-polyfill": "^0.4.4",
         "svg4everybody": "^2.1.9",

@@ -16,6 +16,7 @@ use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
 use App\Models\User\AdminEventLogs;
 use GuzzleHttp\Client;
+use PhpParser\ErrorHandler\Collecting;
 use Symfony\Component\Console\Input\Input;
 
 class ToursController extends Controller
@@ -102,17 +103,22 @@ class ToursController extends Controller
                 $selectedStatus->push($tourType->id);
             }
 
-        $samotour = SamotourTour::query()
-            ->orderBy("tour")
-            ->get()
-            ->prepend(
-                (new SamotourTour())->fill([
-                    "id" => 0,
-                    "tour" => "Не выбрано"
-                ])
-            );
+        $samotour = collect();
 
-        $samotourHead = $object->samotourTour != null ? $object->samotourTour->name : null;
+        foreach (SamotourTour::query()->orderBy("tour")->get(["id", "tour"]) as $tour) {
+            $samotour->push(
+                (object)['id' => $tour->id, "name" => $tour->tour],
+            );
+        }
+
+        $samotour->prepend(
+            (object)[
+                "id" => 0,
+                "name" => "Не выбрано"
+            ]
+        );
+
+        $samotourHead = $object->samotourTour != null ? $object->samotourTour->tour : null;
 
         if ($request->isMethod('post')) {
 
@@ -125,7 +131,6 @@ class ToursController extends Controller
             $object->fill(
                 $request->only(
                     [
-                        '_token',
                         'title',
                         'subtitle',
                         'description',
@@ -167,15 +172,20 @@ class ToursController extends Controller
 
             $object->save();
 
-            if ((int)$request->input("select") > 0)
-                TourCountry::query()
+            if ((int)$request->input("select") > 0) {
+
+                $tourCountry =  TourCountry::query()
                     ->where(['tour_id' => $object->id])
-                    ->first()
-                    ->fill([
-                        'country_id' => $request->select,
-                    ])
+                    ->first();
+
+                if (!$tourCountry) TourCountry::create([
+                    'tour_id' => $object->id,
+                    'country_id' => $request->select
+                ]);
+                else $tourCountry
+                    ->fill(['country_id' => $request->select])
                     ->save();
-            else {
+            } else {
                 $tourCountry = TourCountry::query()
                     ->where(['tour_id' => $object->id])
                     ->first();
