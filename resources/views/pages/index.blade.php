@@ -238,8 +238,10 @@
 
         </div>
 
-        <x-blocks.popular-tours :$tourStatuses />
 
+
+        <x-blocks.popular-tours :$tourStatuses />
+        
         <x-sliders.advertisement :$advs />
 
         <x-blocks.news :$news title="Новости" subtitle="туризма" />

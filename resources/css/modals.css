@@ -798,9 +798,14 @@ textarea:focus {
 @media (min-width: 320px) and (max-width: 804px) {
 
     .feedback-modal {
-        height: 95vh !important;
+        height: 90vh !important;
         width: calc(100% - 50px);
         padding: 35px 80px 80px 80px !important;
+        row-gap: unset !important;
+
+        .feedback {
+            height: calc(100% - 100px);
+        }
     }
 
     .registration-modal {
@@ -824,6 +829,18 @@ textarea:focus {
                     row-gap: 15px;
                 }
             }
+        }
+    }
+}
+
+@media (min-width: 805px) and (max-width: 1023px) {
+    .feedback-modal {
+        row-gap: unset !important;
+        padding: 30px 80px 90px 80px !important;
+
+        .feedback {
+            height: calc(100% - 100px) !important;
+
         }
     }
 }

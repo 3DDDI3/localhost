@@ -62,10 +62,10 @@ class BlogController extends Controller
             $object->save();
 
             if ($request->file('image') != null)
-                FileUpload::uploadImage('image', Blog::class, 'image', $object->id, 377, 377, '/images/blogs/', request: $request);
+                FileUpload::uploadImage('image', Blog::class, 'image', $object->id, 425, 205, '/images/blogs/', request: $request);
 
             if ($request->file('preview_image') != null)
-                FileUpload::uploadImage('preview_image', Blog::class, 'preview_image', $object->id, 377, 377, '/images/blogs/', request: $request);
+                FileUpload::uploadImage('preview_image', Blog::class, 'preview_image', $object->id, 425, 205, '/images/blogs/', request: $request);
 
             AdminEventLogs::log($object, $id);
 

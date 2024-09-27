@@ -8,9 +8,9 @@ use App\Models\Lending\Slider;
 use App\Models\User\AdminEventLogs;
 use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class MainSliderController extends Controller
 {
-    public $PATH = 'lending.sliders';
+    public $PATH = 'lending.sliders.main';
     public $TITLE = ['Слайдер', 'изображения'];
 
     public function index(Request $request)
@@ -18,7 +18,10 @@ class SliderController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = Slider::query()->orderBy('rating', 'desc')->paginate(10);
+        $objects = Slider::query()
+            ->where(['page' => 'main'])
+            ->orderBy('rating', 'desc')
+            ->paginate(10);
 
         if ($request->search) {
             $objects = Slider::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();
@@ -49,7 +52,9 @@ class SliderController extends Controller
 
             $slider = Slider::query()->orderBy('id', 'desc')->first();
 
-            $object->id = $slider->id + 1;
+            $object->id = !$slider ? 1 : $slider->id + 1;
+            $object->page = "main";
+
             $object->save();
 
             // dd(phpinfo());

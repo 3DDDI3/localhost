@@ -45,9 +45,8 @@ class AuthorizationController extends Controller
 
         $agent->save();
 
-        $user->createToken('App')->plainTextToken;
-
         Mail::to(config('mail.from.address'))->send(new RegistrationMail($agent));
+        Mail::to($request->user()->email)->send(new RegistrationMail($agent));
 
         if ($request->expectsJson())
             return response()->json([
@@ -63,12 +62,17 @@ class AuthorizationController extends Controller
         if (!Auth::attempt($request->only(['name', 'password'])))
             return response()->json(['message' => "Неверный логин или пароль"], 401);
 
-        $user = User::where(request()->only('name'))->first();
-
-        $user->createToken('App')->plainTextToken;
+        $user = User::query()
+            ->where(request()->only('name'))
+            ->first();
 
         if ($user->agent == null)
             return response()->json(['message' => 'Неверный логин или пароль'], 401);
+
+        if (!$user->agent->isActive)
+            return response()->json(['message' => 'Сервис временно не доступен, попробуйте позднее'], 401);
+
+        $user->createToken('App')->plainTextToken;
 
         if ($request->expectsJson())
             return response()->json(['url' => $user->agent->url], 200);
@@ -76,6 +80,9 @@ class AuthorizationController extends Controller
 
     public function check(Request $request)
     {
+        $agent = $request->user()->agent;
+        if (!$agent->isActive) return response([], 401);
+
         return response()->json(['url' => $request->user()->agent->url]);
     }
 

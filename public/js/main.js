@@ -8338,9 +8338,9 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css":
 /*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css ***!
   \***************************************************************************************************************************************************************************************************************************/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25324,6 +25324,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************!*\
   !*** ./resources/css/pa.css ***!
   \******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/editor.css":
+/*!**********************************!*\
+  !*** ./resources/css/editor.css ***!
+  \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47474,7 +47487,7 @@ process.umask = function() { return 0; };
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_17_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_17_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../css-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[1]!../../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[2]!./splide.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[17].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css");
+/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_18_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_18_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../css-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[1]!../../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[2]!./splide.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[18].oneOf[1].use[2]!./node_modules/@splidejs/splide/dist/css/splide.min.css");
 
             
 
@@ -47483,11 +47496,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_17_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_17_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_18_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_18_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_css_loader_dist_cjs_js_ruleSet_1_rules_17_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_17_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ __webpack_exports__["default"] = (_css_loader_dist_cjs_js_ruleSet_1_rules_18_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_18_oneOf_1_use_2_splide_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -52638,6 +52651,7 @@ var token=/d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"
 /******/ 			"css/blog": 0,
 /******/ 			"css/agency": 0,
 /******/ 			"css/about": 0,
+/******/ 			"css/editor": 0,
 /******/ 			"css/pa": 0,
 /******/ 			"css/modals": 0,
 /******/ 			"css/search": 0,
@@ -52701,19 +52715,20 @@ var token=/d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/search.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/modals.css"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/pa.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/search.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/modals.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/pa.css"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/editor.css"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

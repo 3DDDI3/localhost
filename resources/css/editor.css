@@ -1,0 +1,170 @@
+@font-face {
+    font-family: 'Inter';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-Thin-BETA.otf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 200;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-ExtraLight-BETA.otf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 250;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-ExtraLight.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-Regular.ttf');
+}
+
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 800;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-weight: 900;
+    font-style: normal;
+    src: url('/fonts/Inter/Inter-Black.ttf');
+}
+
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-thin.ttf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 200;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-ultralight.ttf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-light.ttf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-roman.ttf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 550;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-medium.ttf');
+}
+
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-bold.ttf');
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyr';
+    font-weight: 900;
+    font-style: normal;
+    src: url('/fonts/Helveticaneuecyr/helveticaneuecyr-black.ttf');
+}
+
+.editor_h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px !important;
+    font-weight: 500 !important;
+    line-height: 38.73px !important;
+    letter-spacing: -0.02em;
+    color: #342635;
+}
+
+.editor_h2 {
+    font-family: "Inter";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    color: #342635;
+}
+
+.editor_h2_1 {
+    font-family: "Inter";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    color: #342635;
+}
+
+.editor_text {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 20.57px !important;
+    letter-spacing: -0.02em;
+    color: #342635;
+}
+
+.editor_link {
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20.57px;
+    letter-spacing: -0.02em;
+    color: #4f298c;
+}
+
+.editor_link:hover {
+    color: black;
+}

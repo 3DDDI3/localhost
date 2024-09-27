@@ -8,16 +8,25 @@ use Illuminate\Http\Request;
 
 class BlogsController extends Controller
 {
+
+    private $samotour_url;
+    private $samotour_token;
+
+    public function __construct()
+    {
+        $this->samotour_url = config('samotour.samotour_api_url');
+        $this->samotour_token = config('samotour.samotour_api_token');
+    }
+
     public function index()
     {
-
         $blogs = Blog::query()
             ->where(['hide' => 0])
             ->orderBy('rating', 'desc')
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        if (!$blogs) abort(404, 'Не удалось найти блоги');
+        if (!$blogs) abort(404, 'Что-то пошло не так');
 
         $breadCrumbs = collect([
             (object)[
@@ -33,14 +42,14 @@ class BlogsController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -62,11 +71,20 @@ class BlogsController extends Controller
 
     public function blog($url)
     {
-        $blog = Blog::query()->where(['url' => $url])->first();
+        $blog = Blog::query()
+            ->where([
+                'url' => $url,
+                'hide' => 0
+            ])
+            ->first();
 
-        $otherBlogs = Blog::query()->where('url', '<>', $url)->take(6)->get();
+        $otherBlogs = Blog::query()
+            ->where('url', '<>', $url)
+            ->where(['hide' => 0])
+            ->take(6)
+            ->get();
 
-        if (!$blog) abort(404, 'Не удалось найти блог');
+        if (!$blog) abort(404, 'Что-то пошло не так');
 
         $breadCrumbs = collect([
             (object)[
@@ -86,14 +104,14 @@ class BlogsController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -105,6 +123,7 @@ class BlogsController extends Controller
             }
         } catch (\Throwable $th) {
         }
+
 
         return view('pages.blog', [
             'breadcrumbs' => $breadCrumbs,

@@ -9,6 +9,15 @@ use function GuzzleHttp\Promise\queue;
 
 class NewsController extends Controller
 {
+    private $samotour_url;
+    private $samotour_token;
+
+    public function __construct()
+    {
+        $this->samotour_url = config('samotour.samotour_api_url');
+        $this->samotour_token = config('samotour.samotour_api_token');
+    }
+
     public function index()
     {
         $breadCrumbs = collect([
@@ -26,14 +35,15 @@ class NewsController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -46,7 +56,11 @@ class NewsController extends Controller
         } catch (\Throwable $th) {
         }
 
-        $news = News::query()->orderBy('created_at', 'desc')->paginate(12);
+
+        $news = News::query()
+            ->where(['hide' => 0])
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
 
         if (!$news) abort(404, 'Не удалось найти новости');
 
@@ -59,11 +73,21 @@ class NewsController extends Controller
 
     public function new($url)
     {
-        $news = News::query()->where(['url' => $url])->first();
+        $news = News::query()
+            ->where([
+                'url' => $url,
+                'hide' => 0
+            ])
+            ->first();
 
         if (!$news) abort(404, 'Не удалось найти новость');
 
-        $otherNews = News::query()->where('url', '<>', $url)->orderBy('created_at', 'desc')->take(6)->get();
+        $otherNews = News::query()
+            ->where('url', '<>', $url)
+            ->where(['hide' => 0])
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
 
         $breadCrumbs = collect([
             (object)[
@@ -83,14 +107,15 @@ class NewsController extends Controller
 
         try {
             $client = new Client(['verify' => false]);
-            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_CURRENCIES');
+
+            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_CURRENCIES");
             $currencyBody = json_decode($res->getBody()->getContents())->Currency_CURRENCIES;
 
             foreach ($currencyBody as $currencyBase) {
                 if ($currencyBase->name == "RUB") {
                     foreach ($currencyBody as $currency) {
                         if ($currency->name == "USD" || $currency->name == "EUR" || $currency->name == "CNY") {
-                            $res = $client->get('https://online.mercury-europe.ru/export/default.php?samo_action=api&version=1.0&oauth_token=5104feaa290d42d7a60d4b8710451fcd&type=json&action=Currency_RATES&CURRENCY=' . $currency->id . '&CURRENCYBASE=' . $currencyBase->id);
+                            $res = $client->get("$this->samotour_url&oauth_token=$this->samotour_token&type=json&action=Currency_RATES&CURRENCY=$currency->id&CURRENCYBASE=$currencyBase->id");
                             $currencyContent = json_decode($res->getBody()->getContents())->Currency_RATES[0];
                             $currencies->push((object)[
                                 'currency' => $currency->name . "/" . $currencyBase->name,
@@ -102,6 +127,7 @@ class NewsController extends Controller
             }
         } catch (\Throwable $th) {
         }
+
 
         return view('pages.new', [
             'breadcrumbs' => $breadCrumbs,

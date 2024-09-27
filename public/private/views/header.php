@@ -16,6 +16,8 @@
     <!-- JqueryUi -->
     <link rel='stylesheet' href='/lib/jquery-ui-sortable/jquery-ui.min.css'>
 
+    <link rel="stylesheet" href="/css/fonts.css">
+
     <!-- CSS -->
     <link rel='stylesheet' href='/private/src/css/main.css?v=<?= md5_file('private/src/css/main.css') ?>'>
     <link rel='stylesheet' href='/private/src/css/local.css?v=<?= md5_file('private/src/css/local.css') ?>'>

@@ -182,7 +182,8 @@ main {
         transform: scale(1.1);
 
         .blog__text,
-        .blog__title {
+        .blog__title,
+        .editor_text {
             color: #582F9A;
         }
     }

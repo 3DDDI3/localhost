@@ -34,6 +34,7 @@ class IndexController extends Controller
         $tourStatuses = Tour::has('tourStatus')->get();
 
         $countries = Country::query()
+            ->where(['hide' => 0])
             ->orderBy('name')
             ->get();
 
@@ -90,7 +91,10 @@ class IndexController extends Controller
         }
 
         $sliders = Slider::query()
-            ->where(['hide' => 0])
+            ->where([
+                'hide' => 0,
+                'page' => 'main'
+            ])
             ->orderBy('rating', 'desc')
             ->get();
 

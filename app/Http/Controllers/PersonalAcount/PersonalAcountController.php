@@ -28,7 +28,12 @@ class PersonalAcountController extends Controller
                 'url' => $url,
             ])->first();
 
-        if (!$agent->isActive) abort(404, 'Что-то пошло не так');
+        if (!$agent->isActive) {
+            request()->session()->invalidate();
+            request()->session()->regenerateToken();
+            redirect('/');
+            // abort(404, 'Что-то пошло не так');
+        }
 
         $currencies = collect();
 

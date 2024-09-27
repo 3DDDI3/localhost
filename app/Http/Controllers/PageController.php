@@ -27,7 +27,10 @@ class PageController extends Controller
             ],
         ]);
 
-        $personal = Personal::query()->orderBy('rating', 'desc')->get();
+        $personal = Personal::query()
+            ->where(['hide' => 0])
+            ->orderBy('rating', 'desc')
+            ->get();
 
         $currencies = collect();
 
@@ -53,7 +56,12 @@ class PageController extends Controller
         } catch (\Throwable $th) {
         }
 
-        $object = Page::query()->where(['url' => $url])->first();
+        $object = Page::query()
+            ->where([
+                'url' => $url,
+                'hide' => 0
+            ])
+            ->first();
 
         if (!$object) abort(404, 'Не удалось найти страницу');
 

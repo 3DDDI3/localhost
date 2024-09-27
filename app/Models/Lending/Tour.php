@@ -68,6 +68,12 @@ class Tour extends Model
         return $this->hasManyThrough(Status::class, TourStatus::class, 'tour_id', 'id', 'id', 'status_id');
     }
 
+    public function isPopularTour()
+    {
+        return $this->hasManyThrough(Status::class, TourStatus::class, 'tour_id', 'id', 'id', 'status_id')
+            ->where(['name' => 'Хит']);
+    }
+
     protected $fillable = [
         'title',
         'subtitle',

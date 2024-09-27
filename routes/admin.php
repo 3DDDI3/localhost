@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\Lending\AboutCompanySliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Lending\BlogController;
 use App\Http\Controllers\Admin\Lending\CountryController;
+use App\Http\Controllers\Admin\Lending\MainSliderController;
 use App\Http\Controllers\Admin\Lending\NewsController;
 use App\Http\Controllers\Admin\Lending\PageController;
 use App\Http\Controllers\Admin\Lending\ProgramsController;
@@ -132,8 +134,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
                 });
 
                 Route::group(['prefix' => 'sliders', 'as' => 'sliders.'], function () {
-                    Route::get('/', [SliderController::class, 'index'])->name('index');
-                    Route::match(['get', 'post'], '/edit/{id?}', [SliderController::class, 'edit'])->name('edit');
+                    Route::group(['prefix' => 'main', 'as' => 'main.'], function () {
+                        Route::get('/', [MainSliderController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit/{id?}', [MainSliderController::class, 'edit'])->name('edit');
+                    });
                 });
             });
 

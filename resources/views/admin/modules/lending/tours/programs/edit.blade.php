@@ -33,6 +33,12 @@
                 'value' => $object->text ?? '',
             ])
 
+            @include('admin.includes.textarea', [
+                'label' => 'Текст (разделитель пунта <b>;;</b> ):',
+                'name' => 'text',
+                'value' => $object->text ?? '',
+            ])
+
             {!! \App\Helpers\GenerateForm::makeGallery('Галерея', 'galary', $images, '/images/tours/programs') !!}
 
             @include('admin.includes.submit')

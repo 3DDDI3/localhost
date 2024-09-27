@@ -1,7 +1,11 @@
 @if (!empty($attributes->get('class')))
     <div class="popular-tours__tour-card" data-href="{{ $attributes->get('url') }}">
         <div class="popular-tours-tour-card__headding popular-tours-tour-card__headding_dafault">
-            <span class="popular-tours-tour-card__type">{{ $attributes->get('type') }}</span>
+            @if ($attributes->get('type')->count() > 0)
+                <span class="tour-card__type tour-card__type">Хит</span>
+            @else
+                <span></span>
+            @endif
             @if (!empty($attributes->get('img')))
                 <img src="{{ $attributes->get('img') }}" class="card__image" alt="{{ $attributes->get('alt') }}">
             @endif
@@ -39,7 +43,11 @@
 @else
     <div class="tour-card" data-href="{{ $attributes->get('url') }}">
         <div class="tour-card__headding tour-card__headding_dafault tour-card__headding_defaut">
-            <span class="tour-card__type tour-card__type">{{ $attributes->get('type') }}</span>
+            @if ($attributes->get('type')->count() > 0)
+                <span class="tour-card__type tour-card__type">Хит</span>
+            @else
+                <span></span>
+            @endif
             @if (!empty($attributes->get('img')))
                 <img src="{{ $attributes->get('img') }}" class="card__image" alt="{{ $attributes->get('alt') }}">
             @endif

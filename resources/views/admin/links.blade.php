@@ -79,9 +79,9 @@
         all="{{ isset($all) && $all }}">
 
         @include('admin.includes.menu.item', [
-            'route' => 'admin.lending.sliders.index',
+            'route' => 'admin.lending.sliders.main.index',
             'name' => 'Главная',
-            'data' => 'sliders',
+            'data' => 'main',
         ])
 
     </x-Admin.NavBar>
@@ -123,7 +123,7 @@
 </x-Admin.NavBar>
 
 <x-Admin.NavBar title="Пользователи" url="users" all="{{ isset($all) && $all }}">
-    @include('admin.includes.menu.item', [
+    {{-- @include('admin.includes.menu.item', [
         'route' => 'admin.users.users.index',
         'name' => 'Пользователи',
         'data' => 'users',
@@ -132,7 +132,7 @@
         'route' => 'admin.users.classes.index',
         'name' => 'Классы пользователей',
         'data' => 'classes',
-    ])
+    ]) --}}
     @include('admin.includes.menu.item', [
         'route' => 'admin.users.agents.index',
         'name' => 'Агенты',

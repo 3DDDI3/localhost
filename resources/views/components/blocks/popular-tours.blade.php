@@ -23,6 +23,7 @@
                 </svg>
             </button>
         </div>
+        
         <x-sliders.popular-tours :tourStatuses="$attributes->get('tourStatuses')" />
     </div>
     <button data-href="tours" class="popular-tours__mobile-button">Все туры</button>

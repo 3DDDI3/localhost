@@ -23,6 +23,8 @@
         href='/private/src/css/local.css?v={{ sha1_file(public_path('/private/src/css/local.css')) }}'>
     <link rel='stylesheet'
         href='/private/src/css/chosen.css?v={{ sha1_file(public_path('/private/src/css/chosen.css')) }}'>
+
+    <link rel="stylesheet" href="{{ asset('/css/editor.css') }}?v={{ sha1_file(public_path() . '/css/editor.css') }}">
 </head>
 
 <body>

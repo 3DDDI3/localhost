@@ -58,7 +58,8 @@ main {
     .news__card:hover {
         transform: scale(1.1);
 
-        .news__text {
+        .news__text,
+        .editor_text {
             color: #582F9A;
         }
     }

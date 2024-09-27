@@ -27,6 +27,7 @@
                         @endif --}}
                     </div>
                     <div class="list_item-actions">
+                        @include('admin.includes.actions.open', ['link' => "/pages/$object->url"])
                         @include('admin.includes.sortable.rating')
                         @include('admin.includes.actions.show')
                         @include('admin.includes.actions.edit')

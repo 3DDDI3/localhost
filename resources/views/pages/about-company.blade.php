@@ -13,18 +13,6 @@
         </div>
 
         <x-sliders.gallery slider_class="personal__slider">
-            {{-- <li class="splide__slide">
-                <img src="{{ asset('images/card1.png') }}" alt="">
-            </li>
-            <li class="splide__slide">
-                <img src="{{ asset('images/card2.png') }}" alt="">
-            </li>
-            <li class="splide__slide">
-                <img src="{{ asset('images/card1.png') }}" alt="">
-            </li>
-            <li class="splide__slide">
-                <img src="{{ asset('images/card2.png') }}" alt="">
-            </li> --}}
             @foreach ($gallery as $image)
                 <li class="splide__slide">
                     <img src="/storage/{{ $image->file_name }}" alt="">

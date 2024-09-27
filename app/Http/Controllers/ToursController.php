@@ -68,9 +68,11 @@ class ToursController extends Controller
                 $tourTypes = TourTypes::has('tours')
                     ->paginate(12);
             } else {
-                $tourType = TourType::query()->where([
-                    'tour_type_id' => request()->input("type_id")
-                ])->first();
+                $tourType = TourType::query()
+                    ->where([
+                        'tour_type_id' => request()->input("type_id"),
+                        'hide' => 0
+                    ])->first();
 
                 if (!$tourType) abort(404, 'Что-то пошло не так.');
 
@@ -84,9 +86,11 @@ class ToursController extends Controller
                     'url' => "/" . $tourType->tourType->id,
                 ]);
 
-                $tours = TourType::query()->where([
-                    'tour_type_id' => request()->input("type_id")
-                ])->paginate(12);
+                $tours = TourType::query()
+                    ->where([
+                        'tour_type_id' => request()->input("type_id"),
+                        'hide' => 0
+                    ])->paginate(12);
             }
         }
 
@@ -101,7 +105,12 @@ class ToursController extends Controller
                     ->paginate(12);
             } else {
 
-                $country = Country::query()->where(['id' => request()->input('country_id')])->first();
+                $country = Country::query()
+                    ->where([
+                        'id' => request()->input('country_id'),
+                        'hide' => 0
+                    ])
+                    ->first();
 
                 if (!$country) abort(404, 'Что-то пошло нет.',);
 
@@ -115,9 +124,11 @@ class ToursController extends Controller
                     'url' => '/tours?country_id=' . $country->id,
                 ]);
 
-                $tours = TourCountry::query()->where([
-                    'country_id' => request()->input("country_id")
-                ])->paginate(12);
+                $tours = TourCountry::query()
+                    ->where([
+                        'country_id' => request()->input("country_id"),
+                        'hide' => 0,
+                    ])->paginate(12);
             }
         }
 
@@ -127,7 +138,10 @@ class ToursController extends Controller
                 'name' => "Туры",
             ]);
 
-            $tours = Tour::query()->where(['hide' => 0])->orderBy('rating', 'desc')->paginate(12);
+            $tours = Tour::query()
+                ->where(['hide' => 0])
+                ->orderBy('rating', 'desc')
+                ->paginate(12);
         }
 
         return view('pages.tours', [
@@ -165,7 +179,11 @@ class ToursController extends Controller
         } catch (\Throwable $th) {
         }
 
-        $tour = Tour::where(["hide" => 0, 'url' => $url])->first();
+        $tour = Tour::query()
+            ->where([
+                "hide" => 0,
+                'url' => $url
+            ])->first();
 
         if (!$tour) abort(404, 'Что-то пошло не так.');
 

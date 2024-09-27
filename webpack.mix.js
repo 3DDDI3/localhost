@@ -14,5 +14,6 @@ mix.js('resources/js/main.js', 'public/js')
     .css('resources/css/search.css', 'public/css')
     .css('resources/css/modals.css', 'public/css')
     .css('resources/css/pa.css', 'public/css')
+    .css('resources/css/editor.css', 'public/css')
 
     .version();

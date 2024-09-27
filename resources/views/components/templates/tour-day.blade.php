@@ -12,7 +12,20 @@
     </div>
     <div class="tour-day-programm__description">
         <div class="tour-day-programm__text">
-            {!! html_entity_decode($attributes->get('text')) !!}
+            {{-- {!! html_entity_decode($attributes->get('text')) !!} --}}
+
+            <div class="tour-day-programm__text">
+                @foreach (explode(';;', $attributes->get('text')) as $paragraph)
+                    <p>
+                        <svg width="25" height="2" viewBox="0 0 25 2" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <line y1="1" x2="25" y2="1" stroke="#582F9A" stroke-width="2">
+                            </line>
+                        </svg>
+                        {!! html_entity_decode($paragraph) !!}
+                    </p>
+                @endforeach
+            </div>
         </div>
         {{ $slot }}
     </div>
