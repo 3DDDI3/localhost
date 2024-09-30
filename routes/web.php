@@ -69,10 +69,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         return $pdf->stream();
     });
 
-    Route::get("excel", function () {
-        return Excel::download(new MaillingExport, 'user.xlsx');
-    });
-
     include('admin.php');
 });
 

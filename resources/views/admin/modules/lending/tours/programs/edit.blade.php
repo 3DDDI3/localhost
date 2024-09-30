@@ -27,11 +27,11 @@
                 'select_head' => $selectedTour,
             ])
 
-            @include('admin.includes.textbox', [
+            {{-- @include('admin.includes.textbox', [
                 'label' => 'Текст:',
                 'name' => 'text',
                 'value' => $object->text ?? '',
-            ])
+            ]) --}}
 
             @include('admin.includes.textarea', [
                 'label' => 'Текст (разделитель пунта <b>;;</b> ):',

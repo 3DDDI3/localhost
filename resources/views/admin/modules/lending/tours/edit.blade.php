@@ -132,14 +132,26 @@
                 empty($object->preview_image) ? null : 'title',
             ) !!}
 
-            @include('admin.includes.textbox', [
-                'label' => 'Описание стоимости тура:',
+            @include('admin.includes.textarea', [
+                'label' => 'Описание стоимости тура (разделитель пунта <b>;;</b> ):',
                 'name' => 'tour_cost_info',
                 'value' => $object->tour_cost_info ?? '',
             ])
 
-            @include('admin.includes.textbox', [
+            {{-- @include('admin.includes.textbox', [
+                'label' => 'Описание стоимости тура:',
+                'name' => 'tour_cost_info',
+                'value' => $object->tour_cost_info ?? '',
+            ]) --}}
+
+            {{-- @include('admin.includes.textbox', [
                 'label' => 'Описание дополнительной оплаты:',
+                'name' => 'tour_additional_cost',
+                'value' => $object->tour_additional_cost ?? '',
+            ]) --}}
+
+            @include('admin.includes.textarea', [
+                'label' => 'Описание дополнительной оплаты (разделитель пунта <b>;;</b> ):',
                 'name' => 'tour_additional_cost',
                 'value' => $object->tour_additional_cost ?? '',
             ])

@@ -9,6 +9,8 @@
             <span>Название:</span>
             <input type="text" name="search" placeholder="Введите email" value="{{ $_GET['search'] ?? '' }}">
             <button type="submit" class="blue_btn">Поиск</button>
+            <button class="blue_btn" name="exprot_records"
+                style="height: 36px; display: flex; justify-content: center; align-items: center;">Экспорт в Excel</button>
         </form>
 
     </div>

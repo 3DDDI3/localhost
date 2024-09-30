@@ -687,3 +687,8 @@ $(".chosen.tour").on("change", function () {
     $(".chosen.page option:selected").prop("selected", false);
     $('.chosen.page').trigger("chosen:updated");
 });
+
+$("button[name='exprot_records']").on("click", function (e) {
+    e.preventDefault();
+    window.location.href = `/api/mailling/downlaod`;
+});

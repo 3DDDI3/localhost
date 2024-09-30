@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PersonalAcount;
 
 use App\Http\Controllers\Controller;
 use App\Mail\PasswordResetMail;
+use App\Mail\RegistrationAgentMail;
 use App\Mail\RegistrationMail;
 use App\Models\ResetPassword;
 use App\Models\Services\Agent;
@@ -46,7 +47,7 @@ class AuthorizationController extends Controller
         $agent->save();
 
         Mail::to(config('mail.from.address'))->send(new RegistrationMail($agent));
-        Mail::to($request->user()->email)->send(new RegistrationMail($agent));
+        Mail::to($request->email)->send(new RegistrationAgentMail($request));
 
         if ($request->expectsJson())
             return response()->json([

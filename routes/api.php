@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\MaillingExport;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PersonalAcount\AuthorizationController;
 use App\Http\Resources\MaillerResource;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\ComponentAttributeBag;
+use Maatwebsite\Excel\Facades\Excel;
 use Psy\Command\WhereamiCommand;
 
 /*
@@ -94,21 +96,6 @@ Route::prefix('samotour')->group(function () {
         });
 
         Route::get('/getCountries', function (Request $request) {
-                // try {
-                //         $samotour_url = config('samotour.samotour_api_url');
-                //         $samotour_token = config('samotour.samotour_api_token');
-                //         $client = new Client(['verify' => false]);
-                //         $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_STATES&TOWNFROMINC=$request->id");
-                //         $combobox = new ComboboxItem();
-                //         $content =  json_decode($res->getBody()->getContents())->SearchTour_STATES;
-                //         return $combobox->render()->with(
-                //                 ['attributes' => new ComponentAttributeBag(
-        //                         ['objects' => count($content) > 0 ? $content : ещгкnull]
-                //                 )]
-                //         );
-                // } catch (\Throwable $th) {
-                // }
-
                 $countries = SamotourTour::query()
                         ->distinct()
                         ->where(['id_city' => $request->city])
@@ -144,3 +131,7 @@ Route::prefix('feedback')
         ->group(function () {
                 Route::post('/create', 'create');
         });
+
+Route::get('mailling/downlaod', function () {
+        return Excel::download(new MaillingExport, 'user.xlsx');
+});

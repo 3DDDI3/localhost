@@ -1,12 +1,13 @@
 <x-mail::message>
-# Introduction
+Здравствуйте,
 
-The body of your message.
+Мы рады сообщить вам, что ваша регистрация прошла успешно! 
+    
+После подтверждения профиля вам откроется доступ ко всем функциям и ресурсам нашего сервиса. Просим вас отправить логотип вашей компании по почте <a href="mailto:info@mercury-europe.ru">info@mercury-europe.ru</a> в ближайшее время.
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
+Если у вас возникнут вопросы или вы захотите обновить ваши данные, свяжитесь с нами: <a href="mailto:info@mercury-europe.ru">info@mercury-europe.ru</a>.
+    
+Спасибо, что выбрали нас!
+    
+<p style="margin-top: 20px">C уважением, <br>Администрация сайта {{ config('app.name') }}</p>
 </x-mail::message>

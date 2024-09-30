@@ -608,6 +608,7 @@ main {
                     width: 527px;
                     position: absolute;
                     top: 25px;
+                    height: inherit;
                     right: 8px;
                     box-sizing: border-box;
                     background-color: #FFFFFF;

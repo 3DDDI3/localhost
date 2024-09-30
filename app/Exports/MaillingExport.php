@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use App\Models\Mailler;
-use App\Models\Services\SamotourTour;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -25,21 +24,16 @@ class MaillingExport implements FromCollection, WithHeadings, ShouldAutoSize, Wi
      */
     public function collection()
     {
-        $samotour = collect();
-
-        $samotour->push(SamotourTour::query()
+        return Mailler::query()
             ->orderBy('created_at', 'desc')
-            ->get());
-
-        $samotour->push(SamotourTour::query()
-            ->orderBy('created_at', 'desc')
-            ->get());
-
-        $samotour->push(SamotourTour::query()
-            ->orderBy('created_at', 'desc')
-            ->get());
-
-        return $samotour;
+            ->get([
+                'id',
+                'email',
+                'type',
+                'name',
+                'city',
+                'created_at'
+            ]);
     }
 
     public function headings(): array
