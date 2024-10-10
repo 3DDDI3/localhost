@@ -4414,6 +4414,9 @@ $(function () {
   if ($(".advertisement-slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".advertisement-slider", {
     pagination: false,
     perPage: 1,
+    autoplay: true,
+    interval: 5000,
+    type: 'loop',
     breakpoints: {
       375: {
         perPage: 1
@@ -4980,12 +4983,14 @@ $(function () {
     if ($(this).html().match(/Просмотреть\sвсе\s+страны/)) {
       $(this).html($(this).html().replace(/Просмотреть\sвсе\s+страны/, 'Скрыть'));
       $(this).find("svg").css("transform", "rotate(-90deg)");
+      $(this).parents(".services-country-tour").find(".service_country__sublist").css("overflow-y", "scroll");
       $(this).parents(".services-country-tour").find(".service_country__sublist").animate({
         "max-height": "250px"
       }, 1000);
     } else {
       $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все страны'));
       $(this).find("svg").css("transform", "rotate(90deg)");
+      $(this).parents(".services-country-tour").find(".service_country__sublist").css("overflow-y", "hidden");
       $(this).parents(".services-country-tour").find(".service_country__sublist").animate({
         "max-height": "128px"
       }, 800);
@@ -4995,16 +5000,30 @@ $(function () {
     if ($(this).html().match(/Просмотреть\sвсе\s+типы/)) {
       $(this).html($(this).html().replace(/Просмотреть\sвсе\s+типы/, 'Скрыть'));
       $(this).find("svg").css("transform", "rotate(-90deg)");
+      $(this).parents(".services-vacation-type").find(".services-vacation-type__list").css("overflow-y", "scroll");
       $(this).parents(".services-vacation-type").find(".services-vacation-type__list").animate({
         "max-height": "250px"
       }, 1000);
     } else {
       $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все типы'));
       $(this).find("svg").css("transform", "rotate(90deg)");
+      $(this).parents(".services-vacation-type").find(".services-vacation-type__list").css("overflow-y", "hidden");
       $(this).parents(".services-vacation-type").find(".services-vacation-type__list").animate({
         "max-height": "128px"
       }, 800);
     }
+  });
+  $(".header-messengers__vk").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
+  });
+  $(".header-messengers__telegram").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
+  });
+  $(".editor_text a").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
   });
   $(".mailling").on("submit", function (e) {
     e.preventDefault();

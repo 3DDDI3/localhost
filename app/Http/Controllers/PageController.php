@@ -129,8 +129,6 @@ class PageController extends Controller
                 ]);
                 break;
 
-            default:
-
                 $breadCrumbs->push((object)[
                     'name' => $object->title,
                     'url' => $object->url,

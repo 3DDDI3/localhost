@@ -1,7 +1,7 @@
 @if (!empty($attributes->get('class')))
     <div class="popular-tours__tour-card" data-href="{{ $attributes->get('url') }}">
         <div class="popular-tours-tour-card__headding popular-tours-tour-card__headding_dafault">
-            @if ($attributes->get('type')->count() > 0)
+            @if ($attributes->get('type')?->count() > 0)
                 <span class="tour-card__type tour-card__type">Хит</span>
             @else
                 <span></span>
@@ -43,7 +43,7 @@
 @else
     <div class="tour-card" data-href="{{ $attributes->get('url') }}">
         <div class="tour-card__headding tour-card__headding_dafault tour-card__headding_defaut">
-            @if ($attributes->get('type')->count() > 0)
+            @if ($attributes->get('type')?->count() > 0)
                 <span class="tour-card__type tour-card__type">Хит</span>
             @else
                 <span></span>

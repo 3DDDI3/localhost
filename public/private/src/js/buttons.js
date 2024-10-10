@@ -335,4 +335,46 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('input[name="daterange"]').daterangepicker({
+        autoUpdateInput: false,
+        "singleDatePicker": true,
+        "autoApply": true,
+        "locale": {
+            "format": "MM/DD/YYYY",
+            "applyLabel": "Сохранить",
+            "cancelLabel": "Назад",
+            "daysOfWeek": [
+                "Вс",
+                "Пн",
+                "Вт",
+                "Ср",
+                "Чт",
+                "Пт",
+                "Сб"
+            ],
+            "monthNames": [
+                "Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь"
+            ],
+            "firstDay": 1
+        },
+    })
+
+    $('input[name="daterange"]').on('hide.daterangepicker', function (ev, picker) {
+        console.log(this);
+        $(this).text(`${picker.startDate.format('DD.MM.YYYY')}`);
+        $(this).val(11);
+    })
+
 });

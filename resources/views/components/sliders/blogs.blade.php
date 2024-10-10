@@ -3,7 +3,7 @@
         <ul class="splide__list">
             @foreach ($attributes->get('news') as $new)
                 <li class="splide__slide">
-                    <x-templates.news url="{{ $new->url }}" img="{{ $new->preview_image }}" alt=""
+                    <x-templates.blog url="{{ $new->url }}" img="{{ $new->preview_image }}" alt=""
                         date="{{ $new->created_at }}" title="{{ $new->title }}" />
                 </li>
             @endforeach

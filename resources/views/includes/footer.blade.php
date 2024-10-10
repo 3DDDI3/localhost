@@ -27,7 +27,7 @@
                         <a href="/blogs" class="footer-main-menu__link menu__link">Блог</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="{{ $pages->find(4)->url }}"
+                        <a href="/pages/{{ $pages->find(4)->url }}"
                             class="footer-main-menu__link menu__link">{{ $pages->find(4)->title }}</a>
                     </li>
                     {{-- <li class="footer-main-menu__item menu__item">
@@ -44,10 +44,11 @@
                             class="footer-main-menu__link menu__link">{{ $pages->find(1)->title }}</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="" class="footer-main-menu__link menu__link">Ранее бронирование</a>
+                        <a href="/tours?earlier_booking=1" class="footer-main-menu__link menu__link">Ранее
+                            бронирование</a>
                     </li>
                     <li class="footer-main-menu__item menu__item">
-                        <a href="" class="footer-main-menu__link menu__link">Спецпредложение</a>
+                        <a href="/tours?special_offers=1" class="footer-main-menu__link menu__link">Спецпредложение</a>
                     </li>
                 </ul>
             </div>

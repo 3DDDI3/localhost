@@ -37,7 +37,23 @@ $(document).ready(function () {
                 for (let i = 0; i < files.length; i++) {
                     $.upload(files[i], $(this));
                 }
-            }
+            },
+            // onInit: function () {
+            //     // Add "open" - "save" buttons
+            //     var noteBtn = '<button id="list" type="button" class="btn btn-default btn-sm btn-small" title="Identify a music note" data-event="something" tabindex="-1"><i class="fa fa-music"></i></button>';
+            //     var fileGroup = '<div class="note-file btn-group">' + noteBtn + '</div>';
+            //     $(fileGroup).appendTo($('.note-toolbar'));
+            //     $('#list').click(function (event) {
+            //         var highlight = window.getSelection(),
+            //             spn = '<span class="snote" style="color:blue;">' + highlight + '</span>',
+            //             text = $('.note-editable').children('p').text(),
+            //             range = highlight.getRangeAt(0),
+            //             startText = text.substring(0, range.startOffset),
+            //             endText = text.substring(range.endOffset, text.length);
+
+            //         $('.note-editable').html(startText + spn + endText);
+            //     });
+            // },
         },
     });
 

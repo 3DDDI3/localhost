@@ -1,5 +1,5 @@
 @php
-    $inputs = ['country_id', 'type_id', 'search'];
+    $inputs = ['country_id', 'type_id', 'search', 'earlier_booking', 'special offers'];
 @endphp
 
 @php

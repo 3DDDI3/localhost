@@ -58,6 +58,41 @@ class ToursController extends Controller
             ],
         ]);
 
+        /**
+         * Отбор туров по статусу "Ранее бронировани(иконка часов)"
+         */
+        if (!empty(request()->input("earlier_booking"))) {
+            $tours = Tour::query()
+                ->has('tourStatus')->whereHas('tourStatus', function ($query) {
+                    $query->where(['status.id' => 1]);
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
+
+            $breadCrumbs->push((object)[
+                "name" => "Ранее бронирование",
+            ]);
+        }
+
+        /**
+         * Отбор туров по статусу "Спецпреложение(иконка огонька)"
+         */
+        if (!empty(request()->input("special_offers"))) {
+            $tours = Tour::query()
+                ->has('tourStatus')->whereHas('tourStatus', function ($query) {
+                    $query->where(['status.id' => 4]);
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(12);
+
+            $breadCrumbs->push((object)[
+                "name" => "Спецпредложение",
+            ]);
+        }
+
+        /**
+         * Отбор туров по типу
+         */
         if (!empty(request()->input("type_id"))) {
             if (request()->input("type_id") == "*") {
                 $breadCrumbs->push((object)[
@@ -71,7 +106,7 @@ class ToursController extends Controller
                 $tourType = TourType::query()
                     ->where([
                         'tour_type_id' => request()->input("type_id"),
-                        'hide' => 0
+                        // 'hide' => 0
                     ])->first();
 
                 if (!$tourType) abort(404, 'Что-то пошло не так.');
@@ -89,11 +124,14 @@ class ToursController extends Controller
                 $tours = TourType::query()
                     ->where([
                         'tour_type_id' => request()->input("type_id"),
-                        'hide' => 0
+                        // 'hide' => 0
                     ])->paginate(12);
             }
         }
 
+        /**
+         * Отбор туров по стране
+         */
         if (!empty(request()->input("country_id"))) {
             if (request()->input("country_id") == "*") {
                 $breadCrumbs->push((object)[
@@ -127,12 +165,12 @@ class ToursController extends Controller
                 $tours = TourCountry::query()
                     ->where([
                         'country_id' => request()->input("country_id"),
-                        'hide' => 0,
+                        // 'hide' => 0,
                     ])->paginate(12);
             }
         }
 
-        if (empty(request()->input("type_id")) && empty(request()->input('country_id'))) {
+        if (empty(request()->input("type_id")) && empty(request()->input('country_id')) && empty(request()->special_offers) && empty(request()->earlier_booking)) {
 
             $breadCrumbs->push((object)[
                 'name' => "Туры",

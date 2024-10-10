@@ -1698,12 +1698,14 @@ main {
                     flex-direction: column;
                     row-gap: 15px;
                     max-height: 128px;
-                    overflow: hidden;
+                    overflow-x: hidden;
+                    overflow-y: hidden;
 
                     .service_country-sublist__row {
                         display: flex;
                         -moz-column-gap: 20px;
                              column-gap: 20px;
+                        padding-right: 20px;
                     }
 
                     .service_country-sublist__item {

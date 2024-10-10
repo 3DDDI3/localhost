@@ -13,6 +13,7 @@ use App\Mail\RegistrationMailer;
 use App\Models\Lending\Tour;
 use App\Models\Services\Agent;
 use Barryvdh\DomPDF\Facade\Pdf;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
@@ -67,6 +68,25 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         $pdf = Pdf::loadView('pdf.tour_program', compact('tour', 'agent'));
         return $pdf->stream();
+    });
+
+    Route::get('test', function () {
+
+        $samotour_url = config('samotour.samotour_api_url');
+        $samotour_token = config('samotour.samotour_api_token');
+
+        $client = new Client(['verify' => false]);
+
+        $results = collect();
+
+        $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_PRICES&TOWNFROMINC=290&STATEINC=36&CHECKIN_BEG=20241002&CHECKIN_END=20241101&NIGHTS_FROM=0&NIGHTS_TILL=14&ADULT=1&CURRENCY=1&STARS=&MEALS=&HOTELS=&TOURS=2503");
+        $results->push(json_decode($res->getBody()->getContents())->SearchTour_PRICES->prices);
+
+        // $res = $client->get("$samotour_url&oauth_token=$samotour_token&type=json&action=SearchTour_PRICES&TOWNFROMINC=290&STATEINC=36&CHECKIN_BEG=20241002&CHECKIN_END=20241101&NIGHTS_FROM=0&NIGHTS_TILL=14&ADULT=2&CURRENCY=1&STARS=&MEALS=&HOTELS=&TOURS=2503");
+        // $results->push(json_decode($res->getBody()->getContents())->SearchTour_PRICES->prices);
+
+
+        dd($results);
     });
 
     include('admin.php');

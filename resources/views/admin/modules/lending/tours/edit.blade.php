@@ -26,7 +26,8 @@
                 ])
             </div>
 
-            {{-- @dd($object) --}}
+            @component('components.admin.controls.datepicker', ['id' => 1])
+            @endcomponent
 
             {!! \App\Helpers\GenerateForm::makeFile(
                 'Документ "Стоимость тура"',

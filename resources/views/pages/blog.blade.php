@@ -10,8 +10,7 @@
         <div class="blog-headding">
             <x-templates.bread-crumbs :data="$breadcrumbs" />
             <div class="blog__headding page-headding">
-                <span class="blog-headding__title page-headding__title">Акция «Кешбэк за туры по России» в самом
-                    разгаре!</span>
+                <span class="blog-headding__title page-headding__title">{{ $blog->title }}</span>
                 <span class="blog-headding__date">{{ $blog->created_at }}</span>
             </div>
         </div>
@@ -23,7 +22,7 @@
             <div>{!! $blog->text !!}</div>
         </div>
 
-        <x-blocks.news :news="$otherBlogs" title="Другие" subtitle="блоги" />
+        <x-blocks.blogs :news="$otherBlogs" title="Другие" subtitle="блоги" />
 
         <x-blocks.offer />
 
