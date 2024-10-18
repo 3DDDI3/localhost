@@ -14,6 +14,12 @@
                 'value' => $object->title ?? '',
             ])
 
+            @include('admin.includes.input', [
+                'label' => 'Ссылка (генерируется автоматически, если ссылка пустая):',
+                'name' => 'url',
+                'value' => $object->url ?? '',
+            ])
+
             @include('admin.includes.textbox', [
                 'label' => 'Текст на превью:',
                 'name' => 'preview_text',

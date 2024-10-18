@@ -9,10 +9,12 @@ use App\Models\Lending\Slider;
 use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourStatus;
+use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 
@@ -31,17 +33,45 @@ class IndexController extends Controller
     {
         $setting = Setting::find(1);
 
-        $tourStatuses = Tour::has('tourStatus')->get();
+        $tourStatuses = Tour::query()->whereHas('tourStatus', function ($query) {
+            $query->where(['tour_status.status_id' => 1, 'tours.hide' => 0]);
+            $query->where(function ($query) {
+                $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                $query->orWhere(['deadline_date' => null]);
+            });
+        })
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
 
         $countries = Country::query()
-            ->where(['hide' => 0])
-            ->orderBy('name')
+            ->whereHas('tours', function ($query) {
+                $query->whereHas('tour', function ($query) {
+                    $query->where(['tours.hide' => 0]);
+                    $query->where(function ($query) {
+                        $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                        $query->orWhere(['deadline_date' => null]);
+                    });
+                });
+            })
             ->get();
+
 
         $types = TourTypes::query()
             ->where(['hide' => 0])
             ->orderBy('rating', 'desc')
             ->get();
+
+        $types = TourTypes::query()
+            ->whereHas('tours', function ($query) {
+                $query->whereHas('tour', function ($query) {
+                    $query->where(['tours.hide' => 0]);
+                    $query->where(function ($query) {
+                        $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                        $query->orWhere(['deadline_date' => null]);
+                    });
+                });
+            })->get();
 
         $advs = Adv::query()
             ->where(['hide' => 0])
@@ -101,7 +131,6 @@ class IndexController extends Controller
         return view('pages.index', compact(
             'setting',
             'advs',
-            'countries',
             'types',
             'tourStatuses',
             'news',

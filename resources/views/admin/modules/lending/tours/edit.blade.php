@@ -26,11 +26,17 @@
                 ])
             </div>
 
-            @component('components.admin.controls.datepicker', ['id' => 1])
+            @component('components.admin.controls.datepicker', [
+                'title' => 'Предельная дата тура',
+                'placeholder' => 'Выберите предельную дату',
+                'value' => $object->deadline_date?->format('d.m.Y'),
+                'name' => 'daterange',
+                'style' => ['margin-top' => '10px'],
+            ])
             @endcomponent
 
             {!! \App\Helpers\GenerateForm::makeFile(
-                'Документ "Стоимость тура"',
+                'Документ "Памятка туристу"',
                 'file1',
                 $object,
                 '/storage/files',
@@ -51,6 +57,12 @@
                 'label' => 'Заголовок:',
                 'name' => 'title',
                 'value' => $object->title ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Ссылка (генерируется автоматически, если ссылка пустая):',
+                'name' => 'url',
+                'value' => $object->url ?? '',
             ])
 
             @include('admin.includes.input', [
@@ -168,7 +180,7 @@
             @endphp
 
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Фоновое изображение<br>размер 1348x494',
+                'Фоновое изображение<br>размер 1920x494',
                 'background_image',
                 $object,
                 '/storage/' . $background_image,

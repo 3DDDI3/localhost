@@ -50,15 +50,16 @@ main {
 
 .company-background__text {
     font-family: "Inter", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 40px;
     letter-spacing: -0.02em;
     margin: 30px 0;
+    color: #342635;
 
     span {
         font-family: "Inter", sans-serif;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
         line-height: 40px;
         letter-spacing: -0.02em;
@@ -152,7 +153,6 @@ main {
             display: flex;
             align-items: center;
             background-color: #0e1237;
-            margin-bottom: 40px;
             column-gap: 50px;
             padding: 0 36px;
 
@@ -171,14 +171,14 @@ main {
 
             .company-experts-table__header:last-child {
                 flex-basis: 30%;
+                display: flex;
+                justify-content: center;
             }
         }
 
         .company-experts-table-row {
             display: flex;
-            min-height: 140px;
-            margin-bottom: 20px;
-            padding: 0 36px 0 36px;
+            padding: 30px 36px;
             column-gap: 50px;
 
             .company-experts-fio-block {
@@ -209,7 +209,7 @@ main {
 
             .company-experts-mail-block {
                 flex-basis: 30%;
-                /* align-items: center; */
+                align-items: center;
                 display: flex;
                 flex-direction: column;
 
@@ -240,6 +240,10 @@ main {
                     text-decoration: underline;
                 }
             }
+        }
+
+        .company-experts-table-row:nth-child(2n+1) {
+            background-color: #F8F8F8;
         }
     }
 }
@@ -324,7 +328,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -392,7 +395,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -464,7 +466,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -526,7 +527,6 @@ main {
             }
 
             .company-experts-table-row {
-                /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;
@@ -537,7 +537,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {

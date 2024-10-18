@@ -18,7 +18,7 @@
         <div class="blogs">
             <div class="blogs-list">
                 @foreach ($blogs as $blog)
-                    <x-templates.blog url="blogs/{{ $blog->url }}" img="{{ $blog->image }}" alt=""
+                    <x-templates.blog url="blogs/{{ $blog->url }}" img="{{ $blog->preview_image }}" alt=""
                         date="{{ $blog->created_at }}" title="{{ $blog->title }}" text="{{ $blog->preview_text }}" />
                 @endforeach
             </div>

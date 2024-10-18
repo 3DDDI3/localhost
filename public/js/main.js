@@ -3976,28 +3976,28 @@ window.daterangepicker = __webpack_require__(/*! daterangepicker */ "./node_modu
 
 function init() {
   var center = [59.911833615112705, 30.31557668469041];
-  var map = new ymaps.Map('map', {
+  var map = new ymaps.Map("map", {
     center: center,
     zoom: 19
   });
   var placemark = new ymaps.Placemark(center, null, {
-    iconLayout: 'default#image',
-    iconImageHref: '/images/marker.svg',
+    iconLayout: "default#image",
+    iconImageHref: "/images/marker.svg",
     iconImageSize: [150, 150],
     iconImageOffset: [-75, -115]
   }); // map.controls.add('mapTools');
 
-  map.controls.remove('geolocationControl'); // удаляем геолокацию
+  map.controls.remove("geolocationControl"); // удаляем геолокацию
 
-  map.controls.remove('searchControl'); // удаляем поиск
+  map.controls.remove("searchControl"); // удаляем поиск
 
-  map.controls.remove('trafficControl'); // удаляем контроль трафика
+  map.controls.remove("trafficControl"); // удаляем контроль трафика
   // map.controls.remove('typeSelector'); // удаляем тип
 
-  map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+  map.controls.remove("fullscreenControl"); // удаляем кнопку перехода в полноэкранный режим
   // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
 
-  map.controls.remove('rulerControl'); // удаляем контрол правил
+  map.controls.remove("rulerControl"); // удаляем контрол правил
 
   map.geoObjects.add(placemark);
 }
@@ -4014,7 +4014,7 @@ $(function () {
       endDate,
       to = undefined;
   var user = undefined;
-  inputmask__WEBPACK_IMPORTED_MODULE_1___default()("8(999) 999-9999").mask(document.getElementsByName('phone'));
+  inputmask__WEBPACK_IMPORTED_MODULE_1___default()("8(999) 999-9999").mask(document.getElementsByName("phone"));
   $(".combobox").on("click", function () {
     if (!$(this).find(".combobox__item").hasClass("combobox__item_visible")) {
       $(this).css({
@@ -4024,13 +4024,13 @@ $(function () {
 
       if ($(this).parents(".combobox").find(".combobox__list").hasClass("combobox__list_invisible")) {
         $(this).find(".combobox-header__title").css({
-          'font-size': '18px'
+          "font-size": "18px"
         });
       }
 
       $(this).find(".combobox__item").addClass("combobox__item_visible");
       $(this).find(".combobox-header__icon").css({
-        "transform": "rotate(180deg)"
+        transform: "rotate(180deg)"
       });
       $(this).parent(".search-tour__directions").css({
         "overflow-y": "visible"
@@ -4044,7 +4044,7 @@ $(function () {
       $(this).find(".combobox__item").removeClass("combobox__item_visible");
       $(this).find(".combobox__list").addClass("combobox__list_invisible");
       $(this).find(".combobox-header__icon").css({
-        "transform": "rotate(0deg)"
+        transform: "rotate(0deg)"
       });
       combobox = undefined;
     }
@@ -4062,8 +4062,8 @@ $(function () {
     $(this).parents(".combobox").find(".combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
     $(this).parents(".combobox").css("border-right-color", "transparent");
     $(this).parents(".combobox").find(".combobox-header__subtitle").css({
-      "height": "21px",
-      "overflow": "hidden",
+      height: "21px",
+      overflow: "hidden",
       "line-height": "19.15px"
     });
 
@@ -4086,7 +4086,7 @@ $(function () {
       $(combobox).find(".combobox__list").addClass("combobox__list_invisible");
       $(combobox).find(".combobox__item").removeClass("combobox__item_visible");
       $(combobox).parents(".combobox").find(".combobox-header__icon").css({
-        "transform": "rotate(0deg)"
+        transform: "rotate(0deg)"
       });
       $(combobox).addClass("combobox__list_invisible");
       combobox = undefined;
@@ -4094,20 +4094,20 @@ $(function () {
   });
   $('input[name="datefilter"]').daterangepicker({
     autoUpdateInput: false,
-    "autoApply": true,
-    "locale": {
-      "format": "MM/DD/YYYY",
-      "applyLabel": "Сохранить",
-      "cancelLabel": "Назад",
-      "daysOfWeek": ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-      "monthNames": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      "firstDay": 1
+    autoApply: true,
+    locale: {
+      format: "MM/DD/YYYY",
+      applyLabel: "Сохранить",
+      cancelLabel: "Назад",
+      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      firstDay: 1
     }
   });
-  $('input[name="datefilter"]').on('hide.daterangepicker', function (ev, picker) {
-    $(this).parents("label").find(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM'), " - ").concat(picker.endDate.format('DD.MM')));
-    begDate = picker.startDate.format('YYYYMMDD');
-    endDate = picker.endDate.format('YYYYMMDD');
+  $('input[name="datefilter"]').on("hide.daterangepicker", function (ev, picker) {
+    $(this).parents("label").find(".search-tour-dates__subtitle").text("".concat(picker.startDate.format("DD.MM"), " - ").concat(picker.endDate.format("DD.MM")));
+    begDate = picker.startDate.format("YYYYMMDD");
+    endDate = picker.endDate.format("YYYYMMDD");
     console.log(begDate);
     nights = Math.round(Number(picker.endDate - picker.startDate) / (1000 * 60 * 60 * 24)) - 1;
     $(".search-tour-nights__subtitle").text("".concat(nights));
@@ -4122,46 +4122,46 @@ $(function () {
 
     if (document.documentElement.clientWidth == 375) {
       $(".search-tour__nights").css({
-        "padding": "0 20px" // "height": "48px"
+        padding: "0 20px" // "height": "48px"
 
       });
     }
   });
-  $('input[name="tour_datefilter"]').on('hide.daterangepicker', function (ev, picker) {
-    $(".tour-cost-dates__subtitle").text("".concat(picker.startDate.format('DD.MM')));
+  $('input[name="tour_datefilter"]').on("hide.daterangepicker", function (ev, picker) {
+    $(".tour-cost-dates__subtitle").text("".concat(picker.startDate.format("DD.MM")));
   });
-  $('#datapicker-from').daterangepicker({
+  $("#datapicker-from").daterangepicker({
     autoUpdateInput: false,
-    "singleDatePicker": true,
-    "autoApply": true,
-    "locale": {
-      "format": "MM/DD/YYYY",
-      "applyLabel": "Сохранить",
-      "cancelLabel": "Назад",
-      "daysOfWeek": ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-      "monthNames": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      "firstDay": 1
+    singleDatePicker: true,
+    autoApply: true,
+    locale: {
+      format: "MM/DD/YYYY",
+      applyLabel: "Сохранить",
+      cancelLabel: "Назад",
+      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      firstDay: 1
     }
   });
   $("#feedback-data").daterangepicker({
     autoUpdateInput: false,
-    "autoApply": true,
-    "locale": {
-      "format": "MM/DD/YYYY",
-      "applyLabel": "Сохранить",
-      "cancelLabel": "Назад",
-      "daysOfWeek": ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-      "monthNames": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-      "firstDay": 1
+    autoApply: true,
+    locale: {
+      format: "MM/DD/YYYY",
+      applyLabel: "Сохранить",
+      cancelLabel: "Назад",
+      daysOfWeek: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+      monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      firstDay: 1
     }
   });
   var range = undefined;
-  $('#feedback-data').on('hide.daterangepicker', function (ev, picker) {
-    $(this).parents("label").find(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM'), " - ").concat(picker.endDate.format('DD.MM')));
-    range = "".concat(picker.startDate.format('DD.MM'), " - ").concat(picker.endDate.format('DD.MM'));
+  $("#feedback-data").on("hide.daterangepicker", function (ev, picker) {
+    $(this).parents("label").find(".search-tour-dates__subtitle").text("".concat(picker.startDate.format("DD.MM"), " - ").concat(picker.endDate.format("DD.MM")));
+    range = "".concat(picker.startDate.format("DD.MM"), " - ").concat(picker.endDate.format("DD.MM"));
   });
-  $('#datapicker-from').on('hide.daterangepicker', function (ev, picker) {
-    $(".search-tour-dates__subtitle").text("".concat(picker.startDate.format('DD.MM')));
+  $("#datapicker-from").on("hide.daterangepicker", function (ev, picker) {
+    $(".search-tour-dates__subtitle").text("".concat(picker.startDate.format("DD.MM")));
     $(".search-tour-dates__subtitle").css({
       "line-height": "19.15px"
     });
@@ -4171,51 +4171,51 @@ $(function () {
     $(this).css("width", "500px");
   });
   $(".tour-day-programm__text-description").on("click", function () {
-    var block = $(this).parent().find('.tour-day-programm__description');
+    var block = $(this).parent().find(".tour-day-programm__description");
 
     if ($(block).css("display") == "none") {
-      $(block).show('slow');
+      $(block).show("slow");
       $(this).css({
         "padding-bottom": "16px"
       });
       $(this).parent().find(".tour-day-programm__text-description svg").css({
-        'transform': 'rotate(180deg)'
+        transform: "rotate(180deg)"
       });
     } else {
-      $(block).hide('slow');
+      $(block).hide("slow");
       $(this).css({
         "padding-bottom": "0px"
       });
       $(this).parent().find(".tour-day-programm__text-description svg").css({
-        'transform': 'rotate(0deg)'
+        transform: "rotate(0deg)"
       });
     }
   });
   $("button").on("click", function () {
-    if ($(this).data('href') != null) location.href = $(this).data('href');
+    if ($(this).data("href") != null) location.href = $(this).data("href");
   });
   $(".news__card").on("click", function () {
-    if ($(this).data('href') != null) location.href = $(this).data('href');
+    if ($(this).data("href") != null) location.href = $(this).data("href");
   });
   $(".blog__card").on("click", function () {
-    if ($(this).data('href') != null) location.href = $(this).data('href');
+    if ($(this).data("href") != null) location.href = $(this).data("href");
   });
-  $('.icon').on("click", function () {
+  $(".icon").on("click", function () {
     if (!$(".box").hasClass("box_active")) {
-      $('.search').addClass('expanded');
+      $(".search").addClass("expanded");
       $(".box").addClass("box_active");
       $(".header__messengers").addClass("header__messengers_hidden");
       $("input.search.expanded").focus();
       search = $(this).parents(".box");
     } else {
-      $('.search').removeClass('expanded');
+      $(".search").removeClass("expanded");
       $(".box").removeClass("box_active");
       $(".header__messengers").removeClass("header__messengers_hidden");
     }
   });
   $(document).on("mouseup", function (e) {
     if (search != undefined && !$(search).is(e.target) && !$(search).is(e.target) && $(search).has(e.target).length === 0) {
-      $('.search').removeClass('expanded');
+      $(".search").removeClass("expanded");
       $(".box").removeClass("box_active");
       $(".header__messengers").removeClass("header__messengers_hidden");
       search = undefined;
@@ -4239,7 +4239,7 @@ $(function () {
   if ($(".subSliders").length > 0) subSlider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".subSliders", {
     pagination: false,
     arrows: false,
-    type: 'loop',
+    type: "loop",
     breakpoints: {
       786: {
         autoWidth: true,
@@ -4250,14 +4250,14 @@ $(function () {
         autoHeight: true,
         perPage: 1,
         padding: 0,
-        type: 'slide'
+        type: "slide"
       }
     }
   });
-  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"]('.sliders', (_Splide = {
+  if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".sliders", (_Splide = {
     pagination: false,
-    type: 'loop',
-    padding: '30em',
+    type: "loop",
+    padding: "30em",
     autoplay: true,
     interval: 5000,
     perPage: 1
@@ -4266,54 +4266,54 @@ $(function () {
       height: 300,
       perPage: 1,
       padding: 0,
-      type: 'slide'
+      type: "slide"
     },
     425: {
       height: 300,
       perPage: 1,
       padding: 0,
-      type: 'slide'
+      type: "slide"
     },
     768: {
       height: 462,
       perPage: 1,
       padding: 0,
-      type: 'slide'
+      type: "slide"
     },
     1023: {
       autoHeight: true,
       perPage: 1,
       padding: 0,
       height: 462,
-      type: 'slide'
+      type: "slide"
     },
     1150: {
       autoHeight: true,
       perPage: 1,
       padding: 0,
-      type: 'loop'
+      type: "loop"
     },
     1250: {
       autoHeight: true,
       perPage: 1,
-      type: 'loop'
+      type: "loop"
     },
     1300: {
       autoHeight: true,
       perPage: 1,
-      type: 'loop',
+      type: "loop",
       padding: 0
     },
     1800: {
       autoHeight: true,
       perPage: 1,
-      type: 'loop',
+      type: "loop",
       padding: 0
     },
     1920: {
       autoHeight: true,
       perPage: 1,
-      type: 'loop'
+      type: "loop"
     }
   }), _defineProperty(_Splide, "height", 779), _Splide));
 
@@ -4323,7 +4323,7 @@ $(function () {
     subSlider.mount();
   }
 
-  if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"]('.news__slider', {
+  if ($(".news__slider").length > 0) new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".news__slider", {
     gap: 35,
     pagination: false,
     perPage: 3,
@@ -4375,11 +4375,11 @@ $(function () {
     breakpoints: {
       375: {
         perPage: 1,
-        width: '100%'
+        width: "100%"
       },
       390: {
         perPage: 1,
-        width: '100%'
+        width: "100%"
       },
       650: {
         perPage: 1,
@@ -4387,23 +4387,23 @@ $(function () {
       },
       768: {
         perPage: 2,
-        width: '100%'
+        width: "100%"
       },
       925: {
         perPage: 2,
-        width: '100%'
+        width: "100%"
       },
       1024: {
         perPage: 3,
-        width: '100%'
+        width: "100%"
       },
       1300: {
         perPage: 3,
-        width: '100%'
+        width: "100%"
       },
       1400: {
         perPage: 3,
-        width: '100%'
+        width: "100%"
       },
       1550: {
         perPage: 3,
@@ -4416,7 +4416,7 @@ $(function () {
     perPage: 1,
     autoplay: true,
     interval: 5000,
-    type: 'loop',
+    type: "loop",
     breakpoints: {
       375: {
         perPage: 1
@@ -4674,7 +4674,7 @@ $(function () {
     $("#chose-user").show(300);
   });
   $("input[type='search']").on("keydown", function (e) {
-    if (e.key === 'Enter') window.location.href = "/search?search=".concat($(this).val());
+    if (e.key === "Enter") window.location.href = "/search?search=".concat($(this).val());
   });
   $(".tour-card").on("click", function () {
     window.location.href = $(this).data("href");
@@ -4687,18 +4687,18 @@ $(function () {
       hotel,
       meal,
       child = undefined;
-  $('#datapicker-from').on('hide.daterangepicker', function (ev, picker) {
-    begDate = picker.startDate.format('YYYYMMDD'); // endDate = picker.startDate.clone().add(10, 'day').format('YYYYMMDD');
+  $("#datapicker-from").on("hide.daterangepicker", function (ev, picker) {
+    begDate = picker.startDate.format("YYYYMMDD"); // endDate = picker.startDate.clone().add(10, 'day').format('YYYYMMDD');
 
-    endDate = picker.startDate.format('YYYYMMDD');
+    endDate = picker.startDate.format("YYYYMMDD");
   });
   $(".search-tour__hotel-category-category .combobox__item").on("click", function () {
     hotelCategory = $(this).data("id");
     $(".search-tour__hotel .combobox-header__subtitle").text($(".search-tour__hotel .combobox__item[data-star=\"".concat(hotelCategory, "\"]")).text().replace(/\s{2,}/g, ""));
     $(".search-tour__hotel .combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
     $(".search-tour__hotel .combobox-header__subtitle").css({
-      "height": "21px !important",
-      "overflow": "hidden"
+      height: "21px !important",
+      overflow: "hidden"
     });
   });
   $(".search-tour__from .combobox__item").on("click", function () {
@@ -4706,11 +4706,11 @@ $(function () {
   });
   $(".search-tour__hotel .combobox__item").on("click", function () {
     hotel = $(this).data("id");
-    $(".search-tour__hotel-category .combobox-header__subtitle").text($(".search-tour__hotel-category .combobox__item[data-id=\"".concat($(this).data('star'), "\"]")).text());
+    $(".search-tour__hotel-category .combobox-header__subtitle").text($(".search-tour__hotel-category .combobox__item[data-id=\"".concat($(this).data("star"), "\"]")).text());
     $(".search-tour__hotel-category .combobox-header__subtitle").removeClass("combobox-header__subtitle_invisible");
     $(".search-tour__hotel-category .combobox-header__subtitle").css({
-      "height": "21px !important",
-      "overflow": "hidden"
+      height: "21px !important",
+      overflow: "hidden"
     });
   });
   $(".search-tour__feed .combobox__item").on("click", function () {
@@ -4794,7 +4794,7 @@ $(function () {
   $(".profile-button").on("click", function () {
     window.axios.defaults.withCredential = true;
     window.axios.defaults.withXSRFToken = true;
-    window.axios.post('/api/auth/check').then(function (response) {
+    window.axios.post("/api/auth/check").then(function (response) {
       console.log(response);
       window.location.href = "/pa/".concat(response.data.url);
     })["catch"](function (response) {
@@ -4804,7 +4804,7 @@ $(function () {
   $(".pa-exit-button").on("click", function () {
     window.axios.defaults.withCredential = true;
     window.axios.defaults.withXSRFToken = true;
-    window.axios.post('/api/auth/logout').then(function (response) {
+    window.axios.post("/api/auth/logout").then(function (response) {
       window.location.href = "/";
     });
   });
@@ -4841,12 +4841,12 @@ $(function () {
         login = $(this).parents(".registration").find("input[name='login']"),
         password = $(this).parents(".registration").find("input[name='password']");
 
-    if (!$("#law-aggree").prop('checked') || email.val() == "" || phone.val() == "" || login.val() == "" || phone.val() == "") {
+    if (!$("#law-aggree").prop("checked") || email.val() == "" || phone.val() == "" || login.val() == "" || phone.val() == "") {
       email.val() == "" ? email.css("border-right-color", "red") : null;
       phone.val() == "" ? phone.css("border-right-color", "red") : null;
       login.val() == "" ? login.css("border-right-color", "red") : null;
       password.val() == "" ? password.css("border-right-color", "red") : null;
-      !$("#law-aggree").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
+      !$("#law-aggree").prop("checked") ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
         icon: "error",
         title: "Заполните обязательные поля" // timer: 2000,
@@ -4866,7 +4866,7 @@ $(function () {
       email: $(this).parents(".registration").find("input[name='email']").val(),
       phone: $(this).parents(".registration").find("input[name='phone']").val()
     };
-    window.axios.post('/api/auth/signin', data).then(function (response) {
+    window.axios.post("/api/auth/signin", data).then(function (response) {
       $(_this).parents(".modal-wrapper").hide();
       $(".modal-notification__text span").text(response.data.email);
       $("#notification").show();
@@ -4886,12 +4886,12 @@ $(function () {
     e.preventDefault();
     window.axios.defaults.withCredential = true;
     window.axios.defaults.withXSRFToken = true;
-    window.axios.get('/sanctum/csrf-cookie').then(function (response) {
+    window.axios.get("/sanctum/csrf-cookie").then(function (response) {
       var data = {
         name: $(_this2).parents(".enter__fields").find("input[name='login']").val(),
         password: $(_this2).parents(".enter__fields").find("input[name='password']").val()
       };
-      window.axios.post('/api/auth/login', data).then(function (response) {
+      window.axios.post("/api/auth/login", data).then(function (response) {
         console.log(response);
         window.location.href = "/pa/".concat(response.data.url); // $(this).parents(".modal-wrapper").hide(300);
       })["catch"](function (response) {
@@ -4981,14 +4981,14 @@ $(function () {
   });
   $(".services-country-tour__all-button").on("click", function () {
     if ($(this).html().match(/Просмотреть\sвсе\s+страны/)) {
-      $(this).html($(this).html().replace(/Просмотреть\sвсе\s+страны/, 'Скрыть'));
+      $(this).html($(this).html().replace(/Просмотреть\sвсе\s+страны/, "Скрыть"));
       $(this).find("svg").css("transform", "rotate(-90deg)");
       $(this).parents(".services-country-tour").find(".service_country__sublist").css("overflow-y", "scroll");
       $(this).parents(".services-country-tour").find(".service_country__sublist").animate({
         "max-height": "250px"
       }, 1000);
     } else {
-      $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все страны'));
+      $(this).html($(this).html().replace(/Скрыть/, "Просмотреть все страны"));
       $(this).find("svg").css("transform", "rotate(90deg)");
       $(this).parents(".services-country-tour").find(".service_country__sublist").css("overflow-y", "hidden");
       $(this).parents(".services-country-tour").find(".service_country__sublist").animate({
@@ -4998,14 +4998,14 @@ $(function () {
   });
   $(".services-type-tour__all-button").on("click", function () {
     if ($(this).html().match(/Просмотреть\sвсе\s+типы/)) {
-      $(this).html($(this).html().replace(/Просмотреть\sвсе\s+типы/, 'Скрыть'));
+      $(this).html($(this).html().replace(/Просмотреть\sвсе\s+типы/, "Скрыть"));
       $(this).find("svg").css("transform", "rotate(-90deg)");
       $(this).parents(".services-vacation-type").find(".services-vacation-type__list").css("overflow-y", "scroll");
       $(this).parents(".services-vacation-type").find(".services-vacation-type__list").animate({
         "max-height": "250px"
       }, 1000);
     } else {
-      $(this).html($(this).html().replace(/Скрыть/, 'Просмотреть все типы'));
+      $(this).html($(this).html().replace(/Скрыть/, "Просмотреть все типы"));
       $(this).find("svg").css("transform", "rotate(90deg)");
       $(this).parents(".services-vacation-type").find(".services-vacation-type__list").css("overflow-y", "hidden");
       $(this).parents(".services-vacation-type").find(".services-vacation-type__list").animate({
@@ -5017,7 +5017,23 @@ $(function () {
     e.preventDefault();
     window.open($(this).attr("href"));
   });
+  $(".footer-messanger__telegram").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
+  });
+  $(".footer-messanger__vk").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
+  });
   $(".header-messengers__telegram").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
+  });
+  $(".contacts-social-messangers__telegram").on("click", function (e) {
+    e.preventDefault();
+    window.open($(this).attr("href"));
+  });
+  $(".contacts-social-messangers__vk").on("click", function (e) {
     e.preventDefault();
     window.open($(this).attr("href"));
   });
@@ -5032,11 +5048,11 @@ $(function () {
         agent = $(this).find(".person__combobox"),
         email = $($(".footer__notification input[type='email']")[1]).val();
 
-    if (!$("#law-aggree2").prop('checked') || agent.find(".combobox-header__subtitle").text() == "Кто вы?") {
-      !$("#law-aggree2").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
+    if (!$("#law-aggree2").prop("checked") || agent.find(".combobox-header__subtitle").text() == "Кто вы?") {
+      !$("#law-aggree2").prop("checked") ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
       agent.find(".combobox-header__subtitle").text() == "Кто вы?" ? agent.css("border-right-color", "red") : null;
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-        icon: 'error',
+        icon: "error",
         title: "Заполните обязательные поля" // timer: 2000,
 
       });
@@ -5105,12 +5121,12 @@ $(function () {
         tourist = $(this).find("input[name='touristCount']").val(),
         text = $(this).find("textarea").val();
 
-    if (!$("#law-aggree1").prop('checked') || from.find(".combobox-header__subtitle").text() == "" || to.find(".combobox-header__subtitle").text() == "") {
+    if (!$("#law-aggree1").prop("checked") || from.find(".combobox-header__subtitle").text() == "" || to.find(".combobox-header__subtitle").text() == "") {
       from.find(".combobox-header__subtitle").text() == "" ? from.css("border-right-color", "red") : null;
       to.find(".combobox-header__subtitle").text() == "" ? to.css("border-right-color", "red") : null;
-      !$("#law-aggree1").prop('checked') ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
+      !$("#law-aggree1").prop("checked") ? $(".modal-aggrees__checkbox").css("border-color", "red") : null;
       sweetalert__WEBPACK_IMPORTED_MODULE_2___default()({
-        icon: 'error',
+        icon: "error",
         title: "Заполните обязательные поля" // timer: 2000,
 
       });

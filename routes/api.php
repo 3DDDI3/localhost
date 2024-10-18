@@ -11,8 +11,10 @@ use App\Models\Mailler;
 use App\Models\Services\SamotourTour;
 use App\View\Components\Blocks\ComboboxItem;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\ComponentAttributeBag;
@@ -111,6 +113,45 @@ Route::prefix('samotour')->group(function () {
                         ->get(['city', 'id_city']);
 
                 return response()->json(['cities' => $cities], 200);
+        });
+
+        Route::get('/getMinimalTourPrice', function (Request $request) {
+                $samotour_url  = config('samotour.samotour_api_url');
+                $samotour_token = config('samotour.samotour_api_token');
+
+                $from = Carbon::now()->format('Ymd');
+                $to = Carbon::now()->addDay(31)->format('Ymd');
+
+                $samotour = SamotourTour::query()
+                        ->where(['id' => $request->samotour_id])
+                        ->first();
+
+                try {
+                        $response = Http::withoutVerifying()
+                                ->get("{$samotour_url}&oauth_token={$samotour_token}&type=json&action=SearchTour_NIGHTS&TOWNFROMINC={$samotour->id_city}&STATEINC={$samotour->id_country}");
+
+                        $nigts_json = json_decode(($response->body()));
+                        $nights_to = $nigts_json->SearchTour_NIGHTS->nights[count($nigts_json->SearchTour_NIGHTS->nights) - 1];
+
+                        $response = Http::withoutVerifying()->get("{$samotour_url}&oauth_token={$samotour_token}&type=json&action=SearchTour_PRICES&TOWNFROMINC={$samotour->id_city}&STATEINC={$samotour->id_country}&CHECKIN_BEG={$from}&CHECKIN_END={$to}&NIGHTS_FROM=0&NIGHTS_TILL={$nights_to}&ADULT=1&CURRENCY=1&STARS=&MEALS=&HOTELS=&TOURS={$samotour->id_tour}&ROOMS=");
+
+                        if (count(json_decode($response->body())->SearchTour_PRICES->prices) == 0)
+                                return response()->json(['error' => 'Что-то пошло не так'], 400);
+
+                        $tours = collect(json_decode($response->body())->SearchTour_PRICES->prices);
+
+                        $price = preg_replace('/ RUB$/', '', $tours->where("htPlace", '1ad')->sortBy('price')->first()->convertedPrice);
+
+                        Tour::query()
+                                ->find($request->tour_id)
+                                ->fill(['preview_price' => "от {$price} ₽"])
+                                ->save();
+
+                        return response()
+                                ->json(['price' => "от {$price} ₽"], 200);
+                } catch (\Throwable $th) {
+                        return response()->json(['error' => 'Что-то пошло не так'], 400);
+                }
         });
 });
 

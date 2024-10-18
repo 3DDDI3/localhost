@@ -51,7 +51,12 @@ class PageController extends Controller
 
         $pages = collect();
 
-        foreach (Page::where('id', '!=', $object->id)->orderBy('rating', 'desc')->orderBy('id', 'desc')->get() as $page) {
+        foreach (
+            Page::where('id', '!=', $object->id)
+                ->orderBy('rating', 'desc')
+                ->orderBy('id', 'desc')
+                ->get() as $page
+        ) {
             $pages->push(
                 (object)[
                     'id' => $page->id,
@@ -91,6 +96,7 @@ class PageController extends Controller
             $object->fill(
                 $request->only(
                     [
+                        'url',
                         'title',
                         'text',
                         'about_text_1',
@@ -99,6 +105,8 @@ class PageController extends Controller
                     ]
                 )
             );
+
+            $object->url = $object->url == null ? str_slug($object->title) : $object->url;
 
             if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
 

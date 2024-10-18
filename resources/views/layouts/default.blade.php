@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{{ asset('/css/modals.css') }}?v={{ sha1_file(public_path() . '/css/modals.css') }}">
         <link rel="stylesheet"
             href="{{ asset('/css/editor.css') }}?v={{ sha1_file(public_path() . '/css/editor.css') }}">
-        <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
         @yield('head')
     @else

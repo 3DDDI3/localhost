@@ -20,6 +20,7 @@ class Tour extends Model
 
     protected $casts = [
         'created_at' => 'datetime:H:i d.m.Y',
+        'deadline_date' => 'datetime:H:i d.m.Y',
     ];
 
     public function country()
@@ -75,6 +76,8 @@ class Tour extends Model
     }
 
     protected $fillable = [
+        'deadline_date',
+        'url',
         'title',
         'subtitle',
         'description',

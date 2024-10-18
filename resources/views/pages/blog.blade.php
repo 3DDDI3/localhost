@@ -16,9 +16,9 @@
         </div>
 
         <div class="blog-detailed-block">
-            @empty($blog->image)
+            @isset($blog->image)
                 <img src="/storage/{{ $blog->image }}" alt="" class="blog-detailed-block__image">
-            @endempty
+            @endisset
             <div>{!! $blog->text !!}</div>
         </div>
 

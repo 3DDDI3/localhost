@@ -9,7 +9,13 @@
             @csrf
 
             @include('admin.includes.input', [
-                'label' => 'День: (1-й день и т.п.)',
+                'label' => '№ дня',
+                'name' => 'day',
+                'value' => $object->day_number ?? '',
+            ])
+
+            @include('admin.includes.input', [
+                'label' => 'Приписка ко дню',
                 'name' => 'day',
                 'value' => $object->day ?? '',
             ])

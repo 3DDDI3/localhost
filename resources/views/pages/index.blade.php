@@ -170,8 +170,7 @@
                 <div class="services-country-tour">
                     <h3 class="services-country-tour__title">Туры по стране</h3>
                     <x-blocks.tour-country :$countries />
-                    <button class="services-country-tour__all-button">Просмотреть все
-                        страны
+                    <button class="services-country-tour__all-button">Просмотреть все страны
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_85_95)">
@@ -238,10 +237,8 @@
 
         </div>
 
-
-
         <x-blocks.popular-tours :$tourStatuses />
-        
+
         <x-sliders.advertisement :$advs />
 
         <x-blocks.news :$news title="Новости" subtitle="туризма" />

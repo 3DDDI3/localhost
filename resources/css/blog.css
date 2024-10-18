@@ -33,8 +33,6 @@ main {
             display: flex;
             flex-wrap: wrap;
             gap: 68px 36px;
-
-
         }
     }
 
@@ -136,6 +134,11 @@ main {
     .news {
         display: flex;
         margin-top: 42px !important;
+        width: 100%;
+
+        .splide__track {
+            width: 100%;
+        }
 
         .news-list {
             margin: 67px 0 50px 0;
@@ -458,5 +461,34 @@ main {
 @media (min-width: 1921px) {
     main {
         width: 1351px !important;
+    }
+}
+
+@media (min-width: 1184px) and (max-width:1550px) {
+    .news__wrapper {
+        width: 1150px;
+        margin: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1183px) {
+    .news {
+        width: auto !important;
+    }
+
+    .news__wrapper {
+        width: calc(100% - 20px);
+        margin: auto;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .news {
+        width: auto !important;
+    }
+
+    .news__wrapper {
+        width: calc(100% - 20px);
+        margin: auto;
     }
 }

@@ -29,7 +29,8 @@
             <div class="contacts-social__messangers">
                 <div class="contacts-social-messangers__title">Мы в социальных сетях</div>
                 <div class="contacts-social-messangers-list">
-                    <a href="" class="contacts-social-messangers__icon contacts-social-messangers__telegram">
+                    <a href="{{ $settings->telegram }}"
+                        class="contacts-social-messangers__icon contacts-social-messangers__telegram">
                         <svg width="44" height="37" viewBox="0 0 44 37" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -37,7 +38,7 @@
                                 fill="inherit" />
                         </svg>
                     </a>
-                    <a href="" class="contacts-social-messangers__icon contacts-social-messangers__vk">
+                    <a href="{{ $settings->vk }}" class="contacts-social-messangers__icon contacts-social-messangers__vk">
                         <svg width="51" height="51" viewBox="0 0 51 51" fill="inherit"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_160_128)">

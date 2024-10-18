@@ -336,7 +336,7 @@ $(document).ready(function () {
         });
     });
 
-    $('input[name="daterange"]').daterangepicker({
+    $('.datepicker__input').daterangepicker({
         autoUpdateInput: false,
         "singleDatePicker": true,
         "autoApply": true,
@@ -371,10 +371,36 @@ $(document).ready(function () {
         },
     })
 
+    if ($('input[name="daterange"]').data("value") != undefined)
+        $('input[name="daterange"]').val($('input[name="daterange"]').data("value"));
+
     $('input[name="daterange"]').on('hide.daterangepicker', function (ev, picker) {
-        console.log(this);
-        $(this).text(`${picker.startDate.format('DD.MM.YYYY')}`);
-        $(this).val(11);
+        $(this).val(`${picker.startDate.format('DD.MM.YYYY')}`);
     })
+
+
+    $("select[name='samotour']").on("change", function () {
+        let data = {
+            samotour_id: $(this).val(),
+            tour_id: location.pathname.match(/\d+$/)[0],
+        };
+
+        $.ajax({
+            type: "GET",
+            url: "/api/samotour/getMinimalTourPrice",
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                $("input[name='preview_price']").val(response.price);
+            },
+            error: function (jqXHR) {
+                Swal.fire({
+                    title: jqXHR.responseJSON.error,
+                    type: 'error',
+                    confirmButtonText: 'ОК',
+                });
+            }
+        });
+    });
 
 });

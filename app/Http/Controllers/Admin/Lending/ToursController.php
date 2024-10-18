@@ -15,9 +15,6 @@ use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
 use App\Models\User\AdminEventLogs;
-use GuzzleHttp\Client;
-use PhpParser\ErrorHandler\Collecting;
-use Symfony\Component\Console\Input\Input;
 
 class ToursController extends Controller
 {
@@ -132,6 +129,7 @@ class ToursController extends Controller
                 $request->only(
                     [
                         'title',
+                        'url',
                         'subtitle',
                         'description',
                         'preview_title',
@@ -149,7 +147,10 @@ class ToursController extends Controller
                 )
             );
 
-            $object->url = str_slug($object->title);
+            if (isset($request->daterange))
+                $object->deadline_date = date('Y-m-d H:i:s', strtotime($request->daterange));
+
+            $object->url = $object->url == null ? str_slug($object->title) : $object->url;
 
             if ($request->file('background_image') != null)
                 FileUpload::uploadImage('background_image', Tour::class, 'background_image', $object->id, 377, 377, '/images/tours', request: $request);

@@ -6,15 +6,7 @@ use Illuminate\View\Component;
 
 class Datepicker extends Component
 {
-
-    // protected $except = ['id'];
-
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct(public int $id, public string $placeholder) {}
+    public function __construct() {}
 
     /**
      * Get the view / contents that represent the component.

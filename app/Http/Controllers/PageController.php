@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use App\Models\Lending\Page;
 use App\Models\Lending\Personal;
+use App\Models\Setting;
 use GuzzleHttp\Client;
 
 class PageController extends Controller
@@ -65,9 +66,10 @@ class PageController extends Controller
 
         if (!$object) abort(404, 'Не удалось найти страницу');
 
+        $settings = $setting = Setting::find(1);
+
         switch ($url) {
             case 'o-kompanii':
-
                 $gallery = Gallery::query()
                     ->where([
                         'item_type' => 'about',
@@ -126,6 +128,7 @@ class PageController extends Controller
                     'breadcrumbs' => $breadCrumbs,
                     'currencies' => $currencies,
                     'personal' => $personal,
+                    'settings' => $settings,
                 ]);
                 break;
 
@@ -135,6 +138,22 @@ class PageController extends Controller
                 ]);
 
                 return view('pages.page', [
+                    'object' => $object,
+                    'breadcrumbs' => $breadCrumbs,
+                    'currencies' => $currencies,
+                ]);
+                break;
+
+            default:
+                /**
+                 * ссылки /pages/*
+                 */
+                $breadCrumbs->push((object)[
+                    'name' => $object->title,
+                    'url' => $object->url,
+                ]);
+
+                return view('pages.agency', [
                     'object' => $object,
                     'breadcrumbs' => $breadCrumbs,
                     'currencies' => $currencies,

@@ -30,13 +30,13 @@ main {
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
-            background-position-x: 503px;
+            background-position-x: 540px;
             background-position-y: -25px;
             row-gap: 31px;
 
             .contacts-social__title {
                 font-family: "Inter", sans-serif;
-                font-size: 36px;
+                font-size: 24px;
                 font-weight: 700;
                 line-height: 40px;
                 letter-spacing: -0.02em;
@@ -54,7 +54,7 @@ main {
 
                     .contacts-social-contact__phone {
                         font-family: "Inter", sans-serif;
-                        font-size: 32px;
+                        font-size: 24px;
                         font-weight: 400;
                         line-height: 40px;
                         letter-spacing: -0.02em;
@@ -137,12 +137,12 @@ main {
              column-gap: 47px;
 
         .contacts-company-info-wrapper {
-            padding: 63px 59px 95px 61px;
+            padding: 70px 59px 70px 61px;
             width: 456px;
             border: 1px solid #596b90;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            row-gap: 10px;
 
             .contacts-company-info__description {
                 display: flex;
@@ -155,17 +155,16 @@ main {
                     line-height: 40px;
                     letter-spacing: -0.02em;
                     color: #342635;
-                    margin-top: 10px;
                 }
 
                 .contacts-company-info__text {
                     font-family: "Inter", sans-serif;
-                    font-size: 22px;
+                    font-size: 17px;
                     font-weight: 400;
-                    line-height: 40px;
+                    line-height: 30px;
                     letter-spacing: -0.02em;
                     color: #342635;
-                    margin: 20px 0;
+                    margin: 10px 0;
                 }
             }
 
@@ -184,8 +183,7 @@ main {
             }
         }
 
-        .contacts-company-info__map {
-        }
+        .contacts-company-info__map {}
     }
 
     .contacts-experts {
@@ -215,7 +213,6 @@ main {
                 display: flex;
                 align-items: center;
                 background-color: #0e1237;
-                margin-bottom: 40px;
                 padding: 0 36px;
                 -moz-column-gap: 50px;
                      column-gap: 50px;
@@ -235,14 +232,14 @@ main {
 
                 .company-experts-table__header:last-child {
                     flex-basis: 30%;
+                    display: flex;
+                    justify-content: center;
                 }
             }
 
             .company-experts-table-row {
                 display: flex;
-                min-height: 140px;
-                margin-bottom: 20px;
-                padding: 0 36px 0 36px;
+                padding: 30px 36px;
                 -moz-column-gap: 50px;
                      column-gap: 50px;
 
@@ -274,7 +271,7 @@ main {
 
                 .company-experts-mail-block {
                     flex-basis: 30%;
-                    /* align-items: center; */
+                    align-items: center;
                     display: flex;
                     flex-direction: column;
 
@@ -306,6 +303,10 @@ main {
                     }
                 }
             }
+
+            .company-experts-table-row:nth-child(2n+1) {
+                background-color: #F8F8F8;
+            }
         }
     }
 }
@@ -318,8 +319,7 @@ main {
         .contacts-headding {
             margin-top: 30px !important;
 
-            .contacts-headding__title {
-            }
+            .contacts-headding__title {}
         }
 
         .contacts-social {
@@ -338,7 +338,7 @@ main {
                     row-gap: 20px;
 
                     .contacts-social-contact__phone {
-                        font-size: 25px !important;
+                        font-size: 24px !important;
                     }
                 }
             }
@@ -385,7 +385,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -405,8 +404,7 @@ main {
         .contacts-headding {
             margin-top: 30px !important;
 
-            .contacts-headding__title {
-            }
+            .contacts-headding__title {}
         }
 
         .contacts-social {
@@ -425,7 +423,7 @@ main {
                     row-gap: 20px;
 
                     .contacts-social-contact__phone {
-                        font-size: 25px !important;
+                        font-size: 24px !important;
                     }
                 }
             }
@@ -437,8 +435,7 @@ main {
                     font-size: 20px !important;
                 }
 
-                .contacts-social-messangers-list {
-                }
+                .contacts-social-messangers-list {}
             }
         }
 
@@ -471,7 +468,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -491,8 +487,7 @@ main {
         .contacts-headding {
             margin-top: 30px !important;
 
-            .contacts-headding__title {
-            }
+            .contacts-headding__title {}
         }
 
         .contacts-social {
@@ -511,7 +506,7 @@ main {
                     row-gap: 20px;
 
                     .contacts-social-contact__phone {
-                        font-size: 25px !important;
+                        font-size: 24px !important;
                     }
                 }
             }
@@ -523,8 +518,7 @@ main {
                     font-size: 20px !important;
                 }
 
-                .contacts-social-messangers-list {
-                }
+                .contacts-social-messangers-list {}
             }
         }
 
@@ -557,7 +551,6 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
-                    align-items: start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -589,9 +582,7 @@ main {
         -moz-column-gap: 20px;
              column-gap: 20px;
     }
-    .company-experts-mail-block {
-        align-items: start !important;
-    }
+
     .contacts-company-info {
         flex-direction: column-reverse;
         row-gap: 20px;
@@ -632,4 +623,3 @@ main {
         width: 1351px !important;
     }
 }
-

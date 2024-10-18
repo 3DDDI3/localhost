@@ -8,6 +8,7 @@ use App\Models\Lending\TourCountry;
 use App\Models\Lending\TourType;
 use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 
 class ToursController extends Controller
@@ -63,8 +64,12 @@ class ToursController extends Controller
          */
         if (!empty(request()->input("earlier_booking"))) {
             $tours = Tour::query()
-                ->has('tourStatus')->whereHas('tourStatus', function ($query) {
+                ->whereHas('tourStatus', function ($query) {
                     $query->where(['status.id' => 1]);
+                    $query->where(function ($query) {
+                        $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                        $query->orWhere(['deadline_date' => null]);
+                    });
                 })
                 ->orderBy('created_at', 'desc')
                 ->paginate(12);
@@ -81,6 +86,10 @@ class ToursController extends Controller
             $tours = Tour::query()
                 ->has('tourStatus')->whereHas('tourStatus', function ($query) {
                     $query->where(['status.id' => 4]);
+                    $query->where(function ($query) {
+                        $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                        $query->orWhere(['deadline_date' => null]);
+                    });
                 })
                 ->orderBy('created_at', 'desc')
                 ->paginate(12);
@@ -122,10 +131,16 @@ class ToursController extends Controller
                 ]);
 
                 $tours = TourType::query()
-                    ->where([
-                        'tour_type_id' => request()->input("type_id"),
-                        // 'hide' => 0
-                    ])->paginate(12);
+                    ->whereHas('tour', function ($query) {
+                        $query->where(
+                            ['tour_type_id' => request()->type_id, 'tours.hide' => 0]
+                        );
+                        $query->where(function ($query) {
+                            $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                            $query->orWhere(['deadline_date' => null]);
+                        });
+                    })
+                    ->paginate(12);
             }
         }
 
@@ -163,10 +178,16 @@ class ToursController extends Controller
                 ]);
 
                 $tours = TourCountry::query()
-                    ->where([
-                        'country_id' => request()->input("country_id"),
-                        // 'hide' => 0,
-                    ])->paginate(12);
+                    ->whereHas('tour', function ($query) {
+                        $query->where(
+                            ['tour_country.country_id' => request()->country_id, 'tours.hide' => 0]
+                        );
+                        $query->where(function ($query) {
+                            $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
+                            $query->orWhere(['deadline_date' => null]);
+                        });
+                    })
+                    ->paginate(12);
             }
         }
 
@@ -178,6 +199,10 @@ class ToursController extends Controller
 
             $tours = Tour::query()
                 ->where(['hide' => 0])
+                ->where(function ($query) {
+                    $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'))
+                        ->orWhere('deadline_date', '=', null);
+                })
                 ->orderBy('rating', 'desc')
                 ->paginate(12);
         }
@@ -220,8 +245,13 @@ class ToursController extends Controller
         $tour = Tour::query()
             ->where([
                 "hide" => 0,
-                'url' => $url
-            ])->first();
+                'url' => $url,
+            ])
+            ->where(function ($query) {
+                $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'))
+                    ->orWhere('deadline_date', '=', null);
+            })
+            ->first();
 
         if (!$tour) abort(404, 'Что-то пошло не так.');
 

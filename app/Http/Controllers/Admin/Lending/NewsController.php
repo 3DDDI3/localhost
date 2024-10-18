@@ -50,10 +50,13 @@ class NewsController extends Controller
                     [
                         'title',
                         'text',
-                        'preview_text'
+                        'preview_text',
+                        'url',
                     ]
                 )
             );
+
+            $object->url = $object->url == null ? str_slug($object->title) : $object->url;
 
             if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
 

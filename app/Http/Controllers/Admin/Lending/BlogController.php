@@ -51,13 +51,14 @@ class BlogController extends Controller
                 $request->only(
                     [
                         'title',
+                        'url',
                         'text',
                         'preview_text'
                     ]
                 )
             );
 
-            if (empty($object->url) && !empty($object->title)) $object->url = str_slug($object->title);
+            $object->url = $object->url == null ? str_slug($object->title) : $object->url;
 
             $object->save();
 

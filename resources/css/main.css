@@ -1111,6 +1111,7 @@ main {
                 }
 
                 .services-country-tour__info {
+                    max-width: 250px;
                     height: auto;
 
                     .services-country__list {
@@ -1165,11 +1166,11 @@ main {
                     }
 
                     .service_country-sublist__item {
+                        width: 100%;
                         text-decoration: unset;
                         display: flex;
-                        column-gap: 5px;
-                        flex-shrink: 0;
-                        flex-basis: 45%;
+                        justify-content: space-between;
+                        column-gap: 20px;
 
                         .service_country-sublist__name {
                             font-family: "Inter", sans-serif;
@@ -1181,7 +1182,6 @@ main {
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
-                            width: 65%;
                         }
 
                         .service_country-sublist__name:hover {
@@ -1835,7 +1835,7 @@ main {
                 align-items: flex-end;
 
                 span {
-                    display: flex;
+                    display: flex !important;
                     align-items: center;
                     column-gap: 4px;
 
@@ -2351,7 +2351,6 @@ main {
 }
 
 @media (min-width: 320px) and (max-width: 374px) {
-
     .error-message {
         width: calc(100% - 50px);
         font-size: 26px !important;
@@ -2742,6 +2741,7 @@ main {
 
                     .services-country-tour__all-button {
                         /* font-size: 14px; */
+                        text-align: left;
                     }
                 }
             }
@@ -2774,6 +2774,7 @@ main {
                         font-size: 24px;
                         font-weight: 700;
                         line-height: 21.8px;
+                        width: auto;
                         letter-spacing: -0.02em;
                     }
 
@@ -2891,7 +2892,7 @@ main {
 
             .popular-tours__mobile-button {
                 display: flex;
-                width: 180px !important;
+                width: 160px !important;
             }
         }
 
@@ -2952,6 +2953,7 @@ main {
         .news {
             padding: 50px 15px 0 15px;
             width: auto;
+            margin-top: unset !important;
 
             .news__headding {
                 border-bottom: unset;
@@ -3066,7 +3068,7 @@ main {
                     line-height: 11.8px;
                     letter-spacing: -0.03em;
                     text-align: left;
-                    width: 294px;
+                    width: auto;
                 }
             }
         }
@@ -3852,6 +3854,7 @@ main {
         .news {
             padding: 50px 15px 0 15px;
             width: auto;
+            margin-top: unset !important;
 
             .news__headding {
                 border-bottom: unset;
@@ -4959,6 +4962,7 @@ main {
         .news {
             padding: 50px 15px 0 15px;
             width: auto;
+            margin-top: unset !important;
 
             .news__headding {
                 border-bottom: unset;
@@ -6001,6 +6005,7 @@ main {
         .news {
             padding: 50px 15px 0 15px;
             width: auto;
+            margin-top: unset !important;
 
             .news__headding {
                 border-bottom: unset;
@@ -6802,6 +6807,7 @@ main {
         .news {
             padding: 50px 15px 0 15px;
             width: auto;
+            margin-top: unset !important;
 
             .news__headding {
                 border-bottom: unset;

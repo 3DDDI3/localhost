@@ -23,7 +23,7 @@
                 </span>
             </button>
         </div>
-        
+
         <x-sliders.blogs :news="$attributes->get('news')" />
     </div>
 </div>

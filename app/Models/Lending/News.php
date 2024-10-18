@@ -23,6 +23,7 @@ class News extends Model
 
     protected $fillable = [
         'text',
+        'url',
         'title',
         'preview_text',
     ];

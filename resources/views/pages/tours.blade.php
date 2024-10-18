@@ -61,11 +61,11 @@
         </div>
 
         <div class="tours-list" style="margin-top: -179px;">
-            {{-- @dd(count($tours[2]->isPopularTour)) --}}
             @if (request()->country_id != '*' && request()->type_id != '*')
                 @foreach ($tours as $tour)
                     @switch(get_class($tour))
                         @case('App\Models\Lending\TourCountry')
+                            {{-- @dd($tour->tour) --}}
                             <x-templates.tour :type="$tour->isPopularTour" class="" alt=""
                                 img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
                                 title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"

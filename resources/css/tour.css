@@ -76,6 +76,7 @@ main {
             .tour-headding__description {
                 display: flex;
                 justify-content: space-between;
+                column-gap: 50px;
 
                 .tour-headding__subtitle {
                     font-family: 'Inter', sans-serif;
@@ -83,12 +84,14 @@ main {
                     font-weight: 500;
                     line-height: 21.78px;
                     color: #FFFFFF;
-                    width: 292px;
                 }
 
                 .tour-headding__actions {
                     display: flex;
+                    height: fit-content;
                     column-gap: 19px;
+                    width: 594px;
+                    flex-shrink: 0;
 
                     .tour-country-info {
                         cursor: pointer;
@@ -783,7 +786,7 @@ main {
                     position: absolute;
                     bottom: 25px;
                     justify-content: space-between;
-                    width: -webkit-fill-available;
+                    width: -webkit-fill-available !important;
 
                     .tour-country-info {
                         padding: 9px 5px !important;
@@ -1140,7 +1143,7 @@ main {
                     position: absolute;
                     bottom: 25px;
                     justify-content: space-between;
-                    width: -webkit-fill-available;
+                    width: -webkit-fill-available !important;
 
                     .tour-country-info {
                         padding: 9px 5px !important;
@@ -1536,6 +1539,7 @@ main {
                     bottom: 25px;
                     justify-content: space-between;
                     width: -webkit-fill-available;
+                    width: auto !important;
 
                     .tour-country-info {
                         padding: 9px 5px !important;
@@ -1932,6 +1936,7 @@ main {
                     flex-direction: row-reverse;
                     position: absolute;
                     bottom: 25px;
+                    width: auto !important;
 
                     .tour-country-info {
                         padding: 9px 5px !important;
