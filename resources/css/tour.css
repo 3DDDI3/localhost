@@ -91,6 +91,7 @@ main {
                     height: fit-content;
                     column-gap: 19px;
                     width: 594px;
+                    justify-content: flex-end;
                     flex-shrink: 0;
 
                     .tour-country-info {
@@ -1937,6 +1938,7 @@ main {
                     position: absolute;
                     bottom: 25px;
                     width: auto !important;
+                    justify-content: flex-end;
 
                     .tour-country-info {
                         padding: 9px 5px !important;

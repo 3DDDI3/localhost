@@ -26,7 +26,7 @@
                     </div>
                     <div class="list_item-actions">
                         @include('admin.includes.sortable.rating')
-                        @include('admin.includes.actions.show')
+                        {{-- @include('admin.includes.actions.show') --}}
                         @include('admin.includes.actions.edit')
                         @include('admin.includes.actions.delete')
                         @include('admin.includes.sortable.rating')

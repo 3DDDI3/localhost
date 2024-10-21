@@ -36,7 +36,7 @@ class Tour extends Model
 
     public function infografika(): HasMany
     {
-        return $this->hasMany(Infografika::class);
+        return $this->hasMany(Infografika::class)->where(['hide' => 0]);
     }
 
     public function programs(): HasMany

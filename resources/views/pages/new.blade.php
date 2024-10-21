@@ -19,7 +19,7 @@
             @if (!empty($news->image))
                 <img src="/storage/{{ $news->image }}" alt="" class="blog-detailed-block__image">
             @endif
-            <div>{!! $news->text !!}</div>
+            <div style="margin-top: 65px;">{!! $news->text !!}</div>
         </div>
 
         <x-blocks.news title="Другие" subtitle="новости" :news="$otherNews" />

@@ -19,7 +19,7 @@
             @isset($blog->image)
                 <img src="/storage/{{ $blog->image }}" alt="" class="blog-detailed-block__image">
             @endisset
-            <div>{!! $blog->text !!}</div>
+            <div style="margin-top: 65px">{!! $blog->text !!}</div>
         </div>
 
         <x-blocks.blogs :news="$otherBlogs" title="Другие" subtitle="блоги" />
