@@ -22,7 +22,9 @@ class TypeController extends Controller
         $objects = TourTypes::query()->orderBy('rating', 'desc')->paginate(10);
 
         if ($request->search) {
-            $objects = TourTypes::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();
+            $objects = TourTypes::query()
+                ->where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
+                ->paginate(10);
         }
 
         if ($id = $request->delete) {

@@ -96,5 +96,6 @@ class Tour extends Model
         'isHiddenTourCost',
         'path1',
         'path2',
+        'isPopular'
     ];
 }

@@ -208,6 +208,10 @@ class ToursController extends Controller
                         'tour_id' => $object->id
                     ]);
                 }
+            } else {
+                TourStatus::query()
+                    ->where(['tour_id' => $object->id])
+                    ->delete();
             }
 
             if (!empty($request->tour_types)) {

@@ -21,7 +21,9 @@ class DocumentController extends Controller
         $objects = File::orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = File::query()
+                ->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
+                ->paginate(10);
         }
 
         if ($id = $request->delete) {
@@ -48,7 +50,7 @@ class DocumentController extends Controller
         if ($request->isMethod('post')) {
             if ($object == null) $object = new File();
             $object->fill($request->only(['name']));
-            
+
             $object->save();
 
             if ($request->file('file') != null)

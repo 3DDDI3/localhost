@@ -176,3 +176,9 @@ Route::prefix('feedback')
 Route::get('mailling/downlaod', function () {
         return Excel::download(new MaillingExport, 'user.xlsx');
 });
+
+Route::post('tours/set-popular', function (Request $request) {
+        dd(Tour::query()
+                ->find($request->tour)
+                ->fill(['isPopular' => $request->isPopular]));
+})->withoutMiddleware('api');

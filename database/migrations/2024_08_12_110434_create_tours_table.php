@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('title', 1000)->nullable();
             $table->string('subtitle', 1000)->nullable();
+            $table->dateTime('deadline_date')->nullable();
             $table->string('preview_title', 1000)->nullable();
             $table->string('preview_header', 1000)->nullable();
             $table->text('preview_text')->nullable();
@@ -42,6 +43,7 @@ return new class extends Migration
             $table->boolean('isHiddenCalculator')->nullable()->default(0);
             $table->tinyInteger('isHiddenTourCost')->nullable()->default(0);
             $table->integer('rating')->nullable()->default(0);
+            $table->boolean('isPopular')->nullable()->default(0);
             $table->tinyInteger('hide')->nullable()->default(0);
             $table->text('background_image')->nullable();
             $table->timestamp('created_at')->useCurrent();

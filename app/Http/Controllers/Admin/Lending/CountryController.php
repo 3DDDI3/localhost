@@ -57,8 +57,6 @@ class CountryController extends Controller
 
             $object->save();
 
-            FileUpload::uploadImage('icon', Country::class, 'icon', $object->id, 35, 35, '/images/tours/static_icons', request: $request);
-
             FileUpload::uploadImage('image', Country::class, 'image', $object->id, 425, 200, '/images/tours/static_icons', request: $request);
 
             AdminEventLogs::log($object, $id);

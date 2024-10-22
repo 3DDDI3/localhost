@@ -403,4 +403,24 @@ $(document).ready(function () {
         });
     });
 
+    $("a[name='popular']").on("click", function (e) {
+        e.preventDefault();
+
+        let tour_id = $("a[name='popular']").data("id");
+        let isPopular = $(this).attr("class") == "popular_active" ? 0 : 1;
+
+        $.ajax({
+            type: "POST",
+            url: `/api/tours/set-popular`,
+            data: {
+                tour: tour_id,
+                isPopular: isPopular
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(1);
+            }
+        });
+    });
+
 });

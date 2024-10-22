@@ -2422,3 +2422,19 @@ a.download-link:hover {
         padding-right: 10px;
     }
 }
+
+.popular {
+    width: 18px;
+    height: 18px;
+    margin-left: 15px;
+    fill: #707A93;
+    cursor: pointer;
+}
+
+.popular_active {
+    width: 18px;
+    height: 18px;
+    margin-left: 15px;
+    fill: #8dacfe;
+    cursor: pointer;
+}

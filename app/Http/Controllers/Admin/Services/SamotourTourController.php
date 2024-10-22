@@ -19,7 +19,9 @@ class SamotourTourController extends Controller
         $objects = SamotourTour::query()->orderBy('id')->paginate(10);
 
         if ($request->search) {
-            $objects = SamotourTour::query()->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->paginate(10);
+            $objects = SamotourTour::query()
+                ->where('tour', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
+                ->paginate(10);
         }
 
         if ($id = $request->delete) {

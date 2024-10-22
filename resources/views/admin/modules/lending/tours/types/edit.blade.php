@@ -15,7 +15,7 @@
             ])
 
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Карточка<br>размер 425х200',
+                'Фоновое изображение на странице каталога<br>размер 1920х494',
                 'image',
                 $object,
                 '/storage/' . $object->image,

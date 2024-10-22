@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-
     <main>
-        <div class="tour-headding" style="height: 494px; background-image: url('images/slider1.png')">
+        <div class="tour-headding"
+            style="height: 494px; {{ !empty($status) && !empty($status->image) ? "background-image: url('/storage/{$status->image}')" : "background-image: url('images/slider1.png')" }}">
             <x-templates.bread-crumbs :data="$breadcrumbs" />
             <div class="tour-header">
                 <h1 class="tour__title">{{ $breadcrumbs->last()->name }}</h1>
@@ -61,51 +61,35 @@
         </div>
 
         <div class="tours-list" style="margin-top: -179px;">
-            @if (request()->country_id != '*' && request()->type_id != '*')
-                @foreach ($tours as $tour)
-                    @switch(get_class($tour))
-                        @case('App\Models\Lending\TourCountry')
-                            {{-- @dd($tour->tour) --}}
+            @foreach ($tours as $tour)
+                @switch(get_class($tour))
+                    @case('App\Models\Lending\TourCountry')
+                        @if ($tour->tour != null)
                             <x-templates.tour :type="$tour->isPopularTour" class="" alt=""
                                 img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
                                 title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
                                 nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
                                 url="tours/{{ $tour->tour->url }}" />
-                        @break
+                        @endif
+                    @break
 
-                        @case('App\Models\Lending\TourType')
+                    @case('App\Models\Lending\TourType')
+                        @if ($tour->tour != null)
                             <x-templates.tour :type="$tour->isPopularTour" class="" alt=""
                                 img="/storage/{{ $tour->tour->preview_image }}" info="{{ $tour->tour->preview_title }}"
                                 title="{{ $tour->tour->preview_header }}" text="{{ $tour->tour->preview_text }}"
                                 nights="{{ $tour->tour->preview_nights }}" price="{{ $tour->tour->preview_price }}"
                                 url="tours/{{ $tour->tour->url }}" />
-                        @break
+                        @endif
+                    @break
 
-                        @default
-                            <x-templates.tour :type="$tour->isPopularTour" class="" alt=""
-                                img="/storage/{{ $tour->preview_image }}" info="{{ $tour->preview_title }}"
-                                title="{{ $tour->preview_header }}" text="{{ $tour->preview_text }}"
-                                nights="{{ $tour->preview_nights }}" price="{{ $tour->preview_price }}"
-                                url="tours/{{ $tour->url }}" />
-                    @endswitch
-                @endforeach
-            @endif
-
-            @if (request()->country_id == '*')
-                @foreach ($tourCountries as $tourCountry)
-                    {{-- @dd($tourCountry) --}}
-                    <x-blocks.tour-type-country url="?country_id={{ $tourCountry->id }}" icon="{{ $tourCountry->icon }}"
-                        iconAlt="" title="{{ $tourCountry->name }}" subtitle="{{ $tourCountry->tours->count() }}"
-                        image="{{ $tourCountry->image }}" imageAlt="" />
-                @endforeach
-            @endif
-
-            @if (request()->type_id == '*')
-                @foreach ($tourTypes as $tourType)
-                    <x-blocks.tour-type-country url="?type_id={{ $tourType->id }}" title="{{ $tourType->type }}"
-                        subtitle="{{ $tourType->tours->count() }}" image="{{ $tourType->image }}" imageAlt="" />
-                @endforeach
-            @endif
+                    @default
+                        <x-templates.tour :type="$tour->isPopularTour" class="" alt="" img="/storage/{{ $tour->preview_image }}"
+                            info="{{ $tour->preview_title }}" title="{{ $tour->preview_header }}"
+                            text="{{ $tour->preview_text }}" nights="{{ $tour->preview_nights }}"
+                            price="{{ $tour->preview_price }}" url="tours/{{ $tour->url }}" />
+                @endswitch
+            @endforeach
         </div>
 
         @if (method_exists($tourCountries, 'onEachSide'))

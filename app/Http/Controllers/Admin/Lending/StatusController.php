@@ -21,7 +21,9 @@ class StatusController extends Controller
         $objects = Status::query()->orderBy('rating', 'desc')->get();
 
         if ($request->search) {
-            $objects = Status::where('type', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')->get();
+            $objects = Status::query()
+                ->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
+                ->paginate(10);
         }
 
         if ($id = $request->delete) {

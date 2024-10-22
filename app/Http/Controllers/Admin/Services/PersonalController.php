@@ -20,7 +20,9 @@ class PersonalController extends Controller
         $objects = Personal::query()->where('hide', 0)->orderBy('rating', 'desc')->orderBy('id', 'desc')->paginate(10);
 
         if ($request->search) {
-            $objects = $objects->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%');
+            $objects = Personal::query()
+                ->where('name', 'LIKE', '%' . str_replace(' ', '%', $request->search) . '%')
+                ->paginate(10);
         }
 
         if ($id = $request->delete) {

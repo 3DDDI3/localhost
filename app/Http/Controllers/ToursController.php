@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lending\Country;
+use App\Models\Lending\Status;
 use App\Models\Lending\Tour;
 use App\Models\Lending\TourCountry;
 use App\Models\Lending\TourType;
@@ -59,13 +60,15 @@ class ToursController extends Controller
             ],
         ]);
 
+        $status = null;
+
         /**
          * Отбор туров по статусу "Ранее бронировани(иконка часов)"
          */
         if (!empty(request()->input("earlier_booking"))) {
             $tours = Tour::query()
                 ->whereHas('tourStatus', function ($query) {
-                    $query->where(['status.id' => 1]);
+                    $query->where(['status.id' => 6]);
                     $query->where(function ($query) {
                         $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
                         $query->orWhere(['deadline_date' => null]);
@@ -85,7 +88,7 @@ class ToursController extends Controller
         if (!empty(request()->input("special_offers"))) {
             $tours = Tour::query()
                 ->has('tourStatus')->whereHas('tourStatus', function ($query) {
-                    $query->where(['status.id' => 4]);
+                    $query->where(['status.id' => 5]);
                     $query->where(function ($query) {
                         $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
                         $query->orWhere(['deadline_date' => null]);
@@ -109,7 +112,7 @@ class ToursController extends Controller
                     'url' => '/tours?type_id=*',
                 ]);
 
-                $tourTypes = TourTypes::has('tours')
+                $tours = TourType::has('tour')
                     ->paginate(12);
             } else {
                 $tourType = TourType::query()
@@ -141,6 +144,10 @@ class ToursController extends Controller
                         });
                     })
                     ->paginate(12);
+
+                $status = TourTypes::query()
+                    ->where(['id' => request()->type_id])
+                    ->first();
             }
         }
 
@@ -154,10 +161,9 @@ class ToursController extends Controller
                     'url' => '/tours?country_id=*',
                 ]);
 
-                $tourCountries = Country::has('tours')
+                $tours = TourCountry::has('tour')
                     ->paginate(12);
             } else {
-
                 $country = Country::query()
                     ->where([
                         'id' => request()->input('country_id'),
@@ -168,7 +174,7 @@ class ToursController extends Controller
                 if (!$country) abort(404, 'Что-то пошло нет.',);
 
                 $breadCrumbs->push((object)[
-                    'name' => "Страны",
+                    'name' => "Туры по странам",
                     'url' => '/tours?country_id=*',
                 ]);
 
@@ -188,6 +194,10 @@ class ToursController extends Controller
                         });
                     })
                     ->paginate(12);
+
+                $status = Country::query()
+                    ->where(['id' => request()->country_id])
+                    ->first();
             }
         }
 
@@ -213,6 +223,7 @@ class ToursController extends Controller
             "tourCountries" => $tourCountries,
             'breadcrumbs' => $breadCrumbs,
             'currencies' => $currencies,
+            'status' => $status,
         ]);
     }
 

@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('/css/agency.css') }}?v={{ sha1_file(public_path() . '/css/agency.css') }}">
 @endsection
 
+
+
 @section('content')
     <main>
 
@@ -26,12 +28,30 @@
                 <h3 class="agency-documents__header">Документы:</h3>
                 <div class="agency-documents__list">
                     @foreach ($object->attachedFiles()->get() as $file)
-                        <x-templates.document path="{{ $file->file()->first()->path }}" :title="$file->file()->first()?->name">
-                            @if (preg_match('/(.docx)|(.doc)|(.pdf)"/', $file->file()->first()?->url))
-                                <x-icons.pdf />
-                            @else
-                                <x-icons.word />
-                            @endif
+                        <x-templates.document path="{{ $file->file->path }}" :title="$file->file->name">
+                            @switch(explode('.', $file->file->path)[1])
+                                @case('pdf')
+                                    <x-icons.pdf />
+                                @break
+
+                                @case('doc')
+                                    <x-icons.word />
+                                @break
+
+                                @case('docx')
+                                    <x-icons.word />
+                                @break
+
+                                @case('xls')
+                                    <x-icons.excel />
+                                @break
+
+                                @case('xlsx')
+                                    <x-icons.excel />
+                                @break
+
+                                @default
+                            @endswitch
                         </x-templates.document>
                     @endforeach
                 </div>
