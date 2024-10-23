@@ -192,8 +192,8 @@
                 <img src="{{ asset('images/vacation-type.png') }}" alt="">
                 <div class="services__vacation-type__blurred-block"></div>
                 <div class="services-vacation-type">
-                    <h3 class="services-vacation-type__title">Тур по типу отдыха</h3>
-                    <x-blocks.service-vacation-type :$types />
+                    <h3 class="services-vacation-type__title">Туры по типу отдыха</h3>
+                    <x-blocks.service-vacation-type :$types :$statuses />
                     <button class="services-type-tour__all-button">
                         Просмотреть все типы
                         <svg width="17" height="17" viewBox="0 0 17 17" fill="inherit"

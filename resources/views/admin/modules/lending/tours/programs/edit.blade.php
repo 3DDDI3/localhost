@@ -45,7 +45,12 @@
                 'value' => $object->text ?? '',
             ])
 
-            {!! \App\Helpers\GenerateForm::makeGallery('Галерея', 'galary', $images, '/images/tours/programs') !!}
+            {!! \App\Helpers\GenerateForm::makeGallery(
+                'Галерея<br>размер 329х217',
+                'galary',
+                $images,
+                '/images/tours/programs',
+            ) !!}
 
             @include('admin.includes.submit')
         </form>

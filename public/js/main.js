@@ -4192,6 +4192,11 @@ $(function () {
     }
   });
   $("button").on("click", function () {
+    if ($(this).attr("class") == "search-tour-button") {
+      window.open($(this).data("href"));
+      return;
+    }
+
     if ($(this).data("href") != null) location.href = $(this).data("href");
   });
   $(".news__card").on("click", function () {
@@ -4257,9 +4262,8 @@ $(function () {
   if ($(".sliders").length > 0) slider = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_5__["default"](".sliders", (_Splide = {
     pagination: false,
     type: "loop",
-    padding: "30em",
-    autoplay: true,
-    interval: 5000,
+    // autoplay: true,
+    // interval: 5000,
     perPage: 1
   }, _defineProperty(_Splide, "pagination", true), _defineProperty(_Splide, "breakpoints", {
     375: {
@@ -52681,11 +52685,11 @@ var token=/d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/main": 0,
-/******/ 			"css/main": 0,
 /******/ 			"css/contacts": 0,
 /******/ 			"css/blog": 0,
 /******/ 			"css/agency": 0,
 /******/ 			"css/about": 0,
+/******/ 			"css/main": 0,
 /******/ 			"css/editor": 0,
 /******/ 			"css/pa": 0,
 /******/ 			"css/modals": 0,
@@ -52750,20 +52754,20 @@ var token=/d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/search.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/modals.css"); })
-/******/ 	__webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/pa.css"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/main","css/contacts","css/blog","css/agency","css/about","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/editor.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/js/main.js"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/main.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/about.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/agency.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/blog.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/contacts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/news.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tour.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/tours.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/fonts.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/search.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/modals.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/pa.css"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/contacts","css/blog","css/agency","css/about","css/main","css/editor","css/pa","css/modals","css/search","css/fonts","css/tours","css/tour","css/news"], function() { return __webpack_require__("./resources/css/editor.css"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

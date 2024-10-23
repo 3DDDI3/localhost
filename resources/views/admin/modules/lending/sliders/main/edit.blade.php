@@ -8,8 +8,14 @@
         <form method="post" enctype="multipart/form-data" class="admin_edit-form">
             @csrf
 
+            @include('admin.includes.input', [
+                'label' => 'Ссылка:',
+                'name' => 'url',
+                'value' => $object->url ?? '',
+            ])
+
             {!! \App\Helpers\GenerateForm::makeImage(
-                'Картинка текста<br>размер 425х200',
+                'Картинка текста<br>размер не более 1000х494',
                 'text',
                 $object,
                 '/storage/' . $object->text,

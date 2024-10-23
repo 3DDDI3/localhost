@@ -207,7 +207,7 @@
                             <div class="tour-cost-dates__wrapper">
                                 <label for="datapicker-from">
                                     <div class="search-tour__dates">
-                                        <span class="search-tour-dates__title">Дата вылета</span>
+                                        <span class="search-tour-dates__title">Дата заезда</span>
                                         <span class="search-tour-dates__subtitle"></span>
                                     </div>
                                     <input id="datapicker-from" class="search-tour-dates__datapicker" type="text"

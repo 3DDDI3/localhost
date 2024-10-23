@@ -74,7 +74,7 @@
         <a href="tel:{{ $phones[0] }}" class="header__phone">{{ $phones[0] }}</a>
     </div>
     <div class="search-profile">
-        <button class="search-tour-button" data-href="/#search-tour">Поиск тура</button>
+        <button class="search-tour-button" data-href="https://samo.mercury-europe.ru/search_tour">Поиск тура</button>
         <button class="profile-button"><svg width="16" height="20" viewBox="0 0 16 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path

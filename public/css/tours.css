@@ -97,6 +97,8 @@ main {
         gap: 36px;
         margin-bottom: 63px;
 
+
+
         .tour-card {
             display: flex;
             flex-direction: column;
@@ -125,6 +127,25 @@ main {
                 flex-direction: column;
                 position: relative;
                 height: 312px;
+
+                .popular-tours-tour__statuses {
+                    display: flex;
+                    position: absolute;
+                    flex-direction: row;
+                    right: 18px;
+                    -moz-column-gap: 15px;
+                         column-gap: 15px;
+
+                    .popular-tours-tour__status {
+                        position: relative;
+
+                        img {
+                            position: absolute;
+                            top: calc(50% - 16px);
+                            left: calc(50% - 12px);
+                        }
+                    }
+                }
 
                 .card__image {
                     height: auto;

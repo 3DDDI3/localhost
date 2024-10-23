@@ -33,16 +33,19 @@ class IndexController extends Controller
     {
         $setting = Setting::find(1);
 
-        $tourStatuses = Tour::query()->whereHas('tourStatus', function ($query) {
-            $query->where(['tour_status.status_id' => 1, 'tours.hide' => 0]);
-            $query->where(function ($query) {
+        $statuses = Status::query()
+            ->has('tourStatus')
+            ->get();
+
+        $tourStatuses = Tour::query()
+            ->where(['isPopular' => 1, 'hide' => 0])->where(function ($query) {
                 $query->where('deadline_date', '>=', Carbon::parse(now())->format('Y-m-d H:i:s'));
                 $query->orWhere(['deadline_date' => null]);
-            });
-        })
-            ->orderBy('created_at', 'desc')
-            ->take(10)
+            })
+            ->orderBy('rating', 'desc')
+            ->take(9)
             ->get();
+
 
         $countries = Country::query()
             ->whereHas('tours', function ($query) {
@@ -138,7 +141,8 @@ class IndexController extends Controller
             'countries',
             '_countries',
             'currencies',
-            'sliders'
+            'sliders',
+            'statuses'
         ));
     }
 }

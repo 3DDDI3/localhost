@@ -55,6 +55,8 @@ class MainSliderController extends Controller
             $object->id = !$slider ? 1 : $slider->id + 1;
             $object->page = "main";
 
+            $object->url = $request->input('url');
+
             $object->save();
 
             // dd(phpinfo());

@@ -178,7 +178,10 @@ Route::get('mailling/downlaod', function () {
 });
 
 Route::post('tours/set-popular', function (Request $request) {
-        dd(Tour::query()
+        Tour::query()
                 ->find($request->tour)
-                ->fill(['isPopular' => $request->isPopular]));
+                ->fill(['isPopular' => $request->isPopular])
+                ->save();
+
+        return response([], 200);
 })->withoutMiddleware('api');

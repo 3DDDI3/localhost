@@ -326,6 +326,7 @@ main {
                 /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
+                margin-bottom: unset !important;
                 row-gap: 20px;
 
                 .company-experts-fio-block {
@@ -334,6 +335,7 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
+                    align-items: flex-start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -394,6 +396,7 @@ main {
                 /* padding: 0 !important; */
                 flex-direction: column;
                 margin-bottom: 50px !important;
+                margin-bottom: unset !important;
                 row-gap: 20px;
 
                 .company-experts-fio-block {
@@ -403,6 +406,7 @@ main {
                 .company-experts-mail-block {
                     word-break: break-word;
                     row-gap: 20px;
+                    align-items: flex-start !important;
 
                     .company-experts-mail__title {
                         display: flex !important;
@@ -467,6 +471,7 @@ main {
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;
+                margin-bottom: unset !important;
 
                 .company-experts-fio-block {
                     word-break: break-word;
@@ -474,6 +479,7 @@ main {
 
                 .company-experts-mail-block {
                     word-break: break-word;
+                    align-items: flex-start !important;
                     row-gap: 20px;
 
                     .company-experts-mail__title {
@@ -540,6 +546,7 @@ main {
                 flex-direction: column;
                 margin-bottom: 50px !important;
                 row-gap: 20px;
+                margin-bottom: unset !important;
 
                 .company-experts-fio-block {
                     word-break: break-word;
@@ -548,6 +555,7 @@ main {
                 .company-experts-mail-block {
                     word-break: break-word;
                     row-gap: 20px;
+                    align-items: flex-start !important;
 
                     .company-experts-mail__title {
                         display: flex !important;

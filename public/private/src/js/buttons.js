@@ -406,7 +406,7 @@ $(document).ready(function () {
     $("a[name='popular']").on("click", function (e) {
         e.preventDefault();
 
-        let tour_id = $("a[name='popular']").data("id");
+        let tour_id = $(this).data("id");
         let isPopular = $(this).attr("class") == "popular_active" ? 0 : 1;
 
         $.ajax({
@@ -417,9 +417,15 @@ $(document).ready(function () {
                 isPopular: isPopular
             },
             dataType: "json",
-            success: function (response) {
-                console.log(1);
-            }
+            success: function () {
+                if (isPopular) {
+                    $(this).removeClass("popular");
+                    $(this).addClass("popular_active");
+                } else {
+                    $(this).removeClass("popular_active");
+                    $(this).addClass("popular");
+                }
+            }.bind(this)
         });
     });
 

@@ -25,4 +25,9 @@ class TourStatus extends Model
     {
         return $this->belongsTo(Tour::class)->first();
     }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class, 'id', 'tour_id');
+    }
 }

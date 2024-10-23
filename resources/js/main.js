@@ -221,7 +221,7 @@ $(function () {
             nights =
                 Math.round(
                     Number(picker.endDate - picker.startDate) /
-                        (1000 * 60 * 60 * 24)
+                    (1000 * 60 * 60 * 24)
                 ) - 1;
 
             $(".search-tour-nights__subtitle").text(`${nights}`);
@@ -364,9 +364,13 @@ $(function () {
     });
 
     $("button").on("click", function () {
+        if ($(this).attr("class") == "search-tour-button") {
+            window.open($(this).data("href"));
+            return;
+        }
+
         if ($(this).data("href") != null) location.href = $(this).data("href");
     });
-
     $(".news__card").on("click", function () {
         if ($(this).data("href") != null) location.href = $(this).data("href");
     });
@@ -445,9 +449,8 @@ $(function () {
         slider = new Splide(".sliders", {
             pagination: false,
             type: "loop",
-            padding: "30em",
-            autoplay: true,
-            interval: 5000,
+            // autoplay: true,
+            // interval: 5000,
             perPage: 1,
             pagination: true,
             breakpoints: {
@@ -881,14 +884,10 @@ $(function () {
             endDate = dateFormat(new Date(), "yyyymmdd");
         }
         window.open(
-            `https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${
-                begDate == undefined ? "" : begDate
-            }&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${
-                nights == undefined ? "" : nights
-            }&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${
-                nights == undefined ? "" : nights
-            }&ADULT=${adults == undefined ? "" : adults}&TOWNFROMINC=${
-                from == undefined ? "" : from
+            `https://samo.mercury-europe.ru/search_tour?TOURTYPE=0&CHECKIN_BEG=${begDate == undefined ? "" : begDate
+            }&STATEINC=${to == undefined ? "" : to}&NIGHTS_FROM=${nights == undefined ? "" : nights
+            }&CHECKIN_END=${endDate == undefined ? "" : endDate}&NIGHTS_TILL=${nights == undefined ? "" : nights
+            }&ADULT=${adults == undefined ? "" : adults}&TOWNFROMINC=${from == undefined ? "" : from
             }`
         );
     });
@@ -1153,8 +1152,8 @@ $(function () {
         e.preventDefault();
 
         let company = $(this)
-                .parents(".registration")
-                .find("input[name='company']"),
+            .parents(".registration")
+            .find("input[name='company']"),
             address = $(this)
                 .parents(".registration")
                 .find("input[name='address']"),
@@ -1358,9 +1357,8 @@ $(function () {
     });
 
     $(".tour-country-type-block").on("click", function () {
-        window.location.href = `${window.location.origin}${
-            window.location.pathname
-        }${$(this).data("href")}`;
+        window.location.href = `${window.location.origin}${window.location.pathname
+            }${$(this).data("href")}`;
     });
 
     $(".offer__button").on("click", function () {

@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
+            $table->text('url')->nullable();
             $table->text('text')->nullable();
             $table->text('image')->nullable();
             $table->string('page', 255)->nullable();

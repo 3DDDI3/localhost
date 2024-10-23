@@ -52,6 +52,19 @@
                 <img src="{{ $attributes->get('img') }}" class="card__image" alt="{{ $attributes->get('alt') }}">
             @endif
             <p class="tour-card__name card__name">{!! $attributes->get('info') !!}</p>
+            <div class="popular-tours-tour__statuses">
+                @foreach ($attributes->get('status') as $status)
+                    <div class="popular-tours-tour__status">
+                        <svg width="40" height="50" viewBox="0 0 40 50" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0H40V50C31.6688 50 25.2897 40.0794 18.7805 40.0794C13.0849 40.0794 7.28976 50 0 50V0Z"
+                                fill="#3E34AC" />
+                        </svg>
+                        <img title="{{ $status->name }}" src="/storage/{{ $status->icon }}" alt="">
+                    </div>
+                @endforeach
+            </div>
             <div class="tour-card__wrapper card__wrapper"></div>
         </div>
         <div class="tour-card__descriprtion card__description">

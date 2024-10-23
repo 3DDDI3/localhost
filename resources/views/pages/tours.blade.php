@@ -84,10 +84,10 @@
                     @break
 
                     @default
-                        <x-templates.tour :type="$tour->isPopularTour" class="" alt="" img="/storage/{{ $tour->preview_image }}"
+                        <x-templates.tour alt="" img="/storage/{{ $tour->preview_image }}"
                             info="{{ $tour->preview_title }}" title="{{ $tour->preview_header }}"
                             text="{{ $tour->preview_text }}" nights="{{ $tour->preview_nights }}"
-                            price="{{ $tour->preview_price }}" url="tours/{{ $tour->url }}" />
+                            price="{{ $tour->preview_price }}" url="tours/{{ $tour->url }}" :status="$tour->tourStatus()->take(3)->get()" />
                 @endswitch
             @endforeach
         </div>

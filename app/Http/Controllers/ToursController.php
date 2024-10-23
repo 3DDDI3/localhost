@@ -11,6 +11,7 @@ use App\Models\Lending\TourTypes;
 use App\Models\Services\SamotourTour;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ToursController extends Controller
 {
@@ -74,7 +75,7 @@ class ToursController extends Controller
                         $query->orWhere(['deadline_date' => null]);
                     });
                 })
-                ->orderBy('created_at', 'desc')
+                ->orderBy('rating', 'desc')
                 ->paginate(12);
 
             $breadCrumbs->push((object)[
@@ -94,7 +95,7 @@ class ToursController extends Controller
                         $query->orWhere(['deadline_date' => null]);
                     });
                 })
-                ->orderBy('created_at', 'desc')
+                ->orderBy('rating', 'desc')
                 ->paginate(12);
 
             $breadCrumbs->push((object)[
@@ -112,13 +113,35 @@ class ToursController extends Controller
                     'url' => '/tours?type_id=*',
                 ]);
 
-                $tours = TourType::has('tour')
-                    ->paginate(12);
+                $tours = TourType::query()
+                    ->has('tour')
+                    ->get();
+
+                $tours_collection = collect();
+
+                foreach ($tours as $tour) {
+                    $tours_collection->push($tour->tour);
+                }
+
+                $tours_collection = $tours_collection->sortByDesc('rating');
+
+                $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                $perPage = 10; // Количество элементов на странице
+                $currentPageItems = $tours_collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+                // Создание LengthAwarePaginator
+                $tours = new LengthAwarePaginator(
+                    $currentPageItems,
+                    $tours_collection->count(),
+                    $perPage,
+                    $currentPage,
+                    ['path' => LengthAwarePaginator::resolveCurrentPath()]
+                );
             } else {
                 $tourType = TourType::query()
+                    ->has('tour')
                     ->where([
                         'tour_type_id' => request()->input("type_id"),
-                        // 'hide' => 0
                     ])->first();
 
                 if (!$tourType) abort(404, 'Что-то пошло не так.');
@@ -143,7 +166,28 @@ class ToursController extends Controller
                             $query->orWhere(['deadline_date' => null]);
                         });
                     })
-                    ->paginate(12);
+                    ->get();
+
+                $tours_collection = collect();
+
+                foreach ($tours as $tour) {
+                    $tours_collection->push($tour->tour);
+                }
+
+                $tours_collection = $tours_collection->sortByDesc('id');
+
+                $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                $perPage = 10; // Количество элементов на странице
+                $currentPageItems = $tours_collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+                // Создание LengthAwarePaginator
+                $tours = new LengthAwarePaginator(
+                    $currentPageItems,
+                    $tours_collection->count(),
+                    $perPage,
+                    $currentPage,
+                    ['path' => LengthAwarePaginator::resolveCurrentPath()]
+                );
 
                 $status = TourTypes::query()
                     ->where(['id' => request()->type_id])
@@ -161,8 +205,30 @@ class ToursController extends Controller
                     'url' => '/tours?country_id=*',
                 ]);
 
-                $tours = TourCountry::has('tour')
-                    ->paginate(12);
+                $tours = TourCountry::query()
+                    ->has('tour')
+                    ->get();
+
+                $tours_collection = collect();
+
+                foreach ($tours as $tour) {
+                    $tours_collection->push($tour->tour);
+                }
+
+                $tours_collection = $tours_collection->sortByDesc('rating');
+
+                $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                $perPage = 10; // Количество элементов на странице
+                $currentPageItems = $tours_collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+                // Создание LengthAwarePaginator
+                $tours = new LengthAwarePaginator(
+                    $currentPageItems,
+                    $tours_collection->count(),
+                    $perPage,
+                    $currentPage,
+                    ['path' => LengthAwarePaginator::resolveCurrentPath()]
+                );
             } else {
                 $country = Country::query()
                     ->where([
@@ -193,7 +259,28 @@ class ToursController extends Controller
                             $query->orWhere(['deadline_date' => null]);
                         });
                     })
-                    ->paginate(12);
+                    ->get();
+
+                $tours_collection = collect();
+
+                foreach ($tours as $tour) {
+                    $tours_collection->push($tour->tour);
+                }
+
+                $tours_collection = $tours_collection->sortByDesc('rating');
+
+                $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                $perPage = 10; // Количество элементов на странице
+                $currentPageItems = $tours_collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+                // Создание LengthAwarePaginator
+                $tours = new LengthAwarePaginator(
+                    $currentPageItems,
+                    $tours_collection->count(),
+                    $perPage,
+                    $currentPage,
+                    ['path' => LengthAwarePaginator::resolveCurrentPath()]
+                );
 
                 $status = Country::query()
                     ->where(['id' => request()->country_id])

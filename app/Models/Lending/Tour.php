@@ -34,6 +34,11 @@ class Tour extends Model
         return $this->hasMany(TourCountry::class);
     }
 
+    public function _tourType()
+    {
+        return $this->hasOne(TourType::class, 'tour_id', 'id');
+    }
+
     public function infografika(): HasMany
     {
         return $this->hasMany(Infografika::class)->where(['hide' => 0]);
@@ -96,6 +101,6 @@ class Tour extends Model
         'isHiddenTourCost',
         'path1',
         'path2',
-        'isPopular'
+        'isPopular',
     ];
 }
